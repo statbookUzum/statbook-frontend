@@ -1,0 +1,33 @@
+[{
+        "name": "name-1",
+        "value-1": 10,
+        "value-2": 20,
+        "value-3": 30,
+        "value-4": 40,
+        "value-5": 50
+    },
+    {
+        "name": "name-2",
+        "value-1": 10,
+        "value-2": 20,
+        "value-3": 30,
+        "value-4": 40,
+        "value-5": 50
+    },
+    {
+        "name": "name-3",
+        "value-1": 10,
+        "value-2": 20,
+        "value-3": 30,
+        "value-4": 40,
+        "value-5": 50
+    },
+    {
+        "name": "name-n",
+        "value-1": 10,
+        "value-2": 20,
+        "value-3": 30,
+        "value-4": 40,
+        "value-5": 50
+    }
+]

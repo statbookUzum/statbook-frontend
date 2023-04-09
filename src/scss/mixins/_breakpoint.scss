@@ -1,0 +1,13 @@
+/* stylelint-disable */
+
+@mixin w($width) {
+  @media screen and (max-width: $width) {
+      @content;
+  }
+}
+
+@mixin h($width) {
+  @media screen and (max-height: $width) {
+      @content;
+  }
+}
