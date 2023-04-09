@@ -34,45 +34,34 @@
 </div>
 
     <h1 class="visually-hidden">
-      Зарегестрироваться на statbook
+      Восстановить пароль на statbook
     </h1>
     <div class="container main__container">
       <div class="auth-form">
-        <form id="registration-form" class="active" action="#">
+        <a class="auth-form__back" href="./login.html">
+          <span class="visually-hidden">back</span>
+        </a>
+        <form id="retrieval-form" action="#">
           <h2 class="auth-form__title">
-            Начните сейчас
+            Восстановить пароль
           </h2>
+          <div class="auth-form__subtitle">
+            Введите свою почту и мы отправим письмо с ссылкой для восстановления пароля
+          </div>
 
           <label class="auth-form__label auth-form__label--mail">
             <input class="auth-form__input" type="email" name="email" placeholder="Введите вашу почту">
           </label>
-          <label class="auth-form__label auth-form__label--password">
-            <input class="auth-form__input" type="password" name="password" placeholder="Придумайте ваш пароль">
-          </label>
 
-          <div class="auth-form__text">
-            <span>
-              Другой способ
-            </span>
-          </div>
-          <div class="auth-form__quick-wrapper">
-            <button id="auth-google" class="auth-form__quick btn-reset" type="button">
-              Google
-            </button>
-            <button id="auth-facebook" class="auth-form__quick btn-reset" type="button">
-              Facebook
-            </button>
-          </div>
-
-          <button class="auth-form__submit form-button btn-reset" type="submit">
-            Создать аккаунт
+          <button class="auth-form__submit btn-reset form-button" type="submit">
+            Отправить письмо
           </button>
 
-          <div class="auth-form__bottom">
-            Уже есть аккаунт?
-            <a href="./login.html" class="auth-form__bottom-btn">
-              Войти
-            </a>
+          <div class="auth-form__bottom auth-form__bottom--retrieval">
+            Не пришло письмо?
+            <button type="button" class="auth-form__bottom-btn btn-reset">
+              Отправить еще раз
+            </button>
           </div>
         </form>
       </div>

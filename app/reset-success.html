@@ -37,44 +37,17 @@
       Зарегестрироваться на statbook
     </h1>
     <div class="container main__container">
-      <div class="auth-form">
-        <form id="registration-form" class="active" action="#">
-          <h2 class="auth-form__title">
-            Начните сейчас
-          </h2>
-
-          <label class="auth-form__label auth-form__label--mail">
-            <input class="auth-form__input" type="email" name="email" placeholder="Введите вашу почту">
-          </label>
-          <label class="auth-form__label auth-form__label--password">
-            <input class="auth-form__input" type="password" name="password" placeholder="Придумайте ваш пароль">
-          </label>
-
-          <div class="auth-form__text">
-            <span>
-              Другой способ
-            </span>
-          </div>
-          <div class="auth-form__quick-wrapper">
-            <button id="auth-google" class="auth-form__quick btn-reset" type="button">
-              Google
-            </button>
-            <button id="auth-facebook" class="auth-form__quick btn-reset" type="button">
-              Facebook
-            </button>
-          </div>
-
-          <button class="auth-form__submit form-button btn-reset" type="submit">
-            Создать аккаунт
-          </button>
-
-          <div class="auth-form__bottom">
-            Уже есть аккаунт?
-            <a href="./login.html" class="auth-form__bottom-btn">
-              Войти
-            </a>
-          </div>
-        </form>
+      <div class="reset-success">
+        <img src="./img/success.svg" alt="Пароль успешно сброшен">
+        <div class="reset-success__text">
+          Пароль успешно сброшен
+        </div>
+        <div class="reset-success__subtext">
+          Введите свою почту и мы отправим письмо с ссылкой для восстановления пароля
+        </div>
+        <a href="./login.html" class="reset-success__btn form-button">
+          Войти в аккаунт
+        </a>
       </div>
     </div>
   </main>

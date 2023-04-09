@@ -34,13 +34,16 @@
 </div>
 
     <h1 class="visually-hidden">
-      Зарегестрироваться на statbook
+      Авторизоваться на statbook
     </h1>
     <div class="container main__container">
       <div class="auth-form">
-        <form id="registration-form" class="active" action="#">
+        <a class="auth-form__back" href="./registration.html">
+          <span class="visually-hidden">back</span>
+        </a>
+        <form id="authorization-form" action="#">
           <h2 class="auth-form__title">
-            Начните сейчас
+            Добро пожаловать
           </h2>
 
           <label class="auth-form__label auth-form__label--mail">
@@ -65,13 +68,16 @@
           </div>
 
           <button class="auth-form__submit form-button btn-reset" type="submit">
-            Создать аккаунт
+            Войти
           </button>
 
-          <div class="auth-form__bottom">
-            Уже есть аккаунт?
-            <a href="./login.html" class="auth-form__bottom-btn">
-              Войти
+          <div class="auth-form__bottom auth-form__bottom--authorization">
+            <label class="custom-checkbox">
+              <input type="checkbox" class="custom-checkbox__field">
+              <span class="custom-checkbox__content">Запомнить меня</span>
+            </label>
+            <a href="./forgot.html" class="auth-form__bottom-btn btn-reset">
+              Забыли пароль?
             </a>
           </div>
         </form>

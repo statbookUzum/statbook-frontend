@@ -120,38 +120,32 @@ var authForms = document.querySelectorAll('form'); // forms
 // const registrationForm = document.querySelector('#registration-form');
 // const authorizationForm = document.querySelector('#authorization-form');
 // const retrievalForm = document.querySelector('#retrieval-form');
-
-if (authForms.length) {
-  var authFormsCounter = 0;
-
-  function changeForms() {
-    if (authFormsCounter > 0) {
-      authBackButton.classList.add('active');
-    } else {
-      authBackButton.classList.remove('active');
-    }
-
-    authForms.forEach(function (form) {
-      return form.classList.remove('active');
-    });
-    authForms[authFormsCounter].classList.add('active');
-  }
-
-  authButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      if (authFormsCounter < authForms.length) {
-        authFormsCounter++;
-        changeForms();
-      }
-    });
-  });
-  authBackButton.addEventListener('click', function () {
-    if (authFormsCounter > 0) {
-      authFormsCounter--;
-      changeForms();
-    }
-  });
-}
+// if (authForms.length) {
+//   let authFormsCounter = 0;
+//   function changeForms() {
+//     if (authFormsCounter > 0) {
+//       authBackButton.classList.add('active');
+//     } else {
+//       authBackButton.classList.remove('active');
+//     }
+//     authForms.forEach(form => form.classList.remove('active'));
+//     authForms[authFormsCounter].classList.add('active');
+//   }
+//   authButtons.forEach(button => {
+//     button.addEventListener('click', () => {
+//       if (authFormsCounter < authForms.length) {
+//         authFormsCounter++;
+//         changeForms();
+//       }
+//     });
+//   });
+//   authBackButton.addEventListener('click', () => {
+//     if (authFormsCounter > 0) {
+//       authFormsCounter--;
+//       changeForms();
+//     }
+//   })
+// }
 
 /***/ }),
 

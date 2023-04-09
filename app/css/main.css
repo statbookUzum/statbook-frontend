@@ -261,7 +261,6 @@ input::-webkit-inner-spin-button {
   position: absolute;
   top: 20px;
   left: 20px;
-  display: none;
   width: 35px;
   height: 35px;
   background-image: url("../img/arrow-back.svg");
@@ -278,9 +277,6 @@ input::-webkit-inner-spin-button {
   -webkit-transform: translateX(-5px);
   -ms-transform: translateX(-5px);
   transform: translateX(-5px);
-}
-.auth-form__back.active {
-  display: block;
 }
 .auth-form__title {
   margin-bottom: 40px;
@@ -436,15 +432,6 @@ input::-webkit-inner-spin-button {
 }
 .auth-form__submit {
   margin-bottom: 26px;
-  padding: 18px 0;
-  border-radius: 16px;
-  width: 100%;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #fff;
-  background-image: -o-radial-gradient(circle, #708bff 0%, #3a5ffa 80%);
-  background-image: radial-gradient(circle, #708bff 0%, #3a5ffa 80%);
 }
 .auth-form__bottom {
   color: rgba(4, 15, 35, 0.6);
@@ -468,12 +455,41 @@ input::-webkit-inner-spin-button {
   padding-bottom: 50px;
 }
 
-.auth-form form {
-  display: none;
+.reset-success {
+  position: relative;
+  padding: 85px 40px;
+  -webkit-box-shadow: 0px 15px 70px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 15px 70px rgba(0, 0, 0, 0.15);
+  border-radius: 30px;
+  -webkit-column-gap: 18px;
+  -moz-column-gap: 18px;
+  column-gap: 18px;
+  max-width: 478px;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  background-color: #f9f9f9;
 }
-
-.auth-form form.active {
-  display: block;
+@media screen and (max-width: 576px) {
+  .reset-success {
+    padding: 35px 20px;
+  }
+}
+.reset-success img {
+  margin: 0 auto 12px;
+}
+.reset-success__text {
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.2;
+}
+.reset-success__subtext {
+  margin-bottom: 33px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
 }
 
 .header {
@@ -593,5 +609,18 @@ input::-webkit-inner-spin-button {
   .loader__text {
     font-size: 21px;
   }
+}
+
+.form-button {
+  padding: 18px 0;
+  border-radius: 16px;
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  background-image: -o-radial-gradient(circle, #708bff 0%, #3a5ffa 80%);
+  background-image: radial-gradient(circle, #708bff 0%, #3a5ffa 80%);
 }
 /*# sourceMappingURL=main.css.map */
