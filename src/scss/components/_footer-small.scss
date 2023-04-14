@@ -1,0 +1,47 @@
+.footer-small {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+
+  color: rgba(4, 15, 35, 0.3);
+
+  &__container {
+    padding: 20px 15px;
+    border-top: 2px solid rgba(4, 15, 35, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include w($md) {
+      display: block;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 23px;
+
+    @include w($md) {
+      margin-bottom: 20px;
+    }
+
+    @include w($sm) {
+      margin-bottom: 0;
+      display: block;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    text-decoration-line: underline;
+
+    &__hover {
+      color: $color-darkblack;
+    }
+
+    @include w($sm) {
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,211 @@
+.custom-input {
+  position: relative;
+  padding-left: 53px;
+  padding-right: 20px;
+  border-radius: 12px;
+
+  background-color: $light-color;
+
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 17px;
+    z-index: 2;
+    width: 24px;
+    height: 24px;
+    transform: translateY(-50%);
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &--sum {
+    &::before {
+      background-image: url("../img/top-up-sum-icon.svg");
+    }
+  }
+
+  &--mail {
+    &::before {
+      background-image: url("../img/mail.svg");
+    }
+  }
+
+  &--password {
+    &::before {
+      background-image: url("../img/password-icon.svg");
+    }
+  }
+
+  &__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding-left: 56px;
+    border-radius: 12px;
+    border: 2px solid rgba($color-blue-35, 0.1);
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    line-height: 1.2;
+
+    outline: transparent;
+    transition: border-color 0.3s ease-in;
+
+    &::placeholder {
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+
+      color: rgba($color-blue-35, 0.4);
+    }
+
+    &:focus {
+      border-color: #224dff;
+    }
+
+    &:hover {
+      border-color: #224dff;
+    }
+  }
+
+  &--error {
+    .custom-input__input {
+      color: $color-error;
+      border-color: $color-error;
+    }
+
+    &.custom-input--mail {
+      &::before {
+        background-image: url("../img/mail-error.svg");
+      }
+    }
+
+    &.custom-input--password {
+      &::before {
+        border-color: $color-light-blue;
+        background-image: url("../img/password-icon-error.svg");
+      }
+    }
+  }
+
+  &--success {
+    .custom-input__input {
+      background-color: rgba($color-light-blue, 0.4);
+    }
+  }
+
+  &__clean {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    z-index: 2;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+
+    background-color: transparent;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+
+    transform: translateY(-50%);
+
+    svg {
+      display: block;
+      height: 13px;
+      width: 13px;
+
+      path {
+        transition: stroke 0.3s ease-in-out;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(124, 150, 255, 0.2);
+
+      path {
+        stroke: #224dff;
+      }
+    }
+  }
+
+  &__pass-btn {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    z-index: 2;
+    height: 24px;
+    width: 24px;
+
+    background-image: url("../img/hidden-pass.svg");
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%);
+
+    &--show {
+      background-image: url("../img/show-pass.svg");
+    }
+  }
+}
+
+.custom-input:focus-within {
+  .custom-input__clean {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .custom-input__pass-btn {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.error-msg {
+  margin: -5px 0 10px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+
+  background: linear-gradient(270.38deg, #ac3f3f 0.66%, #da4444 142.25%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  @include w($md) {
+    font-size: 12px;
+  }
+}
+
+.custom-input--flex .error-msg {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  margin: 0;
+  width: 100%;
+
+  transform: translateX(-50%);
+
+  @include w($lg) {
+    font-size: 12px;
+    bottom: -12px;
+  }
+}

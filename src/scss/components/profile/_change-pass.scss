@@ -1,0 +1,89 @@
+.change-pass {
+  border-radius: 15px;
+  border: 2px solid rgba($color-blue-35, 0.1);
+
+  overflow: hidden;
+
+  &__form {
+    padding: 30px 40px 46px;
+    border-bottom: 2px solid rgba($color-blue-35, 0.1);
+    background-color: rgba($color-light-blue, 0.1);
+
+    @include w($lg) {
+      padding: 30px 30px 70px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 30px;
+
+    font-size: 30px;
+    line-height: 141.5%;
+    color: $color-blue-35;
+
+    @include w($md) {
+      font-size: 24.5px;
+    }
+  }
+
+  &__inputs {
+    margin-bottom: 17px;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    gap: 12px;
+
+    @include w($lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__label {
+    height: 58px;
+    width: 100%;
+
+    @include w($lg) {
+      grid-column: 2 span;
+    }
+
+    @include w($sm) {
+      grid-column: 4 span;
+    }
+  }
+
+  &__submit {
+    @include w($lg) {
+      grid-column: 4 span;
+    }
+  }
+
+  &__mail-form {
+    padding: 30px 40px 70px;
+  }
+
+  &__mail-title {
+    margin-bottom: 30px;
+
+    font-size: 30px;
+    line-height: 141.5%;
+    color: rgba($color-blue-35, 0.6);
+
+    @include w($md) {
+      font-size: 24.5px;
+    }
+  }
+
+  &__mail-inputs {
+    margin-bottom: 17px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+    max-width: 640px;
+    width: 100%;
+  }
+
+  &__mail-submit {
+    @include w($sm) {
+      grid-column: 4 span;
+    }
+  }
+}

@@ -1,6 +1,143 @@
 .header {
   position: absolute;
   top: 0;
-  padding: 35px 0 10px;
+  left: 0;
   width: 100%;
+  padding: 35px 0 10px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-right: auto;
+  }
+
+  &__nav {
+    margin-right: auto;
+
+    @include w($lg) {
+      width: 100%;
+      margin-bottom: 28px;
+      margin-right: 0;
+    }
+
+    @include w($md) {
+      margin-bottom: auto;
+    }
+  }
+
+  &__button {
+    position: relative;
+    padding: 10px 3px;
+    border-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 180px;
+
+    &::after {
+      content: "";
+      margin-left: 5px;
+      width: 14px;
+      height: 14px;
+
+      background-image: url("../img/log-out.svg");
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    @include w($sm) {
+      padding: 12px 3px;
+      width: 100%;
+    }
+  }
+}
+
+.header-account {
+  display: flex;
+  align-items: center;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+
+  &__image {
+    margin-right: 20px;
+    border-radius: 100%;
+    width: 53px;
+    height: 53px;
+  }
+
+  &__mail {
+    color: rgba($light-color, 0.8);
+  }
+
+  &__balance {
+    color: $light-color;
+
+    span {
+      font-weight: 600;
+    }
+  }
+}
+
+.header__account {
+  display: none;
+  margin-bottom: 15px;
+
+  @include w($lg) {
+    display: flex;
+  }
+}
+
+.header__mob {
+  display: none;
+  @include w($lg) {
+    display: block;
+  }
+}
+
+.header__desc {
+  @include w($lg) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 150px 0 30px;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/nav-bg.svg");
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    transform: translate3d(0, -100%, 0);
+
+    overflow-y: auto;
+    will-change: transform;
+    transition: transform 0.5s ease-in;
+  }
+
+  .container {
+    @include w($lg) {
+      flex-direction: column;
+      align-items: flex-start;
+      height: 100%;
+    }
+  }
+
+  .logo {
+    @include w($lg) {
+      display: none;
+    }
+  }
+}
+
+.header__desc.active {
+  transform: translate3d(0, 0, 0);
 }

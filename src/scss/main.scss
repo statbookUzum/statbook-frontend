@@ -4,13 +4,30 @@
 @import "fonts";
 @import "settings";
 
-// страницы
-@import "./pages/auth";
+// подключения компонентов лендинга
 
-// подключения компонентов страницы
-@import "./components/header";
-@import "./components/footer";
-@import "./components/loader";
+// подключения компонентов
 @import "./components/buttons";
+@import "./components/loader";
+@import "./components/header";
+@import "./components/footer-small";
+@import "./components/footer";
+@import "./components/auth";
+@import "./components/nav";
+@import "./components/social-list";
+@import "./components/top-section";
+@import "./components/custom-input";
+@import "./components/custom-select";
+@import "./components/agreement-checkbox";
+@import "./components/switcher";
+@import "./components/tariff-card";
+@import "./components/link-effects";
+@import "./components/custom-scrollbar";
 
-// блоки страниц
+// подключение компонентов профиля
+@import "./components/profile/profile-info";
+@import "./components/profile/profile-tariff";
+@import "./components/profile/top-up";
+@import "./components/profile/change-pass";
+@import "./components/profile/tariff-modal";
+@import "./components/profile/change-tariff";

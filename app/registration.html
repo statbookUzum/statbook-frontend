@@ -7,24 +7,14 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#111111">
-  <title>Statebook</title>
+  <title>Statebook/Регистрация</title>
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
   <script defer src="js/main.js"></script>
 </head>
 
 <body class="page__body auth">
-
-  <header class="header">
-    <div class="container">
-      <a class="logo" href="#">
-        <img src="./img/logo.svg" alt="логотип statbook">
-      </a>
-    </div>
-  </header>
-
-  <main class="main">
-    <div class="loader">
+  <div class="loader" style="opacity: 1; visibility: visible;">
   <div class="container loader__container">
     <img src="./img/loader.svg" alt="веб-сайт загружается">
     <p class="loader__text">
@@ -33,64 +23,84 @@
   </div>
 </div>
 
-    <h1 class="visually-hidden">
-      Зарегестрироваться на statbook
-    </h1>
-    <div class="container main__container">
-      <div class="auth-form">
-        <form id="registration-form" class="active" action="#">
-          <h2 class="auth-form__title">
-            Начните сейчас
-          </h2>
-
-          <label class="auth-form__label auth-form__label--mail">
-            <input class="auth-form__input" type="email" name="email" placeholder="Введите вашу почту">
-          </label>
-          <label class="auth-form__label auth-form__label--password">
-            <input class="auth-form__input" type="password" name="password" placeholder="Придумайте ваш пароль">
-          </label>
-
-          <div class="auth-form__text">
-            <span>
-              Другой способ
-            </span>
-          </div>
-          <div class="auth-form__quick-wrapper">
-            <button id="auth-google" class="auth-form__quick btn-reset" type="button">
-              Google
-            </button>
-            <button id="auth-facebook" class="auth-form__quick btn-reset" type="button">
-              Facebook
-            </button>
-          </div>
-
-          <button class="auth-form__submit form-button btn-reset" type="submit">
-            Создать аккаунт
-          </button>
-
-          <div class="auth-form__bottom">
-            Уже есть аккаунт?
-            <a href="./login.html" class="auth-form__bottom-btn">
-              Войти
-            </a>
-          </div>
-        </form>
+  <div class="loader-wrapper" style="opacity: 0; visibility: hidden;">
+    <header class="header">
+      <div class="container">
+        <a class="logo" href="#">
+          <img src="./img/logo.svg" alt="логотип statbook">
+        </a>
       </div>
-    </div>
-  </main>
+    </header>
 
-  <footer class="footer">
-  <div class="container footer__container">
-    <div class="footer__links">
-      <a href="#" class="footer__link">Политика конфиденциальности</a>
-      <a href="#" class="footer__link">Пользовательское соглашение</a>
+    <main class="main">
+
+      <h1 class="visually-hidden">
+        Зарегестрироваться на statbook
+      </h1>
+      <div class="container main__container">
+        <div class="auth-form">
+          <form id="registration-form" class="active validation-form" action="#">
+            <h2 class="auth-form__title">
+              Начните сейчас
+            </h2>
+
+            <label class="auth-form__label custom-input custom-input--mail">
+              <input class="custom-input__input" type="email" name="email" placeholder="Введите вашу почту" required>
+              <button type="button" class="custom-input__clean btn-reset">
+                <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 1L1 13.9999M14 14L1 1.00006" stroke="#040F23" stroke-opacity="0.4" stroke-width="1.5"
+                    stroke-linecap="round" />
+                </svg>
+              </button>
+            </label>
+            <label class="auth-form__label custom-input custom-input--password">
+              <input class="custom-input__input" type="password" name="password" placeholder="Придумайте ваш пароль"
+                required>
+              <button type="button" class="custom-input__pass-btn btn-reset"></button>
+            </label>
+
+            <div class="auth-form__text">
+              <span>
+                Другой способ
+              </span>
+            </div>
+            <div class="auth-form__quick-wrapper">
+              <button id="auth-google" class="auth-form__quick btn-reset" type="button">
+                Google
+              </button>
+              <button id="auth-facebook" class="auth-form__quick btn-reset" type="button">
+                Facebook
+              </button>
+            </div>
+
+            <button class="auth-form__submit main-button btn-reset" type="submit">
+              Создать аккаунт
+            </button>
+
+            <div class="auth-form__bottom">
+              Уже есть аккаунт?
+              <a href="./login.html" class="auth-form__bottom-btn">
+                Войти
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer-small">
+  <div class="container footer-small__container">
+    <div class="footer-small__links">
+      <a href="#" class="footer-small__link">Политика конфиденциальности</a>
+      <a href="#" class="footer-small__link">Пользовательское соглашение</a>
     </div>
-    <div class="footer__copy">
+    <div class="footer-small__copy">
       Statbook 2023 Все права защищены
     </div>
   </div>
 </footer>
 
+  </div>
 </body>
 
 </html>

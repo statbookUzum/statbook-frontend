@@ -1,13 +1,17 @@
 @import "./vendor/reset";
 
 // стили для модального окна
-// @import "../../node_modules/graph-modal/dist/graph-modal.min";
+@import "../../node_modules/graph-modal/dist/graph-modal.min";
 
 // стили для табов
-// @import "../../node_modules/graph-tabs/dist/graph-tabs.min"
-
-// стили для библиотеки aos
+@import "../../node_modules/graph-tabs/dist/graph-tabs.min"; // стили для библиотеки aos
 // @import "../../node_modules/aos/dist/aos";
+
+// стили для кастомного селекта
+@import "../../node_modules/custom-select/build/custom-select";
+
+//стили для кастомного скролла
+@import "../../node_modules/simplebar/dist/simplebar.min";
 
 // стили для свайпера
 // @import "../../node_modules/swiper/swiper-bundle.min";

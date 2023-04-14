@@ -3,6 +3,7 @@
 
 // base
 $font-family: "Qanelas", sans-serif;
+$secondary-font-family: "Open Sans", sans-serif;
 $content-width: 1280px;
 $max-content-width: 1800px;
 $container-offset: 15px;
@@ -16,7 +17,12 @@ $max-container-for-adaptive: 1800;
 // colors
 $light-color: #fff;
 $color-darkblack: #000;
-
+$color-blue-24: rgb(0, 11, 24); // #000b18
+$color-blue-35: rgb(4, 15, 35); // #040f23
+$color-light-blue: rgb(124, 150, 255); //#7c96ff
+$color-blue: #224dff;
+$color-gray: #f9f9f9;
+$color-error: #c24141;
 // screen size
 
 $xsm: 370px;

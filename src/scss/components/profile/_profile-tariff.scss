@@ -1,0 +1,205 @@
+.profile-tariff {
+  padding: 29px 40px 72px;
+  border-radius: 15px;
+  border: 2px solid rgba($color-blue-35, 0.1);
+
+  @include w($sm) {
+    padding: 14px 0 0;
+  }
+
+  &__content-top {
+    margin-bottom: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include w($md) {
+      display: block;
+
+      text-align: center;
+    }
+  }
+
+  &__info {
+    font-size: 20px;
+    line-height: 2.2;
+    color: rgba($color-blue-35, 0.6);
+
+    span {
+      font-size: 30px;
+      color: $color-blue-35;
+    }
+
+    @include w($md) {
+      font-size: 18px;
+
+      span {
+        font-size: 27px;
+      }
+    }
+  }
+
+  &__status {
+    padding: 6px 0;
+    border-radius: 7px;
+    width: 154px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 141.5%;
+    color: $light-color;
+
+    &::after {
+      content: "";
+      margin-left: 9px;
+      height: 10px;
+      width: 14px;
+
+      background-image: url("../img/chek.svg");
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    @include w($md) {
+      margin: 0 auto;
+    }
+  }
+
+  &__status.active {
+    background-image: linear-gradient(
+      270.38deg,
+      #32af99 0.66%,
+      #138571 142.25%
+    );
+  }
+
+  &__status.inactive {
+    background-image: linear-gradient(
+      270.38deg,
+      #ac3f3f 0.66%,
+      #da4444 142.25%
+    );
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+
+    @include w($md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    padding: 25px 40px 27px;
+    border-radius: 25px;
+
+    background-image: url("../img/tariff-item-bg.svg");
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @include w($sm) {
+      padding-left: 10px;
+      padding-right: 10px;
+      border-radius: 15px;
+    }
+  }
+}
+
+.tariff-item {
+  color: $light-color;
+
+  &__title {
+    margin-bottom: 10px;
+
+    font-size: 24px;
+    line-height: 2;
+
+    @include w($xsm) {
+      font-size: 20px;
+    }
+  }
+
+  &__line {
+    font-size: 18px;
+    line-height: 2.8;
+    color: rgba($light-color, 0.8);
+
+    span {
+      font-size: 22px;
+      color: $light-color;
+    }
+
+    @include w($xsm) {
+      font-size: 16px;
+
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__button {
+    margin-top: 58px;
+
+    @include w($xsm) {
+      font-size: 16px;
+    }
+  }
+}
+
+.tariff-include {
+  color: $light-color;
+
+  &__title {
+    margin-bottom: 10px;
+
+    font-size: 24px;
+    line-height: 2;
+
+    @include w($xsm) {
+      font-size: 20px;
+    }
+  }
+
+  &__item {
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    max-width: 240px;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.2;
+    color: rgba($light-color, 0.8);
+
+    &::before {
+      content: "";
+      margin-right: 12px;
+      height: 12px;
+      width: 16px;
+
+      background-image: url("../img/color-chek.svg");
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    @include w($xsm) {
+      font-size: 16px;
+    }
+  }
+}

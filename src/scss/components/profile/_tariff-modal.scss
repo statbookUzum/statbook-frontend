@@ -1,0 +1,254 @@
+.tariff-modal {
+  padding: 20px 83px;
+
+  @include w($lg) {
+    padding: 20px 0px;
+
+    overflow: hidden;
+  }
+
+  @include w($md) {
+    padding: 40px 0;
+  }
+
+  &__title {
+    margin-bottom: 58px;
+
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 141.5%;
+    color: $color-blue-35;
+
+    @include w($md) {
+      margin: 0 auto 30px;
+      max-width: 288px;
+
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+
+  &__form-title {
+    margin-bottom: 9px;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 141.5%;
+    color: rgba($color-blue-35, 0.6);
+  }
+
+  &__list {
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  &__term-list {
+    margin-top: 35px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  &__bottom {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 2px solid rgba($color-blue-35, 0.1);
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    @include w($md) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__price {
+    font-size: 30px;
+    line-height: 1;
+    color: rgba($color-blue-35, 0.8);
+
+    span {
+      font-size: 50px;
+    }
+  }
+
+  &__submit {
+    max-width: 268px;
+
+    @include w($sm) {
+      max-width: none;
+    }
+  }
+
+  &__checkbox {
+    width: 100%;
+  }
+}
+
+.graph-modal__close {
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+  z-index: 50;
+
+  background-image: url("../img/close.svg");
+  background-color: rgba($color-blue-35, 0.1);
+
+  background-position: center;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+
+  transition: background-color 0.3s ease-in-out;
+
+  &:focus {
+    background-color: rgba($color-light-blue, 0.2);
+  }
+
+  &:hover {
+    background-color: rgba($color-light-blue, 0.2);
+  }
+}
+
+.graph-modal__container {
+  @include w(1024px) {
+    width: 95%;
+  }
+  @include w($lg) {
+    padding: 20px 10px;
+  }
+}
+
+.tariff-radio {
+  position: relative;
+  padding: 15px 22px 20px;
+  border: 2px solid rgba($color-blue-35, 0.1);
+  border-radius: 15px;
+  width: 250px;
+
+  background-color: #f9f9f9;
+
+  cursor: pointer;
+
+  &__circle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 100%;
+    border: 2px solid rgba($color-blue-35, 0.3);
+    height: 20px;
+    width: 20px;
+  }
+
+  &__title {
+    margin-bottom: 26px;
+
+    font-size: 18px;
+    line-height: 141.5%;
+    color: rgba($color-blue-35, 0.3);
+  }
+  &__price {
+    font-size: 25px;
+    line-height: 1.2;
+    color: rgba($color-blue-35, 0.3);
+
+    span {
+      font-size: 48px;
+    }
+  }
+}
+
+.custom-checkbox__field:checked + .custom-checkbox__content .tariff-radio {
+  border-color: $color-blue;
+
+  background-color: $light-color;
+
+  .tariff-radio__title {
+    color: $color-blue-35;
+  }
+
+  .tariff-radio__price {
+    color: $color-blue-35;
+  }
+
+  .tariff-radio__circle {
+    border-width: 5px;
+    border-color: $color-blue;
+  }
+}
+
+.term-radio {
+  padding: 10px 0;
+  border: 2px solid rgba($color-blue-35, 0.1);
+  border-radius: 10px;
+  width: 170px;
+  text-align: center;
+
+  font-size: 18px;
+  line-height: 141.5%;
+  color: rgba($color-blue-35, 0.3);
+
+  background-color: #f9f9f9;
+
+  cursor: pointer;
+}
+
+.custom-checkbox__field:checked + .custom-checkbox__content .term-radio {
+  border-color: $color-blue;
+
+  color: $color-blue-35;
+
+  background-color: $light-color;
+}
+
+.tariff-success {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 29px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+
+  background-color: $light-color;
+
+  &.active {
+    display: flex;
+  }
+
+  &__icon {
+    margin: 0 auto 15px;
+  }
+
+  &__text {
+    margin-bottom: 37px;
+    max-width: 382px;
+
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 115.5%;
+    color: $color-blue-35;
+
+    @include w($sm) {
+      font-size: 30px;
+    }
+  }
+
+  &__button {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
+  @include w($sm) {
+    padding: 0 47px;
+  }
+}

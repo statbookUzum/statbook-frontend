@@ -1,0 +1,51 @@
+.agreement-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+
+  @include w($sm) {
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .custom-checkbox__content {
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 3px;
+    border: 1.5px solid #e9eaec;
+    height: 18px;
+    width: 18px;
+
+    transform: translateY(3px);
+
+    background-position: center;
+    background-size: 11px 7px;
+    background-repeat: no-repeat;
+  }
+
+  .custom-checkbox__field:checked + .custom-checkbox__content {
+    border-color: $color-blue;
+    background-color: $color-blue;
+
+    background-image: url("../img/checkbox-icon.svg");
+  }
+
+  &__text {
+    display: inline-block;
+    max-width: 663px;
+    width: 100%;
+
+    font-family: $secondary-font-family;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+
+    color: rgba($color-darkblack, 0.6);
+
+    a {
+      font-weight: 600;
+      text-decoration: underline;
+      color: $color-blue;
+    }
+  }
+}

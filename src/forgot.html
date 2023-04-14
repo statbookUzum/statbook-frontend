@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="ru" class="page">
 
-@include('partials/head.html')
+@include('partials/head.html', {"title": "Statebook/Восстановление пароля"})
 
 <body class="page__body auth">
+  @include('partials/loader.html')
 
-  <header class="header">
-    <div class="container">
-      <a class="logo" href="#">
-        <img src="./img/logo.svg" alt="логотип statbook">
-      </a>
-    </div>
-  </header>
-
-  <main class="main">
-    @include('partials/loader.html')
-
-    <h1 class="visually-hidden">
-      Восстановить пароль на statbook
-    </h1>
-    <div class="container main__container">
-      <div class="auth-form">
-        <a class="auth-form__back" href="./login.html">
-          <span class="visually-hidden">back</span>
+  <div class="loader-wrapper" style="opacity: 0; visibility: hidden;">
+    <header class="header">
+      <div class="container">
+        <a class="logo" href="#">
+          <img src="./img/logo.svg" alt="логотип statbook">
         </a>
-        <form id="retrieval-form" action="#">
-          <h2 class="auth-form__title">
-            Восстановить пароль
-          </h2>
-          <div class="auth-form__subtitle">
-            Введите свою почту и мы отправим письмо с ссылкой для восстановления пароля
-          </div>
-
-          <label class="auth-form__label auth-form__label--mail">
-            <input class="auth-form__input" type="email" name="email" placeholder="Введите вашу почту">
-          </label>
-
-          <button class="auth-form__submit btn-reset form-button" type="submit">
-            Отправить письмо
-          </button>
-
-          <div class="auth-form__bottom auth-form__bottom--retrieval">
-            Не пришло письмо?
-            <button type="button" class="auth-form__bottom-btn btn-reset">
-              Отправить еще раз
-            </button>
-          </div>
-        </form>
       </div>
-    </div>
-  </main>
+    </header>
 
-  @include('partials/footer.html')
+    <main class="main">
+
+      <h1 class="visually-hidden">
+        Восстановить пароль на statbook
+      </h1>
+      <div class="container main__container">
+        <div class="auth-form">
+          <a class="auth-form__back" href="./login.html">
+            <span class="visually-hidden">back</span>
+          </a>
+          <form id="retrieval-form" class="validation-form" action="#">
+            <h2 class="auth-form__title">
+              Восстановить пароль
+            </h2>
+            <div class="auth-form__subtitle">
+              Введите свою почту и мы отправим письмо с ссылкой для восстановления пароля
+            </div>
+
+            <label class="auth-form__label custom-input custom-input--mail">
+              <input class="custom-input__input" type="email" name="email" placeholder="Введите вашу почту" required>
+              <button type="button" class="custom-input__clean btn-reset">
+                <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 1L1 13.9999M14 14L1 1.00006" stroke="#040F23" stroke-opacity="0.4" stroke-width="1.5"
+                    stroke-linecap="round" />
+                </svg>
+              </button>
+            </label>
+
+            <button class="auth-form__submit btn-reset main-button" type="submit">
+              Отправить письмо
+            </button>
+
+            <div class="auth-form__bottom auth-form__bottom--retrieval">
+              Не пришло письмо?
+              <button type="button" class="auth-form__bottom-btn btn-reset">
+                Отправить еще раз
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    @include('partials/footer-small.html')
+  </div>
 </body>
 
 </html>

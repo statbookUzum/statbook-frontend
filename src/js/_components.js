@@ -1,3 +1,11 @@
 // import './components/slider';
 import './components/auth-slider';
 import './components/loader';
+import './components/nav-menu';
+import './components/tabs';
+import './components/custom-select';
+import './components/modal';
+import './components/switcher';
+import './components/custom-input';
+import './components/validation-form';
+import './components/custom-scroll';
