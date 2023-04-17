@@ -1,0 +1,37 @@
+.report-statistic {
+  padding-top: 18px;
+  padding-bottom: 46px;
+  border-top: 2px solid rgba($color-blue-35, 0.1);
+
+  font-family: $secondary-font-family;
+  overflow-x: auto;
+
+  @include w($sm) {
+    margin-bottom: 56px;
+    padding-bottom: 20px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 47px;
+
+    white-space: nowrap;
+  }
+
+  &__title {
+    margin-bottom: 22px;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 141.5%;
+    color: rgba($color-blue-35, 0.6);
+  }
+
+  &__value {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 141.5%;
+    color: $color-blue-35;
+  }
+}

@@ -1,5 +1,4 @@
 // import './components/slider';
-import './components/auth-slider';
 import './components/loader';
 import './components/nav-menu';
 import './components/tabs';
@@ -9,3 +8,4 @@ import './components/switcher';
 import './components/custom-input';
 import './components/validation-form';
 import './components/custom-scroll';
+import './components/slider';

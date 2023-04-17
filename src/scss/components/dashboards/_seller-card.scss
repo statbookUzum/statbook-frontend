@@ -1,0 +1,116 @@
+.seller-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+
+  font-family: $secondary-font-family;
+
+  @include w($sm) {
+    display: block;
+  }
+
+  &__image {
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    @include w($sm) {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+    }
+
+    @include w($xsm) {
+      left: 20px;
+    }
+  }
+
+  &__info-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    @include w($sm) {
+      margin-bottom: 30px;
+      padding-left: 100px;
+      display: block;
+    }
+
+    @include w($xsm) {
+      padding-left: 80px;
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    line-height: 141.5%;
+    color: $color-blue-35;
+
+    @include w($sm) {
+      margin-bottom: 6px;
+    }
+  }
+
+  &__reviews {
+    display: flex;
+    align-items: center;
+
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba($color-darkblack, 0.4);
+  }
+
+  &__reviews-score {
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+
+    color: rgba($color-darkblack, 0.8);
+
+    &::before {
+      content: "";
+      margin-right: 4px;
+      height: 24px;
+      width: 24px;
+
+      background-image: url("../img/star.svg");
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__reviews-count {
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  &__start {
+    margin-bottom: 20px;
+
+    font-size: 16px;
+    line-height: 141.5%;
+
+    color: rgba($color-blue-35, 0.6);
+
+    @include w($sm) {
+      margin-bottom: 4px;
+    }
+  }
+
+  &__desc {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 141.5%;
+
+    color: rgba($color-blue-35, 0.6);
+  }
+}

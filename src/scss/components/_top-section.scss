@@ -9,16 +9,30 @@
   background-repeat: no-repeat;
 
   &__title {
+    font-weight: 600;
     font-size: 55px;
     line-height: 1.1;
     color: $light-color;
+
+    span {
+      color: $color-light-blue;
+    }
 
     @include w($lg) {
       font-size: 30px;
     }
   }
 
+  &__search {
+    margin-top: 22px;
+  }
+
   @include w($lg) {
+    padding-top: 18vh;
     min-height: 489px;
+  }
+
+  @include w($md) {
+    padding-top: 170px;
   }
 }

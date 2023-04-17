@@ -1,0 +1,30 @@
+.main-section {
+  &__container {
+    padding: 0;
+  }
+
+  &__wrapper {
+    margin-top: -125px;
+    padding: 65px 70px 90px;
+
+    @include w($lg) {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    @include w($sm) {
+      padding-top: 39px;
+    }
+  }
+
+  &__switcher {
+    margin: 0 auto 46px;
+    max-width: 400px;
+
+    background-color: $light-color;
+
+    @include w($md) {
+      margin-bottom: 183px;
+    }
+  }
+}

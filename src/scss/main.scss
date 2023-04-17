@@ -24,6 +24,15 @@
 @import "./components/link-effects";
 @import "./components/custom-scrollbar";
 
+// подключение компонентов дашборда
+@import "./components/dashboards/market-article";
+@import "./components/dashboards/last-view";
+@import "./components/dashboards/main-section";
+@import "./components/dashboards/shop-report";
+@import "./components/dashboards/seller-card";
+@import "./components/dashboards/report-statistic";
+@import "./components/dashboards/main-table";
+
 // подключение компонентов профиля
 @import "./components/profile/profile-info";
 @import "./components/profile/profile-tariff";

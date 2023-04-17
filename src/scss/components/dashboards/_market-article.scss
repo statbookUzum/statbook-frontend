@@ -1,0 +1,96 @@
+.market-article {
+  box-sizing: border-box;
+  height: 374px;
+  max-width: 410px;
+  box-shadow: 0px 15px 70px rgba($color-darkblack, 0.15);
+  border-radius: 20px;
+
+  background-color: $color-gray;
+
+  @include w($xsm) {
+    max-width: 320px;
+    height: 400px;
+  }
+
+  &__form {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__top {
+    margin-bottom: auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+
+    font-family: $secondary-font-family;
+    line-height: 141.5%;
+
+    @include w($xsm) {
+      flex-direction: column;
+    }
+  }
+
+  &__image {
+    border-radius: 10px;
+    width: 127px;
+    height: 127px;
+
+    object-fit: cover;
+  }
+
+  &__title {
+    margin-bottom: 3px;
+    padding-top: 3px;
+
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  &__reviews {
+    margin-bottom: 19px;
+    display: flex;
+    align-items: center;
+
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba($color-darkblack, 0.4);
+  }
+
+  &__reviews-score {
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+
+    color: rgba($color-darkblack, 0.8);
+
+    &::before {
+      content: "";
+      margin-right: 4px;
+      height: 24px;
+      width: 24px;
+
+      background-image: url("../img/star.svg");
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__reviews-count {
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  &__desc {
+    @include line-clamp(2);
+    font-weight: 400;
+    font-size: 16px;
+
+    color: rgba($color-blue-35, 0.6);
+  }
+}

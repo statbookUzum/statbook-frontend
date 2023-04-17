@@ -82,6 +82,76 @@
   }
 }
 
+.secondary-button {
+  padding: 10px 5px;
+  border-radius: 10px;
+  border: 2px solid rgba($color-blue-35, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  font-family: $secondary-font-family;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 170%;
+  color: rgba($color-blue-35, 0.3);
+
+  background-color: $light-color;
+
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+
+  path {
+    transition: stroke 0.3s ease-in-out, stroke-opacity 0.3s ease-in-out;
+  }
+
+  &:hover {
+    border-color: $color-blue;
+    animation-name: hvr-back-pulse;
+    animation-duration: 1s;
+    animation-delay: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background-color: $color-blue;
+    color: $light-color;
+
+    path {
+      stroke: $light-color;
+      stroke-opacity: 1;
+    }
+  }
+}
+
+.hide-report-button {
+  padding: 10px 15px 10px 18px;
+  border-radius: 7px;
+  border: 2px solid rgba($color-blue-35, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 330px;
+  width: 100%;
+
+  font-family: $secondary-font-family;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 141.5%;
+  color: rgba($color-blue-35, 0.6);
+
+  &::after {
+    content: "";
+    height: 10px;
+    width: 18px;
+
+    background-image: url("../img/arrow-down.svg");
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
 .menu-btn {
   position: relative;
   z-index: 102;

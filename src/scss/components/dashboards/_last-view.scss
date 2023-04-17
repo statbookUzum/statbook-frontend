@@ -1,0 +1,44 @@
+.last-view {
+  padding: 90px 0 100px;
+
+  &__title {
+    margin-bottom: 25px;
+    text-align: center;
+
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.2;
+    color: $color-blue-35;
+
+    @include w($sm) {
+      margin-bottom: 0;
+      font-size: 27px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 23px;
+  }
+
+  &__slider {
+    padding: 50px 0 80px;
+    padding-left: calc((100vw - $container) / 2);
+    padding-right: calc((100vw - $container) / 2);
+
+    @include w($md) {
+      padding-top: 50px;
+      padding-bottom: 90px;
+    }
+  }
+
+  &__article {
+    margin: 0 auto;
+  }
+
+  @include w($md) {
+    padding: 40px 0 0;
+  }
+}

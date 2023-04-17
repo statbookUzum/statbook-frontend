@@ -42,3 +42,7 @@
     background-color: $color-blue-24;
   }
 }
+
+.tabs__nav-btn:focus {
+  background-color: transparent;
+}

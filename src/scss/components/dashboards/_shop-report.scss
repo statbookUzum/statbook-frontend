@@ -1,0 +1,62 @@
+.shop-report {
+  padding: 28px 40px 0;
+  border-radius: 15px;
+
+  background-color: $light-color;
+
+  @include w($md) {
+    position: relative;
+
+    .custom-select-opener {
+      height: 52px;
+    }
+
+    .custom-select-panel {
+      top: 50%;
+    }
+  }
+
+  @include w($sm) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  &__top {
+    padding-bottom: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include w($sm) {
+      padding-bottom: 29px;
+    }
+  }
+
+  &__buttons {
+    max-width: 220px;
+    width: 100%;
+
+    @include w($md) {
+      position: absolute;
+      top: -115px;
+      left: 0;
+      max-width: none;
+      width: 100%;
+      height: 100px;
+    }
+  }
+
+  &__report-btn {
+    margin-bottom: 7px;
+
+    svg {
+      margin-left: 9px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__hide {
+    margin-bottom: 32px;
+  }
+}
