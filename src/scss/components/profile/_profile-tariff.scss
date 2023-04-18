@@ -10,6 +10,10 @@
   }
 
   &.empty {
+    @include w($sm) {
+      height: 500px;
+    }
+
     .profile-tariff__empty {
       display: flex;
     }

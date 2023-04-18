@@ -1410,9 +1410,11 @@ input::-webkit-inner-spin-button {
 }
 
 .header .nav {
+  font-weight: 500;
   color: rgba(255, 255, 255, 0.8);
 }
 .header .nav__link.active {
+  font-weight: 600;
   color: #fff;
 }
 
@@ -3072,6 +3074,11 @@ td a {
     padding: 14px 0 0;
   }
 }
+@media screen and (max-width: 576px) {
+  .profile-tariff.empty {
+    height: 500px;
+  }
+}
 .profile-tariff.empty .profile-tariff__empty {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3778,11 +3785,22 @@ td a {
   max-width: 690px;
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  .no-money-wrapper {
+    width: 90%;
+  }
+}
 
 .no-money {
   padding: 30px 35px;
   border-radius: 20px;
   background-color: #fff;
+}
+@media screen and (max-width: 576px) {
+  .no-money {
+    padding: 10px 15px;
+    text-align: center;
+  }
 }
 .no-money__title {
   margin-bottom: 10px;
@@ -3810,6 +3828,14 @@ td a {
   justify-content: flex-end;
   gap: 8px;
 }
+@media screen and (max-width: 576px) {
+  .no-money__buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+  }
+}
 .no-money__button-close {
   position: static;
   max-width: 180px;
@@ -3824,9 +3850,19 @@ td a {
   -webkit-animation: none;
   animation: none;
 }
+@media screen and (max-width: 576px) {
+  .no-money__button-close {
+    max-width: none;
+  }
+}
 .no-money__button {
   max-width: 250px;
   width: 100%;
+}
+@media screen and (max-width: 576px) {
+  .no-money__button {
+    max-width: none;
+  }
 }
 
 .change-tariff {

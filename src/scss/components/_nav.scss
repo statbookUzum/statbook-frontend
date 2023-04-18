@@ -30,10 +30,12 @@
 
 .header {
   .nav {
+    font-weight: 500;
     color: rgba($light-color, 0.8);
   }
 
   .nav__link.active {
+    font-weight: 600;
     color: $light-color;
   }
 }

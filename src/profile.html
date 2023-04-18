@@ -66,7 +66,7 @@
                 <!-- примечания для бэка -->
                 <!-- в блоке profile-tariff два состояния по-умолчанию, когда тариф уже выбран и когда тарифа у пользователя еще нет, тогда будет отображаться блок profile-tariff__empty. Для того что бы его отобразить, просто добавь класс empty к диву div.profile-tariff -->
                 <!--сюда класс empty-->
-                <div class="tabs__panel profile-info__tariff profile-tariff empty">
+                <div class="tabs__panel profile-info__tariff profile-tariff">
                   <div class="profile-tariff__empty">
                     <img class="profile-tariff__empty-image" src="./img/warning-icon.svg"
                       alt="Для доступа к этому разделу вам необходимо выбрать тариф">
@@ -251,7 +251,7 @@
             <ul class="change-tariff__list">
               <li class="change-tariff__item">
                 <article class="tariff-card no-money">
-                  <!-- примечание для бэка -->
+                  <!-- примечания для бэка -->
                   <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
                   <form action="#" class="tariff-card__form">
                     <h3 class="tariff-card__title">
@@ -277,6 +277,8 @@
                       </li>
                     </ul>
                     <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
                     <input type="hidden" name="tariff-type" value="base-tariff">
                     <button type="submit" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
                       Попробовать
@@ -285,12 +287,12 @@
                 </article>
               </li>
               <li class="change-tariff__item">
-                <!-- примечание для бэка -->
+                <!-- примечания для бэка -->
                 <!-- тут добавишь класс no-money для того что бы по нажатию на карточку открывалась модалка с уведомлением,
                 что не достаточно на счету -->
-                <article class="tariff-card no-money tariff-card--primary">
+                <article class="tariff-card tariff-card--primary">
                   <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
-                  <!-- примечание для бэка -->
+                  <!-- примечания для бэка -->
                   <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
                   <form action="#" class="tariff-card__form">
                     <h3 class="tariff-card__title">
@@ -316,6 +318,8 @@
                       </li>
                     </ul>
                     <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
                     <input type="hidden" name="tariff-type" value="professional-tariff">
                     <button type="submit" class="tariff-card__submit btn-reset main-button">
                       Попробовать

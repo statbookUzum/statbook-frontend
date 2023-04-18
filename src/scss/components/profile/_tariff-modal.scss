@@ -256,6 +256,10 @@
 .no-money-wrapper {
   max-width: 690px;
   width: 100%;
+
+  @include w($md) {
+    width: 90%;
+  }
 }
 
 .no-money {
@@ -263,6 +267,11 @@
   border-radius: 20px;
 
   background-color: $light-color;
+
+  @include w($sm) {
+    padding: 10px 15px;
+    text-align: center;
+  }
 
   &__title {
     margin-bottom: 10px;
@@ -287,6 +296,10 @@
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
+
+    @include w($sm) {
+      flex-direction: column-reverse;
+    }
   }
 
   &__button-close {
@@ -304,10 +317,18 @@
       color: $color-blue;
       animation: none;
     }
+
+    @include w($sm) {
+      max-width: none;
+    }
   }
 
   &__button {
     max-width: 250px;
     width: 100%;
+
+    @include w($sm) {
+      max-width: none;
+    }
   }
 }
