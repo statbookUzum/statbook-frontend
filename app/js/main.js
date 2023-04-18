@@ -968,7 +968,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_components_validation_form__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _components_custom_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/custom-scroll */ "./src/js/components/custom-scroll.js");
 /* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
+/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/hide-table */ "./src/js/components/hide-table.js");
+/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_hide_table__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_change_tariff__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/change-tariff */ "./src/js/components/change-tariff.js");
+/* harmony import */ var _components_change_tariff__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_change_tariff__WEBPACK_IMPORTED_MODULE_11__);
 // import './components/slider';
+
+
 
 
 
@@ -1071,6 +1077,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/js/components/change-tariff.js":
+/*!********************************************!*\
+  !*** ./src/js/components/change-tariff.js ***!
+  \********************************************/
+/***/ (() => {
+
+var tariffSwitcher = document.querySelector('.change-tariff__switcher');
+
+if (tariffSwitcher) {
+  var tariffCard = document.querySelector('.tariff-card--primary');
+  var tariffPrice = tariffCard.querySelector('.tariff-card__price');
+  tariffSwitcher.addEventListener('click', function (_ref) {
+    var target = _ref.target;
+
+    if (target.matches('.discount')) {
+      tariffPrice.querySelector('.tariff-card__price-amount').textContent = tariffPrice.dataset.discount;
+      tariffCard.classList.add('tariff-card--discount');
+    } else {
+      tariffPrice.querySelector('.tariff-card__price-amount').textContent = tariffPrice.dataset.full;
+      tariffCard.classList.remove('tariff-card--discount');
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./src/js/components/custom-input.js":
 /*!*******************************************!*\
   !*** ./src/js/components/custom-input.js ***!
@@ -1135,6 +1167,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/js/components/hide-table.js":
+/*!*****************************************!*\
+  !*** ./src/js/components/hide-table.js ***!
+  \*****************************************/
+/***/ (() => {
+
+var tablesToHide = document.querySelectorAll('.table');
+
+if (tablesToHide.length) {
+  tablesToHide.forEach(function (table) {
+    var hideTableButton = table.closest('.shop-report').querySelector('.hide-report-button');
+    var tableContainer = table.closest('.table-container');
+    hideTableButton.addEventListener('click', function () {
+      var height = table.clientHeight;
+
+      if (!tableContainer.matches('.hidden')) {
+        hideTableButton.classList.add('hidden');
+        tableContainer.classList.add('hidden');
+        tableContainer.style.height = 0;
+      } else {
+        hideTableButton.classList.remove('hidden');
+        tableContainer.classList.remove('hidden');
+        tableContainer.style.height = height + 'px';
+      }
+    });
+  });
+}
+
+/***/ }),
+
 /***/ "./src/js/components/loader.js":
 /*!*************************************!*\
   !*** ./src/js/components/loader.js ***!
@@ -1165,7 +1227,31 @@ if (loader) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graph_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graph-modal */ "./node_modules/graph-modal/src/graph-modal.js");
 
+var closeButton = document.querySelector('.close-no-money-modal');
+var topUpButton = document.querySelector('.no-money__button');
 var modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]();
+closeButton.addEventListener('click', function () {
+  modal.close('no-money-modal');
+});
+topUpButton.addEventListener('click', function () {
+  var tabsContent = document.querySelectorAll('.tabs__panel');
+  var tabsButtons = document.querySelectorAll('.tabs__nav-btn');
+  var tabsNav = document.querySelector('.tabs__nav');
+
+  for (var i = 0; i < tabsContent.length; i++) {
+    tabsContent[i].classList.remove('tabs__panel--active');
+    tabsButtons[i].classList.remove('tabs__nav-btn--active');
+  }
+
+  tabsContent[1].classList.add('tabs__panel--active');
+  tabsButtons[1].classList.add('tabs__nav-btn--active');
+  tabsNav.setAttribute('data-tab-active', '2');
+  modal.close('no-money-modal');
+  tabsNav.scrollIntoView({
+    block: 'center',
+    behavior: 'smooth'
+  });
+});
 
 /***/ }),
 

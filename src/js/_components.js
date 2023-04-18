@@ -9,3 +9,5 @@ import './components/custom-input';
 import './components/validation-form';
 import './components/custom-scroll';
 import './components/slider';
+import './components/hide-table';
+import './components/change-tariff';

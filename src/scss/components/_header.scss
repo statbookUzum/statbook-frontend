@@ -113,6 +113,15 @@
       font-weight: 600;
     }
   }
+
+  &--small {
+    font-size: 14px;
+
+    .header-account__image {
+      height: 46px;
+      width: 46px;
+    }
+  }
 }
 
 .header__account {

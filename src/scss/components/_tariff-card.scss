@@ -1,4 +1,5 @@
 .tariff-card {
+  position: relative;
   padding: 32px 20px 20px;
   border-radius: 25px;
   width: 328px;
@@ -23,11 +24,22 @@
     font-size: 18px;
     color: rgba($color-blue-24, 0.6);
 
-    span {
-      display: block;
+    &-amount {
       font-size: 70px;
       line-height: 1;
       color: $color-blue-35;
+    }
+
+    &-currency {
+      font-size: 30px;
+      line-height: 1;
+      color: $color-blue-35;
+    }
+
+    &-text {
+      display: block;
+      font-weight: 600;
+      font-size: 18px;
     }
   }
 
@@ -84,13 +96,83 @@
 
     .tariff-card__price {
       color: rgba($light-color, 0.6);
-      span {
+      &-amount,
+      &-currency {
         color: $light-color;
+      }
+
+      &-text {
+        color: rgba($light-color, 0.6);
       }
     }
 
     .tariff-card__line {
       color: rgba($light-color, 0.8);
     }
+  }
+
+  &--discount {
+    &::after {
+      content: "Скидка 20%";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      padding: 10px 23px;
+      border-radius: 20px;
+      display: block;
+
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.2;
+      color: $light-color;
+
+      background-image: linear-gradient(
+        270.38deg,
+        #32af99 0.66%,
+        #138571 142.25%
+      );
+
+      transform: translate(-50%, -50%);
+    }
+
+    .tariff-card__price {
+      position: relative;
+
+      &::after {
+        content: attr(data-full) "$";
+        position: absolute;
+        top: -10px;
+        right: 70px;
+        width: 30px;
+        height: 30px;
+
+        text-decoration: line-through;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 1.2;
+        color: rgba($light-color, 0.3);
+      }
+    }
+  }
+
+  &__no-money {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    display: none;
+    width: 100%;
+    height: 100%;
+
+    &:hover + .tariff-card__form .tariff-card__submit {
+      animation-name: hvr-pulse;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  &.no-money .tariff-card__no-money {
+    display: block;
   }
 }

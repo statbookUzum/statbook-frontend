@@ -147,17 +147,27 @@
   }
 
   &__brands {
+    max-width: 137px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     gap: 10px;
 
+    &-humo {
+      transform: translate(6px, 3px) scale(1.28);
+    }
+
     @include w($lg) {
       display: flex;
       align-items: center;
+      max-width: none;
       width: 100%;
 
       overflow-x: auto;
+
+      &-humo {
+        transform: translate(0, 0) scale(1);
+      }
     }
 
     img {

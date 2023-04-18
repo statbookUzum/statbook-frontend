@@ -3,6 +3,11 @@
   margin: 0 -40px;
   padding: 0 40px;
   padding-bottom: 90px;
+  will-change: height, padding;
+
+  overflow: hidden;
+
+  transition: padding 0.3s ease-in-out, height 0.3s ease-in-out;
 
   &::before {
     content: "";
@@ -18,10 +23,27 @@
       rgba(4, 15, 35, 0) 100%
     );
   }
+
+  &.hidden {
+    padding: 0;
+  }
 }
 
 .table-wrapper {
-  overflow-x: auto;
+  max-height: 150vh;
+  overflow: auto;
+
+  .simplebar-track {
+    opacity: 0;
+
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover {
+    .simplebar-track {
+      opacity: 1;
+    }
+  }
 }
 
 .table {

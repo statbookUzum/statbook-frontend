@@ -143,12 +143,26 @@
                 </ul>
               </div>
               <div class="tabs__content">
-                <div class="tabs__panel profile-info__tariff profile-tariff">
+                <!-- примечания для бэка -->
+                <!-- в блоке profile-tariff два состояния по-умолчанию, когда тариф уже выбран и когда тарифа у пользователя еще нет, тогда будет отображаться блок profile-tariff__empty. Для того что бы его отобразить, просто добавь класс empty к диву div.profile-tariff -->
+                <!--сюда класс empty-->
+                <div class="tabs__panel profile-info__tariff profile-tariff empty">
+                  <div class="profile-tariff__empty">
+                    <img class="profile-tariff__empty-image" src="./img/warning-icon.svg"
+                      alt="Для доступа к этому разделу вам необходимо выбрать тариф">
+                    <div class="profile-tariff__empty-text">
+                      Для доступа к этому разделу вам необходимо выбрать тариф
+                    </div>
+                    <a href="#change-tariff" class="profile-tariff__empty-button main-button">
+                      Перейти к тарифам
+                    </a>
+                  </div>
                   <div class="profile-tariff__content-top">
                     <div class="profile-tariff__info">
                       Ваш тариф: <span class="tariff-type">«Стандартный»</span>
                     </div>
 
+                    <!--примечания для бэка-->
                     <!-- тут если статус не активный, то просто класс active поменять на inactive, что бы изменились стили -->
                     <div class="profile-tariff__status active">
                       Активный
@@ -299,7 +313,7 @@
         </div>
       </section>
 
-      <section class="change-tariff">
+      <section id="change-tariff" class="change-tariff">
         <div class="container change-tariff__container">
           <h2 class="change-tariff__title">
             Выберите тариф для вашего бизнеса
@@ -307,23 +321,26 @@
           <div class="change-tariff__inner">
             <div class="change-tariff__switcher switcher">
               <div class="switcher__cover"></div>
-              <button class="change-tariff__switch switcher__button active btn-reset">
+              <button class="change-tariff__switch switcher__button no-discount active btn-reset">
                 Один месяц
               </button>
-              <button class="change-tariff__switch switcher__button btn-reset">
+              <button class="change-tariff__switch switcher__button discount btn-reset">
                 Три месяца
               </button>
             </div>
             <ul class="change-tariff__list">
               <li class="change-tariff__item">
-                <article class="tariff-card">
+                <article class="tariff-card no-money">
+                  <!-- примечание для бэка -->
+                  <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
                   <form action="#" class="tariff-card__form">
                     <h3 class="tariff-card__title">
                       Базовый
                     </h3>
                     <div class="tariff-card__price">
-                      <span>0$</span>
-                      за месяц
+                      <span class="tariff-card__price-amount">0</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
                     </div>
                     <ul class="tariff-card__list">
                       <li class="tariff-card__line">
@@ -348,14 +365,21 @@
                 </article>
               </li>
               <li class="change-tariff__item">
-                <article class="tariff-card tariff-card--primary">
+                <!-- примечание для бэка -->
+                <!-- тут добавишь класс no-money для того что бы по нажатию на карточку открывалась модалка с уведомлением,
+                что не достаточно на счету -->
+                <article class="tariff-card no-money tariff-card--primary">
+                  <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+                  <!-- примечание для бэка -->
+                  <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
                   <form action="#" class="tariff-card__form">
                     <h3 class="tariff-card__title">
                       Профессионал
                     </h3>
-                    <div class="tariff-card__price">
-                      <span>15$</span>
-                      за месяц
+                    <div class="tariff-card__price" data-discount="15" data-full="30">
+                      <span class="tariff-card__price-amount">15</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
                     </div>
                     <ul class="tariff-card__list">
                       <li class="tariff-card__line">
@@ -532,10 +556,10 @@
           <img src="img/brands/visa.svg" alt="visa">
           <img src="img/brands/master-card.svg" alt="mastercard">
           <img src="img/brands/uzcard.svg" alt="uzcard">
-          <img src="img/brands/uzum-bank.svg" alt="uzum bank">
+          <img class="footer__brands-humo" src="img/brands/humo.png" alt="Humo">
           <img class="footer__brands-big" src="img/brands/click-uz.svg" alt="click">
           <img class="footer__brands-big" src="img/brands/pay-me.svg" alt="Pay me">
-          <img class="footer__brands-big" src="img/brands/humo.png" alt="Humo">
+
         </div>
       </div>
     </div>
@@ -557,7 +581,8 @@
 
   <div class="graph-modal">
   <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="change-tariff-modal">
-    <button class="btn-reset graph-modal__close" aria-label="Закрыть модальное окно"></button>
+    <button class="btn-reset graph-modal__close change-tariff-modal__close"
+      aria-label="Закрыть модальное окно"></button>
     <div class="graph-modal__content">
       <div class="tariff-modal">
         <div class="tariff-modal__title">
@@ -702,6 +727,30 @@
         <a href="#" class="tariff-success__button main-button btn-reset">
           Перейти к аналите
         </a>
+      </div>
+    </div>
+  </div>
+  <div class="graph-modal__container no-money-wrapper" role="dialog" aria-modal="true"
+    data-graph-target="no-money-modal">
+    <div class="graph-modal__content">
+      <div class="no-money">
+        <div class="no-money__title">
+          На вашем счету недостаточно средств
+        </div>
+        <p class="no-money__text">
+          Анализируйте рынок эффективнее с помощью нашего инновационного метода сбора информаци и. Мы предоставляем весь
+          спектр данных
+        </p>
+
+        <div class="no-money__buttons">
+          <button class="btn-reset no-money__button-close close-no-money-modal main-button main-button--stroke-blue"
+            aria-label="Закрыть модальное окно">
+            Отмена
+          </button>
+          <button class="btn-reset main-button no-money__button">
+            Пополнить
+          </button>
+        </div>
       </div>
     </div>
   </div>
