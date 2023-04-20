@@ -93,12 +93,20 @@
   &__info {
     display: block;
     line-height: 35px;
+
+    @include w($sm) {
+      margin-bottom: 10px;
+    }
   }
 
   &__social-title {
     line-height: 55px;
 
     color: rgba($light-color, 0.8);
+
+    @include w($sm) {
+      display: none;
+    }
   }
 
   &__cols {
@@ -133,6 +141,10 @@
 
     font-size: 18px;
     line-height: 55px;
+
+    @include w($sm) {
+      margin-bottom: 14px;
+    }
   }
 
   &__col-item {

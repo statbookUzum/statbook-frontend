@@ -263,13 +263,13 @@
 }
 
 .no-money {
-  padding: 30px 35px;
+  padding: 20px 25px;
   border-radius: 20px;
 
   background-color: $light-color;
 
   @include w($sm) {
-    padding: 10px 15px;
+    padding: 30px 25px;
     text-align: center;
   }
 
@@ -282,7 +282,7 @@
   }
 
   &__text {
-    margin-bottom: 78px;
+    margin-bottom: 38px;
 
     font-family: $secondary-font-family;
     font-weight: 400;
@@ -294,12 +294,7 @@
   &__buttons {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
-
-    @include w($sm) {
-      flex-direction: column-reverse;
-    }
+    justify-content: center;
   }
 
   &__button-close {

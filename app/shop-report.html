@@ -31,7 +31,7 @@
             <img src="./img/logo.svg" alt="логотип statbook">
           </a>
 
-          <div class="header-account header-account--small header__account">
+          <a href="./profile.html" class="header-account header-account--small header__account">
             <img class="header-account__image" src="./img/account-image.jpg" alt="фото профиля">
             <div class="header-account__info">
               <div class="header-account__mail">
@@ -41,7 +41,7 @@
                 Баланс: <span class="account-balance">50 млн</span>. сум
               </div>
             </div>
-          </div>
+          </a>
 
           <nav class="nav header__nav nav--profile">
             <ul class="nav__list">
@@ -1043,21 +1043,19 @@
   </div>
   <div class="graph-modal__container no-money-wrapper" role="dialog" aria-modal="true"
     data-graph-target="no-money-modal">
+    <button class="btn-reset graph-modal__close change-tariff-modal__close"
+      aria-label="Закрыть модальное окно"></button>
     <div class="graph-modal__content">
       <div class="no-money">
         <div class="no-money__title">
           На вашем счету недостаточно средств
         </div>
         <p class="no-money__text">
-          Анализируйте рынок эффективнее с помощью нашего инновационного метода сбора информаци и. Мы предоставляем весь
+          Анализируйте рынок эффективнее с помощью нашего инновационного метода сбора информаци и мы предоставляем весь
           спектр данных
         </p>
 
         <div class="no-money__buttons">
-          <button class="btn-reset no-money__button-close close-no-money-modal main-button main-button--stroke-blue"
-            aria-label="Закрыть модальное окно">
-            Отмена
-          </button>
           <button class="btn-reset main-button no-money__button">
             Пополнить
           </button>

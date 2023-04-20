@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#111111">
-  <title>Обзор категорий</title>
+  <title>Анализ магазинов</title>
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
   <script defer src="js/main.js"></script>
@@ -31,7 +31,7 @@
             <img src="./img/logo.svg" alt="логотип statbook">
           </a>
 
-          <a href="'./profile.html" class="header-account header__account">
+          <a href="./profile.html" class="header-account header-account--small header__account">
             <img class="header-account__image" src="./img/account-image.jpg" alt="фото профиля">
             <div class="header-account__info">
               <div class="header-account__mail">
@@ -46,12 +46,12 @@
           <nav class="nav header__nav nav--profile">
             <ul class="nav__list">
               <li class="nav__item">
-                <a href="#" class="nav__link link-effect">
+                <a href="#" class="nav__link link-effect active">
                   Анализ товара
                 </a>
               </li>
               <li class="nav__item">
-                <a href="#" class="nav__link link-effect active">
+                <a href="./category-report.html" class="nav__link link-effect">
                   Анализ категорий
                 </a>
               </li>
@@ -92,7 +92,7 @@
       <section class="top-section">
         <div class="container">
           <h1 class="top-section__title">
-            Анализ категорий на <span>Uzum</span>
+            Анализ магазинов на <span>Uzum</span>
           </h1>
 
           <form action="#" class="search-form top-section__search">
@@ -104,330 +104,178 @@
         </div>
       </section>
 
-      <section class="main-section main-section--category">
+      <section class="main-section">
         <div class="container main-section__container">
-          <div class="main-section__wrapper main-border">
-            <div class="tabs main-section__tabs" data-tabs="main-section-tabs">
+          <div class="main-section__wrapper product-report main-border">
+            <div class="product-report__top">
+              <div class="product-report__info product-info">
+                <div class="product-info__image">
+                  <img src="./img/product-test-image.jpg"
+                    alt="Умная лампочка Xiaomi Mi Smart LED Bulb Essential, E27, 9 Вт">
+                </div>
+                <div class="product-info__title">
+                  Умная лампочка Xiaomi Mi Smart LED Bulb Essential, E27, 9 Вт
+                </div>
+                <div class="product-info__price">
+                  Цена: <span class="product-info__price-amount">30.000</span> <span
+                    class="product-info__price-currency">сум</span>
+                </div>
+                <div class="product-info__seller">
+                  Продавец: <span class="product-info__seller-name">GADGET market</span>
+                </div>
+                <div class="product-info__description">
+                  Умный свет, который Вас понимает. Лампочка Xiaomi имеет возможность выбора цвета или регулировки
+                  цветовой температуры и яркости
+                </div>
+              </div>
+              <div class="product-report__buttons">
+                <button class="product-report__report-btn secondary-button btn-reset">
+                  Выгрузить отчет
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
+                      stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
+                  </svg>
+                </button>
+                <select class="product-report__select" name="product-report" id="reportSelect" required>
+                  <option value="7day">За 7 дней</option>
+                  <option value="14day">За 14 дней</option>
+                  <option selected value="30day">За 30 дней</option>
+                </select>
+              </div>
+            </div>
+            <div class="tabs product-report__tabs main-section__tabs" data-tabs="main-section-tabs">
               <div class="main-section__switcher tabs__nav switcher">
                 <div class="switcher__cover"></div>
                 <button type="button" class="main-section__switch switcher__button tabs__nav-btn active btn-reset">
-                  Категории
+                  Обзор магазина
                 </button>
                 <button type="button" class="main-section__switch switcher__button tabs__nav-btn btn-reset">
-                  Обзор категории
+                  Сводный анализ
                 </button>
               </div>
               <div class="tabs__content">
                 <div class="tabs__panel">
-                  <div class="shop-report-top">
-                    <div class="shop-report-top__category">
-                      <span>
-                        Выбранные категории:
-                      </span>
-
-                      <ul class="shop-report-top__list">
-                        <li class="shop-report-top__item">
-                          Детские товары
-                        </li>
-                        <li class="shop-report-top__item">
-                          Автоспорт
-                        </li>
-                      </ul>
+                  <div class="main-section__inner category-analytics">
+                    <div class="category-analytics__title">
+                      Аналитика позиций в категориях за 30 дней:
                     </div>
-                    <button class="shop-report-top__report-btn secondary-button btn-reset">
-                      Выгрузить отчет
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
-                          stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="main-section__inner shop-report shop-report--category">
-                    <div class="shop-report__top">
-                      <div class="shop-report__category">
-                        <div class="shop-report__category-title">
-                          <label class="custom-checkbox">
-                            <input type="checkbox" class="custom-checkbox__field visually-hidden">
-                            <span class="custom-checkbox__content"></span>
-                          </label>
-                          <span>
-                            Категория: Мягкие игрушки
-                          </span>
-                          <button type="button" class="shop-report__category-info btn-reset">
-
-                          </button>
+                    <div class="category-analytics__line analytics-line">
+                      <div class="analytics-line__top">
+                        <div class="analytics-line__title">
+                          Категория — Электроника. Отчет За 30 дней
                         </div>
-                        <ul class="shop-report__breadcrumbs">
-                          <li class="shop-report__breadcrumbs-item">
-                            Главная
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Все категории
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Детские товары
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Игрушки и игры
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Мягкие игрушка
+                        <div class="analytics-line__positions">
+                          +13 позиций
+                        </div>
+                      </div>
+                      <div class="analytics-line__content">
+                        <ul class="analytics-line__list">
+                          <li class="analytics-line__item">
+                            <div class="analytics-line__item-number">
+                              50
+                            </div>
+                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
+                              +48
+                            </div>
+                            <div class="analytics-line__item-date">
+                              01.04
+                            </div>
                           </li>
                         </ul>
-                      </div>
-                      <div class="shop-report__buttons shop-report__buttons--md-hidden">
-                        <select class="shop-report__select" name="report" id="reportSelect" required>
-                          <option value="7day">За 7 дней</option>
-                          <option value="14day">За 14 дней</option>
-                          <option selected value="30day">За 30 дней</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="shop-report__statistic report-statistic" data-simplebar>
-                      <ul class="report-statistic__list">
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Количество продуктов
-                          </div>
-                          <span class="report-statistic__value">
-                            54550
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Количество категорий
-                          </div>
-                          <span class="report-statistic__value">
-                            34
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Средняя цена
-                          </div>
-                          <span class="report-statistic__value">
-                            7.4 млн
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Общая выручка
-                          </div>
-                          <span class="report-statistic__value">
-                            540 млрд
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <button class="shop-report__hide hide-report-button btn-reset">
-                      Скрыть аналитику товаров
-                    </button>
-                    <div class="table-container">
-                      <div class="table-wrapper" data-simplebar>
-                        <table class="table">
-                          <tr class="table__header">
-                            <th>Категория</th>
-                            <th>Продажи</th>
-                            <th>Выручка в сред.</th>
-                            <th>Выручка</th>
-                            <th>Остатки</th>
-                            <th>Стоимость остатоков</th>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                        </table>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class=" tabs__panel">
-                  <div class="main-section__inner shop-report shop-report--category">
-                    <div class="shop-report__top">
-                      <div class="shop-report__category">
-                        <div class="shop-report__category-title">
-                          Мягкие игрушки
-                        </div>
-                        <ul class="shop-report__breadcrumbs">
-                          <li class="shop-report__breadcrumbs-item">
-                            Главная
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Все категории
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Детские товары
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Игрушки и игры
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Мягкие игрушка
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="shop-report__buttons">
-                        <button class="shop-report__report-btn secondary-button btn-reset">
-                          Выгрузить отчет
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
-                              stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="shop-report__statistic report-statistic" data-simplebar>
-                      <ul class="report-statistic__list">
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Заказы
-                          </div>
-                          <span class="report-statistic__value">
-                            54550
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Выручка
-                          </div>
-                          <span class="report-statistic__value">
-                            540 млрд сум
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Количество позиций
-                          </div>
-                          <span class="report-statistic__value">
-                            540765
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Коэффициент популярности
-                          </div>
-                          <span class="report-statistic__value">
-                            89%
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Количество подкатегорий
-                          </div>
-                          <span class="report-statistic__value">
-                            10
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <button class="shop-report__hide hide-report-button btn-reset">
-                      Скрыть аналитику товаров
-                    </button>
-                    <div class="table-container">
-                      <div class="table-wrapper" data-simplebar>
-                        <table class="table">
-                          <tr class="table__header">
-                            <th>Изображение</th>
-                            <th>Продукт</th>
-                            <th>SKU</th>
-                            <th>Категория</th>
-                            <th>Остаток</th>
-                            <th>Дней в наличии</th>
-                            <th>АBC Заказы</th>
-                            <th>ABC Выручка</th>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="./img/test-table-img.jpg" alt="test">
-                            </td>
-                            <td><a href="#">54880</a></td>
-                            <td>54250</td>
-                            <td>Детские товары</td>
-                            <td>0 шт.</td>
-                            <td>51</td>
-                            <td>A</td>
-                            <td>A</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="./img/test-table-img.jpg" alt="test">
-                            </td>
-                            <td><a href="#">54880</a></td>
-                            <td>54750</td>
-                            <td>Авто спорт</td>
-                            <td>19 шт.</td>
-                            <td>11</td>
-                            <td>B</td>
-                            <td>C</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="./img/test-table-img.jpg" alt="test">
-                            </td>
-                            <td><a href="#">54990</a></td>
-                            <td>54550</td>
-                            <td>Канцтовары</td>
-                            <td>230 шт.</td>
-                            <td>78</td>
-                            <td>C</td>
-                            <td>C</td>
-                          </tr>
-                        </table>
-                      </div>
-                    </div>
+                  <div class="main-section__inner">
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="last-view">
+        <div class="container">
+          <h2 class="last-view__title">
+            Последние просмотренные магазины
+          </h2>
+        </div>
+        <div class="swiper last-view__slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <article class="market-article last-view__article">
+                <form action="#" class="market-article__form">
+                  <div class="market-article__top">
+                    <img class="market-article__image" src="./img/test-product.jpg" alt="GADGET Market">
+                    <div class="market-article__info">
+                      <h2 class="market-article__title">
+                        GADGET Market
+                      </h2>
+                      <div class="market-article__reviews">
+                        <span class="market-article__reviews-score">4.4</span> (<span
+                          class="market-article__reviews-count">480 </span> отзывов)
+                      </div>
+                      <div class="market-article__desc">
+                        Магазин по продаже компьютерной техники
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
+                    Смотреть аналитику
+                  </button>
+                </form>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="market-article last-view__article">
+                <form action="#" class="market-article__form">
+                  <div class="market-article__top">
+                    <img class="market-article__image" src="./img/test-product.jpg" alt="GADGET Market">
+                    <div class="market-article__info">
+                      <h2 class="market-article__title">
+                        GADGET Market
+                      </h2>
+                      <div class="market-article__reviews">
+                        <span class="market-article__reviews-score">4.4</span> (<span
+                          class="market-article__reviews-count">480 </span> отзывов)
+                      </div>
+                      <div class="market-article__desc">
+                        Магазин по продаже компьютерной техники
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
+                    Смотреть аналитику
+                  </button>
+                </form>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="market-article last-view__article">
+                <form action="#" class="market-article__form">
+                  <div class="market-article__top">
+                    <img class="market-article__image" src="./img/test-product.jpg" alt="GADGET Market">
+                    <div class="market-article__info">
+                      <h2 class="market-article__title">
+                        GADGET Market
+                      </h2>
+                      <div class="market-article__reviews">
+                        <span class="market-article__reviews-score">4.4</span> (<span
+                          class="market-article__reviews-count">480 </span> отзывов)
+                      </div>
+                      <div class="market-article__desc">
+                        Магазин по продаже компьютерной техники
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
+                    Смотреть аналитику
+                  </button>
+                </form>
+              </article>
             </div>
           </div>
         </div>

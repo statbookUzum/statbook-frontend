@@ -959,7 +959,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_nav_menu__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_nav_menu__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/tabs */ "./src/js/components/tabs.js");
 /* harmony import */ var _components_custom_select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/custom-select */ "./src/js/components/custom-select.js");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/modal */ "./src/js/components/modal.js");
+/* harmony import */ var _components_modalAndCustomTabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/modalAndCustomTabs */ "./src/js/components/modalAndCustomTabs.js");
 /* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/switcher */ "./src/js/components/switcher.js");
 /* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_components_switcher__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/custom-input */ "./src/js/components/custom-input.js");
@@ -972,7 +972,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_hide_table__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _components_change_tariff__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/change-tariff */ "./src/js/components/change-tariff.js");
 /* harmony import */ var _components_change_tariff__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_change_tariff__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_12__);
 // import './components/slider';
+
 
 
 
@@ -1167,6 +1170,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/js/components/formatSum.js":
+/*!****************************************!*\
+  !*** ./src/js/components/formatSum.js ***!
+  \****************************************/
+/***/ (() => {
+
+var formatInput = document.querySelector('.format-sum');
+
+function formatNumberInput(input) {
+  var cleanValue = input.value.replace(/[^\d,]/g, '');
+  var parts = cleanValue.split(',');
+  var integerPart = parts[0];
+  var decimalPart = parts.length > 1 ? ',' + parts[1] : '';
+  integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  input.value = integerPart + decimalPart;
+}
+
+formatInput.addEventListener('input', function () {
+  return formatNumberInput(formatInput);
+});
+
+/***/ }),
+
 /***/ "./src/js/components/hide-table.js":
 /*!*****************************************!*\
   !*** ./src/js/components/hide-table.js ***!
@@ -1217,41 +1243,80 @@ if (loader) {
 
 /***/ }),
 
-/***/ "./src/js/components/modal.js":
-/*!************************************!*\
-  !*** ./src/js/components/modal.js ***!
-  \************************************/
+/***/ "./src/js/components/modalAndCustomTabs.js":
+/*!*************************************************!*\
+  !*** ./src/js/components/modalAndCustomTabs.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graph_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graph-modal */ "./node_modules/graph-modal/src/graph-modal.js");
 
-var closeButton = document.querySelector('.close-no-money-modal');
-var topUpButton = document.querySelector('.no-money__button');
+var customTabs = document.querySelector('.custom-tabs');
 var modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]();
-closeButton.addEventListener('click', function () {
-  modal.close('no-money-modal');
-});
-topUpButton.addEventListener('click', function () {
-  var tabsContent = document.querySelectorAll('.tabs__panel');
-  var tabsButtons = document.querySelectorAll('.tabs__nav-btn');
-  var tabsNav = document.querySelector('.tabs__nav');
 
-  for (var i = 0; i < tabsContent.length; i++) {
-    tabsContent[i].classList.remove('tabs__panel--active');
-    tabsButtons[i].classList.remove('tabs__nav-btn--active');
-  }
+if (customTabs) {
+  var tabsNav = customTabs.querySelector('.custom-tabs__nav');
+  var tabsBtns = customTabs.querySelectorAll('.custom-tabs__nav-btn');
+  var contents = customTabs.querySelectorAll('.custom-tabs__panel'); // modal buttons
 
-  tabsContent[1].classList.add('tabs__panel--active');
-  tabsButtons[1].classList.add('tabs__nav-btn--active');
-  tabsNav.setAttribute('data-tab-active', '2');
-  modal.close('no-money-modal');
-  tabsNav.scrollIntoView({
-    block: 'center',
-    behavior: 'smooth'
+  var topUpButton = document.querySelector('.no-money__button'); // tab buttons listeners
+
+  tabsBtns.forEach(function (btn, index) {
+    btn.addEventListener('click', function () {
+      switchTabs(index, btn);
+    });
+    btn.addEventListener('keydown', function (e) {
+      var dir = null;
+
+      if (e.which === 37) {
+        dir = index - 1;
+      } else if (e.which === 39) {
+        dir = index + 1;
+      } else if (e.which === 40) {
+        dir = 'down';
+      } else {
+        dir = null;
+      }
+
+      if (dir !== null) {
+        if (dir === 'down') {
+          contents[index].focus();
+        } else if (tabsBtns[dir]) {
+          switchTabs(dir, tabsBtns[dir]);
+        }
+      }
+    });
+  }); // modal listeners
+
+  topUpButton.addEventListener('click', function () {
+    switchTabs(1, tabsBtns[1]);
+    modal.close('no-money-modal');
+    tabsNav.scrollIntoView({
+      block: 'center',
+      behavior: 'smooth'
+    });
   });
-});
+
+  function switchTabs(num, currentBtn) {
+    var oldActiveBtn = tabsNav.querySelector('.custom-tabs__nav-btn--active');
+    var oldContent = customTabs.querySelector('.custom-tabs__panel--active');
+    oldActiveBtn.classList.remove('custom-tabs__nav-btn--active');
+    oldActiveBtn.setAttribute('tabindex', '-1');
+    tabsNav.setAttribute('data-tab-active', num + 1);
+    currentBtn.focus();
+    currentBtn.removeAttribute('tabindex');
+    currentBtn.classList.add('custom-tabs__nav-btn--active');
+    oldContent.setAttribute('tabindex', '-1');
+    oldContent.classList.remove('custom-tabs__panel--active');
+    setTimeout(function () {
+      oldContent.style.display = 'none';
+      contents[num].style.display = 'block';
+      contents[num].classList.add('custom-tabs__panel--active');
+    }, 300);
+  }
+}
 
 /***/ }),
 
@@ -1344,22 +1409,9 @@ switchers.forEach(function (switcher) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graph_tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graph-tabs */ "./node_modules/graph-tabs/src/graph-tabs.js");
+ // const tabs = new GraphTabs('profile-tabs');
 
-var tabs = new graph_tabs__WEBPACK_IMPORTED_MODULE_0__["default"]('profile-tabs');
-var tabsMain = new graph_tabs__WEBPACK_IMPORTED_MODULE_0__["default"]('main-section-tabs'); // profile tabs animation
-
-var profileTabButtons = document.querySelectorAll('.profile-info .tabs__nav-btn');
-var profileNav = document.querySelector('.profile-info .tabs__nav');
-profileTabButtons.forEach(function (button) {
-  button.addEventListener('click', function () {
-    var index = button.id[button.id.length - 1];
-    setTabButtonsAnimation(index);
-  });
-});
-
-function setTabButtonsAnimation(index) {
-  profileNav.setAttribute('data-tab-active', index);
-}
+var tabsMain = new graph_tabs__WEBPACK_IMPORTED_MODULE_0__["default"]('main-section-tabs');
 
 /***/ }),
 

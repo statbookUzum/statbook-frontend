@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {"title": "Анализ магазинов"})
+
+<body class="page__body">
+  @include('partials/loader.html')
+  <div class="loader-wrapper" style="opacity: 0; visibility: hidden;">
+    <header class="header header--dash">
+      <div class="header__desc">
+        <div class="container header__container">
+          <a class="logo header__logo" href="#">
+            <img src="./img/logo.svg" alt="логотип statbook">
+          </a>
+
+          <a href="./profile.html" class="header-account header-account--small header__account">
+            <img class="header-account__image" src="./img/account-image.jpg" alt="фото профиля">
+            <div class="header-account__info">
+              <div class="header-account__mail">
+                trifonova03@gmail.com
+              </div>
+              <div class="header-account__balance">
+                Баланс: <span class="account-balance">50 млн</span>. сум
+              </div>
+            </div>
+          </a>
+
+          <nav class="nav header__nav nav--profile">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="#" class="nav__link link-effect active">
+                  Анализ товара
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="./category-report.html" class="nav__link link-effect">
+                  Анализ категорий
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="./shop-report.html" class="nav__link link-effect">
+                  Анализ магазина
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="./profile.html" class="nav__link link-effect">
+                  Мой профиль
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <button type="button" class="header__button main-button main-button--stroke-white btn-reset">
+            Выйти
+          </button>
+        </div>
+      </div>
+
+      <div class="header__mob">
+        <div class="container header__container">
+          <a class="logo header__logo" href="#">
+            <img src="./img/logo.svg" alt="логотип statbook">
+          </a>
+
+          <button type="button" class="header__menu-btn menu-btn btn-reset">
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="top-section">
+        <div class="container">
+          <h1 class="top-section__title">
+            Анализ магазинов на <span>Uzum</span>
+          </h1>
+
+          <form action="#" class="search-form top-section__search">
+            <label class="auth-form__label custom-input custom-input--search">
+              <input class="custom-input__input" type="text" name="shop-search"
+                placeholder="Найдите нужную вам магазин товаров по названию или ссылке" required>
+            </label>
+          </form>
+        </div>
+      </section>
+
+      <section class="main-section">
+        <div class="container main-section__container">
+          <div class="main-section__wrapper product-report main-border">
+            <div class="product-report__top">
+              <div class="product-report__info product-info">
+                <div class="product-info__image">
+                  <img src="./img/product-test-image.jpg"
+                    alt="Умная лампочка Xiaomi Mi Smart LED Bulb Essential, E27, 9 Вт">
+                </div>
+                <div class="product-info__title">
+                  Умная лампочка Xiaomi Mi Smart LED Bulb Essential, E27, 9 Вт
+                </div>
+                <div class="product-info__price">
+                  Цена: <span class="product-info__price-amount">30.000</span> <span
+                    class="product-info__price-currency">сум</span>
+                </div>
+                <div class="product-info__seller">
+                  Продавец: <span class="product-info__seller-name">GADGET market</span>
+                </div>
+                <div class="product-info__description">
+                  Умный свет, который Вас понимает. Лампочка Xiaomi имеет возможность выбора цвета или регулировки
+                  цветовой температуры и яркости
+                </div>
+              </div>
+              <div class="product-report__buttons">
+                <button class="product-report__report-btn secondary-button btn-reset">
+                  Выгрузить отчет
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
+                      stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
+                  </svg>
+                </button>
+                <select class="product-report__select" name="product-report" id="reportSelect" required>
+                  <option value="7day">За 7 дней</option>
+                  <option value="14day">За 14 дней</option>
+                  <option selected value="30day">За 30 дней</option>
+                </select>
+              </div>
+            </div>
+            <div class="tabs product-report__tabs main-section__tabs" data-tabs="main-section-tabs">
+              <div class="main-section__switcher tabs__nav switcher">
+                <div class="switcher__cover"></div>
+                <button type="button" class="main-section__switch switcher__button tabs__nav-btn active btn-reset">
+                  Обзор магазина
+                </button>
+                <button type="button" class="main-section__switch switcher__button tabs__nav-btn btn-reset">
+                  Сводный анализ
+                </button>
+              </div>
+              <div class="tabs__content">
+                <div class="tabs__panel">
+                  <div class="main-section__inner category-analytics">
+                    <div class="category-analytics__title">
+                      Аналитика позиций в категориях за 30 дней:
+                    </div>
+                    <div class="category-analytics__line analytics-line">
+                      <div class="analytics-line__top">
+                        <div class="analytics-line__title">
+                          Категория - Электроника. Отчет За 30 дней
+                        </div>
+                        <div class="analytics-line__positions">
+                          +13 позиций
+                        </div>
+                      </div>
+                      <div class="analytics-line__content">
+                        <ul class="analytics-line__list">
+                          <li class="analytics-line__item">
+                            <div class="analytics-line__item-number">
+                              50
+                            </div>
+                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
+                              +48
+                            </div>
+                            <div class="analytics-line__item-date">
+                              01.04
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class=" tabs__panel">
+                  <div class="main-section__inner">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="last-view">
+        <div class="container">
+          <h2 class="last-view__title">
+            Последние просмотренные магазины
+          </h2>
+        </div>
+        <div class="swiper last-view__slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <article class="market-article last-view__article">
+                <form action="#" class="market-article__form">
+                  <div class="market-article__top">
+                    <img class="market-article__image" src="./img/test-product.jpg" alt="GADGET Market">
+                    <div class="market-article__info">
+                      <h2 class="market-article__title">
+                        GADGET Market
+                      </h2>
+                      <div class="market-article__reviews">
+                        <span class="market-article__reviews-score">4.4</span> (<span
+                          class="market-article__reviews-count">480 </span> отзывов)
+                      </div>
+                      <div class="market-article__desc">
+                        Магазин по продаже компьютерной техники
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
+                    Смотреть аналитику
+                  </button>
+                </form>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="market-article last-view__article">
+                <form action="#" class="market-article__form">
+                  <div class="market-article__top">
+                    <img class="market-article__image" src="./img/test-product.jpg" alt="GADGET Market">
+                    <div class="market-article__info">
+                      <h2 class="market-article__title">
+                        GADGET Market
+                      </h2>
+                      <div class="market-article__reviews">
+                        <span class="market-article__reviews-score">4.4</span> (<span
+                          class="market-article__reviews-count">480 </span> отзывов)
+                      </div>
+                      <div class="market-article__desc">
+                        Магазин по продаже компьютерной техники
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
+                    Смотреть аналитику
+                  </button>
+                </form>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="market-article last-view__article">
+                <form action="#" class="market-article__form">
+                  <div class="market-article__top">
+                    <img class="market-article__image" src="./img/test-product.jpg" alt="GADGET Market">
+                    <div class="market-article__info">
+                      <h2 class="market-article__title">
+                        GADGET Market
+                      </h2>
+                      <div class="market-article__reviews">
+                        <span class="market-article__reviews-score">4.4</span> (<span
+                          class="market-article__reviews-count">480 </span> отзывов)
+                      </div>
+                      <div class="market-article__desc">
+                        Магазин по продаже компьютерной техники
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
+                    Смотреть аналитику
+                  </button>
+                </form>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    @include('partials/footer.html')
+  </div>
+
+  @include('partials/profile/tariff-modal.html')
+</body>
+
+</html>

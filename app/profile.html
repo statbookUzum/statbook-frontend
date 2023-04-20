@@ -122,31 +122,32 @@
                 </div>
               </div>
             </div>
-            <div class="tabs profile-info__tabs" data-tabs="profile-tabs">
-              <div class="tabs__nav-wrapper">
-                <ul class="tabs__nav" data-tab-active="1">
-                  <li class="tabs__nav-item">
-                    <button class="tabs__nav-btn btn-reset" type="button">
+            <div class="custom-tabs profile-info__custom-tabs">
+              <div class="custom-tabs__nav-wrapper">
+                <ul class="custom-tabs__nav" data-tab-active="1">
+                  <li class="custom-tabs__nav-item">
+                    <button class="custom-tabs__nav-btn custom-tabs__nav-btn--active btn-reset" type="button">
                       Мой тарифный план
                     </button>
                   </li>
-                  <li class="tabs__nav-item">
-                    <button class="tabs__nav-btn btn-reset" type="button">
+                  <li class="custom-tabs__nav-item">
+                    <button class="custom-tabs__nav-btn btn-reset" type="button">
                       Пополнить баланс
                     </button>
                   </li>
-                  <li class="tabs__nav-item">
-                    <button class="tabs__nav-btn btn-reset" type="button">
+                  <li class="custom-tabs__nav-item">
+                    <button class="custom-tabs__nav-btn btn-reset" type="button">
                       Изменить данные входа
                     </button>
                   </li>
                 </ul>
               </div>
-              <div class="tabs__content">
+              <div class="custom-tabs__content">
                 <!-- примечания для бэка -->
                 <!-- в блоке profile-tariff два состояния по-умолчанию, когда тариф уже выбран и когда тарифа у пользователя еще нет, тогда будет отображаться блок profile-tariff__empty. Для того что бы его отобразить, просто добавь класс empty к диву div.profile-tariff -->
                 <!--сюда класс empty-->
-                <div class="tabs__panel profile-info__tariff profile-tariff">
+                <div class="custom-tabs__panel custom-tabs__panel--active profile-info__tariff profile-tariff"
+                  style="display: block;" tabindex="0">
                   <div class="profile-tariff__empty">
                     <img class="profile-tariff__empty-image" src="./img/warning-icon.svg"
                       alt="Для доступа к этому разделу вам необходимо выбрать тариф">
@@ -207,14 +208,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="tabs__panel profile-info__top-up top-up">
+                <div class="custom-tabs__panel profile-info__top-up top-up" tabindex="0">
                   <form action="#" class="top-up__form validation-form">
                     <div class="top-up__title">
                       Пополните ваш баланс:
                     </div>
                     <div class="top-up__inputs">
                       <label class="top-up__label custom-input custom-input--flex custom-input--sum">
-                        <input class="custom-input__input" type="text" name="top-up sum"
+                        <input class="custom-input__input format-sum" type="text" name="top-up sum"
                           placeholder="Введите сумму пополнения" required>
                         <button type="button" class="custom-input__clean btn-reset">
                           <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
@@ -264,7 +265,7 @@
                   </form>
                 </div>
 
-                <div class="tabs__panel profile-info__change-pass change-pass">
+                <div class="custom-tabs__panel profile-info__change-pass change-pass" tabindex="0">
                   <form action="#" class="change-pass__form validation-form">
                     <div class="change-pass__title">
                       Сменить пароль:
@@ -313,7 +314,9 @@
         </div>
       </section>
 
-      <section id="change-tariff" class="change-tariff">
+      <!-- примечания для бэка -->
+      <!-- здесь добавлен класс hidden он скрывает этот блок, когда у пользователя есть подписка на какой-то тариф. Если подписки нет, блок должен отображаться, в таком случае просто удаляй класс hidden -->
+      <section id="change-tariff" class="change-tariff hidden">
         <div class="container change-tariff__container">
           <h2 class="change-tariff__title">
             Выберите тариф для вашего бизнеса
@@ -330,7 +333,7 @@
             </div>
             <ul class="change-tariff__list">
               <li class="change-tariff__item">
-                <article class="tariff-card no-money">
+                <article class="tariff-card">
                   <!-- примечания для бэка -->
                   <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
                   <form action="#" class="tariff-card__form">
@@ -736,21 +739,19 @@
   </div>
   <div class="graph-modal__container no-money-wrapper" role="dialog" aria-modal="true"
     data-graph-target="no-money-modal">
+    <button class="btn-reset graph-modal__close change-tariff-modal__close"
+      aria-label="Закрыть модальное окно"></button>
     <div class="graph-modal__content">
       <div class="no-money">
         <div class="no-money__title">
           На вашем счету недостаточно средств
         </div>
         <p class="no-money__text">
-          Анализируйте рынок эффективнее с помощью нашего инновационного метода сбора информаци и. Мы предоставляем весь
+          Анализируйте рынок эффективнее с помощью нашего инновационного метода сбора информаци и мы предоставляем весь
           спектр данных
         </p>
 
         <div class="no-money__buttons">
-          <button class="btn-reset no-money__button-close close-no-money-modal main-button main-button--stroke-blue"
-            aria-label="Закрыть модальное окно">
-            Отмена
-          </button>
           <button class="btn-reset main-button no-money__button">
             Пополнить
           </button>

@@ -10,7 +10,7 @@
 
   .custom-select-panel {
     padding-top: 38px;
-    padding-bottom: 24px;
+    padding-bottom: 15px;
     border-color: $color-blue;
     border-top-color: transparent;
   }
@@ -118,6 +118,23 @@
 .shop-report {
   .custom-select-option:first-child {
     display: block;
+  }
+
+  .custom-select-opener {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-width: 2px;
+    border-color: rgba($color-blue-35, 0.3);
+  }
+}
+
+.product-report {
+  .custom-select-option:first-child {
+    display: block;
+  }
+
+  .custom-select-container {
+    height: 52px;
   }
 
   .custom-select-opener {
