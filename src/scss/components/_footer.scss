@@ -210,6 +210,9 @@
     @include w($md) {
       display: block;
     }
+    @include w($sm) {
+      text-align: center;
+    }
   }
 
   &__bottom-links {
@@ -222,7 +225,7 @@
     }
 
     @include w($sm) {
-      margin-bottom: 0;
+      margin-bottom: 15px;
       display: block;
     }
   }

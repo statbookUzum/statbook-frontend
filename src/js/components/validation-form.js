@@ -7,6 +7,7 @@ forms.forEach(form => {
 
   inputs.forEach((input, index) => {
     const label = input.closest('label');
+    const inputName = input.getAttribute('name');
 
     const error = document.createElement('div');
     error.classList.add('error-msg');
@@ -17,22 +18,29 @@ forms.forEach(form => {
       label.insertAdjacentElement('afterend', error);
     }
 
-    input.addEventListener('input', inputValidate.bind(null, label, index, error, onErrors, submitBtn, input, form));
+    onErrors[`${inputName}`] = {
+      errorFlag: true,
+      errorNode: error,
+    };
+
+    input.addEventListener('input', inputValidate.bind(null, label, inputName, onErrors, submitBtn, input, form));
   });
 });
 
-function inputValidate(label, index, error, onErrors, submitBtn, input, form) {
+function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
   label.classList.remove('custom-input--success');
 
-  disabledBtn(Object.values(onErrors), submitBtn);
+  onErrors[`${inputName}`].errorNode.textContent = '';
+  disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
 
   if (label.matches('.custom-input--password')) {
     // string length
     if (input.value.length < 6) {
-      error.textContent = 'Пароль должен содержать минимум 6 символов';
+      onErrors[`${inputName}`].errorNode.textContent = 'Пароль должен содержать минимум 6 символов';
       label.classList.add('custom-input--error');
-      onErrors[`${index}`] = true;
-      disabledBtn(Object.values(onErrors), submitBtn);
+      onErrors[`${inputName}`].errorFlag = true;
+      disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
+
       return;
     }
 
@@ -40,10 +48,11 @@ function inputValidate(label, index, error, onErrors, submitBtn, input, form) {
     const cyrillicRegex = /[а-яА-Я]/;
 
     if (cyrillicRegex.test(input.value)) {
-      error.textContent = 'Пароль не должен содержать кириллицы';
+      onErrors[`${inputName}`].errorNode.textContent = 'Пароль не должен содержать кириллицы';
       label.classList.add('custom-input--error');
-      onErrors[`${index}`] = true;
-      disabledBtn(Object.values(onErrors), submitBtn);
+      onErrors[`${inputName}`].errorFlag = true;
+      disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
+
       return;
     }
 
@@ -52,16 +61,29 @@ function inputValidate(label, index, error, onErrors, submitBtn, input, form) {
     const reapedPassword = form.querySelector('[data-name=reaped-password]');
 
     if (reapedPassword) {
+      const labelNew = newPassword.closest('label');
+      const labelReaped = reapedPassword.closest('label');
       if (reapedPassword.value !== newPassword.value) {
-        error.textContent = 'Пароли не совпадают!';
+        onErrors['reaped-password'].errorNode.textContent = 'Пароли не совпадают!';
         label.classList.add('custom-input--error');
-        onErrors[`${index}`] = true;
-        disabledBtn(Object.values(onErrors), submitBtn);
+        onErrors[`${inputName}`].errorFlag = true;
+        disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
+
+        labelNew.classList.add('custom-input--error');
+        labelReaped.classList.add('custom-input--error');
         return;
+      } else {
+        onErrors['reaped-password'].errorNode.textContent = '';
+        onErrors[`reaped-password`].errorFlag = false;
+        onErrors['new-password'].errorFlag = false;
+
+        labelNew.classList.remove('custom-input--error');
+        labelReaped.classList.remove('custom-input--error');
+
+        labelNew.classList.add('custom-input--success');
+        labelReaped.classList.add('custom-input--success');
       }
     }
-
-    onErrors[`${index}`] = false;
   }
 
 
@@ -69,22 +91,22 @@ function inputValidate(label, index, error, onErrors, submitBtn, input, form) {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
     if (!emailRegex.test(input.value)) {
-      error.textContent = 'Не валидный Email';
+      onErrors[`${inputName}`].errorNode.textContent = 'Не валидный Email';
       label.classList.add('custom-input--error');
-      onErrors[`${index}`] = true;
+      onErrors[`${inputName}`].errorFlag = true;
 
-      disabledBtn(Object.values(onErrors), submitBtn);
+      disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
 
       return;
     }
-    onErrors[`${index}`] = false;
   }
 
-  error.textContent = '';
+  onErrors[`${inputName}`].errorFlag = false;
+  onErrors[`${inputName}`].errorNode.textContent = '';
   label.classList.remove('custom-input--error');
   label.classList.add('custom-input--success');
 
-  disabledBtn(Object.values(onErrors), submitBtn);
+  disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
 }
 
 function disabledBtn(errorArr, btn) {

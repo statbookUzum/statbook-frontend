@@ -8,8 +8,11 @@ if (customTabs) {
   const tabsNav = customTabs.querySelector('.custom-tabs__nav');
   const tabsBtns = customTabs.querySelectorAll('.custom-tabs__nav-btn');
   const contents = customTabs.querySelectorAll('.custom-tabs__panel');
+  const contentsWrapper = document.querySelector('.custom-tabs__content');
   // modal buttons
   const topUpButton = document.querySelector('.no-money__button');
+
+  contentsWrapper.style.height = contents[0].offsetHeight + 'px';
 
   // tab buttons listeners
   tabsBtns.forEach((btn, index) => {
@@ -64,12 +67,8 @@ if (customTabs) {
 
     oldContent.setAttribute('tabindex', '-1');
     oldContent.classList.remove('custom-tabs__panel--active');
+    contentsWrapper.style.height = contents[num].offsetHeight + 'px';
 
-    setTimeout(() => {
-      oldContent.style.display = 'none';
-
-      contents[num].style.display = 'block';
-      contents[num].classList.add('custom-tabs__panel--active');
-    }, 300)
+    contents[num].classList.add('custom-tabs__panel--active');
   }
 }

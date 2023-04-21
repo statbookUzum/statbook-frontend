@@ -204,8 +204,18 @@
     }
   }
 
+  &__content {
+    position: relative;
+    // height custom-tabs__content in modalAndCustomTabs function
+  }
+
   &__panel {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+
     opacity: 0;
     visibility: hidden;
     will-change: opacity, visibility;

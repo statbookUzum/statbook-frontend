@@ -1,15 +1,18 @@
 const formatInput = document.querySelector('.format-sum');
 
-function formatNumberInput(input) {
-  let cleanValue = input.value.replace(/[^\d,]/g, '');
+if (formatInput) {
 
-  let parts = cleanValue.split(',');
-  let integerPart = parts[0];
-  let decimalPart = parts.length > 1 ? ',' + parts[1] : '';
+  function formatNumberInput(input) {
+    let cleanValue = input.value.replace(/[^\d,]/g, '');
 
-  integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    let parts = cleanValue.split(',');
+    let integerPart = parts[0];
+    let decimalPart = parts.length > 1 ? ',' + parts[1] : '';
 
-  input.value = integerPart + decimalPart;
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    input.value = integerPart + decimalPart;
+  }
+
+  formatInput.addEventListener('input', () => formatNumberInput(formatInput));
 }
-
-formatInput.addEventListener('input', () => formatNumberInput(formatInput));
