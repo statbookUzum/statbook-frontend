@@ -2456,12 +2456,61 @@ input::-webkit-inner-spin-button {
   background-color: #fff;
 }
 @media screen and (max-width: 768px) {
-  .main-section__switcher {
+  .main-section--shop .main-section__switcher {
     margin-bottom: 183px;
   }
 }
 .main-section--category .main-section__switcher {
   margin-bottom: 70px;
+}
+
+.main-section .custom-tabs__nav-wrapper {
+  margin: 0 auto 65px;
+  -webkit-box-shadow: 0px 9px 32px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 9px 32px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  width: 910px;
+  overflow-x: auto;
+}
+@media screen and (max-width: 1100px) {
+  .main-section .custom-tabs__nav-wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main-section .custom-tabs__nav-wrapper {
+    margin-bottom: 35px;
+  }
+}
+.main-section .custom-tabs__nav {
+  position: relative;
+}
+.main-section .custom-tabs__nav-btn--active {
+  color: #fff;
+}
+.main-section .custom-tabs__nav-btn:focus {
+  color: #fff;
+  background-color: transparent;
+}
+.main-section .custom-tabs__content {
+  position: relative;
+}
+.main-section .custom-tabs__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, visibility;
+  -webkit-transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+.main-section .custom-tabs__panel--active {
+  opacity: 1;
+  visibility: visible;
 }
 
 .shop-report {
@@ -2829,9 +2878,6 @@ input::-webkit-inner-spin-button {
   padding-bottom: 90px;
   will-change: height, padding;
   overflow: hidden;
-  -webkit-transition: padding 0.3s ease-in-out, height 0.3s ease-in-out;
-  -o-transition: padding 0.3s ease-in-out, height 0.3s ease-in-out;
-  transition: padding 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 .table-container::before {
   content: "";
@@ -2839,16 +2885,16 @@ input::-webkit-inner-spin-button {
   top: 0;
   left: 0;
   width: 100%;
-  height: 52px;
-  background-image: -o-radial-gradient(50% 50%, 135.48% 9480.42%, rgba(4, 15, 35, 0.05) 0%, rgba(4, 15, 35, 0) 100%);
-  background-image: radial-gradient(135.48% 9480.42% at 50% 50%, rgba(4, 15, 35, 0.05) 0%, rgba(4, 15, 35, 0) 100%);
+  height: 51px;
+  background-color: #f7f7f8;
 }
 .table-container.hidden {
-  padding: 0;
+  padding-bottom: 0;
 }
 
 .table-wrapper {
-  max-height: 150vh;
+  position: relative;
+  max-height: 1050px;
   overflow: auto;
 }
 .table-wrapper .simplebar-track {
@@ -2862,17 +2908,38 @@ input::-webkit-inner-spin-button {
 }
 
 .table {
-  padding: 0 20px;
   width: 100%;
   border-collapse: collapse;
 }
 .table__header {
   text-align: left;
 }
+.table__filter-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.table__filter-button::after {
+  content: "";
+  margin-left: 4px;
+  height: 12px;
+  width: 12px;
+  background-image: url("../img/filter-icon.svg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
 th {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   padding: 12px 50px 12px 10px;
   white-space: nowrap;
+  background-color: #f7f7f8;
 }
 
 tr {
@@ -3063,6 +3130,8 @@ td a {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .analytics-line__positions {
   padding: 4px 14px;
@@ -3073,6 +3142,8 @@ td a {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
   font-weight: 700;
   font-size: 18px;
   line-height: 141.5%;
@@ -3101,9 +3172,30 @@ td a {
   transform: rotate(180deg);
 }
 .analytics-line__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+  white-space: nowrap;
   font-size: 18px;
   line-height: 141.5%;
   color: rgba(4, 15, 35, 0.8);
+}
+@media screen and (max-width: 768px) {
+  .analytics-line__title {
+    margin-bottom: 14px;
+  }
+}
+.analytics-line__title-text {
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 .analytics-line__content {
   padding-bottom: 12px;

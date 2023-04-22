@@ -46,7 +46,7 @@
           <nav class="nav header__nav nav--profile">
             <ul class="nav__list">
               <li class="nav__item">
-                <a href="#" class="nav__link link-effect">
+                <a href="./product-report.html" class="nav__link link-effect">
                   Анализ товара
                 </a>
               </li>
@@ -104,21 +104,22 @@
         </div>
       </section>
 
-      <section class="main-section">
+      <section class="main-section main-section--shop">
         <div class="container main-section__container">
           <div class="main-section__wrapper main-border">
-            <div class="tabs main-section__tabs" data-tabs="main-section-tabs">
-              <div class="main-section__switcher tabs__nav switcher">
+            <div class="custom-tabs main-section__tabs" data-tabs="main-section-tabs">
+              <div class="main-section__switcher custom-tabs__nav switcher">
                 <div class="switcher__cover"></div>
-                <button type="button" class="main-section__switch switcher__button tabs__nav-btn active btn-reset">
+                <button type="button"
+                  class="main-section__switch switcher__button custom-tabs__nav-btn custom-tabs__nav-btn--active btn-reset">
                   Обзор магазина
                 </button>
-                <button type="button" class="main-section__switch switcher__button tabs__nav-btn btn-reset">
+                <button type="button" class="main-section__switch switcher__button custom-tabs__nav-btn btn-reset">
                   Сводный анализ
                 </button>
               </div>
-              <div class="tabs__content">
-                <div class="tabs__panel">
+              <div class="custom-tabs__content">
+                <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
                   <div class="main-section__inner shop-report">
                     <div class="shop-report__top">
                       <div class="shop-report__seller seller-card">
@@ -206,8 +207,16 @@
                             <th>Изображение</th>
                             <th>Продукт</th>
                             <th>SKU</th>
-                            <th>Категория</th>
-                            <th>Остаток</th>
+                            <th>
+                              <button class="table__filter-button btn-reset">
+                                Категория
+                              </button>
+                            </th>
+                            <th>
+                              <button class="table__filter-button btn-reset">
+                                Остаток
+                              </button>
+                            </th>
                             <th>Дней в наличии</th>
                             <th>Заказы</th>
                             <th>Выручка</th>
@@ -493,7 +502,7 @@
                     </div>
                   </div>
                 </div>
-                <div class=" tabs__panel">
+                <div class=" custom-tabs__panel" tabindex="0">
                   <div class="main-section__inner shop-report">
                     <div class="shop-report__top">
                       <div class="shop-report__seller seller-card">
@@ -581,11 +590,19 @@
                             <th>Изображение</th>
                             <th>Продукт</th>
                             <th>SKU</th>
-                            <th>Категория</th>
-                            <th>Остаток</th>
+                            <th>
+                              <button class="table__filter-button btn-reset">
+                                Категория
+                              </button>
+                            </th>
+                            <th>
+                              <button class="table__filter-button btn-reset">
+                                Остаток
+                              </button>
+                            </th>
                             <th>Дней в наличии</th>
-                            <th>АBC Заказы</th>
-                            <th>ABC Выручка</th>
+                            <th>Заказы</th>
+                            <th>Выручка</th>
                           </tr>
                           <tr>
                             <td>

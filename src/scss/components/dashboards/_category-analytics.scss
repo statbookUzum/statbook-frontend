@@ -26,6 +26,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   &__positions {
@@ -33,6 +34,7 @@
     border-radius: 7px;
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 
     font-weight: 700;
     font-size: 18px;
@@ -75,9 +77,26 @@
   }
 
   &__title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    width: 100%;
+    white-space: nowrap;
+
     font-size: 18px;
     line-height: 141.5%;
     color: rgba($color-blue-35, 0.8);
+
+    @include w($md) {
+      margin-bottom: 14px;
+    }
+  }
+
+  &__title-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__content {

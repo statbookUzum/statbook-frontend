@@ -1,10 +1,14 @@
 import GraphModal from 'graph-modal';
+import SmoothScroll from 'smooth-scroll';
+
 const customTabs = document.querySelector('.custom-tabs');
+const changeTariff = document.querySelector('#change-tariff');
 
 const modal = new GraphModal();
 
 
 if (customTabs) {
+
   const tabsNav = customTabs.querySelector('.custom-tabs__nav');
   const tabsBtns = customTabs.querySelectorAll('.custom-tabs__nav-btn');
   const contents = customTabs.querySelectorAll('.custom-tabs__panel');
@@ -43,13 +47,18 @@ if (customTabs) {
     })
   })
 
-  // modal listeners
-  topUpButton.addEventListener('click', () => {
-    switchTabs(1, tabsBtns[1]);
+  if (changeTariff) {
+    const scroll = new SmoothScroll();
 
-    modal.close('no-money-modal');
-    tabsNav.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  });
+    // modal listeners
+    topUpButton.addEventListener('click', () => {
+      switchTabs(1, tabsBtns[1]);
+
+      modal.close('no-money-modal');
+      // tabsNav.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      scroll.animateScroll(tabsNav);
+    });
+  }
 
   function switchTabs(num, currentBtn) {
     const oldActiveBtn = tabsNav.querySelector('.custom-tabs__nav-btn--active');

@@ -126,18 +126,19 @@
                 </select>
               </div>
             </div>
-            <div class="tabs product-report__tabs main-section__tabs" data-tabs="main-section-tabs">
-              <div class="main-section__switcher tabs__nav switcher">
+            <div class="custom-tabs product-report__tabs main-section__tabs" data-tabs="main-section-tabs">
+              <div class="main-section__switcher custom-tabs__nav switcher">
                 <div class="switcher__cover"></div>
-                <button type="button" class="main-section__switch switcher__button tabs__nav-btn active btn-reset">
+                <button type="button"
+                  class="main-section__switch switcher__button custom-tabs__nav-btn custom-tabs__nav-btn--active btn-reset">
                   Обзор магазина
                 </button>
-                <button type="button" class="main-section__switch switcher__button tabs__nav-btn btn-reset">
+                <button type="button" class="main-section__switch switcher__button custom-tabs__nav-btn btn-reset">
                   Сводный анализ
                 </button>
               </div>
-              <div class="tabs__content">
-                <div class="tabs__panel">
+              <div class="custom-tabs__content">
+                <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
                   <div class="main-section__inner category-analytics">
                     <div class="category-analytics__title">
                       Аналитика позиций в категориях за 30 дней:
@@ -145,7 +146,12 @@
                     <div class="category-analytics__line analytics-line">
                       <div class="analytics-line__top">
                         <div class="analytics-line__title">
-                          Категория - Электроника. Отчет За 30 дней
+                          <div class="analytics-line__title-text">
+                            Категория - Электроника.
+                          </div>
+                          <div class="analytics-line__title-report">
+                            Отчет За 30 дней
+                          </div>
                         </div>
                         <!-- примечания для бєка -->
                         <!-- здесь что бы изменить цвет таблицки на красный, когда позиции в минусе, просто дописывай analytics-line__positions--down -->
@@ -315,7 +321,12 @@
                     <div class="category-analytics__line analytics-line">
                       <div class="analytics-line__top">
                         <div class="analytics-line__title">
-                          Подкатегория - Умный дом и беопасность. Отчет За 30 дней
+                          <div class="analytics-line__title-text">
+                            Подкатегория - Умный дом и беопасность.
+                          </div>
+                          <div class="analytics-line__title-report">
+                            Отчет За 30 дней
+                          </div>
                         </div>
                         <!-- примечания для бєка -->
                         <!-- здесь что бы изменить цвет таблицки на красный, когда позиции в минусе, просто дописывай analytics-line__positions--down -->
@@ -489,7 +500,12 @@
                     <div class="category-analytics__line analytics-line">
                       <div class="analytics-line__top">
                         <div class="analytics-line__title">
-                          Категория - Электроника. Отчет За 30 дней
+                          <div class="analytics-line__title-text">
+                            Категория - Электроника.
+                          </div>
+                          <div class="analytics-line__title-report">
+                            Отчет За 30 дней
+                          </div>
                         </div>
                         <!-- примечания для бєка -->
                         <!-- здесь что бы изменить цвет таблицки на красный, когда позиции в минусе, просто дописывай analytics-line__positions--down -->
@@ -658,7 +674,7 @@
                     </div>
                   </div>
                 </div>
-                <div class=" tabs__panel">
+                <div class=" custom-tabs__panel" tabindex="0">
                   <div class="main-section__inner">
                   </div>
                 </div>

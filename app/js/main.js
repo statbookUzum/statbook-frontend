@@ -1210,16 +1210,14 @@ if (tablesToHide.length) {
     var hideTableButton = table.closest('.shop-report').querySelector('.hide-report-button');
     var tableContainer = table.closest('.table-container');
     hideTableButton.addEventListener('click', function () {
-      var height = table.clientHeight;
-
       if (!tableContainer.matches('.hidden')) {
         hideTableButton.classList.add('hidden');
         tableContainer.classList.add('hidden');
-        tableContainer.style.height = 0;
+        tableContainer.style.maxHeight = 0;
       } else {
         hideTableButton.classList.remove('hidden');
         tableContainer.classList.remove('hidden');
-        tableContainer.style.height = height + 'px';
+        tableContainer.style.maxHeight = '1050px';
       }
     });
   });
@@ -1256,8 +1254,12 @@ if (loader) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graph_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graph-modal */ "./node_modules/graph-modal/src/graph-modal.js");
+/* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! smooth-scroll */ "./node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js");
+/* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(smooth_scroll__WEBPACK_IMPORTED_MODULE_1__);
+
 
 var customTabs = document.querySelector('.custom-tabs');
+var changeTariff = document.querySelector('#change-tariff');
 var modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
 if (customTabs) {
@@ -1294,16 +1296,18 @@ if (customTabs) {
         }
       }
     });
-  }); // modal listeners
-
-  topUpButton.addEventListener('click', function () {
-    switchTabs(1, tabsBtns[1]);
-    modal.close('no-money-modal');
-    tabsNav.scrollIntoView({
-      block: 'center',
-      behavior: 'smooth'
-    });
   });
+
+  if (changeTariff) {
+    var scroll = new (smooth_scroll__WEBPACK_IMPORTED_MODULE_1___default())(); // modal listeners
+
+    topUpButton.addEventListener('click', function () {
+      switchTabs(1, tabsBtns[1]);
+      modal.close('no-money-modal'); // tabsNav.scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+      scroll.animateScroll(tabsNav);
+    });
+  }
 
   function switchTabs(num, currentBtn) {
     var oldActiveBtn = tabsNav.querySelector('.custom-tabs__nav-btn--active');
@@ -1509,7 +1513,7 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
       var labelReaped = reapedPassword.closest('label');
 
       if (reapedPassword.value !== newPassword.value) {
-        onErrors['reaped-password'].errorNode.textContent = 'Пароли не совпадают!';
+        onErrors['password_confirmation'].errorNode.textContent = 'Пароли не совпадают!';
         label.classList.add('custom-input--error');
         onErrors["".concat(inputName)].errorFlag = true;
         disabledBtn(Object.values(onErrors).map(function (el) {
@@ -1519,9 +1523,9 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
         labelReaped.classList.add('custom-input--error');
         return;
       } else {
-        onErrors['reaped-password'].errorNode.textContent = '';
-        onErrors["reaped-password"].errorFlag = false;
-        onErrors['new-password'].errorFlag = false;
+        onErrors['password_confirmation'].errorNode.textContent = '';
+        onErrors["password_confirmation"].errorFlag = false;
+        onErrors['password'].errorFlag = false;
         labelNew.classList.remove('custom-input--error');
         labelReaped.classList.remove('custom-input--error');
         labelNew.classList.add('custom-input--success');

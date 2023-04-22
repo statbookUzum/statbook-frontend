@@ -64,7 +64,7 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
       const labelNew = newPassword.closest('label');
       const labelReaped = reapedPassword.closest('label');
       if (reapedPassword.value !== newPassword.value) {
-        onErrors['reaped-password'].errorNode.textContent = 'Пароли не совпадают!';
+        onErrors['password_confirmation'].errorNode.textContent = 'Пароли не совпадают!';
         label.classList.add('custom-input--error');
         onErrors[`${inputName}`].errorFlag = true;
         disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
@@ -73,9 +73,9 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
         labelReaped.classList.add('custom-input--error');
         return;
       } else {
-        onErrors['reaped-password'].errorNode.textContent = '';
-        onErrors[`reaped-password`].errorFlag = false;
-        onErrors['new-password'].errorFlag = false;
+        onErrors['password_confirmation'].errorNode.textContent = '';
+        onErrors[`password_confirmation`].errorFlag = false;
+        onErrors['password'].errorFlag = false;
 
         labelNew.classList.remove('custom-input--error');
         labelReaped.classList.remove('custom-input--error');
