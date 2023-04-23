@@ -959,21 +959,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_nav_menu__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_nav_menu__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/tabs */ "./src/js/components/tabs.js");
 /* harmony import */ var _components_custom_select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/custom-select */ "./src/js/components/custom-select.js");
-/* harmony import */ var _components_modalAndCustomTabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/modalAndCustomTabs */ "./src/js/components/modalAndCustomTabs.js");
-/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/switcher */ "./src/js/components/switcher.js");
-/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_components_switcher__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/custom-input */ "./src/js/components/custom-input.js");
-/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_custom_input__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/validation-form */ "./src/js/components/validation-form.js");
-/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_components_validation_form__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_custom_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/custom-scroll */ "./src/js/components/custom-scroll.js");
-/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
-/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/hide-table */ "./src/js/components/hide-table.js");
-/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_hide_table__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
-/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
-/* harmony import */ var _components_charts__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/charts */ "./src/js/components/charts.js");
+/* harmony import */ var _components_charts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/charts */ "./src/js/components/charts.js");
+/* harmony import */ var _components_modalAndCustomTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/modalAndCustomTabs */ "./src/js/components/modalAndCustomTabs.js");
+/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/switcher */ "./src/js/components/switcher.js");
+/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_switcher__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/custom-input */ "./src/js/components/custom-input.js");
+/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_components_custom_input__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/validation-form */ "./src/js/components/validation-form.js");
+/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_components_validation_form__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _components_custom_scroll__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/custom-scroll */ "./src/js/components/custom-scroll.js");
+/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
+/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/hide-table */ "./src/js/components/hide-table.js");
+/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_hide_table__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
 // import './components/slider';
 
 
@@ -1092,6 +1092,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
 
 var saleChart = document.getElementById('saleChart');
+var priceChart = document.getElementById('priceChart');
+var lostChart = document.getElementById('lostChart');
 var chartSaleData = [{
   date: '01.04',
   value: '30'
@@ -1185,27 +1187,255 @@ var chartSaleData = [{
 }];
 
 if (saleChart) {
-  var labelsData = chartSaleData.map(function (item) {
+  var labelsData = chartSaleData.map(function (item, index) {
+    // if (index + 1 === 1) {
+    //   return item.date;
+    // }
+    // if ((index + 1) % 5 === 0) {
+    //   return item.date;
+    // }
     return item.date;
   });
   var valueData = chartSaleData.map(function (item) {
     return item.value;
   });
-  console.log(labelsData);
   new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(saleChart, {
     type: 'bar',
     data: {
       labels: labelsData,
       datasets: [{
-        label: '# of Votes',
+        label: 'График продаж',
         data: valueData,
-        borderWidth: 1
+        borderWidth: 0,
+        backgroundColor: 'rgba(124, 150, 255, 0.5)',
+        borderRadius: 15
       }]
     },
     options: {
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          grid: {
+            display: false
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: function callback(value, index, items) {
+              if (index + 1 === 1) {
+                return labelsData[index];
+              }
+
+              if ((index + 1) % 5 === 0) {
+                return labelsData[index];
+              }
+
+              return '';
+            },
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600
+            }
+          }
+        }
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function label(context) {
+              var label = context.dataset.label || '';
+
+              if (label) {
+                label += ': ';
+              }
+
+              label += context.formattedValue;
+              label += ' млн';
+              return label;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+if (priceChart) {
+  var _labelsData = chartSaleData.map(function (item, index) {
+    // if (index + 1 === 1) {
+    //   return item.date;
+    // }
+    // if ((index + 1) % 5 === 0) {
+    //   return item.date;
+    // }
+    return item.date;
+  });
+
+  var _valueData = chartSaleData.map(function (item) {
+    return item.value;
+  });
+
+  new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(priceChart, {
+    type: 'bar',
+    data: {
+      labels: _labelsData,
+      datasets: [{
+        label: 'График цены',
+        data: _valueData,
+        borderWidth: 0,
+        backgroundColor: 'rgba(50, 175, 153, 0.5)',
+        borderRadius: 15
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: function callback(value, index, items) {
+              if (index + 1 === 1) {
+                return _labelsData[index];
+              }
+
+              if ((index + 1) % 5 === 0) {
+                return _labelsData[index];
+              }
+
+              return '';
+            },
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600
+            }
+          }
+        }
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function label(context) {
+              var label = context.dataset.label || '';
+
+              if (label) {
+                label += ': ';
+              }
+
+              label += context.formattedValue;
+              label += ' млн';
+              return label;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+if (lostChart) {
+  var _labelsData2 = chartSaleData.map(function (item, index) {
+    // if (index + 1 === 1) {
+    //   return item.date;
+    // }
+    // if ((index + 1) % 5 === 0) {
+    //   return item.date;
+    // }
+    return item.date;
+  });
+
+  var _valueData2 = chartSaleData.map(function (item) {
+    return item.value;
+  });
+
+  new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(lostChart, {
+    type: 'bar',
+    data: {
+      labels: _labelsData2,
+      datasets: [{
+        label: 'График остатков',
+        data: _valueData2,
+        borderWidth: 0,
+        backgroundColor: 'rgba(255, 122, 0, 0.5)',
+        borderRadius: 15
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: function callback(value, index, items) {
+              if (index + 1 === 1) {
+                return _labelsData2[index];
+              }
+
+              if ((index + 1) % 5 === 0) {
+                return _labelsData2[index];
+              }
+
+              return '';
+            },
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600
+            }
+          }
+        }
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function label(context) {
+              var label = context.dataset.label || '';
+
+              if (label) {
+                label += ': ';
+              }
+
+              label += context.formattedValue;
+              label += ' млн';
+              return label;
+            }
+          }
         }
       }
     }
@@ -1365,7 +1595,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var customTabsList = document.querySelectorAll('.custom-tabs');
-var tariffButtons = document.querySelectorAll('.tariff-card__submit');
 var tariffButtonsWrapper = document.querySelector('.change-tariff__inner');
 var modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
@@ -1457,10 +1686,7 @@ if (tariffButtonsWrapper) {
       tariffConfirmTitle.textContent = '"' + title.textContent + '"';
       modal.open('tariff-confirm-modal');
     }
-  }); // tariffButtons.forEach(button => {
-  //   button.addEventListener('click', () => {
-  //   });
-  // });
+  });
 }
 
 /***/ }),

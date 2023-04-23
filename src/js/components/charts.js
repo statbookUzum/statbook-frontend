@@ -1,5 +1,7 @@
 import { Chart } from "chart.js/auto";
 const saleChart = document.getElementById('saleChart');
+const priceChart = document.getElementById('priceChart');
+const lostChart = document.getElementById('lostChart');
 
 const chartSaleData = [
   {
@@ -125,25 +127,251 @@ const chartSaleData = [
 ];
 
 if (saleChart) {
-  const labelsData = chartSaleData.map(item => item.date);
-  const valueData = chartSaleData.map(item => item.value);
+  const labelsData = chartSaleData.map((item, index) => {
+    // if (index + 1 === 1) {
+    //   return item.date;
+    // }
 
-  console.log(labelsData);
+    // if ((index + 1) % 5 === 0) {
+    //   return item.date;
+    // }
+
+    return item.date;
+  });
+
+  const valueData = chartSaleData.map(item => item.value);
 
   new Chart(saleChart, {
     type: 'bar',
     data: {
       labels: labelsData,
       datasets: [{
-        label: '# of Votes',
+        label: 'График продаж',
         data: valueData,
-        borderWidth: 1
+        borderWidth: 0,
+        backgroundColor: 'rgba(124, 150, 255, 0.5)',
+        borderRadius: 15,
       }]
     },
     options: {
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          grid: {
+            display: false,
+          },
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: function (value, index, items) {
+              if (index + 1 === 1) {
+                return labelsData[index];
+              }
+
+              if ((index + 1) % 5 === 0) {
+                return labelsData[index];
+              }
+
+              return '';
+            },
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600,
+            }
+          }
+        },
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              var label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += context.formattedValue;
+              label += ' млн';
+              return label;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+if (priceChart) {
+  const labelsData = chartSaleData.map((item, index) => {
+    // if (index + 1 === 1) {
+    //   return item.date;
+    // }
+
+    // if ((index + 1) % 5 === 0) {
+    //   return item.date;
+    // }
+
+    return item.date;
+  });
+
+  const valueData = chartSaleData.map(item => item.value);
+
+  new Chart(priceChart, {
+    type: 'bar',
+    data: {
+      labels: labelsData,
+      datasets: [{
+        label: 'График цены',
+        data: valueData,
+        borderWidth: 0,
+        backgroundColor: 'rgba(50, 175, 153, 0.5)',
+        borderRadius: 15,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false,
+          },
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: function (value, index, items) {
+              if (index + 1 === 1) {
+                return labelsData[index];
+              }
+
+              if ((index + 1) % 5 === 0) {
+                return labelsData[index];
+              }
+
+              return '';
+            },
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600,
+            }
+          }
+        },
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              var label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += context.formattedValue;
+              label += ' млн';
+              return label;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+if (lostChart) {
+  const labelsData = chartSaleData.map((item, index) => {
+    // if (index + 1 === 1) {
+    //   return item.date;
+    // }
+
+    // if ((index + 1) % 5 === 0) {
+    //   return item.date;
+    // }
+
+    return item.date;
+  });
+
+  const valueData = chartSaleData.map(item => item.value);
+
+  new Chart(lostChart, {
+    type: 'bar',
+    data: {
+      labels: labelsData,
+      datasets: [{
+        label: 'График остатков',
+        data: valueData,
+        borderWidth: 0,
+        backgroundColor: 'rgba(255, 122, 0, 0.5)',
+        borderRadius: 15,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false,
+          },
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: function (value, index, items) {
+              if (index + 1 === 1) {
+                return labelsData[index];
+              }
+
+              if ((index + 1) % 5 === 0) {
+                return labelsData[index];
+              }
+
+              return '';
+            },
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600,
+            }
+          }
+        },
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              var label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += context.formattedValue;
+              label += ' млн';
+              return label;
+            }
+          }
         }
       }
     }
