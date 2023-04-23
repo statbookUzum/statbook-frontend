@@ -316,101 +316,196 @@
 
       <!-- примечания для бэка -->
       <!-- здесь добавлен класс hidden он скрывает этот блок, когда у пользователя есть подписка на какой-то тариф. Если подписки нет, блок должен отображаться, в таком случае просто удаляй класс hidden -->
-      <section id="change-tariff" class="change-tariff hidden">
+      <section id="change-tariff" class="change-tariff">
         <div class="container change-tariff__container">
           <h2 class="change-tariff__title">
             Выберите тариф для вашего бизнеса
           </h2>
-          <div class="change-tariff__inner">
-            <div class="change-tariff__switcher switcher">
-              <div class="switcher__cover"></div>
-              <button class="change-tariff__switch switcher__button no-discount active btn-reset">
+          <div class="custom-tabs change-tariff__inner">
+            <div class="custom-tabs__nav change-tariff__switcher switcher">
+              <div class="switcher__cover" style="transform: translate3d(98%, -50%, 0px);"></div>
+              <button class="change-tariff__switch custom-tabs__nav-btn switcher__button no-discount btn-reset">
                 Один месяц
               </button>
-              <button class="change-tariff__switch switcher__button discount btn-reset">
+              <button
+                class="change-tariff__switch custom-tabs__nav-btn custom-tabs__nav-btn--active active switcher__button discount btn-reset">
                 Три месяца
               </button>
             </div>
-            <ul class="change-tariff__list">
-              <li class="change-tariff__item">
-                <article class="tariff-card">
-                  <!-- примечания для бэка -->
-                  <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
-                  <form action="#" class="tariff-card__form">
-                    <h3 class="tariff-card__title">
-                      Базовый
-                    </h3>
-                    <div class="tariff-card__price">
-                      <span class="tariff-card__price-amount">0</span>
-                      <span class="tariff-card__price-currency">$</span>
-                      <span class="tariff-card__price-text">за месяц</span>
-                    </div>
-                    <ul class="tariff-card__list">
-                      <li class="tariff-card__line">
-                        Доступ к расширению
-                      </li>
-                      <li class="tariff-card__line">
-                        Позиции товара
-                      </li>
-                      <li class="tariff-card__line tariff-card__line--disable">
-                        60 дней периода аналитика
-                      </li>
-                      <li class="tariff-card__line tariff-card__line--disable">
-                        5 отчетов по магазинам в сутки
-                      </li>
-                    </ul>
-                    <!-- input hidden -->
+            <div class="custom-tabs__content">
+              <div class="custom-tabs__panel" tabindex="0">
+                <ul class="change-tariff__list">
+                  <li class="change-tariff__item">
+                    <article class="tariff-card">
+                      <!-- примечания для бэка -->
+                      <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
+                      <form action="#" class="tariff-card__form">
+                        <h3 class="tariff-card__title">
+                          Базовый
+                        </h3>
+                        <div class="tariff-card__price">
+                          <span class="tariff-card__price-amount">0</span>
+                          <span class="tariff-card__price-currency">$</span>
+                          <span class="tariff-card__price-text">за месяц</span>
+                        </div>
+                        <ul class="tariff-card__list">
+                          <li class="tariff-card__line">
+                            Доступ к расширению
+                          </li>
+                          <li class="tariff-card__line">
+                            Позиции товара
+                          </li>
+                          <li class="tariff-card__line tariff-card__line--disable">
+                            60 дней периода аналитика
+                          </li>
+                          <li class="tariff-card__line tariff-card__line--disable">
+                            5 отчетов по магазинам в сутки
+                          </li>
+                        </ul>
+                        <!-- input hidden -->
+                        <!-- примечания для бэка -->
+                        <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                        <input type="hidden" name="tariff-type" value="base-tariff">
+                        <button type="submit"
+                          class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                          Попробовать
+                        </button>
+                      </form>
+                    </article>
+                  </li>
+                  <li class="change-tariff__item">
                     <!-- примечания для бэка -->
-                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                    <input type="hidden" name="tariff-type" value="base-tariff">
-                    <button type="submit" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
-                      Попробовать
-                    </button>
-                  </form>
-                </article>
-              </li>
-              <li class="change-tariff__item">
-                <!-- примечания для бэка -->
-                <!-- тут добавишь класс no-money для того что бы по нажатию на карточку открывалась модалка с уведомлением,
+                    <!-- тут добавишь класс no-money для того что бы по нажатию на карточку открывалась модалка с уведомлением,
                 что не достаточно на счету -->
-                <article class="tariff-card tariff-card--primary">
-                  <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
-                  <!-- примечания для бэка -->
-                  <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
-                  <form action="#" class="tariff-card__form">
-                    <h3 class="tariff-card__title">
-                      Профессионал
-                    </h3>
-                    <div class="tariff-card__price" data-discount="15" data-full="30">
-                      <span class="tariff-card__price-amount">15</span>
-                      <span class="tariff-card__price-currency">$</span>
-                      <span class="tariff-card__price-text">за месяц</span>
-                    </div>
-                    <ul class="tariff-card__list">
-                      <li class="tariff-card__line">
-                        Доступ к расширению
-                      </li>
-                      <li class="tariff-card__line">
-                        Позиции товара
-                      </li>
-                      <li class="tariff-card__line">
-                        60 дней периода аналитика
-                      </li>
-                      <li class="tariff-card__line">
-                        5 отчетов по магазинам в сутки
-                      </li>
-                    </ul>
-                    <!-- input hidden -->
+                    <article class="tariff-card tariff-card--primary">
+                      <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+                      <!-- примечания для бэка -->
+                      <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
+                      <form action="#" class="tariff-card__form">
+                        <h3 class="tariff-card__title">
+                          Профессионал
+                        </h3>
+                        <div class="tariff-card__price">
+                          <span class="tariff-card__price-amount">15</span>
+                          <span class="tariff-card__price-currency">$</span>
+                          <span class="tariff-card__price-text">за месяц</span>
+                        </div>
+                        <ul class="tariff-card__list">
+                          <li class="tariff-card__line">
+                            Доступ к расширению
+                          </li>
+                          <li class="tariff-card__line">
+                            Позиции товара
+                          </li>
+                          <li class="tariff-card__line">
+                            60 дней периода аналитика
+                          </li>
+                          <li class="tariff-card__line">
+                            5 отчетов по магазинам в сутки
+                          </li>
+                        </ul>
+                        <!-- input hidden -->
+                        <!-- примечания для бэка -->
+                        <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                        <input type="hidden" name="tariff-type" value="professional-tariff">
+                        <button type="submit" class="tariff-card__submit btn-reset main-button">
+                          Попробовать
+                        </button>
+                      </form>
+                    </article>
+                  </li>
+                </ul>
+              </div>
+              <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
+                <ul class="change-tariff__list">
+                  <li class="change-tariff__item">
+                    <article class="tariff-card">
+                      <!-- примечания для бэка -->
+                      <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
+                      <form action="#" class="tariff-card__form">
+                        <h3 class="tariff-card__title">
+                          Базовый
+                        </h3>
+                        <div class="tariff-card__price">
+                          <span class="tariff-card__price-amount">0</span>
+                          <span class="tariff-card__price-currency">$</span>
+                          <span class="tariff-card__price-text">за месяц</span>
+                        </div>
+                        <ul class="tariff-card__list">
+                          <li class="tariff-card__line">
+                            Доступ к расширению
+                          </li>
+                          <li class="tariff-card__line">
+                            Позиции товара
+                          </li>
+                          <li class="tariff-card__line tariff-card__line--disable">
+                            60 дней периода аналитика
+                          </li>
+                          <li class="tariff-card__line tariff-card__line--disable">
+                            5 отчетов по магазинам в сутки
+                          </li>
+                        </ul>
+                        <!-- input hidden -->
+                        <!-- примечания для бэка -->
+                        <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                        <input type="hidden" name="tariff-type" value="base-tariff">
+                        <button type="submit"
+                          class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                          Попробовать
+                        </button>
+                      </form>
+                    </article>
+                  </li>
+                  <li class="change-tariff__item">
                     <!-- примечания для бэка -->
-                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                    <input type="hidden" name="tariff-type" value="professional-tariff">
-                    <button type="submit" class="tariff-card__submit btn-reset main-button">
-                      Попробовать
-                    </button>
-                  </form>
-                </article>
-              </li>
-            </ul>
+                    <!-- тут добавишь класс no-money для того что бы по нажатию на карточку открывалась модалка с уведомлением,
+                что не достаточно на счету -->
+                    <article class="tariff-card tariff-card--primary">
+                      <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+                      <!-- примечания для бэка -->
+                      <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
+                      <form action="#" class="tariff-card__form">
+                        <div class="tariff-card__discount">
+                          Скидка 20%
+                        </div>
+                        <h3 class="tariff-card__title">
+                          Профессионал
+                        </h3>
+                        <div class="tariff-card__price">
+                          <div class="tariff-card__price-old">
+                            30$
+                          </div>
+                          <span class="tariff-card__price-amount">15</span>
+                          <span class="tariff-card__price-currency">$</span>
+                          <span class="tariff-card__price-text">за месяц</span>
+                        </div>
+                        <ul class="tariff-card__list">
+                          <li class="tariff-card__line">
+                            Доступ к расширению
+                          </li>
+                          <li class="tariff-card__line">
+                            Позиции товара
+                          </li>
+                          <li class="tariff-card__line">
+                            60 дней периода аналитика
+                          </li>
+                          <li class="tariff-card__line">
+                            5 отчетов по магазинам в сутки
+                          </li>
+                        </ul>
+                        <!-- input hidden -->
+                        <!-- примечания для бэка -->
+                        <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                        <input type="hidden" name="tariff-type" value="professional-tariff">
+                        <button type="submit" class="tariff-card__submit btn-reset main-button">
+                          Попробовать
+                        </button>
+                      </form>
+                    </article>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>

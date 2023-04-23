@@ -1088,23 +1088,20 @@ __webpack_require__.r(__webpack_exports__);
   \********************************************/
 /***/ (() => {
 
-var tariffSwitcher = document.querySelector('.change-tariff__switcher');
-
-if (tariffSwitcher) {
-  var tariffCard = document.querySelector('.tariff-card--primary');
-  var tariffPrice = tariffCard.querySelector('.tariff-card__price');
-  tariffSwitcher.addEventListener('click', function (_ref) {
-    var target = _ref.target;
-
-    if (target.matches('.discount')) {
-      tariffPrice.querySelector('.tariff-card__price-amount').textContent = tariffPrice.dataset.discount;
-      tariffCard.classList.add('tariff-card--discount');
-    } else {
-      tariffPrice.querySelector('.tariff-card__price-amount').textContent = tariffPrice.dataset.full;
-      tariffCard.classList.remove('tariff-card--discount');
-    }
-  });
-}
+// const tariffSwitcher = document.querySelector('.change-tariff__switcher');
+// if (tariffSwitcher) {
+//   const tariffCard = document.querySelector('.tariff-card--primary');
+//   const tariffPrice = tariffCard.querySelector('.tariff-card__price');
+//   tariffSwitcher.addEventListener('click', ({ target }) => {
+//     if (target.matches('.discount')) {
+//       tariffPrice.querySelector('.tariff-card__price-amount').textContent = tariffPrice.dataset.discount;
+//       tariffCard.classList.add('tariff-card--discount');
+//     } else {
+//       tariffPrice.querySelector('.tariff-card__price-amount').textContent = tariffPrice.dataset.full;
+//       tariffCard.classList.remove('tariff-card--discount');
+//     }
+//   });
+// }
 
 /***/ }),
 
@@ -1258,71 +1255,82 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(smooth_scroll__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var customTabs = document.querySelector('.custom-tabs');
+var customTabsList = document.querySelectorAll('.custom-tabs');
 var changeTariff = document.querySelector('#change-tariff');
 var modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
-if (customTabs) {
-  var tabsNav = customTabs.querySelector('.custom-tabs__nav');
-  var tabsBtns = customTabs.querySelectorAll('.custom-tabs__nav-btn');
-  var contents = customTabs.querySelectorAll('.custom-tabs__panel');
-  var contentsWrapper = document.querySelector('.custom-tabs__content'); // modal buttons
+if (customTabsList.length) {
+  customTabsList.forEach(function (customTabs) {
+    var tabsNav = customTabs.querySelector('.custom-tabs__nav');
+    var tabsBtns = customTabs.querySelectorAll('.custom-tabs__nav-btn');
+    var contents = customTabs.querySelectorAll('.custom-tabs__panel');
+    var contentsWrapper = customTabs.querySelector('.custom-tabs__content'); // modal buttons
 
-  var topUpButton = document.querySelector('.no-money__button');
-  contentsWrapper.style.height = contents[0].offsetHeight + 'px'; // tab buttons listeners
+    var topUpButton = document.querySelector('.no-money__button');
+    setHeight(contents[0]); // tab buttons listeners
 
-  tabsBtns.forEach(function (btn, index) {
-    btn.addEventListener('click', function () {
-      switchTabs(index, btn);
-    });
-    btn.addEventListener('keydown', function (e) {
-      var dir = null;
+    tabsBtns.forEach(function (btn, index) {
+      btn.addEventListener('click', function () {
+        switchTabs(index, btn);
+      });
+      btn.addEventListener('keydown', function (e) {
+        var dir = null;
 
-      if (e.which === 37) {
-        dir = index - 1;
-      } else if (e.which === 39) {
-        dir = index + 1;
-      } else if (e.which === 40) {
-        dir = 'down';
-      } else {
-        dir = null;
-      }
-
-      if (dir !== null) {
-        if (dir === 'down') {
-          contents[index].focus();
-        } else if (tabsBtns[dir]) {
-          switchTabs(dir, tabsBtns[dir]);
+        if (e.which === 37) {
+          dir = index - 1;
+        } else if (e.which === 39) {
+          dir = index + 1;
+        } else if (e.which === 40) {
+          dir = 'down';
+        } else {
+          dir = null;
         }
-      }
+
+        if (dir !== null) {
+          if (dir === 'down') {
+            contents[index].focus();
+          } else if (tabsBtns[dir]) {
+            switchTabs(dir, tabsBtns[dir]);
+          }
+        }
+      });
+    });
+
+    if (customTabs.matches('.profile-info__custom-tabs')) {
+      var scroll = new (smooth_scroll__WEBPACK_IMPORTED_MODULE_1___default())(); // modal listeners
+
+      topUpButton.addEventListener('click', function () {
+        switchTabs(1, tabsBtns[1]);
+        modal.close('no-money-modal'); // tabsNav.scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+        scroll.animateScroll(tabsNav);
+      });
+    }
+
+    function switchTabs(num, currentBtn) {
+      var oldActiveBtn = tabsNav.querySelector('.custom-tabs__nav-btn--active');
+      var oldContent = customTabs.querySelector('.custom-tabs__panel--active');
+      oldActiveBtn.classList.remove('custom-tabs__nav-btn--active');
+      oldActiveBtn.setAttribute('tabindex', '-1');
+      tabsNav.setAttribute('data-tab-active', num + 1);
+      currentBtn.focus();
+      currentBtn.removeAttribute('tabindex');
+      currentBtn.classList.add('custom-tabs__nav-btn--active');
+      oldContent.setAttribute('tabindex', '-1');
+      oldContent.classList.remove('custom-tabs__panel--active');
+      setHeight(contents[num]);
+      contents[num].classList.add('custom-tabs__panel--active');
+    }
+
+    function setHeight(contentNode) {
+      contentsWrapper.style.height = contentNode.offsetHeight + 'px';
+    }
+
+    window.addEventListener('resize', function () {
+      var activePanel = customTabs.querySelector('.custom-tabs__panel--active');
+      setHeight(activePanel);
     });
   });
-
-  if (changeTariff) {
-    var scroll = new (smooth_scroll__WEBPACK_IMPORTED_MODULE_1___default())(); // modal listeners
-
-    topUpButton.addEventListener('click', function () {
-      switchTabs(1, tabsBtns[1]);
-      modal.close('no-money-modal'); // tabsNav.scrollIntoView({ block: 'center', behavior: 'smooth' });
-
-      scroll.animateScroll(tabsNav);
-    });
-  }
-
-  function switchTabs(num, currentBtn) {
-    var oldActiveBtn = tabsNav.querySelector('.custom-tabs__nav-btn--active');
-    var oldContent = customTabs.querySelector('.custom-tabs__panel--active');
-    oldActiveBtn.classList.remove('custom-tabs__nav-btn--active');
-    oldActiveBtn.setAttribute('tabindex', '-1');
-    tabsNav.setAttribute('data-tab-active', num + 1);
-    currentBtn.focus();
-    currentBtn.removeAttribute('tabindex');
-    currentBtn.classList.add('custom-tabs__nav-btn--active');
-    oldContent.setAttribute('tabindex', '-1');
-    oldContent.classList.remove('custom-tabs__panel--active');
-    contentsWrapper.style.height = contents[num].offsetHeight + 'px';
-    contents[num].classList.add('custom-tabs__panel--active');
-  }
 }
 
 /***/ }),
@@ -1531,20 +1539,6 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
         labelNew.classList.add('custom-input--success');
         labelReaped.classList.add('custom-input--success');
       }
-    }
-  }
-
-  if (label.matches('.custom-input--mail')) {
-    var emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
-
-    if (!emailRegex.test(input.value)) {
-      onErrors["".concat(inputName)].errorNode.textContent = 'Не валидный Email';
-      label.classList.add('custom-input--error');
-      onErrors["".concat(inputName)].errorFlag = true;
-      disabledBtn(Object.values(onErrors).map(function (el) {
-        return el.errorFlag;
-      }), submitBtn);
-      return;
     }
   }
 

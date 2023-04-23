@@ -49,15 +49,6 @@
       background-color: transparent;
     }
 
-    // &::-webkit-scrollbar-thumb {
-    //   background-color: green;
-    // }
-
-    // &::-webkit-scrollbar-track {
-    //   scrollbar-width: 10px;
-    //   background-color: white;
-    // }
-
     padding-bottom: 32px;
     margin: 0 auto;
     box-shadow: 0px 15px 70px rgba(0, 0, 0, 0.15);
@@ -66,7 +57,7 @@
     align-items: center;
     justify-content: center;
     gap: 35px;
-    max-width: 914px;
+    max-width: 960px;
     width: 100%;
 
     background-color: $color-gray;

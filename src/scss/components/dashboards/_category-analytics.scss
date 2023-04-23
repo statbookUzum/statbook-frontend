@@ -82,7 +82,7 @@
     flex-wrap: wrap;
     gap: 5px;
 
-    width: 100%;
+    width: 80%;
     white-space: nowrap;
 
     font-size: 18px;
@@ -91,6 +91,7 @@
 
     @include w($md) {
       margin-bottom: 14px;
+      width: 100%;
     }
   }
 

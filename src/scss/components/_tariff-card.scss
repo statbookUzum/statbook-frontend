@@ -18,6 +18,7 @@
   }
 
   &__price {
+    position: relative;
     margin-bottom: 15px;
 
     text-align: center;
@@ -81,6 +82,42 @@
     }
   }
 
+  &__discount {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    padding: 10px 23px;
+    border-radius: 20px;
+    display: block;
+
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+    color: $light-color;
+
+    background-image: linear-gradient(
+      270.38deg,
+      #32af99 0.66%,
+      #138571 142.25%
+    );
+
+    transform: translate(-50%, -50%);
+  }
+
+  &__price-old {
+    position: absolute;
+    top: -10px;
+    right: 70px;
+    width: 30px;
+    height: 30px;
+
+    text-decoration: line-through;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 1.2;
+    color: rgba($light-color, 0.3);
+  }
+
   &--primary {
     color: $light-color;
 
@@ -108,50 +145,6 @@
 
     .tariff-card__line {
       color: rgba($light-color, 0.8);
-    }
-  }
-
-  &--discount {
-    &::after {
-      content: "Скидка 20%";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      padding: 10px 23px;
-      border-radius: 20px;
-      display: block;
-
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 1.2;
-      color: $light-color;
-
-      background-image: linear-gradient(
-        270.38deg,
-        #32af99 0.66%,
-        #138571 142.25%
-      );
-
-      transform: translate(-50%, -50%);
-    }
-
-    .tariff-card__price {
-      position: relative;
-
-      &::after {
-        content: attr(data-full) "$";
-        position: absolute;
-        top: -10px;
-        right: 70px;
-        width: 30px;
-        height: 30px;
-
-        text-decoration: line-through;
-        font-weight: 600;
-        font-size: 25px;
-        line-height: 1.2;
-        color: rgba($light-color, 0.3);
-      }
     }
   }
 

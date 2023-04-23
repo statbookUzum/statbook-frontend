@@ -149,14 +149,72 @@
                 <div class="switcher__cover"></div>
                 <button type="button"
                   class="main-section__switch switcher__button custom-tabs__nav-btn custom-tabs__nav-btn--active btn-reset">
-                  Обзор магазина
+                  Аналитика
                 </button>
                 <button type="button" class="main-section__switch switcher__button custom-tabs__nav-btn btn-reset">
-                  Сводный анализ
+                  Позиции в категориях
                 </button>
               </div>
               <div class="custom-tabs__content">
                 <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
+                  <div class="main-section__inner analytics-charts">
+                    <div class="analytics-charts__title">
+                      Данные по товару за 30 дней:
+                    </div>
+                    <ul class="analytics-charts__list">
+                      <li class="analytics-charts__item analytics-charts__item--sale">
+                        <button class="analytics-charts__item-info btn-reset"></button>
+                        <div class="analytics-charts__item-title">
+                          Продажи
+                        </div>
+                        <div class="analytics-charts__item-amount">
+                          <span class="analytics-charts-amount">
+                            134
+                          </span>
+                          штук
+                        </div>
+                      </li>
+                      <li class="analytics-charts__item analytics-charts__item--proceeds">
+                        <button class="analytics-charts__item-info btn-reset"></button>
+                        <div class="analytics-charts__item-title">
+                          Выручка
+                        </div>
+                        <div class="analytics-charts__item-amount">
+                          <span class="analytics-charts-amount">
+                            50
+                          </span>
+                          миллионов сум
+                        </div>
+                      </li>
+                      <li class="analytics-charts__item analytics-charts__item--average">
+                        <button class="analytics-charts__item-info btn-reset"></button>
+                        <div class="analytics-charts__item-title">
+                          В среднем
+                        </div>
+                        <div class="analytics-charts__item-amount">
+                          <span class="analytics-charts-amount">
+                            3.4
+                          </span>
+                          штук
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="analytics-charts__line">
+                      <div class="analytics-charts__top">
+                        <div class="analytics-charts__line-title">
+                          График продаж за последние 30 дней
+                        </div>
+                        <div class="analytics-charts__line-profit">
+                          +287%
+                        </div>
+                      </div>
+                      <div class="char-wrapper">
+                        <canvas id="saleChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class=" custom-tabs__panel" tabindex="0">
                   <div class="main-section__inner category-analytics">
                     <div class="category-analytics__title">
                       Аналитика позиций в категориях за 30 дней:
@@ -690,10 +748,6 @@
                         </ul>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class=" custom-tabs__panel" tabindex="0">
-                  <div class="main-section__inner">
                   </div>
                 </div>
               </div>

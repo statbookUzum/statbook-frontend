@@ -86,21 +86,6 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
     }
   }
 
-
-  if (label.matches('.custom-input--mail')) {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
-
-    if (!emailRegex.test(input.value)) {
-      onErrors[`${inputName}`].errorNode.textContent = 'Не валидный Email';
-      label.classList.add('custom-input--error');
-      onErrors[`${inputName}`].errorFlag = true;
-
-      disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
-
-      return;
-    }
-  }
-
   onErrors[`${inputName}`].errorFlag = false;
   onErrors[`${inputName}`].errorNode.textContent = '';
   label.classList.remove('custom-input--error');

@@ -1,0 +1,56 @@
+.custom-tabs {
+  &__nav-wrapper {
+    margin: 0 auto 65px;
+    box-shadow: 0px 9px 32px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    width: 910px;
+
+    overflow-x: auto;
+
+    @include w(1100px) {
+      width: 100%;
+    }
+
+    @include w($md) {
+      margin-bottom: 35px;
+    }
+  }
+
+  &__nav {
+    position: relative;
+  }
+
+  &__nav-btn {
+    &--active {
+      color: $light-color;
+    }
+
+    &:focus {
+      color: $light-color;
+      background-color: transparent;
+    }
+  }
+
+  &__content {
+    position: relative;
+    // height custom-tabs__content in modalAndCustomTabs function
+  }
+
+  &__panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+
+    opacity: 0;
+    visibility: hidden;
+    will-change: opacity, visibility;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+    &--active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
