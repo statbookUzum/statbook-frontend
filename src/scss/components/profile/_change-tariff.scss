@@ -89,4 +89,10 @@
   &.hidden {
     display: none;
   }
+
+  &.no-money {
+    .tariff-card .tariff-card__no-money {
+      display: block;
+    }
+  }
 }

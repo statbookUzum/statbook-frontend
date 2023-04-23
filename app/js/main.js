@@ -970,13 +970,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
 /* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/hide-table */ "./src/js/components/hide-table.js");
 /* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_hide_table__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _components_change_tariff__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/change-tariff */ "./src/js/components/change-tariff.js");
-/* harmony import */ var _components_change_tariff__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_change_tariff__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
-/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
 // import './components/slider';
-
 
 
 
@@ -1079,29 +1076,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendor/focus-visible.js */ "./src/js/vendor/focus-visible.js");
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__);
 
-
-/***/ }),
-
-/***/ "./src/js/components/change-tariff.js":
-/*!********************************************!*\
-  !*** ./src/js/components/change-tariff.js ***!
-  \********************************************/
-/***/ (() => {
-
-// const tariffSwitcher = document.querySelector('.change-tariff__switcher');
-// if (tariffSwitcher) {
-//   const tariffCard = document.querySelector('.tariff-card--primary');
-//   const tariffPrice = tariffCard.querySelector('.tariff-card__price');
-//   tariffSwitcher.addEventListener('click', ({ target }) => {
-//     if (target.matches('.discount')) {
-//       tariffPrice.querySelector('.tariff-card__price-amount').textContent = tariffPrice.dataset.discount;
-//       tariffCard.classList.add('tariff-card--discount');
-//     } else {
-//       tariffPrice.querySelector('.tariff-card__price-amount').textContent = tariffPrice.dataset.full;
-//       tariffCard.classList.remove('tariff-card--discount');
-//     }
-//   });
-// }
 
 /***/ }),
 

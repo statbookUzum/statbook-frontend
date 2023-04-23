@@ -10,6 +10,5 @@ import './components/validation-form';
 import './components/custom-scroll';
 import './components/slider';
 import './components/hide-table';
-import './components/change-tariff';
 import './components/formatSum';
 import './components/smoothScroll';

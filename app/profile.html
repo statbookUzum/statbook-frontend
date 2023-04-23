@@ -15,78 +15,78 @@
 
 <body class="page__body">
   <div class="loader" style="opacity: 1; visibility: visible;">
-  <div class="container loader__container">
-    <img src="./img/loader.svg" alt="веб-сайт загружается">
-    <p class="loader__text">
-      сервис аналитики для продавцов на uzum. очень скоро
-    </p>
+    <div class="container loader__container">
+      <img src="./img/loader.svg" alt="веб-сайт загружается">
+      <p class="loader__text">
+        сервис аналитики для продавцов на uzum. очень скоро
+      </p>
+    </div>
   </div>
-</div>
 
   <div class="loader-wrapper" style="opacity: 0; visibility: hidden;">
     <header class="header">
-  <div class="header__desc">
-    <div class="container header__container">
-      <a class="logo header__logo" href="#">
-        <img src="./img/logo.svg" alt="логотип statbook">
-      </a>
+      <div class="header__desc">
+        <div class="container header__container">
+          <a class="logo header__logo" href="#">
+            <img src="./img/logo.svg" alt="логотип statbook">
+          </a>
 
-      <div class="header-account header__account">
-        <img class="header-account__image" src="./img/account-image.jpg" alt="фото профиля">
-        <div class="header-account__info">
-          <div class="header-account__mail">
-            trifonova03@gmail.com
+          <div class="header-account header__account">
+            <img class="header-account__image" src="./img/account-image.jpg" alt="фото профиля">
+            <div class="header-account__info">
+              <div class="header-account__mail">
+                trifonova03@gmail.com
+              </div>
+              <div class="header-account__balance">
+                Баланс: <span class="account-balance">50 млн</span>. сум
+              </div>
+            </div>
           </div>
-          <div class="header-account__balance">
-            Баланс: <span class="account-balance">50 млн</span>. сум
-          </div>
+
+          <nav class="nav header__nav nav--profile">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="#" class="nav__link link-effect">
+                  Анализ товара
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="#" class="nav__link link-effect">
+                  Анализ категорий
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="./shop-report.html" class="nav__link link-effect">
+                  Анализ магазина
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="#" class="nav__link link-effect nav__link active">
+                  Мой профиль
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <button type="button" class="header__button main-button main-button--stroke-white btn-reset">
+            Выйти
+          </button>
         </div>
       </div>
 
-      <nav class="nav header__nav nav--profile">
-        <ul class="nav__list">
-          <li class="nav__item">
-            <a href="#" class="nav__link link-effect">
-              Анализ товара
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#" class="nav__link link-effect">
-              Анализ категорий
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="./shop-report.html" class="nav__link link-effect">
-              Анализ магазина
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#" class="nav__link link-effect nav__link active">
-              Мой профиль
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <div class="header__mob">
+        <div class="container header__container">
+          <a class="logo header__logo" href="#">
+            <img src="./img/logo.svg" alt="логотип statbook">
+          </a>
 
-      <button type="button" class="header__button main-button main-button--stroke-white btn-reset">
-        Выйти
-      </button>
-    </div>
-  </div>
-
-  <div class="header__mob">
-    <div class="container header__container">
-      <a class="logo header__logo" href="#">
-        <img src="./img/logo.svg" alt="логотип statbook">
-      </a>
-
-      <button type="button" class="header__menu-btn menu-btn btn-reset">
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </div>
-</header>
+          <button type="button" class="header__menu-btn menu-btn btn-reset">
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
 
     <main class="main">
       <section class="top-section">
@@ -316,7 +316,8 @@
 
       <!-- примечания для бэка -->
       <!-- здесь добавлен класс hidden он скрывает этот блок, когда у пользователя есть подписка на какой-то тариф. Если подписки нет, блок должен отображаться, в таком случае просто удаляй класс hidden -->
-      <section id="change-tariff" class="change-tariff">
+      <!-- и теперь только сдесь достаточно добавить класс no-money -->
+      <section id="change-tariff" class="change-tariff no-money">
         <div class="container change-tariff__container">
           <h2 class="change-tariff__title">
             Выберите тариф для вашего бизнеса
@@ -337,6 +338,7 @@
                 <ul class="change-tariff__list">
                   <li class="change-tariff__item">
                     <article class="tariff-card">
+                      <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
                       <!-- примечания для бэка -->
                       <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
                       <form action="#" class="tariff-card__form">
@@ -374,9 +376,6 @@
                     </article>
                   </li>
                   <li class="change-tariff__item">
-                    <!-- примечания для бэка -->
-                    <!-- тут добавишь класс no-money для того что бы по нажатию на карточку открывалась модалка с уведомлением,
-                что не достаточно на счету -->
                     <article class="tariff-card tariff-card--primary">
                       <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
                       <!-- примечания для бэка -->
@@ -420,6 +419,7 @@
                 <ul class="change-tariff__list">
                   <li class="change-tariff__item">
                     <article class="tariff-card">
+                      <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
                       <!-- примечания для бэка -->
                       <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
                       <form action="#" class="tariff-card__form">
@@ -512,349 +512,354 @@
     </main>
 
     <footer class="footer">
-  <div class="container footer__container">
-    <div class="footer__top">
-      <a href="./inadex.html" class="logo footer__logo">
-        <img src="./img/logo.svg" alt="логотип statbook">
-      </a>
+      <div class="container footer__container">
+        <div class="footer__top">
+          <a href="./inadex.html" class="logo footer__logo">
+            <img src="./img/logo.svg" alt="логотип statbook">
+          </a>
 
-      <div class="footer__country footer__country--top">
-        Uzbekistán
-      </div>
-    </div>
-    <div class="footer__middle">
-      <div class="footer__section">
-        <div class="footer__country">
-          Uzbekistán
+          <div class="footer__country footer__country--top">
+            Uzbekistán
+          </div>
         </div>
-        <a href="tel:+442087771111" class="footer__info link-effect">
-          +44 208 777 1111
-        </a>
-        <a href="mailto:statbook@gmail.com" class="footer__info link-effect">
-          statbook@gmail.com
-        </a>
-        <a href="t.me/@statbookmanager" class="footer__info link-effect">
-          @statbookmanager
-        </a>
+        <div class="footer__middle">
+          <div class="footer__section">
+            <div class="footer__country">
+              Uzbekistán
+            </div>
+            <a href="tel:+442087771111" class="footer__info link-effect">
+              +44 208 777 1111
+            </a>
+            <a href="mailto:statbook@gmail.com" class="footer__info link-effect">
+              statbook@gmail.com
+            </a>
+            <a href="t.me/@statbookmanager" class="footer__info link-effect">
+              @statbookmanager
+            </a>
 
-        <div class="footer__social">
-          <div class="footer__social-title">
-            Следите за нами:
-          </div>
-          <ul class="footer__social-list social-list">
-            <li class="social-list__item">
-              <a href="#" class="social-list__link link-icon">
-                <img src="img/facebook.svg" alt="ссылка на facebook">
-              </a>
-            </li>
-            <li class="social-list__item">
-              <a href="#" class="social-list__link link-icon">
-                <img src="img/instagram.svg" alt="ссылка на instagram">
-              </a>
-            </li>
-            <li class="social-list__item">
-              <a href="#" class="social-list__link link-icon">
-                <img src="img/telegram.svg" alt="ссылка на telegram">
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__section">
-        <div class="footer__cols">
-          <div class="footer__col">
-            <div class="footer__col-title">
-              Обучение:
+            <div class="footer__social">
+              <div class="footer__social-title">
+                Следите за нами:
+              </div>
+              <ul class="footer__social-list social-list">
+                <li class="social-list__item">
+                  <a href="#" class="social-list__link link-icon">
+                    <img src="img/facebook.svg" alt="ссылка на facebook">
+                  </a>
+                </li>
+                <li class="social-list__item">
+                  <a href="#" class="social-list__link link-icon">
+                    <img src="img/instagram.svg" alt="ссылка на instagram">
+                  </a>
+                </li>
+                <li class="social-list__item">
+                  <a href="#" class="social-list__link link-icon">
+                    <img src="img/telegram.svg" alt="ссылка на telegram">
+                  </a>
+                </li>
+              </ul>
             </div>
-            <ul class="footer__col-list">
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Видео-уроки
-                </a>
-              </li>
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Блог
-                </a>
-              </li>
-            </ul>
           </div>
-          <div class="footer__col">
-            <div class="footer__col-title">
-              Продукты:
+          <div class="footer__section">
+            <div class="footer__cols">
+              <div class="footer__col">
+                <div class="footer__col-title">
+                  Обучение:
+                </div>
+                <ul class="footer__col-list">
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Видео-уроки
+                    </a>
+                  </li>
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Блог
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="footer__col">
+                <div class="footer__col-title">
+                  Продукты:
+                </div>
+                <ul class="footer__col-list">
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Подписки и платежы
+                    </a>
+                  </li>
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Об аналитике
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="footer__col">
+                <div class="footer__col-title">
+                  Личный кабинет:
+                </div>
+                <ul class="footer__col-list">
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Войти
+                    </a>
+                  </li>
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Анализ товаров
+                    </a>
+                  </li>
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Анализ категорий
+                    </a>
+                  </li>
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Настройки
+                    </a>
+                  </li>
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Статистика
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="footer__col">
+                <div class="footer__col-title">
+                  Документация:
+                </div>
+                <ul class="footer__col-list">
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Политика когфиденциальности
+                    </a>
+                  </li>
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Пользовательское
+                      Соглашение
+                    </a>
+                  </li>
+                  <li class="footer__col-item">
+                    <a href="#" class="footer__col-link link-effect">
+                      Связь с нами
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <ul class="footer__col-list">
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Подписки и платежы
-                </a>
-              </li>
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Об аналитике
-                </a>
-              </li>
-            </ul>
           </div>
-          <div class="footer__col">
-            <div class="footer__col-title">
-              Личный кабинет:
-            </div>
-            <ul class="footer__col-list">
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Войти
-                </a>
-              </li>
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Анализ товаров
-                </a>
-              </li>
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Анализ категорий
-                </a>
-              </li>
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Настройки
-                </a>
-              </li>
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Статистика
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="footer__col">
-            <div class="footer__col-title">
-              Документация:
-            </div>
-            <ul class="footer__col-list">
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Политика когфиденциальности
-                </a>
-              </li>
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Пользовательское
-                  Соглашение
-                </a>
-              </li>
-              <li class="footer__col-item">
-                <a href="#" class="footer__col-link link-effect">
-                  Связь с нами
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer__section">
-        <div class="footer__brands">
-          <img src="img/brands/visa.svg" alt="visa">
-          <img src="img/brands/master-card.svg" alt="mastercard">
-          <img src="img/brands/uzcard.svg" alt="uzcard">
-          <img class="footer__brands-humo" src="img/brands/humo.png" alt="Humo">
-          <img class="footer__brands-big" src="img/brands/click-uz.svg" alt="click">
-          <img class="footer__brands-big" src="img/brands/pay-me.svg" alt="Pay me">
+          <div class="footer__section">
+            <div class="footer__brands">
+              <img src="img/brands/visa.svg" alt="visa">
+              <img src="img/brands/master-card.svg" alt="mastercard">
+              <img src="img/brands/uzcard.svg" alt="uzcard">
+              <img class="footer__brands-humo" src="img/brands/humo.png" alt="Humo">
+              <img class="footer__brands-big" src="img/brands/click-uz.svg" alt="click">
+              <img class="footer__brands-big" src="img/brands/pay-me.svg" alt="Pay me">
 
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <div class="footer__bottom-inner">
+            <div class="footer__bottom-links">
+              <a href="#" class="footer__bottom-link">Политика конфиденциальности</a>
+              <a href="#" class="footer__bottom-link">Пользовательское соглашение</a>
+            </div>
+            <div class="footer__bottom-copy">
+              Statbook 2023 Все права защищены
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="footer__bottom-inner">
-        <div class="footer__bottom-links">
-          <a href="#" class="footer__bottom-link">Политика конфиденциальности</a>
-          <a href="#" class="footer__bottom-link">Пользовательское соглашение</a>
-        </div>
-        <div class="footer__bottom-copy">
-          Statbook 2023 Все права защищены
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+    </footer>
 
   </div>
 
   <div class="graph-modal">
-  <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="change-tariff-modal">
-    <button class="btn-reset graph-modal__close change-tariff-modal__close"
-      aria-label="Закрыть модальное окно"></button>
-    <div class="graph-modal__content">
-      <div class="tariff-modal">
-        <div class="tariff-modal__title">
-          Продление вашего тарифа
-        </div>
-        <form action="#" class="tariff-modal__form">
-          <legend class="tariff-modal__form-title">
-            Выберите нужный тариф для продления:
-          </legend>
-          <div class="scrollbar-wrapper" data-simplebar>
-            <ul class="tariff-modal__list">
-              <li class="tariff-modal__item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="tariff" value="standard" class="custom-checkbox__field visually-hidden"
-                    required>
-                  <span class="custom-checkbox__content">
-                    <div class="tariff-radio">
-                      <span class="tariff-radio__circle"></span>
-                      <div class="tariff-radio__title">
-                        Тариф — Standart
-                      </div>
-                      <div class="tariff-radio__price">
-                        <span>15к</span>/мес
-                      </div>
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="tariff" value="medium" class="custom-checkbox__field visually-hidden"
-                    required>
-                  <span class="custom-checkbox__content">
-                    <div class="tariff-radio">
-                      <span class="tariff-radio__circle"></span>
-                      <div class="tariff-radio__title">
-                        Тариф — Medium
-                      </div>
-                      <div class="tariff-radio__price">
-                        <span>20к</span>/мес
-                      </div>
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="tariff" value="high" class="custom-checkbox__field visually-hidden"
-                    required>
-                  <span class="custom-checkbox__content">
-                    <div class="tariff-radio">
-                      <span class="tariff-radio__circle"></span>
-                      <div class="tariff-radio__title">
-                        Тариф — High
-                      </div>
-                      <div class="tariff-radio__price">
-                        <span>35к</span>/мес
-                      </div>
-                    </div>
-                  </span>
-                </label>
-              </li>
-            </ul>
+    <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="change-tariff-modal">
+      <button class="btn-reset graph-modal__close change-tariff-modal__close"
+        aria-label="Закрыть модальное окно"></button>
+      <div class="graph-modal__content">
+        <div class="tariff-modal">
+          <div class="tariff-modal__title">
+            Продление вашего тарифа
           </div>
-          <legend class="tariff-modal__form-title">
-            Выберите нужный срок продления:
-          </legend>
-          <div class="scrollbar-wrapper" data-simplebar>
-            <ul class="tariff-modal__term-list">
-              <li class="tariff-modal__term-item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="term" value="7day" class="custom-checkbox__field visually-hidden" required>
-                  <span class="custom-checkbox__content">
-                    <div class="term-radio">
-                      7 дней
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__term-item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="term" value="14day" class="custom-checkbox__field visually-hidden" required>
-                  <span class="custom-checkbox__content">
-                    <div class="term-radio">
-                      14 дней
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__term-item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="term" value="30day" class="custom-checkbox__field visually-hidden" required>
-                  <span class="custom-checkbox__content">
-                    <div class="term-radio">
-                      Месяц
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__term-item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="term" value="90day" class="custom-checkbox__field visually-hidden" required>
-                  <span class="custom-checkbox__content">
-                    <div class="term-radio">
-                      3 месяца
-                    </div>
-                  </span>
-                </label>
-              </li>
-            </ul>
-          </div>
-
-          <div class="tariff-modal__bottom">
-            <div class="tariff-modal__price">
-              Сумма: <span>70к</span>
+          <form action="#" class="tariff-modal__form">
+            <legend class="tariff-modal__form-title">
+              Выберите нужный тариф для продления:
+            </legend>
+            <div class="scrollbar-wrapper" data-simplebar>
+              <ul class="tariff-modal__list">
+                <li class="tariff-modal__item">
+                  <label class="custom-checkbox">
+                    <input type="radio" name="tariff" value="standard" class="custom-checkbox__field visually-hidden"
+                      required>
+                    <span class="custom-checkbox__content">
+                      <div class="tariff-radio">
+                        <span class="tariff-radio__circle"></span>
+                        <div class="tariff-radio__title">
+                          Тариф — Standart
+                        </div>
+                        <div class="tariff-radio__price">
+                          <span>15к</span>/мес
+                        </div>
+                      </div>
+                    </span>
+                  </label>
+                </li>
+                <li class="tariff-modal__item">
+                  <label class="custom-checkbox">
+                    <input type="radio" name="tariff" value="medium" class="custom-checkbox__field visually-hidden"
+                      required>
+                    <span class="custom-checkbox__content">
+                      <div class="tariff-radio">
+                        <span class="tariff-radio__circle"></span>
+                        <div class="tariff-radio__title">
+                          Тариф — Medium
+                        </div>
+                        <div class="tariff-radio__price">
+                          <span>20к</span>/мес
+                        </div>
+                      </div>
+                    </span>
+                  </label>
+                </li>
+                <li class="tariff-modal__item">
+                  <label class="custom-checkbox">
+                    <input type="radio" name="tariff" value="high" class="custom-checkbox__field visually-hidden"
+                      required>
+                    <span class="custom-checkbox__content">
+                      <div class="tariff-radio">
+                        <span class="tariff-radio__circle"></span>
+                        <div class="tariff-radio__title">
+                          Тариф — High
+                        </div>
+                        <div class="tariff-radio__price">
+                          <span>35к</span>/мес
+                        </div>
+                      </div>
+                    </span>
+                  </label>
+                </li>
+              </ul>
             </div>
-            <button type="submit" class="tariff-modal__submit btn-reset main-button">
-              Продлить тариф
-            </button>
-            <div class="tariff-modal__checkbox agreement-checkbox">
-              <label class="custom-checkbox">
-                <input type="checkbox" class="custom-checkbox__field visually-hidden" required>
-                <span class="custom-checkbox__content">
-                </span>
-              </label>
-              <div class="agreement-checkbox__text">
-                Я подтверждаю, что ознакомился с разделом <a href="./index.html">Вопросы и ответы</a>. Я
-                понимаю, что приобретаю и согласен с условиями <a href="./privat-policy">пользовательского
-                  соглашения</a>.
+            <legend class="tariff-modal__form-title">
+              Выберите нужный срок продления:
+            </legend>
+            <div class="scrollbar-wrapper" data-simplebar>
+              <ul class="tariff-modal__term-list">
+                <li class="tariff-modal__term-item">
+                  <label class="custom-checkbox">
+                    <input type="radio" name="term" value="7day" class="custom-checkbox__field visually-hidden"
+                      required>
+                    <span class="custom-checkbox__content">
+                      <div class="term-radio">
+                        7 дней
+                      </div>
+                    </span>
+                  </label>
+                </li>
+                <li class="tariff-modal__term-item">
+                  <label class="custom-checkbox">
+                    <input type="radio" name="term" value="14day" class="custom-checkbox__field visually-hidden"
+                      required>
+                    <span class="custom-checkbox__content">
+                      <div class="term-radio">
+                        14 дней
+                      </div>
+                    </span>
+                  </label>
+                </li>
+                <li class="tariff-modal__term-item">
+                  <label class="custom-checkbox">
+                    <input type="radio" name="term" value="30day" class="custom-checkbox__field visually-hidden"
+                      required>
+                    <span class="custom-checkbox__content">
+                      <div class="term-radio">
+                        Месяц
+                      </div>
+                    </span>
+                  </label>
+                </li>
+                <li class="tariff-modal__term-item">
+                  <label class="custom-checkbox">
+                    <input type="radio" name="term" value="90day" class="custom-checkbox__field visually-hidden"
+                      required>
+                    <span class="custom-checkbox__content">
+                      <div class="term-radio">
+                        3 месяца
+                      </div>
+                    </span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tariff-modal__bottom">
+              <div class="tariff-modal__price">
+                Сумма: <span>70к</span>
+              </div>
+              <button type="submit" class="tariff-modal__submit btn-reset main-button">
+                Продлить тариф
+              </button>
+              <div class="tariff-modal__checkbox agreement-checkbox">
+                <label class="custom-checkbox">
+                  <input type="checkbox" class="custom-checkbox__field visually-hidden" required>
+                  <span class="custom-checkbox__content">
+                  </span>
+                </label>
+                <div class="agreement-checkbox__text">
+                  Я подтверждаю, что ознакомился с разделом <a href="./index.html">Вопросы и ответы</a>. Я
+                  понимаю, что приобретаю и согласен с условиями <a href="./privat-policy">пользовательского
+                    соглашения</a>.
+                </div>
               </div>
             </div>
+          </form>
+        </div>
+
+        <!-- здесь добавить класс active для всплывашки -->
+        <div class="tariff-success">
+          <img class="tariff-success__icon" src="./img/success.svg" alt="Ваш тариф успешно продлен!">
+          <div class="tariff-success__text">
+            Ваш тариф успешно продлен!
           </div>
-        </form>
-      </div>
-
-      <!-- здесь добавить класс active для всплывашки -->
-      <div class="tariff-success">
-        <img class="tariff-success__icon" src="./img/success.svg" alt="Ваш тариф успешно продлен!">
-        <div class="tariff-success__text">
-          Ваш тариф успешно продлен!
+          <a href="#" class="tariff-success__button main-button btn-reset">
+            Перейти к аналите
+          </a>
         </div>
-        <a href="#" class="tariff-success__button main-button btn-reset">
-          Перейти к аналите
-        </a>
       </div>
     </div>
-  </div>
-  <div class="graph-modal__container no-money-wrapper" role="dialog" aria-modal="true"
-    data-graph-target="no-money-modal">
-    <button class="btn-reset graph-modal__close change-tariff-modal__close"
-      aria-label="Закрыть модальное окно"></button>
-    <div class="graph-modal__content">
-      <div class="no-money">
-        <div class="no-money__title">
-          На вашем счету недостаточно средств
-        </div>
-        <p class="no-money__text">
-          Анализируйте рынок эффективнее с помощью нашего инновационного метода сбора информаци и мы предоставляем весь
-          спектр данных
-        </p>
+    <div class="graph-modal__container no-money-wrapper" role="dialog" aria-modal="true"
+      data-graph-target="no-money-modal">
+      <button class="btn-reset graph-modal__close change-tariff-modal__close"
+        aria-label="Закрыть модальное окно"></button>
+      <div class="graph-modal__content">
+        <div class="no-money">
+          <div class="no-money__title">
+            На вашем счету недостаточно средств
+          </div>
+          <p class="no-money__text">
+            Анализируйте рынок эффективнее с помощью нашего инновационного метода сбора информаци и мы предоставляем
+            весь
+            спектр данных
+          </p>
 
-        <div class="no-money__buttons">
-          <button class="btn-reset main-button no-money__button">
-            Пополнить
-          </button>
+          <div class="no-money__buttons">
+            <button class="btn-reset main-button no-money__button">
+              Пополнить
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 </body>
 
