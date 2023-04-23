@@ -3383,6 +3383,15 @@ td a {
   }
 }
 
+.chart-span {
+  margin-bottom: 10px;
+  display: block;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  line-height: 141.5%;
+  color: rgba(4, 15, 35, 0.25);
+}
+
 .chart-wrapper {
   position: relative;
   height: 220px;

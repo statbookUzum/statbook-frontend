@@ -98,10 +98,13 @@ if (tariffButtonsWrapper) {
   tariffButtonsWrapper.addEventListener('click', ({ target }) => {
     if (target.matches('.tariff-card__submit')) {
       const card = target.closest('.tariff-card');
-      const input = card.querySelector('input');
+      const tariffInput = card.querySelector('[name=tariff-type]');
+      const periodInput = card.querySelector('[name=period-type]');
+      console.log(tariffInput, periodInput)
       const title = card.querySelector('.tariff-card__title');
 
-      tariffConfirmButton.setAttribute('data-tariffid', input.value);
+      tariffConfirmButton.setAttribute('data-tariffid', tariffInput.value);
+      tariffConfirmButton.setAttribute('data-periodid', periodInput.value);
       tariffConfirmTitle.textContent = '"' + title.textContent + '"';
       modal.open('tariff-confirm-modal');
     }

@@ -364,6 +364,7 @@
                       <!-- примечания для бэка -->
                       <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
                       <input type="hidden" name="tariff-type" value="base-tariff">
+                      <input type="hidden" name="period-type" value="period">
                       <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
                         Попробовать
                       </button>
@@ -399,6 +400,7 @@
                       <!-- примечания для бэка -->
                       <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
                       <input type="hidden" name="tariff-type" value="professional-tariff">
+                      <input type="hidden" name="period-type" value="base-tariff">
                       <button type="button" class="tariff-card__submit btn-reset main-button">
                         Попробовать
                       </button>
@@ -438,6 +440,7 @@
                       <!-- примечания для бэка -->
                       <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
                       <input type="hidden" name="tariff-type" value="base-tariff">
+                      <input type="hidden" name="period-type" value="base-tariff">
                       <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
                         Попробовать
                       </button>
@@ -479,6 +482,7 @@
                       <!-- примечания для бэка -->
                       <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
                       <input type="hidden" name="tariff-type" value="professional-tariff">
+                      <input type="hidden" name="period-type" value="base-tariff">
                       <button type="button" class="tariff-card__submit btn-reset main-button">
                         Попробовать
                       </button>
@@ -847,7 +851,7 @@
         </div>
 
         <div class="tariff-confirm__buttons">
-          <button class="btn-reset main-button tariff-confirm__button" data-tariffid>
+          <button class="btn-reset main-button tariff-confirm__button" data-tariffid data-periodid>
             Подтверждаю
           </button>
         </div>

@@ -160,6 +160,14 @@ if (saleChart) {
           grid: {
             display: false,
           },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600,
+            }
+          }
         },
         x: {
           grid: {
@@ -180,9 +188,9 @@ if (saleChart) {
             font: {
               family: 'Open Sans',
               size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
               weight: 600,
-            }
+            },
+            color: 'rgba(4, 15, 35, 0.25)',
           }
         },
       },
@@ -244,6 +252,14 @@ if (priceChart) {
           grid: {
             display: false,
           },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600,
+            }
+          }
         },
         x: {
           grid: {
@@ -264,9 +280,9 @@ if (priceChart) {
             font: {
               family: 'Open Sans',
               size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
               weight: 600,
-            }
+            },
+            color: 'rgba(4, 15, 35, 0.25)',
           }
         },
       },
@@ -328,6 +344,15 @@ if (lostChart) {
           grid: {
             display: false,
           },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600,
+            }
+          }
         },
         x: {
           grid: {
@@ -348,9 +373,9 @@ if (lostChart) {
             font: {
               family: 'Open Sans',
               size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
               weight: 600,
-            }
+            },
+            color: 'rgba(4, 15, 35, 0.25)',
           }
         },
       },
@@ -368,7 +393,7 @@ if (lostChart) {
                 label += ': ';
               }
               label += context.formattedValue;
-              label += ' млн';
+              label += ' шт';
               return label;
             }
           }

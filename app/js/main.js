@@ -1217,6 +1217,14 @@ if (saleChart) {
           beginAtZero: true,
           grid: {
             display: false
+          },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600
+            }
           }
         },
         x: {
@@ -1238,9 +1246,9 @@ if (saleChart) {
             font: {
               family: 'Open Sans',
               size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
               weight: 600
-            }
+            },
+            color: 'rgba(4, 15, 35, 0.25)'
           }
         }
       },
@@ -1303,6 +1311,14 @@ if (priceChart) {
           beginAtZero: true,
           grid: {
             display: false
+          },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600
+            }
           }
         },
         x: {
@@ -1324,9 +1340,9 @@ if (priceChart) {
             font: {
               family: 'Open Sans',
               size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
               weight: 600
-            }
+            },
+            color: 'rgba(4, 15, 35, 0.25)'
           }
         }
       },
@@ -1389,6 +1405,15 @@ if (lostChart) {
           beginAtZero: true,
           grid: {
             display: false
+          },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600
+            }
           }
         },
         x: {
@@ -1410,9 +1435,9 @@ if (lostChart) {
             font: {
               family: 'Open Sans',
               size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
               weight: 600
-            }
+            },
+            color: 'rgba(4, 15, 35, 0.25)'
           }
         }
       },
@@ -1432,7 +1457,7 @@ if (lostChart) {
               }
 
               label += context.formattedValue;
-              label += ' млн';
+              label += ' шт';
               return label;
             }
           }
@@ -1680,9 +1705,12 @@ if (tariffButtonsWrapper) {
 
     if (target.matches('.tariff-card__submit')) {
       var card = target.closest('.tariff-card');
-      var input = card.querySelector('input');
+      var tariffInput = card.querySelector('[name=tariff-type]');
+      var periodInput = card.querySelector('[name=period-type]');
+      console.log(tariffInput, periodInput);
       var title = card.querySelector('.tariff-card__title');
-      tariffConfirmButton.setAttribute('data-tariffid', input.value);
+      tariffConfirmButton.setAttribute('data-tariffid', tariffInput.value);
+      tariffConfirmButton.setAttribute('data-periodid', periodInput.value);
       tariffConfirmTitle.textContent = '"' + title.textContent + '"';
       modal.open('tariff-confirm-modal');
     }
