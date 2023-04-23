@@ -1230,7 +1230,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var customTabsList = document.querySelectorAll('.custom-tabs');
-var changeTariff = document.querySelector('#change-tariff');
+var tariffButtons = document.querySelectorAll('.tariff-card__submit');
+var tariffConfirmButton = document.querySelector('.tariff-confirm__button');
+var tariffConfirmTitle = document.querySelector('.tariff-confirm-name');
 var modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
 if (customTabsList.length) {
@@ -1303,6 +1305,19 @@ if (customTabsList.length) {
     window.addEventListener('resize', function () {
       var activePanel = customTabs.querySelector('.custom-tabs__panel--active');
       setHeight(activePanel);
+    });
+  });
+}
+
+if (tariffButtons.length) {
+  tariffButtons.forEach(function (button) {
+    var card = button.closest('.tariff-card');
+    var input = card.querySelector('input');
+    var title = card.querySelector('.tariff-card__title');
+    button.addEventListener('click', function () {
+      tariffConfirmButton.setAttribute('data-tariffid', input.value);
+      tariffConfirmTitle.textContent = '"' + title.textContent + '"';
+      modal.open('tariff-confirm-modal');
     });
   });
 }

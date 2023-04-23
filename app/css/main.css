@@ -4398,6 +4398,79 @@ td a {
   }
 }
 
+.tariff-confirm-wrapper {
+  max-width: 600px;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .tariff-confirm-wrapper {
+    max-width: none;
+    width: 95%;
+  }
+}
+
+.tariff-confirm-name {
+  white-space: nowrap;
+}
+
+.graph-modal .tariff-confirm {
+  padding: 20px 25px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: #fff;
+}
+@media screen and (max-width: 576px) {
+  .graph-modal .tariff-confirm {
+    padding: 30px 25px;
+    text-align: center;
+  }
+}
+.graph-modal .tariff-confirm__title {
+  margin-bottom: 50px;
+  font-size: 24px;
+  line-height: 141.5%;
+  color: #040f23;
+}
+.graph-modal .tariff-confirm__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.graph-modal .tariff-confirm__button-close {
+  position: static;
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+  line-height: 1;
+  background-image: none;
+}
+.graph-modal .tariff-confirm__button-close:focus {
+  background-color: #fff;
+  color: #224dff;
+  -webkit-animation: none;
+  animation: none;
+}
+@media screen and (max-width: 576px) {
+  .graph-modal .tariff-confirm__button-close {
+    max-width: none;
+  }
+}
+.graph-modal .tariff-confirm__button {
+  max-width: 250px;
+  width: 100%;
+}
+@media screen and (max-width: 576px) {
+  .graph-modal .tariff-confirm__button {
+    max-width: none;
+  }
+}
+
 .change-tariff {
   padding: 90px 0 200px;
 }

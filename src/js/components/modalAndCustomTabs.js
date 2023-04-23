@@ -2,7 +2,9 @@ import GraphModal from 'graph-modal';
 import SmoothScroll from 'smooth-scroll';
 
 const customTabsList = document.querySelectorAll('.custom-tabs');
-const changeTariff = document.querySelector('#change-tariff');
+const tariffButtons = document.querySelectorAll('.tariff-card__submit');
+const tariffConfirmButton = document.querySelector('.tariff-confirm__button');
+const tariffConfirmTitle = document.querySelector('.tariff-confirm-name');
 
 const modal = new GraphModal();
 
@@ -88,5 +90,19 @@ if (customTabsList.length) {
       const activePanel = customTabs.querySelector('.custom-tabs__panel--active');
       setHeight(activePanel);
     })
+  });
+}
+
+if (tariffButtons.length) {
+  tariffButtons.forEach(button => {
+    const card = button.closest('.tariff-card');
+    const input = card.querySelector('input');
+    const title = card.querySelector('.tariff-card__title');
+
+    button.addEventListener('click', () => {
+      tariffConfirmButton.setAttribute('data-tariffid', input.value);
+      tariffConfirmTitle.textContent = '"' + title.textContent + '"';
+      modal.open('tariff-confirm-modal');
+    });
   });
 }

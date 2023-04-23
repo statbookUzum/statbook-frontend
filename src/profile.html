@@ -258,81 +258,70 @@
                   <li class="change-tariff__item">
                     <article class="tariff-card">
                       <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+                      <h3 class="tariff-card__title">
+                        Базовый
+                      </h3>
+                      <div class="tariff-card__price">
+                        <span class="tariff-card__price-amount">0</span>
+                        <span class="tariff-card__price-currency">$</span>
+                        <span class="tariff-card__price-text">за месяц</span>
+                      </div>
+                      <ul class="tariff-card__list">
+                        <li class="tariff-card__line">
+                          Доступ к расширению
+                        </li>
+                        <li class="tariff-card__line">
+                          Позиции товара
+                        </li>
+                        <li class="tariff-card__line tariff-card__line--disable">
+                          60 дней периода аналитика
+                        </li>
+                        <li class="tariff-card__line tariff-card__line--disable">
+                          5 отчетов по магазинам в сутки
+                        </li>
+                      </ul>
+                      <!-- input hidden -->
                       <!-- примечания для бэка -->
-                      <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
-                      <form action="#" class="tariff-card__form">
-                        <h3 class="tariff-card__title">
-                          Базовый
-                        </h3>
-                        <div class="tariff-card__price">
-                          <span class="tariff-card__price-amount">0</span>
-                          <span class="tariff-card__price-currency">$</span>
-                          <span class="tariff-card__price-text">за месяц</span>
-                        </div>
-                        <ul class="tariff-card__list">
-                          <li class="tariff-card__line">
-                            Доступ к расширению
-                          </li>
-                          <li class="tariff-card__line">
-                            Позиции товара
-                          </li>
-                          <li class="tariff-card__line tariff-card__line--disable">
-                            60 дней периода аналитика
-                          </li>
-                          <li class="tariff-card__line tariff-card__line--disable">
-                            5 отчетов по магазинам в сутки
-                          </li>
-                        </ul>
-                        <!-- input hidden -->
-                        <!-- примечания для бэка -->
-                        <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                        <input type="hidden" name="tariff-type" value="base-tariff">
-                        <button type="submit"
-                          class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
-                          Попробовать
-                        </button>
-                      </form>
+                      <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                      <input type="hidden" name="tariff-type" value="base-tariff">
+                      <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                        Попробовать
+                      </button>
                     </article>
                   </li>
                   <li class="change-tariff__item">
-                    <!-- примечания для бэка -->
-                    <!-- тут добавишь класс no-money для того что бы по нажатию на карточку открывалась модалка с уведомлением,
-                что не достаточно на счету -->
                     <article class="tariff-card tariff-card--primary">
                       <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+
+                      <h3 class="tariff-card__title">
+                        Профессионал
+                      </h3>
+                      <div class="tariff-card__price">
+                        <span class="tariff-card__price-amount">15</span>
+                        <span class="tariff-card__price-currency">$</span>
+                        <span class="tariff-card__price-text">за месяц</span>
+                      </div>
+                      <ul class="tariff-card__list">
+                        <li class="tariff-card__line">
+                          Доступ к расширению
+                        </li>
+                        <li class="tariff-card__line">
+                          Позиции товара
+                        </li>
+                        <li class="tariff-card__line">
+                          60 дней периода аналитика
+                        </li>
+                        <li class="tariff-card__line">
+                          5 отчетов по магазинам в сутки
+                        </li>
+                      </ul>
+                      <!-- input hidden -->
                       <!-- примечания для бэка -->
-                      <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
-                      <form action="#" class="tariff-card__form">
-                        <h3 class="tariff-card__title">
-                          Профессионал
-                        </h3>
-                        <div class="tariff-card__price">
-                          <span class="tariff-card__price-amount">15</span>
-                          <span class="tariff-card__price-currency">$</span>
-                          <span class="tariff-card__price-text">за месяц</span>
-                        </div>
-                        <ul class="tariff-card__list">
-                          <li class="tariff-card__line">
-                            Доступ к расширению
-                          </li>
-                          <li class="tariff-card__line">
-                            Позиции товара
-                          </li>
-                          <li class="tariff-card__line">
-                            60 дней периода аналитика
-                          </li>
-                          <li class="tariff-card__line">
-                            5 отчетов по магазинам в сутки
-                          </li>
-                        </ul>
-                        <!-- input hidden -->
-                        <!-- примечания для бэка -->
-                        <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                        <input type="hidden" name="tariff-type" value="professional-tariff">
-                        <button type="submit" class="tariff-card__submit btn-reset main-button">
-                          Попробовать
-                        </button>
-                      </form>
+                      <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                      <input type="hidden" name="tariff-type" value="professional-tariff">
+                      <button type="button" class="tariff-card__submit btn-reset main-button">
+                        Попробовать
+                      </button>
                     </article>
                   </li>
                 </ul>
@@ -342,87 +331,78 @@
                   <li class="change-tariff__item">
                     <article class="tariff-card">
                       <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+
+                      <h3 class="tariff-card__title">
+                        Базовый
+                      </h3>
+                      <div class="tariff-card__price">
+                        <span class="tariff-card__price-amount">0</span>
+                        <span class="tariff-card__price-currency">$</span>
+                        <span class="tariff-card__price-text">за месяц</span>
+                      </div>
+                      <ul class="tariff-card__list">
+                        <li class="tariff-card__line">
+                          Доступ к расширению
+                        </li>
+                        <li class="tariff-card__line">
+                          Позиции товара
+                        </li>
+                        <li class="tariff-card__line tariff-card__line--disable">
+                          60 дней периода аналитика
+                        </li>
+                        <li class="tariff-card__line tariff-card__line--disable">
+                          5 отчетов по магазинам в сутки
+                        </li>
+                      </ul>
+                      <!-- input hidden -->
                       <!-- примечания для бэка -->
-                      <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
-                      <form action="#" class="tariff-card__form">
-                        <h3 class="tariff-card__title">
-                          Базовый
-                        </h3>
-                        <div class="tariff-card__price">
-                          <span class="tariff-card__price-amount">0</span>
-                          <span class="tariff-card__price-currency">$</span>
-                          <span class="tariff-card__price-text">за месяц</span>
-                        </div>
-                        <ul class="tariff-card__list">
-                          <li class="tariff-card__line">
-                            Доступ к расширению
-                          </li>
-                          <li class="tariff-card__line">
-                            Позиции товара
-                          </li>
-                          <li class="tariff-card__line tariff-card__line--disable">
-                            60 дней периода аналитика
-                          </li>
-                          <li class="tariff-card__line tariff-card__line--disable">
-                            5 отчетов по магазинам в сутки
-                          </li>
-                        </ul>
-                        <!-- input hidden -->
-                        <!-- примечания для бэка -->
-                        <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                        <input type="hidden" name="tariff-type" value="base-tariff">
-                        <button type="submit"
-                          class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
-                          Попробовать
-                        </button>
-                      </form>
+                      <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                      <input type="hidden" name="tariff-type" value="base-tariff">
+                      <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                        Попробовать
+                      </button>
                     </article>
                   </li>
                   <li class="change-tariff__item">
-                    <!-- примечания для бэка -->
-                    <!-- тут добавишь класс no-money для того что бы по нажатию на карточку открывалась модалка с уведомлением,
-                что не достаточно на счету -->
                     <article class="tariff-card tariff-card--primary">
                       <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+
+
+                      <div class="tariff-card__discount">
+                        Скидка 20%
+                      </div>
+                      <h3 class="tariff-card__title">
+                        Профессионал
+                      </h3>
+                      <div class="tariff-card__price">
+                        <div class="tariff-card__price-old">
+                          30$
+                        </div>
+                        <span class="tariff-card__price-amount">15</span>
+                        <span class="tariff-card__price-currency">$</span>
+                        <span class="tariff-card__price-text">за месяц</span>
+                      </div>
+                      <ul class="tariff-card__list">
+                        <li class="tariff-card__line">
+                          Доступ к расширению
+                        </li>
+                        <li class="tariff-card__line">
+                          Позиции товара
+                        </li>
+                        <li class="tariff-card__line">
+                          60 дней периода аналитика
+                        </li>
+                        <li class="tariff-card__line">
+                          5 отчетов по магазинам в сутки
+                        </li>
+                      </ul>
+                      <!-- input hidden -->
                       <!-- примечания для бэка -->
-                      <!-- здесь оставил тебе форму, бо хз как ты будешь делать пополнение счета, если она тебе не надо, можешь ее просто удалить, она ни на что не влияет -->
-                      <form action="#" class="tariff-card__form">
-                        <div class="tariff-card__discount">
-                          Скидка 20%
-                        </div>
-                        <h3 class="tariff-card__title">
-                          Профессионал
-                        </h3>
-                        <div class="tariff-card__price">
-                          <div class="tariff-card__price-old">
-                            30$
-                          </div>
-                          <span class="tariff-card__price-amount">15</span>
-                          <span class="tariff-card__price-currency">$</span>
-                          <span class="tariff-card__price-text">за месяц</span>
-                        </div>
-                        <ul class="tariff-card__list">
-                          <li class="tariff-card__line">
-                            Доступ к расширению
-                          </li>
-                          <li class="tariff-card__line">
-                            Позиции товара
-                          </li>
-                          <li class="tariff-card__line">
-                            60 дней периода аналитика
-                          </li>
-                          <li class="tariff-card__line">
-                            5 отчетов по магазинам в сутки
-                          </li>
-                        </ul>
-                        <!-- input hidden -->
-                        <!-- примечания для бэка -->
-                        <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                        <input type="hidden" name="tariff-type" value="professional-tariff">
-                        <button type="submit" class="tariff-card__submit btn-reset main-button">
-                          Попробовать
-                        </button>
-                      </form>
+                      <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                      <input type="hidden" name="tariff-type" value="professional-tariff">
+                      <button type="button" class="tariff-card__submit btn-reset main-button">
+                        Попробовать
+                      </button>
                     </article>
                   </li>
                 </ul>
