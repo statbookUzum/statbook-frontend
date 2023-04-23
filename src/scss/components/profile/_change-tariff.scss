@@ -81,6 +81,12 @@
   &__item {
     margin-top: -17px;
 
+    &.no-money {
+      .tariff-card__no-money {
+        display: block;
+      }
+    }
+
     @include w($md) {
       margin-top: 0;
     }
@@ -88,11 +94,5 @@
 
   &.hidden {
     display: none;
-  }
-
-  &.no-money {
-    .tariff-card .tariff-card__no-money {
-      display: block;
-    }
   }
 }
