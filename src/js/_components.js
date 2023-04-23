@@ -12,3 +12,4 @@ import './components/slider';
 import './components/hide-table';
 import './components/formatSum';
 import './components/smoothScroll';
+import './components/charts';

@@ -2,9 +2,7 @@ import GraphModal from 'graph-modal';
 import SmoothScroll from 'smooth-scroll';
 
 const customTabsList = document.querySelectorAll('.custom-tabs');
-const tariffButtons = document.querySelectorAll('.tariff-card__submit');
-const tariffConfirmButton = document.querySelector('.tariff-confirm__button');
-const tariffConfirmTitle = document.querySelector('.tariff-confirm-name');
+const tariffButtonsWrapper = document.querySelector('.change-tariff__inner');
 
 const modal = new GraphModal();
 
@@ -93,16 +91,19 @@ if (customTabsList.length) {
   });
 }
 
-if (tariffButtons.length) {
-  tariffButtons.forEach(button => {
-    const card = button.closest('.tariff-card');
-    const input = card.querySelector('input');
-    const title = card.querySelector('.tariff-card__title');
+if (tariffButtonsWrapper) {
+  const tariffConfirmButton = document.querySelector('.tariff-confirm__button');
+  const tariffConfirmTitle = document.querySelector('.tariff-confirm-name');
 
-    button.addEventListener('click', () => {
+  tariffButtonsWrapper.addEventListener('click', ({ target }) => {
+    if (target.matches('.tariff-card__submit')) {
+      const card = target.closest('.tariff-card');
+      const input = card.querySelector('input');
+      const title = card.querySelector('.tariff-card__title');
+
       tariffConfirmButton.setAttribute('data-tariffid', input.value);
       tariffConfirmTitle.textContent = '"' + title.textContent + '"';
       modal.open('tariff-confirm-modal');
-    });
+    }
   });
 }
