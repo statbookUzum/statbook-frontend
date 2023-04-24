@@ -82,6 +82,7 @@
 }
 
 .custom-select-container.is-open .custom-select-panel {
+  z-index: 5;
   max-height: 14.7rem;
   overflow: hidden;
 }
@@ -142,5 +143,6 @@
     padding-bottom: 14px;
     border-width: 2px;
     border-color: rgba($color-blue-35, 0.3);
+    z-index: 7;
   }
 }

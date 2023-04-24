@@ -51,8 +51,13 @@
       background-repeat: no-repeat;
     }
 
+    @include w($lg) {
+      flex-grow: 0;
+    }
+
     @include w($sm) {
       padding: 12px 3px;
+      max-width: none;
       width: 100%;
     }
   }

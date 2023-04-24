@@ -15,7 +15,9 @@
     flex-wrap: wrap;
     gap: 14px;
 
-    @include w($lg) {
+    @include w($sm) {
+      margin-bottom: 9px;
+      gap: 9px;
     }
   }
 
@@ -112,6 +114,11 @@
 
     background-color: $light-color;
 
+    @include w($sm) {
+      margin-bottom: 9px;
+      padding: 29px 21px 35px;
+    }
+
     @include w($xsm) {
       padding: 29px 15px;
     }
@@ -157,6 +164,19 @@
 
   @include w($xl) {
     padding-bottom: 15px;
+  }
+
+  @media (any-hover: hover) {
+    .simplebar-track.simplebar-horizontal {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    &:hover {
+      .simplebar-track.simplebar-horizontal {
+        opacity: 1;
+      }
+    }
   }
 }
 
