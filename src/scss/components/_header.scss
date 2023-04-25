@@ -91,6 +91,65 @@
       }
     }
   }
+
+  &--main {
+    .nav__link {
+      @include w($lg) {
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 1.2;
+      }
+    }
+    .header__buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 9px;
+
+      @include w($lg) {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+
+    .header__button {
+      font-size: 16px;
+
+      &:not(.main-button--without-border) {
+        &::after {
+          display: none;
+        }
+
+        @include w($lg) {
+          border-color: transparent;
+
+          order: 1;
+          background-image: radial-gradient(
+            circle,
+            rgba(112, 139, 255, 1) 0%,
+            rgba(58, 95, 250, 1) 80%
+          );
+        }
+      }
+    }
+
+    .header__button.main-button--without-border {
+      max-width: 120px;
+
+      @include w($lg) {
+        order: 2;
+        border: 2px solid rgba($light-color, 0.8);
+        max-width: none;
+        width: 100%;
+
+        color: $light-color;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
 }
 
 .header-account {

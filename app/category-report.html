@@ -14,425 +14,388 @@
 </head>
 
 <body class="page__body">
-  <div class="loader" style="opacity: 1; visibility: visible;">
-  <div class="container loader__container">
-    <img src="./img/loader.svg" alt="веб-сайт загружается">
-    <p class="loader__text">
-      сервис аналитики для продавцов на uzum. очень скоро
-    </p>
-  </div>
-</div>
+  <header class="header header--dash">
+    <div class="header__desc">
+      <div class="container header__container">
+        <a class="logo header__logo" href="#">
+          <img src="./img/logo.svg" alt="логотип statbook">
+        </a>
 
-  <div class="loader-wrapper" style="opacity: 0; visibility: hidden;">
-    <header class="header header--dash">
-      <div class="header__desc">
-        <div class="container header__container">
-          <a class="logo header__logo" href="#">
-            <img src="./img/logo.svg" alt="логотип statbook">
-          </a>
-
-          <a href="'./profile.html" class="header-account header__account">
-            <img class="header-account__image" src="./img/account-image.jpg" alt="фото профиля">
-            <div class="header-account__info">
-              <div class="header-account__mail">
-                trifonova03@gmail.com
-              </div>
-              <div class="header-account__balance">
-                Баланс: <span class="account-balance">50 млн</span>. сум
-              </div>
+        <a href="'./profile.html" class="header-account header__account">
+          <img class="header-account__image" src="./img/account-image.jpg" alt="фото профиля">
+          <div class="header-account__info">
+            <div class="header-account__mail">
+              trifonova03@gmail.com
             </div>
-          </a>
+            <div class="header-account__balance">
+              Баланс: <span class="account-balance">50 млн</span>. сум
+            </div>
+          </div>
+        </a>
 
-          <nav class="nav header__nav nav--profile">
-            <ul class="nav__list">
-              <li class="nav__item">
-                <a href="./product-report.html" class="nav__link link-effect">
-                  Анализ товара
-                </a>
-              </li>
-              <li class="nav__item">
-                <a href="#" class="nav__link link-effect active">
-                  Анализ категорий
-                </a>
-              </li>
-              <li class="nav__item">
-                <a href="./shop-report.html" class="nav__link link-effect">
-                  Анализ магазина
-                </a>
-              </li>
-              <li class="nav__item">
-                <a href="./profile.html" class="nav__link link-effect">
-                  Мой профиль
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <nav class="nav header__nav nav--profile">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="./product-report.html" class="nav__link link-effect">
+                Анализ товара
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="#" class="nav__link link-effect active">
+                Анализ категорий
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="./shop-report.html" class="nav__link link-effect">
+                Анализ магазина
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="./profile.html" class="nav__link link-effect">
+                Мой профиль
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-          <button type="button" class="header__button main-button main-button--stroke-white btn-reset">
-            Выйти
-          </button>
-        </div>
+        <button type="button" class="header__button main-button main-button--stroke-white btn-reset">
+          Выйти
+        </button>
       </div>
+    </div>
 
-      <div class="header__mob">
-        <div class="container header__container">
-          <a class="logo header__logo" href="#">
-            <img src="./img/logo.svg" alt="логотип statbook">
-          </a>
+    <div class="header__mob">
+      <div class="container header__container">
+        <a class="logo header__logo" href="#">
+          <img src="./img/logo.svg" alt="логотип statbook">
+        </a>
 
-          <button type="button" class="header__menu-btn menu-btn btn-reset">
-            <span></span>
-            <span></span>
-          </button>
-        </div>
+        <button type="button" class="header__menu-btn menu-btn btn-reset">
+          <span></span>
+          <span></span>
+        </button>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="main">
-      <section class="top-section">
-        <div class="container">
-          <h1 class="top-section__title">
-            Анализ категорий на <span>Uzum</span>
-          </h1>
+  <main class="main">
+    <section class="top-section">
+      <div class="container">
+        <h1 class="top-section__title">
+          Анализ категорий на <span>Uzum</span>
+        </h1>
 
-          <form action="#" class="search-form top-section__search">
-            <label class="auth-form__label custom-input custom-input--search">
-              <input class="custom-input__input" type="text" name="shop-search"
-                placeholder="Найдите нужную вам магазин товаров по названию или ссылке" required>
-            </label>
-          </form>
-        </div>
-      </section>
+        <form action="#" class="search-form top-section__search">
+          <label class="auth-form__label custom-input custom-input--search">
+            <input class="custom-input__input" type="text" name="shop-search"
+              placeholder="Найдите нужную вам магазин товаров по названию или ссылке" required>
+          </label>
+        </form>
+      </div>
+    </section>
 
-      <section class="main-section main-section--category">
-        <div class="container main-section__container">
-          <div class="main-section__wrapper main-border">
-            <div class="custom-tabs main-section__tabs" data-tabs="main-section-tabs">
-              <div class="main-section__switcher custom-tabs__nav switcher">
-                <div class="switcher__cover"></div>
-                <button type="button"
-                  class="main-section__switch switcher__button custom-tabs__nav-btn custom-tabs__nav-btn--active btn-reset">
-                  Категории
-                </button>
-                <button type="button" class="main-section__switch switcher__button custom-tabs__nav-btn btn-reset">
-                  Обзор категории
-                </button>
-              </div>
-              <div class="custom-tabs__content">
-                <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
-                  <div class="shop-report-top">
-                    <div class="shop-report-top__category">
-                      <span>
-                        Выбранные категории:
-                      </span>
+    <section class="main-section main-section--category">
+      <div class="container main-section__container">
+        <div class="main-section__wrapper main-border">
+          <div class="custom-tabs main-section__tabs" data-tabs="main-section-tabs">
+            <div class="main-section__switcher custom-tabs__nav switcher">
+              <div class="switcher__cover"></div>
+              <button type="button"
+                class="main-section__switch switcher__button custom-tabs__nav-btn custom-tabs__nav-btn--active btn-reset">
+                Категории
+              </button>
+              <button type="button" class="main-section__switch switcher__button custom-tabs__nav-btn btn-reset">
+                Обзор категории
+              </button>
+            </div>
+            <div class="custom-tabs__content">
+              <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
+                <div class="main-section__inner shop-report shop-report--category">
+                  <div class="shop-report__top">
+                    <div class="shop-report__category">
+                      <div class="shop-report__category-title">
+                        <span>
+                          Категория — Мягкие игрушки
+                        </span>
+                        <button type="button" class="shop-report__category-info btn-reset">
 
-                      <ul class="shop-report-top__list">
-                        <li class="shop-report-top__item">
+                        </button>
+                      </div>
+                      <ul class="shop-report__breadcrumbs">
+                        <li class="shop-report__breadcrumbs-item">
+                          Главная
+                        </li>
+                        <li class="shop-report__breadcrumbs-item">
+                          Все категории
+                        </li>
+                        <li class="shop-report__breadcrumbs-item">
                           Детские товары
                         </li>
-                        <li class="shop-report-top__item">
-                          Автоспорт
+                        <li class="shop-report__breadcrumbs-item">
+                          Игрушки и игры
+                        </li>
+                        <li class="shop-report__breadcrumbs-item">
+                          Мягкие игрушка
                         </li>
                       </ul>
                     </div>
-                    <button class="shop-report-top__report-btn secondary-button btn-reset">
-                      Выгрузить отчет
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
-                          stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
-                      </svg>
-                    </button>
+                    <div class="shop-report__buttons">
+                      <button class="shop-report__report-btn secondary-button btn-reset">
+                        Выгрузить отчет
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
+                            stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
-                  <div class="main-section__inner shop-report shop-report--category">
-                    <div class="shop-report__top">
-                      <div class="shop-report__category">
-                        <div class="shop-report__category-title">
-                          <label class="custom-checkbox">
-                            <input type="checkbox" class="custom-checkbox__field visually-hidden">
-                            <span class="custom-checkbox__content"></span>
-                          </label>
-                          <span>
-                            Категория: Мягкие игрушки
-                          </span>
-                          <button type="button" class="shop-report__category-info btn-reset">
-
-                          </button>
+                  <div class="shop-report__statistic report-statistic" data-simplebar>
+                    <ul class="report-statistic__list">
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Количество продуктов
                         </div>
-                        <ul class="shop-report__breadcrumbs">
-                          <li class="shop-report__breadcrumbs-item">
-                            Главная
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Все категории
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Детские товары
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Игрушки и игры
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Мягкие игрушка
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="shop-report__buttons shop-report__buttons--md-hidden">
-                        <select class="shop-report__select" name="report" id="reportSelect" required>
-                          <option value="7day">За 7 дней</option>
-                          <option value="14day">За 14 дней</option>
-                          <option selected value="30day">За 30 дней</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="shop-report__statistic report-statistic" data-simplebar>
-                      <ul class="report-statistic__list">
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Количество продуктов
-                          </div>
-                          <span class="report-statistic__value">
-                            54550
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Количество категорий
-                          </div>
-                          <span class="report-statistic__value">
-                            34
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Средняя цена
-                          </div>
-                          <span class="report-statistic__value">
-                            7.4 млн
-                          </span>
-                        </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Общая выручка
-                          </div>
-                          <span class="report-statistic__value">
-                            540 млрд
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <button class="shop-report__hide hide-report-button btn-reset">
-                      Скрыть аналитику товаров
-                    </button>
-                    <div class="table-container">
-                      <div class="table-wrapper" data-simplebar>
-                        <table class="table">
-                          <tr class="table__header">
-                            <th>Категория</th>
-                            <th>Продажи</th>
-                            <th>Выручка в сред.</th>
-                            <th>Выручка</th>
-                            <th>Остатки</th>
-                            <th>Стоимость остатоков</th>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Мягкие игрушки
-                            </td>
-                            <td>542500 шт.</td>
-                            <td>800 млрд.</td>
-                            <td>600 млрд.</td>
-                            <td>6504566 шт.</td>
-                            <td>256 млрд.</td>
-                          </tr>
-                        </table>
-                      </div>
+                        <span class="report-statistic__value">
+                          54550
+                        </span>
+                      </li>
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Количество категорий
+                        </div>
+                        <span class="report-statistic__value">
+                          34
+                        </span>
+                      </li>
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Средняя цена
+                        </div>
+                        <span class="report-statistic__value">
+                          7.4 млн
+                        </span>
+                      </li>
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Общая выручка
+                        </div>
+                        <span class="report-statistic__value">
+                          540 млрд
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <button class="shop-report__hide hide-report-button btn-reset">
+                    Скрыть аналитику товаров
+                  </button>
+                  <div class="table-container">
+                    <div class="table-wrapper" data-simplebar>
+                      <table class="table">
+                        <tr class="table__header">
+                          <th>Категория</th>
+                          <th>Продажи</th>
+                          <th>Выручка в сред.</th>
+                          <th>Выручка</th>
+                          <th>Остатки</th>
+                          <th>Стоимость остатоков</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            Мягкие игрушки
+                          </td>
+                          <td>542500 шт.</td>
+                          <td>800 млрд.</td>
+                          <td>600 млрд.</td>
+                          <td>6504566 шт.</td>
+                          <td>256 млрд.</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Мягкие игрушки
+                          </td>
+                          <td>542500 шт.</td>
+                          <td>800 млрд.</td>
+                          <td>600 млрд.</td>
+                          <td>6504566 шт.</td>
+                          <td>256 млрд.</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Мягкие игрушки
+                          </td>
+                          <td>542500 шт.</td>
+                          <td>800 млрд.</td>
+                          <td>600 млрд.</td>
+                          <td>6504566 шт.</td>
+                          <td>256 млрд.</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Мягкие игрушки
+                          </td>
+                          <td>542500 шт.</td>
+                          <td>800 млрд.</td>
+                          <td>600 млрд.</td>
+                          <td>6504566 шт.</td>
+                          <td>256 млрд.</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            Мягкие игрушки
+                          </td>
+                          <td>542500 шт.</td>
+                          <td>800 млрд.</td>
+                          <td>600 млрд.</td>
+                          <td>6504566 шт.</td>
+                          <td>256 млрд.</td>
+                        </tr>
+                      </table>
                     </div>
                   </div>
                 </div>
-                <div class=" custom-tabs__panel" tabindex="0">
-                  <div class="main-section__inner shop-report shop-report--category">
-                    <div class="shop-report__top">
-                      <div class="shop-report__category">
-                        <div class="shop-report__category-title">
-                          Мягкие игрушки
-                        </div>
-                        <ul class="shop-report__breadcrumbs">
-                          <li class="shop-report__breadcrumbs-item">
-                            Главная
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Все категории
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Детские товары
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Игрушки и игры
-                          </li>
-                          <li class="shop-report__breadcrumbs-item">
-                            Мягкие игрушка
-                          </li>
-                        </ul>
+              </div>
+              <div class=" custom-tabs__panel" tabindex="0">
+                <div class="main-section__inner shop-report shop-report--category">
+                  <div class="shop-report__top">
+                    <div class="shop-report__category">
+                      <div class="shop-report__category-title">
+                        Мягкие игрушки
                       </div>
-                      <div class="shop-report__buttons">
-                        <button class="shop-report__report-btn secondary-button btn-reset">
-                          Выгрузить отчет
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
-                              stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="shop-report__statistic report-statistic" data-simplebar>
-                      <ul class="report-statistic__list">
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Заказы
-                          </div>
-                          <span class="report-statistic__value">
-                            54550
-                          </span>
+                      <ul class="shop-report__breadcrumbs">
+                        <li class="shop-report__breadcrumbs-item">
+                          Главная
                         </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Выручка
-                          </div>
-                          <span class="report-statistic__value">
-                            540 млрд сум
-                          </span>
+                        <li class="shop-report__breadcrumbs-item">
+                          Все категории
                         </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Количество позиций
-                          </div>
-                          <span class="report-statistic__value">
-                            540765
-                          </span>
+                        <li class="shop-report__breadcrumbs-item">
+                          Детские товары
                         </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Коэффициент популярности
-                          </div>
-                          <span class="report-statistic__value">
-                            89%
-                          </span>
+                        <li class="shop-report__breadcrumbs-item">
+                          Игрушки и игры
                         </li>
-                        <li class="report-statistic__item">
-                          <div class="report-statistic__title">
-                            Количество подкатегорий
-                          </div>
-                          <span class="report-statistic__value">
-                            10
-                          </span>
+                        <li class="shop-report__breadcrumbs-item">
+                          Мягкие игрушка
                         </li>
                       </ul>
                     </div>
-                    <button class="shop-report__hide hide-report-button btn-reset">
-                      Скрыть аналитику товаров
-                    </button>
-                    <div class="table-container">
-                      <div class="table-wrapper" data-simplebar>
-                        <table class="table">
-                          <tr class="table__header">
-                            <th>Изображение</th>
-                            <th>Продукт</th>
-                            <th>SKU</th>
-                            <th>
-                              <button class="table__filter-button btn-reset">
-                                Категория
-                              </button>
-                            </th>
-                            <th>
-                              <button class="table__filter-button btn-reset">
-                                Остаток
-                              </button>
-                            </th>
-                            <th>Дней в наличии</th>
-                            <th>АBC Заказы</th>
-                            <th>ABC Выручка</th>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="./img/test-table-img.jpg" alt="test">
-                            </td>
-                            <td><a href="#">54880</a></td>
-                            <td>54250</td>
-                            <td>Детские товары</td>
-                            <td>0 шт.</td>
-                            <td>51</td>
-                            <td>A</td>
-                            <td>A</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="./img/test-table-img.jpg" alt="test">
-                            </td>
-                            <td><a href="#">54880</a></td>
-                            <td>54750</td>
-                            <td>Авто спорт</td>
-                            <td>19 шт.</td>
-                            <td>11</td>
-                            <td>B</td>
-                            <td>C</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <img src="./img/test-table-img.jpg" alt="test">
-                            </td>
-                            <td><a href="#">54990</a></td>
-                            <td>54550</td>
-                            <td>Канцтовары</td>
-                            <td>230 шт.</td>
-                            <td>78</td>
-                            <td>C</td>
-                            <td>C</td>
-                          </tr>
-                        </table>
-                      </div>
+                    <div class="shop-report__buttons">
+                      <button class="shop-report__report-btn secondary-button btn-reset">
+                        Выгрузить отчет
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
+                            stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="shop-report__statistic report-statistic" data-simplebar>
+                    <ul class="report-statistic__list">
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Заказы
+                        </div>
+                        <span class="report-statistic__value">
+                          54550
+                        </span>
+                      </li>
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Выручка
+                        </div>
+                        <span class="report-statistic__value">
+                          540 млрд сум
+                        </span>
+                      </li>
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Количество позиций
+                        </div>
+                        <span class="report-statistic__value">
+                          540765
+                        </span>
+                      </li>
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Коэффициент популярности
+                        </div>
+                        <span class="report-statistic__value">
+                          89%
+                        </span>
+                      </li>
+                      <li class="report-statistic__item">
+                        <div class="report-statistic__title">
+                          Количество подкатегорий
+                        </div>
+                        <span class="report-statistic__value">
+                          10
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <button class="shop-report__hide hide-report-button btn-reset">
+                    Скрыть аналитику товаров
+                  </button>
+                  <div class="table-container">
+                    <div class="table-wrapper" data-simplebar>
+                      <table class="table">
+                        <tr class="table__header">
+                          <th>Изображение</th>
+                          <th>Продукт</th>
+                          <th>SKU</th>
+                          <th>
+                            <button class="table__filter-button btn-reset">
+                              Категория
+                            </button>
+                          </th>
+                          <th>
+                            <button class="table__filter-button btn-reset">
+                              Остаток
+                            </button>
+                          </th>
+                          <th>Дней в наличии</th>
+                          <th>АBC Заказы</th>
+                          <th>ABC Выручка</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src="./img/test-table-img.jpg" alt="test">
+                          </td>
+                          <td><a href="#">54880</a></td>
+                          <td>54250</td>
+                          <td>Детские товары</td>
+                          <td>0 шт.</td>
+                          <td>51</td>
+                          <td>A</td>
+                          <td>A</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src="./img/test-table-img.jpg" alt="test">
+                          </td>
+                          <td><a href="#">54880</a></td>
+                          <td>54750</td>
+                          <td>Авто спорт</td>
+                          <td>19 шт.</td>
+                          <td>11</td>
+                          <td>B</td>
+                          <td>C</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src="./img/test-table-img.jpg" alt="test">
+                          </td>
+                          <td><a href="#">54990</a></td>
+                          <td>54550</td>
+                          <td>Канцтовары</td>
+                          <td>230 шт.</td>
+                          <td>78</td>
+                          <td>C</td>
+                          <td>C</td>
+                        </tr>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -440,11 +403,12 @@
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-    </main>
+  </main>
 
-    <footer class="footer">
+  <footer class="footer">
   <div class="container footer__container">
     <div class="footer__top">
       <a href="./inadex.html" class="logo footer__logo">
@@ -611,8 +575,6 @@
     </div>
   </div>
 </footer>
-
-  </div>
 
   <div class="graph-modal">
   <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="change-tariff-modal">

@@ -4,40 +4,37 @@
 @include('partials/head.html', {"title": "Statebook"})
 
 <body class="page__body auth">
-  @include('partials/loader.html')
 
-  <div class="loader-wrapper" style="opacity: 0; visibility: hidden;">
-    <header class="header">
-      <div class="container">
-        <a class="logo" href="#">
-          <img src="./img/logo.svg" alt="логотип statbook">
+  <header class="header">
+    <div class="container">
+      <a class="logo" href="#">
+        <img src="./img/logo.svg" alt="логотип statbook">
+      </a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <h1 class="visually-hidden">
+      Зарегестрироваться на statbook
+    </h1>
+    <div class="container main__container">
+      <div class="reset-success">
+        <img src="./img/success.svg" alt="Пароль успешно сброшен">
+        <div class="reset-success__text">
+          Пароль успешно сброшен
+        </div>
+        <div class="reset-success__subtext">
+          Введите свою почту и мы отправим письмо с ссылкой для восстановления пароля
+        </div>
+        <a href="./login.html" class="reset-success__btn main-button">
+          Войти в аккаунт
         </a>
       </div>
-    </header>
+    </div>
+  </main>
 
-    <main class="main">
-
-      <h1 class="visually-hidden">
-        Зарегестрироваться на statbook
-      </h1>
-      <div class="container main__container">
-        <div class="reset-success">
-          <img src="./img/success.svg" alt="Пароль успешно сброшен">
-          <div class="reset-success__text">
-            Пароль успешно сброшен
-          </div>
-          <div class="reset-success__subtext">
-            Введите свою почту и мы отправим письмо с ссылкой для восстановления пароля
-          </div>
-          <a href="./login.html" class="reset-success__btn main-button">
-            Войти в аккаунт
-          </a>
-        </div>
-      </div>
-    </main>
-
-    @include('partials/footer-small.html')
-  </div>
+  @include('partials/footer-small.html')
 </body>
 
 </html>

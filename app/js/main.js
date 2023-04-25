@@ -953,26 +953,24 @@ var updateCount = function (n) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/loader */ "./src/js/components/loader.js");
-/* harmony import */ var _components_loader__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_loader__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_nav_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/nav-menu */ "./src/js/components/nav-menu.js");
-/* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/tabs */ "./src/js/components/tabs.js");
-/* harmony import */ var _components_custom_select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/custom-select */ "./src/js/components/custom-select.js");
-/* harmony import */ var _components_charts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/charts */ "./src/js/components/charts.js");
-/* harmony import */ var _components_modalAndCustomTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/modalAndCustomTabs */ "./src/js/components/modalAndCustomTabs.js");
-/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/switcher */ "./src/js/components/switcher.js");
-/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_switcher__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/custom-input */ "./src/js/components/custom-input.js");
-/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_components_custom_input__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/validation-form */ "./src/js/components/validation-form.js");
-/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_components_validation_form__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _components_custom_scroll__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/custom-scroll */ "./src/js/components/custom-scroll.js");
-/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
-/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/hide-table */ "./src/js/components/hide-table.js");
-/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_hide_table__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
-/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
+/* harmony import */ var _components_nav_menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/nav-menu */ "./src/js/components/nav-menu.js");
+/* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/tabs */ "./src/js/components/tabs.js");
+/* harmony import */ var _components_custom_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/custom-select */ "./src/js/components/custom-select.js");
+/* harmony import */ var _components_charts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/charts */ "./src/js/components/charts.js");
+/* harmony import */ var _components_modalAndCustomTabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/modalAndCustomTabs */ "./src/js/components/modalAndCustomTabs.js");
+/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/switcher */ "./src/js/components/switcher.js");
+/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_components_switcher__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/custom-input */ "./src/js/components/custom-input.js");
+/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_custom_input__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/validation-form */ "./src/js/components/validation-form.js");
+/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_components_validation_form__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_custom_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/custom-scroll */ "./src/js/components/custom-scroll.js");
+/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
+/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/hide-table */ "./src/js/components/hide-table.js");
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
+/* harmony import */ var _components_helper__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/helper */ "./src/js/components/helper.js");
 // import './components/slider';
 
 
@@ -986,6 +984,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // helpers
 
 
 
@@ -1577,11 +1576,36 @@ if (formatInput) {
 
 /***/ }),
 
+/***/ "./src/js/components/helper.js":
+/*!*************************************!*\
+  !*** ./src/js/components/helper.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setHeight": () => (/* binding */ setHeight)
+/* harmony export */ });
+function setHeight() {
+  var contentsTabsWrapper = document.querySelectorAll('.custom-tabs__content');
+  contentsTabsWrapper.forEach(function (wrapper) {
+    var activePanel = wrapper.querySelector('.custom-tabs__panel--active');
+    wrapper.style.height = activePanel.offsetHeight + 'px';
+  });
+}
+
+/***/ }),
+
 /***/ "./src/js/components/hide-table.js":
 /*!*****************************************!*\
   !*** ./src/js/components/hide-table.js ***!
   \*****************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
 
 var tablesToHide = document.querySelectorAll('.table');
 
@@ -1599,27 +1623,9 @@ if (tablesToHide.length) {
         tableContainer.classList.remove('hidden');
         tableContainer.style.maxHeight = '1050px';
       }
+
+      (0,_helper__WEBPACK_IMPORTED_MODULE_0__.setHeight)();
     });
-  });
-}
-
-/***/ }),
-
-/***/ "./src/js/components/loader.js":
-/*!*************************************!*\
-  !*** ./src/js/components/loader.js ***!
-  \*************************************/
-/***/ (() => {
-
-var loader = document.querySelector('.loader');
-var loaderWrapper = document.querySelector('.loader-wrapper');
-
-if (loader) {
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      loaderWrapper.style.cssText = 'opacity: 1; visibility: visible;';
-      loader.style.cssText = 'opacity: 0; visibility: hidden;';
-    }, 1500);
   });
 }
 
@@ -1636,6 +1642,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graph_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graph-modal */ "./node_modules/graph-modal/src/graph-modal.js");
 /* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! smooth-scroll */ "./node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js");
 /* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(smooth_scroll__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+
 
 
 var customTabsList = document.querySelectorAll('.custom-tabs');
@@ -1646,11 +1654,10 @@ if (customTabsList.length) {
   customTabsList.forEach(function (customTabs) {
     var tabsNav = customTabs.querySelector('.custom-tabs__nav');
     var tabsBtns = customTabs.querySelectorAll('.custom-tabs__nav-btn');
-    var contents = customTabs.querySelectorAll('.custom-tabs__panel');
-    var contentsWrapper = customTabs.querySelector('.custom-tabs__content'); // modal buttons
+    var contents = customTabs.querySelectorAll('.custom-tabs__panel'); // modal buttons
 
     var topUpButton = document.querySelector('.no-money__button');
-    setHeight(contents[0]); // tab buttons listeners
+    (0,_helper__WEBPACK_IMPORTED_MODULE_2__.setHeight)(); // tab buttons listeners
 
     tabsBtns.forEach(function (btn, index) {
       btn.addEventListener('click', function () {
@@ -1701,17 +1708,12 @@ if (customTabsList.length) {
       currentBtn.classList.add('custom-tabs__nav-btn--active');
       oldContent.setAttribute('tabindex', '-1');
       oldContent.classList.remove('custom-tabs__panel--active');
-      setHeight(contents[num]);
       contents[num].classList.add('custom-tabs__panel--active');
-    }
-
-    function setHeight(contentNode) {
-      contentsWrapper.style.height = contentNode.offsetHeight + 'px';
+      (0,_helper__WEBPACK_IMPORTED_MODULE_2__.setHeight)();
     }
 
     window.addEventListener('resize', function () {
-      var activePanel = customTabs.querySelector('.custom-tabs__panel--active');
-      setHeight(activePanel);
+      (0,_helper__WEBPACK_IMPORTED_MODULE_2__.setHeight)();
     });
   });
 }

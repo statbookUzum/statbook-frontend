@@ -1,5 +1,4 @@
 // import './components/slider';
-import './components/loader';
 import './components/nav-menu';
 import './components/tabs';
 import './components/custom-select';
@@ -13,3 +12,6 @@ import './components/slider';
 import './components/hide-table';
 import './components/formatSum';
 import './components/smoothScroll';
+
+// helpers
+import './components/helper';

@@ -1,5 +1,6 @@
 import GraphModal from 'graph-modal';
 import SmoothScroll from 'smooth-scroll';
+import { setHeight } from './helper';
 
 const customTabsList = document.querySelectorAll('.custom-tabs');
 const tariffButtonsWrapper = document.querySelector('.change-tariff__inner');
@@ -12,11 +13,10 @@ if (customTabsList.length) {
     const tabsNav = customTabs.querySelector('.custom-tabs__nav');
     const tabsBtns = customTabs.querySelectorAll('.custom-tabs__nav-btn');
     const contents = customTabs.querySelectorAll('.custom-tabs__panel');
-    const contentsWrapper = customTabs.querySelector('.custom-tabs__content');
     // modal buttons
     const topUpButton = document.querySelector('.no-money__button');
 
-    setHeight(contents[0]);
+    setHeight();
 
     // tab buttons listeners
     tabsBtns.forEach((btn, index) => {
@@ -75,18 +75,13 @@ if (customTabsList.length) {
 
       oldContent.setAttribute('tabindex', '-1');
       oldContent.classList.remove('custom-tabs__panel--active');
-      setHeight(contents[num]);
-
       contents[num].classList.add('custom-tabs__panel--active');
-    }
 
-    function setHeight(contentNode) {
-      contentsWrapper.style.height = contentNode.offsetHeight + 'px';
+      setHeight();
     }
 
     window.addEventListener('resize', () => {
-      const activePanel = customTabs.querySelector('.custom-tabs__panel--active');
-      setHeight(activePanel);
+      setHeight();
     })
   });
 }

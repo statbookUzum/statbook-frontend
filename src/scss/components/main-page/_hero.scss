@@ -1,0 +1,86 @@
+.hero {
+  padding: 257px 0 260px;
+  border-radius: 0px 0px 40px 40px;
+
+  background-image: url("../img/hero-image.svg");
+
+  background-position: 87% 50%;
+  background-size: 390px;
+  background-repeat: no-repeat;
+
+  background-color: $color-blue-24;
+
+  @include w($lg) {
+    background-position: 87% 95%;
+  }
+
+  @include w($md) {
+    padding: 160px 0 550px;
+
+    background-position: 50% 95%;
+  }
+
+  @include w($sm) {
+    padding-bottom: 500px;
+    border-radius: 0;
+
+    background-position: 50% 88%;
+    background-size: 290px;
+  }
+
+  &__content {
+    max-width: 580px;
+
+    @include w($md) {
+      margin: 0 auto;
+
+      text-align: center;
+    }
+  }
+
+  &__title {
+    margin-bottom: 30px;
+
+    font-weight: 700;
+    font-size: 55px;
+    line-height: 1.2;
+    color: $light-color;
+
+    span {
+      color: $color-light-blue;
+    }
+
+    @include w($sm) {
+      margin-bottom: 20px;
+
+      font-size: 30px;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 47px;
+
+    font-family: $secondary-font-family;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 170%;
+    color: rgba($light-color, 0.9);
+
+    span {
+      font-weight: 600;
+      color: $light-color;
+    }
+
+    @include w($sm) {
+      margin-bottom: 31px;
+    }
+  }
+
+  &__button {
+    max-width: 304px;
+
+    @include w($md) {
+      margin: 0 auto;
+    }
+  }
+}

@@ -34,8 +34,16 @@
   }
 
   &--category {
+    padding-bottom: 190px;
     .main-section__switcher {
       margin-bottom: 70px;
+      @include w($md) {
+        margin-bottom: 130px;
+      }
+    }
+
+    @include w($md) {
+      padding-bottom: 97px;
     }
   }
 }

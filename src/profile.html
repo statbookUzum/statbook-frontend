@@ -4,421 +4,418 @@
 @include('partials/head.html', {"title": "Личный кабинет"})
 
 <body class="page__body">
-  @include('partials/loader.html')
-  <div class="loader-wrapper" style="opacity: 0; visibility: hidden;">
-    @include('partials/profile/profile-header.html')
+  @include('partials/profile/profile-header.html')
 
-    <main class="main">
-      <section class="top-section">
-        <div class="container">
-          <h1 class="top-section__title">
-            Мой профиль
-          </h1>
-        </div>
-      </section>
+  <main class="main">
+    <section class="top-section">
+      <div class="container">
+        <h1 class="top-section__title">
+          Мой профиль
+        </h1>
+      </div>
+    </section>
 
-      <section class="profile-info">
-        <div class="container profile-info__container">
-          <div class="profile-info__inner main-border">
-            <div class="profile-info__image">
-              <img src="./img/account-image.jpg" alt="фото профиля">
-              <button class="profile-info__image-upload btn-reset"></button>
-            </div>
-            <div class="profile-info__top">
-              <div class="profile-info__top-side">
-                <div class="profile-info__name">
-                  Ekaterina T.
-                </div>
-                <div class="profile-info__mail">
-                  trifonova03@gmail.com
-                </div>
+    <section class="profile-info">
+      <div class="container profile-info__container">
+        <div class="profile-info__inner main-border">
+          <div class="profile-info__image">
+            <img src="./img/account-image.jpg" alt="фото профиля">
+            <button class="profile-info__image-upload btn-reset"></button>
+          </div>
+          <div class="profile-info__top">
+            <div class="profile-info__top-side">
+              <div class="profile-info__name">
+                Ekaterina T.
               </div>
-              <div class="profile-info__top-side">
-                <div class="profile-info__balance">
-                  <span>300.000.000</span> UZS
-                </div>
-                <div class="profile-info__balance-text">
-                  Актуальный баланс / 10.04.2023
-                </div>
+              <div class="profile-info__mail">
+                trifonova03@gmail.com
               </div>
             </div>
-            <div class="custom-tabs profile-info__custom-tabs">
-              <div class="custom-tabs__nav-wrapper">
-                <ul class="custom-tabs__nav" data-tab-active="1">
-                  <li class="custom-tabs__nav-item">
-                    <button class="custom-tabs__nav-btn custom-tabs__nav-btn--active btn-reset" type="button">
-                      Мой тарифный план
-                    </button>
-                  </li>
-                  <li class="custom-tabs__nav-item">
-                    <button class="custom-tabs__nav-btn btn-reset" type="button">
-                      Пополнить баланс
-                    </button>
-                  </li>
-                  <li class="custom-tabs__nav-item">
-                    <button class="custom-tabs__nav-btn btn-reset" type="button">
-                      Изменить данные входа
-                    </button>
-                  </li>
-                </ul>
+            <div class="profile-info__top-side">
+              <div class="profile-info__balance">
+                <span>300.000.000</span> UZS
               </div>
-              <div class="custom-tabs__content">
-                <!-- примечания для бэка -->
-                <!-- в блоке profile-tariff два состояния по-умолчанию, когда тариф уже выбран и когда тарифа у пользователя еще нет, тогда будет отображаться блок profile-tariff__empty. Для того что бы его отобразить, просто добавь класс empty к диву div.profile-tariff -->
-                <!--сюда класс empty-->
-                <div class="custom-tabs__panel custom-tabs__panel--active profile-info__tariff profile-tariff"
-                  style="display: block;" tabindex="0">
-                  <div class="profile-tariff__empty">
-                    <img class="profile-tariff__empty-image" src="./img/warning-icon.svg"
-                      alt="Для доступа к этому разделу вам необходимо выбрать тариф">
-                    <div class="profile-tariff__empty-text">
-                      Для доступа к этому разделу вам необходимо выбрать тариф
-                    </div>
-                    <a href="#change-tariff" class="profile-tariff__empty-button main-button">
-                      Перейти к тарифам
-                    </a>
+              <div class="profile-info__balance-text">
+                Актуальный баланс / 10.04.2023
+              </div>
+            </div>
+          </div>
+          <div class="custom-tabs profile-info__custom-tabs">
+            <div class="custom-tabs__nav-wrapper">
+              <ul class="custom-tabs__nav" data-tab-active="1">
+                <li class="custom-tabs__nav-item">
+                  <button class="custom-tabs__nav-btn custom-tabs__nav-btn--active btn-reset" type="button">
+                    Мой тарифный план
+                  </button>
+                </li>
+                <li class="custom-tabs__nav-item">
+                  <button class="custom-tabs__nav-btn btn-reset" type="button">
+                    Пополнить баланс
+                  </button>
+                </li>
+                <li class="custom-tabs__nav-item">
+                  <button class="custom-tabs__nav-btn btn-reset" type="button">
+                    Изменить данные входа
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="custom-tabs__content">
+              <!-- примечания для бэка -->
+              <!-- в блоке profile-tariff два состояния по-умолчанию, когда тариф уже выбран и когда тарифа у пользователя еще нет, тогда будет отображаться блок profile-tariff__empty. Для того что бы его отобразить, просто добавь класс empty к диву div.profile-tariff -->
+              <!--сюда класс empty-->
+              <div class="custom-tabs__panel custom-tabs__panel--active profile-info__tariff profile-tariff"
+                style="display: block;" tabindex="0">
+                <div class="profile-tariff__empty">
+                  <img class="profile-tariff__empty-image" src="./img/warning-icon.svg"
+                    alt="Для доступа к этому разделу вам необходимо выбрать тариф">
+                  <div class="profile-tariff__empty-text">
+                    Для доступа к этому разделу вам необходимо выбрать тариф
                   </div>
-                  <div class="profile-tariff__content-top">
-                    <div class="profile-tariff__info">
-                      Ваш тариф: <span class="tariff-type">“Стандартный”</span>
-                    </div>
+                  <a href="#change-tariff" class="profile-tariff__empty-button main-button">
+                    Перейти к тарифам
+                  </a>
+                </div>
+                <div class="profile-tariff__content-top">
+                  <div class="profile-tariff__info">
+                    Ваш тариф: <span class="tariff-type">“Стандартный”</span>
+                  </div>
 
-                    <!--примечания для бэка-->
-                    <!-- тут если статус не активный, то просто класс active поменять на inactive, что бы изменились стили -->
-                    <div class="profile-tariff__status active">
-                      Активный
-                    </div>
-                  </div>
-                  <div class="profile-tariff__list">
-                    <div class="profile-tariff__item tariff-item">
-                      <div class="tariff-item__title">
-                        Детали вашего тарифа:
-                      </div>
-                      <div class="tariff-item__line">
-                        Цена: <span>15$ за месяц</span>
-                      </div>
-                      <div class="tariff-item__line">
-                        Дата покупки: <span>08.05.2022</span>
-                      </div>
-                      <div class="tariff-item__line">
-                        Дата окончания: <span>08.05.2022</span>
-                      </div>
-                      <button class="tariff-item__button main-button btn-reset" data-graph-path="change-tariff-modal">
-                        Продлить действие тарифа
-                      </button>
-                    </div>
-                    <div class="profile-tariff__item tariff-include">
-                      <div class="tariff-include__title">
-                        В ваш тариф входит:
-                      </div>
-                      <ul class="tariff-include__list">
-                        <li class="tariff-include__item">
-                          Доступ к расширению
-                        </li>
-                        <li class="tariff-include__item">
-                          Позиции товара
-                        </li>
-                        <li class="tariff-include__item">
-                          60 дней периода аналитика
-                        </li>
-                        <li class="tariff-include__item">
-                          5 отчетов по магазинам в сутки
-                        </li>
-                      </ul>
-                    </div>
+                  <!--примечания для бэка-->
+                  <!-- тут если статус не активный, то просто класс active поменять на inactive, что бы изменились стили -->
+                  <div class="profile-tariff__status active">
+                    Активный
                   </div>
                 </div>
-                <div class="custom-tabs__panel profile-info__top-up top-up" tabindex="0">
-                  <form action="#" class="top-up__form validation-form">
-                    <div class="top-up__title">
-                      Пополните ваш баланс:
+                <div class="profile-tariff__list">
+                  <div class="profile-tariff__item tariff-item">
+                    <div class="tariff-item__title">
+                      Детали вашего тарифа:
                     </div>
-                    <div class="top-up__inputs">
-                      <label class="top-up__label custom-input custom-input--flex custom-input--sum">
-                        <input class="custom-input__input format-sum" type="text" name="top-up sum"
-                          placeholder="Введите сумму пополнения" required>
-                        <button type="button" class="custom-input__clean btn-reset">
-                          <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 1L1 13.9999M14 14L1 1.00006" stroke="#040F23" stroke-opacity="0.4"
-                              stroke-width="1.5" stroke-linecap="round" />
-                          </svg>
-                        </button>
-                      </label>
-                      <label class="top-up__label top-up__label--select">
-                        <select class="top-up__input" name="top-up_method" id="topUpSelect" required>
-                          <option value="" selected disabled>Выберите метод оплаты</option>
-                          <option value="VISA/MASTERCARD">VISA/MASTERCARD</option>
-                          <option value="Pay me">Pay me</option>
-                          <option value="HUMO">HUMO</option>
-                        </select>
-                      </label>
-                      <div class="top-up__text top-up__text-mob">
-                        Данная сумма автоматически будет зачислена на баланс вашего личного кошелька после успешного
-                        завершения оплаты.
-                        Категорически не рекомендуется менять сумму пополнения после нажатия на кнопку "Пополнить".
-                        Автоматическое зачисление средств на ваш баланс не гарантируется, если сумма пополнения была
-                        изменена при оплате
-                      </div>
-                      <button class="top-up__submit main-button btn-reset" type="submit">
-                        Пополнить
+                    <div class="tariff-item__line">
+                      Цена: <span>15$ за месяц</span>
+                    </div>
+                    <div class="tariff-item__line">
+                      Дата покупки: <span>08.05.2022</span>
+                    </div>
+                    <div class="tariff-item__line">
+                      Дата окончания: <span>08.05.2022</span>
+                    </div>
+                    <button class="tariff-item__button main-button btn-reset" data-graph-path="change-tariff-modal">
+                      Продлить действие тарифа
+                    </button>
+                  </div>
+                  <div class="profile-tariff__item tariff-include">
+                    <div class="tariff-include__title">
+                      В ваш тариф входит:
+                    </div>
+                    <ul class="tariff-include__list">
+                      <li class="tariff-include__item">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-include__item">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-include__item">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-include__item">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="custom-tabs__panel profile-info__top-up top-up" tabindex="0">
+                <form action="#" class="top-up__form validation-form">
+                  <div class="top-up__title">
+                    Пополните ваш баланс:
+                  </div>
+                  <div class="top-up__inputs">
+                    <label class="top-up__label custom-input custom-input--flex custom-input--sum">
+                      <input class="custom-input__input format-sum" type="text" name="top-up sum"
+                        placeholder="Введите сумму пополнения" required>
+                      <button type="button" class="custom-input__clean btn-reset">
+                        <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14 1L1 13.9999M14 14L1 1.00006" stroke="#040F23" stroke-opacity="0.4"
+                            stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
                       </button>
-                    </div>
-                    <div class="top-up__text">
+                    </label>
+                    <label class="top-up__label top-up__label--select">
+                      <select class="top-up__input" name="top-up_method" id="topUpSelect" required>
+                        <option value="" selected disabled>Выберите метод оплаты</option>
+                        <option value="VISA/MASTERCARD">VISA/MASTERCARD</option>
+                        <option value="Pay me">Pay me</option>
+                        <option value="HUMO">HUMO</option>
+                      </select>
+                    </label>
+                    <div class="top-up__text top-up__text-mob">
                       Данная сумма автоматически будет зачислена на баланс вашего личного кошелька после успешного
                       завершения оплаты.
                       Категорически не рекомендуется менять сумму пополнения после нажатия на кнопку "Пополнить".
                       Автоматическое зачисление средств на ваш баланс не гарантируется, если сумма пополнения была
                       изменена при оплате
                     </div>
-                    <div class="top-up__checkbox agreement-checkbox">
-                      <label class="custom-checkbox">
-                        <input type="checkbox" class="custom-checkbox__field visually-hidden" required>
-                        <span class="custom-checkbox__content">
-                        </span>
-                      </label>
-                      <div class="agreement-checkbox__text">
-                        Я подтверждаю, что ознакомился с разделом <a href="./index.html">Вопросы и ответы</a>. Я
-                        понимаю, что приобретаю и согласен с условиями <a href="./privat-policy">пользовательского
-                          соглашения</a>.
-                      </div>
+                    <button class="top-up__submit main-button btn-reset" type="submit">
+                      Пополнить
+                    </button>
+                  </div>
+                  <div class="top-up__text">
+                    Данная сумма автоматически будет зачислена на баланс вашего личного кошелька после успешного
+                    завершения оплаты.
+                    Категорически не рекомендуется менять сумму пополнения после нажатия на кнопку "Пополнить".
+                    Автоматическое зачисление средств на ваш баланс не гарантируется, если сумма пополнения была
+                    изменена при оплате
+                  </div>
+                  <div class="top-up__checkbox agreement-checkbox">
+                    <label class="custom-checkbox">
+                      <input type="checkbox" class="custom-checkbox__field visually-hidden" required>
+                      <span class="custom-checkbox__content">
+                      </span>
+                    </label>
+                    <div class="agreement-checkbox__text">
+                      Я подтверждаю, что ознакомился с разделом <a href="./index.html">Вопросы и ответы</a>. Я
+                      понимаю, что приобретаю и согласен с условиями <a href="./privat-policy">пользовательского
+                        соглашения</a>.
                     </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
+              </div>
 
-                <div class="custom-tabs__panel profile-info__change-pass change-pass" tabindex="0">
-                  <form action="#" class="change-pass__form validation-form">
-                    <div class="change-pass__title">
-                      Сменить пароль:
-                    </div>
-                    <div class="change-pass__inputs">
-                      <label class="change-pass__label custom-input custom-input--flex custom-input--password">
-                        <input class="custom-input__input" type="password" name="current password"
-                          placeholder="Введите ваш текущий пароль" required>
-                        <button type="button" class="custom-input__pass-btn btn-reset"></button>
-                      </label>
-                      <label class="change-pass__label custom-input custom-input--flex custom-input--password">
-                        <input class="custom-input__input" type="password" name="new password"
-                          placeholder="Придуймайте новый пароль" required>
-                        <button type="button" class="custom-input__pass-btn btn-reset"></button>
-                      </label>
-                      <button class="change-pass__submit main-button btn-reset" type="submit">
-                        Сохранить
+              <div class="custom-tabs__panel profile-info__change-pass change-pass" tabindex="0">
+                <form action="#" class="change-pass__form validation-form">
+                  <div class="change-pass__title">
+                    Сменить пароль:
+                  </div>
+                  <div class="change-pass__inputs">
+                    <label class="change-pass__label custom-input custom-input--flex custom-input--password">
+                      <input class="custom-input__input" type="password" name="current password"
+                        placeholder="Введите ваш текущий пароль" required>
+                      <button type="button" class="custom-input__pass-btn btn-reset"></button>
+                    </label>
+                    <label class="change-pass__label custom-input custom-input--flex custom-input--password">
+                      <input class="custom-input__input" type="password" name="new password"
+                        placeholder="Придуймайте новый пароль" required>
+                      <button type="button" class="custom-input__pass-btn btn-reset"></button>
+                    </label>
+                    <button class="change-pass__submit main-button btn-reset" type="submit">
+                      Сохранить
+                    </button>
+                  </div>
+                </form>
+                <form action="#" class="change-pass__mail-form validation-form">
+                  <div class="change-pass__mail-title">
+                    Сменить почту:
+                  </div>
+                  <div class="change-pass__mail-inputs">
+                    <label class="change-pass__label custom-input custom-input--flex custom-input--mail">
+                      <input class="custom-input__input" type="email" name="email" placeholder="Введите вашу почту"
+                        required>
+                      <button type="button" class="custom-input__clean btn-reset">
+                        <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14 1L1 13.9999M14 14L1 1.00006" stroke="#040F23" stroke-opacity="0.4"
+                            stroke-width="1.5" stroke-linecap="round" />
+                        </svg>
                       </button>
-                    </div>
-                  </form>
-                  <form action="#" class="change-pass__mail-form validation-form">
-                    <div class="change-pass__mail-title">
-                      Сменить почту:
-                    </div>
-                    <div class="change-pass__mail-inputs">
-                      <label class="change-pass__label custom-input custom-input--flex custom-input--mail">
-                        <input class="custom-input__input" type="email" name="email" placeholder="Введите вашу почту"
-                          required>
-                        <button type="button" class="custom-input__clean btn-reset">
-                          <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 1L1 13.9999M14 14L1 1.00006" stroke="#040F23" stroke-opacity="0.4"
-                              stroke-width="1.5" stroke-linecap="round" />
-                          </svg>
-                        </button>
-                      </label>
-                      <button class="change-pass__mail-submit main-button main-button--stroke-blue btn-reset"
-                        type="submit">
-                        Сохранить
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                    </label>
+                    <button class="change-pass__mail-submit main-button main-button--stroke-blue btn-reset"
+                      type="submit">
+                      Сохранить
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- примечания для бэка -->
-      <!-- здесь добавлен класс hidden он скрывает этот блок, когда у пользователя есть подписка на какой-то тариф. Если подписки нет, блок должен отображаться, в таком случае просто удаляй класс hidden -->
-      <section id="change-tariff" class="change-tariff">
-        <div class="container change-tariff__container">
-          <h2 class="change-tariff__title">
-            Выберите тариф для вашего бизнеса
-          </h2>
-          <div class="custom-tabs change-tariff__inner">
-            <div class="custom-tabs__nav change-tariff__switcher switcher">
-              <div class="switcher__cover" style="transform: translate3d(98%, -50%, 0px);"></div>
-              <button class="change-tariff__switch custom-tabs__nav-btn switcher__button no-discount btn-reset">
-                Один месяц
-              </button>
-              <button
-                class="change-tariff__switch custom-tabs__nav-btn custom-tabs__nav-btn--active active switcher__button discount btn-reset">
-                Три месяца
-              </button>
+    <!-- примечания для бэка -->
+    <!-- здесь добавлен класс hidden он скрывает этот блок, когда у пользователя есть подписка на какой-то тариф. Если подписки нет, блок должен отображаться, в таком случае просто удаляй класс hidden -->
+    <section id="change-tariff" class="change-tariff">
+      <div class="container change-tariff__container">
+        <h2 class="change-tariff__title">
+          Выберите тариф для вашего бизнеса
+        </h2>
+        <div class="custom-tabs change-tariff__inner">
+          <div class="custom-tabs__nav change-tariff__switcher switcher">
+            <div class="switcher__cover" style="transform: translate3d(98%, -50%, 0px);"></div>
+            <button class="change-tariff__switch custom-tabs__nav-btn switcher__button no-discount btn-reset">
+              Один месяц
+            </button>
+            <button
+              class="change-tariff__switch custom-tabs__nav-btn custom-tabs__nav-btn--active active switcher__button discount btn-reset">
+              Три месяца
+            </button>
+          </div>
+          <div class="custom-tabs__content">
+            <div class="custom-tabs__panel" tabindex="0">
+              <ul class="change-tariff__list">
+                <li class="change-tariff__item">
+                  <article class="tariff-card">
+                    <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+                    <h3 class="tariff-card__title">
+                      Базовый
+                    </h3>
+                    <div class="tariff-card__price">
+                      <span class="tariff-card__price-amount">0</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
+                    </div>
+                    <ul class="tariff-card__list">
+                      <li class="tariff-card__line">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-card__line">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-card__line tariff-card__line--disable">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-card__line tariff-card__line--disable">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                    <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                    <input type="hidden" name="tariff-type" value="base-tariff">
+                    <input type="hidden" name="period-type" value="period">
+                    <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                      Попробовать
+                    </button>
+                  </article>
+                </li>
+                <li class="change-tariff__item">
+                  <article class="tariff-card tariff-card--primary">
+                    <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+
+                    <h3 class="tariff-card__title">
+                      Профессионал
+                    </h3>
+                    <div class="tariff-card__price">
+                      <span class="tariff-card__price-amount">15</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
+                    </div>
+                    <ul class="tariff-card__list">
+                      <li class="tariff-card__line">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-card__line">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-card__line">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-card__line">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                    <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                    <input type="hidden" name="tariff-type" value="professional-tariff">
+                    <input type="hidden" name="period-type" value="base-tariff">
+                    <button type="button" class="tariff-card__submit btn-reset main-button">
+                      Попробовать
+                    </button>
+                  </article>
+                </li>
+              </ul>
             </div>
-            <div class="custom-tabs__content">
-              <div class="custom-tabs__panel" tabindex="0">
-                <ul class="change-tariff__list">
-                  <li class="change-tariff__item">
-                    <article class="tariff-card">
-                      <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
-                      <h3 class="tariff-card__title">
-                        Базовый
-                      </h3>
-                      <div class="tariff-card__price">
-                        <span class="tariff-card__price-amount">0</span>
-                        <span class="tariff-card__price-currency">$</span>
-                        <span class="tariff-card__price-text">за месяц</span>
-                      </div>
-                      <ul class="tariff-card__list">
-                        <li class="tariff-card__line">
-                          Доступ к расширению
-                        </li>
-                        <li class="tariff-card__line">
-                          Позиции товара
-                        </li>
-                        <li class="tariff-card__line tariff-card__line--disable">
-                          60 дней периода аналитика
-                        </li>
-                        <li class="tariff-card__line tariff-card__line--disable">
-                          5 отчетов по магазинам в сутки
-                        </li>
-                      </ul>
-                      <!-- input hidden -->
-                      <!-- примечания для бэка -->
-                      <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                      <input type="hidden" name="tariff-type" value="base-tariff">
-                      <input type="hidden" name="period-type" value="period">
-                      <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
-                        Попробовать
-                      </button>
-                    </article>
-                  </li>
-                  <li class="change-tariff__item">
-                    <article class="tariff-card tariff-card--primary">
-                      <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+            <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
+              <ul class="change-tariff__list">
+                <li class="change-tariff__item">
+                  <article class="tariff-card">
+                    <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
 
-                      <h3 class="tariff-card__title">
-                        Профессионал
-                      </h3>
-                      <div class="tariff-card__price">
-                        <span class="tariff-card__price-amount">15</span>
-                        <span class="tariff-card__price-currency">$</span>
-                        <span class="tariff-card__price-text">за месяц</span>
-                      </div>
-                      <ul class="tariff-card__list">
-                        <li class="tariff-card__line">
-                          Доступ к расширению
-                        </li>
-                        <li class="tariff-card__line">
-                          Позиции товара
-                        </li>
-                        <li class="tariff-card__line">
-                          60 дней периода аналитика
-                        </li>
-                        <li class="tariff-card__line">
-                          5 отчетов по магазинам в сутки
-                        </li>
-                      </ul>
-                      <!-- input hidden -->
-                      <!-- примечания для бэка -->
-                      <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                      <input type="hidden" name="tariff-type" value="professional-tariff">
-                      <input type="hidden" name="period-type" value="base-tariff">
-                      <button type="button" class="tariff-card__submit btn-reset main-button">
-                        Попробовать
-                      </button>
-                    </article>
-                  </li>
-                </ul>
-              </div>
-              <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
-                <ul class="change-tariff__list">
-                  <li class="change-tariff__item">
-                    <article class="tariff-card">
-                      <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
-
-                      <h3 class="tariff-card__title">
-                        Базовый
-                      </h3>
-                      <div class="tariff-card__price">
-                        <span class="tariff-card__price-amount">0</span>
-                        <span class="tariff-card__price-currency">$</span>
-                        <span class="tariff-card__price-text">за месяц</span>
-                      </div>
-                      <ul class="tariff-card__list">
-                        <li class="tariff-card__line">
-                          Доступ к расширению
-                        </li>
-                        <li class="tariff-card__line">
-                          Позиции товара
-                        </li>
-                        <li class="tariff-card__line tariff-card__line--disable">
-                          60 дней периода аналитика
-                        </li>
-                        <li class="tariff-card__line tariff-card__line--disable">
-                          5 отчетов по магазинам в сутки
-                        </li>
-                      </ul>
-                      <!-- input hidden -->
-                      <!-- примечания для бэка -->
-                      <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                      <input type="hidden" name="tariff-type" value="base-tariff">
-                      <input type="hidden" name="period-type" value="base-tariff">
-                      <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
-                        Попробовать
-                      </button>
-                    </article>
-                  </li>
-                  <li class="change-tariff__item">
-                    <article class="tariff-card tariff-card--primary">
-                      <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+                    <h3 class="tariff-card__title">
+                      Базовый
+                    </h3>
+                    <div class="tariff-card__price">
+                      <span class="tariff-card__price-amount">0</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
+                    </div>
+                    <ul class="tariff-card__list">
+                      <li class="tariff-card__line">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-card__line">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-card__line tariff-card__line--disable">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-card__line tariff-card__line--disable">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                    <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                    <input type="hidden" name="tariff-type" value="base-tariff">
+                    <input type="hidden" name="period-type" value="base-tariff">
+                    <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                      Попробовать
+                    </button>
+                  </article>
+                </li>
+                <li class="change-tariff__item">
+                  <article class="tariff-card tariff-card--primary">
+                    <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
 
 
-                      <div class="tariff-card__discount">
-                        Скидка 20%
+                    <div class="tariff-card__discount">
+                      Скидка 20%
+                    </div>
+                    <h3 class="tariff-card__title">
+                      Профессионал
+                    </h3>
+                    <div class="tariff-card__price">
+                      <div class="tariff-card__price-old">
+                        30$
                       </div>
-                      <h3 class="tariff-card__title">
-                        Профессионал
-                      </h3>
-                      <div class="tariff-card__price">
-                        <div class="tariff-card__price-old">
-                          30$
-                        </div>
-                        <span class="tariff-card__price-amount">15</span>
-                        <span class="tariff-card__price-currency">$</span>
-                        <span class="tariff-card__price-text">за месяц</span>
-                      </div>
-                      <ul class="tariff-card__list">
-                        <li class="tariff-card__line">
-                          Доступ к расширению
-                        </li>
-                        <li class="tariff-card__line">
-                          Позиции товара
-                        </li>
-                        <li class="tariff-card__line">
-                          60 дней периода аналитика
-                        </li>
-                        <li class="tariff-card__line">
-                          5 отчетов по магазинам в сутки
-                        </li>
-                      </ul>
-                      <!-- input hidden -->
-                      <!-- примечания для бэка -->
-                      <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
-                      <input type="hidden" name="tariff-type" value="professional-tariff">
-                      <input type="hidden" name="period-type" value="base-tariff">
-                      <button type="button" class="tariff-card__submit btn-reset main-button">
-                        Попробовать
-                      </button>
-                    </article>
-                  </li>
-                </ul>
-              </div>
+                      <span class="tariff-card__price-amount">15</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
+                    </div>
+                    <ul class="tariff-card__list">
+                      <li class="tariff-card__line">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-card__line">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-card__line">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-card__line">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                    <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                    <input type="hidden" name="tariff-type" value="professional-tariff">
+                    <input type="hidden" name="period-type" value="base-tariff">
+                    <button type="button" class="tariff-card__submit btn-reset main-button">
+                      Попробовать
+                    </button>
+                  </article>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    @include('partials/footer.html')
-  </div>
+  @include('partials/footer.html')
 
   @include('partials/profile/tariff-modal.html')
 </body>

@@ -22,7 +22,7 @@
 
 .custom-select-opener {
   position: relative;
-  z-index: 2;
+  z-index: 7;
   padding-left: 17px;
   padding-right: 30px;
   border: 1.5px solid rgba($color-blue-35, 0.1);
@@ -63,7 +63,7 @@
 
   &:hover {
     color: rgba($color-blue-35, 0.7);
-    background-color: rgba($color-light-blue, 0.2);
+    background-color: #e4e9fe;
   }
 }
 

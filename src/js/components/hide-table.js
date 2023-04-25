@@ -1,3 +1,5 @@
+import { setHeight } from "./helper";
+
 const tablesToHide = document.querySelectorAll('.table');
 
 if (tablesToHide.length) {
@@ -15,6 +17,8 @@ if (tablesToHide.length) {
         tableContainer.classList.remove('hidden');
         tableContainer.style.maxHeight = '1050px';
       }
+
+      setHeight();
     });
   })
 }
