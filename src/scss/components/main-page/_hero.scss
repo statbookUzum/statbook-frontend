@@ -78,6 +78,8 @@
 
   &__button {
     max-width: 304px;
+    display: flex;
+    justify-content: center;
 
     @include w($md) {
       margin: 0 auto;

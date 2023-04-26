@@ -12,3 +12,15 @@ const swiper = new Swiper('.last-view__slider', {
     }
   }
 });
+
+const swiperReviews = new Swiper('.reviews__slider', {
+  slidesPerView: 1,
+
+  breakpoints: {
+    576: {
+      slidesPerView: 'auto',
+      spaceBetween: 40,
+      freeMode: true,
+    }
+  }
+});

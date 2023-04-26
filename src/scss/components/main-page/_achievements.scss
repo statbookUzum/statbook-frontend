@@ -1,0 +1,85 @@
+.achievements {
+  padding: 78px 0 150px;
+
+  color: $light-color;
+
+  background-image: url("../img/achievements-bg.svg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include w($md) {
+    padding: 41px 10px 89px 44px;
+  }
+
+  @include w($xsm) {
+    padding: 41px 0 89px;
+  }
+
+  &__title {
+    margin: 0 auto 110px;
+    max-width: 500px;
+
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+
+    @include w($md) {
+      margin-bottom: 73px;
+      max-width: 334px;
+
+      text-align: left;
+      font-size: 27px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 428px);
+    justify-content: space-between;
+    row-gap: 123px;
+
+    @include w($lg) {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 10px;
+    }
+
+    @include w($md) {
+      grid-template-columns: 1fr;
+      row-gap: 83px;
+    }
+  }
+
+  &__item {
+    max-width: 428px;
+    width: 100%;
+  }
+
+  &__item-image {
+    margin-bottom: 47px;
+    max-width: 200px;
+
+    @include w($md) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__item-title {
+    font-size: 30px;
+
+    @include w($md) {
+      margin-bottom: 10px;
+
+      font-size: 22px;
+    }
+  }
+
+  &__item-text {
+    font-family: $secondary-font-family;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 170%;
+    color: rgba($light-color, 0.9);
+  }
+}

@@ -15,6 +15,10 @@
     @include w($md) {
       display: block;
     }
+
+    @include w($sm) {
+      text-align: center;
+    }
   }
 
   &__links {

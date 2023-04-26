@@ -3,6 +3,7 @@ import { enableScroll } from '../functions/enable-scroll';
 
 const navButton = document.querySelector('.menu-btn');
 const navWrapper = document.querySelector('.header__desc');
+const navLink = document.querySelectorAll('.nav__link')
 
 if (navButton) {
   navButton.addEventListener('click', () => {

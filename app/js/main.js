@@ -970,8 +970,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
 /* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
-/* harmony import */ var _components_helper__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/helper */ "./src/js/components/helper.js");
+/* harmony import */ var _components_render_table__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/render-table */ "./src/js/components/render-table.js");
+/* harmony import */ var _components_render_table__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_components_render_table__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _components_accordions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/accordions */ "./src/js/components/accordions.js");
+/* harmony import */ var _components_accordions__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_components_accordions__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _components_helper__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/helper */ "./src/js/components/helper.js");
 // import './components/slider';
+
+
 
 
 
@@ -1096,6 +1102,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendor/focus-visible.js */ "./src/js/vendor/focus-visible.js");
 /* harmony import */ var _vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vendor_focus_visible_js__WEBPACK_IMPORTED_MODULE_0__);
 
+
+/***/ }),
+
+/***/ "./src/js/components/accordions.js":
+/*!*****************************************!*\
+  !*** ./src/js/components/accordions.js ***!
+  \*****************************************/
+/***/ (() => {
+
+var accordions = document.querySelectorAll('.accordion');
+
+if (accordions.length) {
+  accordions.forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      var self = e.currentTarget;
+      var control = self.querySelector('.accordion__control');
+      var content = self.querySelector('.accordion__content');
+      self.classList.toggle('open'); // если открыт аккордеон
+
+      if (self.classList.contains('open')) {
+        control.setAttribute('aria-expanded', true);
+        content.setAttribute('aria-hidden', false);
+        content.style.maxHeight = content.scrollHeight + 'px';
+      } else {
+        control.setAttribute('aria-expanded', false);
+        content.setAttribute('aria-hidden', true);
+        content.style.maxHeight = null;
+      }
+    });
+  });
+}
 
 /***/ }),
 
@@ -1754,6 +1791,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var navButton = document.querySelector('.menu-btn');
 var navWrapper = document.querySelector('.header__desc');
+var navLink = document.querySelectorAll('.nav__link');
 
 if (navButton) {
   navButton.addEventListener('click', function () {
@@ -1766,6 +1804,31 @@ if (navButton) {
       (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
     }
   });
+}
+
+/***/ }),
+
+/***/ "./src/js/components/render-table.js":
+/*!*******************************************!*\
+  !*** ./src/js/components/render-table.js ***!
+  \*******************************************/
+/***/ (() => {
+
+var data = [['Категория', 'Продажи', 'Выручка в сред.', 'Выручка', 'Остатки', 'Стоимость остатоков'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.']];
+var testWrapper = document.querySelector('.test-table');
+
+if (testWrapper) {
+  renderTable();
+
+  function renderTable() {
+    testWrapper.innerHTML = "\n                        <tr class=\"table__header\">\n                          ".concat(data[0].map(function (el) {
+      return "<th>".concat(el, "</th>");
+    }), "\n                        </tr>\n                        ").concat(data.map(function (arr, i) {
+      return i !== 0 ? "<tr>".concat(arr.map(function (el) {
+        return "<td>".concat(el, "</td>");
+      }), "</tr>") : null;
+    }), "\n  ");
+  }
 }
 
 /***/ }),
@@ -1788,6 +1851,16 @@ var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.last-view__sli
     },
     1300: {
       slidesPerView: 3
+    }
+  }
+});
+var swiperReviews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.reviews__slider', {
+  slidesPerView: 1,
+  breakpoints: {
+    576: {
+      slidesPerView: 'auto',
+      spaceBetween: 40,
+      freeMode: true
     }
   }
 });

@@ -1,0 +1,99 @@
+.fast-registration {
+  padding: 97px 0 170px;
+
+  background-image: url("../img/achievements-bg.svg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include w($sm) {
+    padding: 81px 0 93px;
+  }
+
+  &__title {
+    margin: 0 auto 47px;
+    max-width: 950px;
+    width: 100%;
+
+    text-align: center;
+    font-weight: 700;
+    font-size: 50px;
+    color: $light-color;
+
+    @include w($lg) {
+      margin-bottom: 39px;
+      max-width: 350px;
+
+      font-size: 27px;
+    }
+  }
+
+  &__form {
+    margin: 0 auto;
+  }
+}
+
+.fast-form {
+  max-width: 364px;
+  width: 100%;
+
+  &__inputs-phone {
+    margin: 8px 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__input {
+    padding: 12px 17px;
+    border-radius: 12px;
+    border: 2px solid rgba($light-color, 0.4);
+    width: 100%;
+    background-color: transparent;
+
+    &::placeholder {
+      font-weight: 500;
+      font-size: 16px;
+      color: rgba($light-color, 0.6);
+    }
+  }
+
+  &__input-phone {
+    width: 67%;
+    flex-shrink: 0;
+    @include w($sm) {
+      width: 60%;
+    }
+  }
+
+  &__phone-code {
+    padding: 12px 17px;
+    border-radius: 12px;
+    border: 2px solid $light-color;
+    width: 100%;
+    flex-shrink: 1;
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-weight: 700;
+    font-size: 16px;
+    color: $light-color;
+
+    background-color: transparent;
+
+    &::before {
+      content: "";
+      height: 27px;
+      width: 27px;
+
+      background-image: url("../img/uz-flag-input.svg");
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}

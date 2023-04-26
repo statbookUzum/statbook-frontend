@@ -2,6 +2,10 @@
   counter-reset: section;
   padding: 200px 0 180px;
 
+  @include w($sm) {
+    padding: 89px 0 97px;
+  }
+
   &__title {
     margin: 0 auto 82px;
     max-width: 550px;
@@ -10,6 +14,12 @@
     font-weight: 700;
     font-size: 40px;
     color: $color-blue-35;
+
+    @include w($sm) {
+      margin-bottom: 46px;
+
+      font-size: 27px;
+    }
   }
 
   &__item {
@@ -28,6 +38,21 @@
 
     &:nth-child(even) {
       flex-direction: row-reverse;
+
+      @include w($sm) {
+        flex-direction: column;
+      }
+    }
+
+    @include w($md) {
+      gap: 10px;
+    }
+
+    @include w($sm) {
+      padding: 20px 33px 33px;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
     }
   }
 
@@ -46,6 +71,10 @@
 
     font-size: 30px;
     color: $color-blue-35;
+
+    @include w($sm) {
+      font-size: 22px;
+    }
   }
 
   &__item-text {
@@ -57,6 +86,10 @@
 
     span {
       font-weight: 600;
+    }
+
+    @include w($sm) {
+      margin-bottom: 34px;
     }
   }
 

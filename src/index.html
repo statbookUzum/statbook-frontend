@@ -4,144 +4,534 @@
 @include('partials/head.html', {"title": "Statebook"})
 
 <body class="page__body">
-  @include('partials/loader.html')
-  <div class="loader-wrapper" style="opacity: 0; visibility: hidden;">
-    <header class="header header--main">
-      <div class="header__desc">
-        <div class="container header__container">
-          <a class="logo header__logo" href="#">
-            <img src="./img/logo.svg" alt="логотип statbook">
-          </a>
+  <header class="header header--main">
+    <div class="header__desc">
+      <div class="container header__container">
+        <a class="logo header__logo" href="#">
+          <img src="./img/logo.svg" alt="логотип statbook">
+        </a>
 
-          <nav class="nav header__nav nav--profile">
-            <ul class="nav__list">
-              <li class="nav__item">
-                <a href="#" class="nav__link link-effect active">
-                  Главная
-                </a>
-              </li>
-              <li class="nav__item">
-                <a href="./category-report.html" class="nav__link link-effect">
-                  Купить подписку
-                </a>
-              </li>
-              <li class="nav__item">
-                <a href="./shop-report.html" class="nav__link link-effect">
-                  Отзывы
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          <div class="header__buttons">
-            <button type="button" class="header__button main-button main-button--without-border btn-reset">
-              Войти
-            </button>
-            <button type="button" class="header__button main-button main-button--stroke-white btn-reset">
-              Создать аккаунт
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="header__mob">
-        <div class="container header__container">
-          <a class="logo header__logo" href="#">
-            <img src="./img/logo.svg" alt="логотип statbook">
-          </a>
-
-          <button type="button" class="header__menu-btn menu-btn btn-reset">
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <main class="main">
-      <section class="hero">
-        <div class="container hero__container">
-          <div class="hero__content">
-            <h1 class="hero__title">
-              Сервис аналитики для продавцов на <span>UZUM</span>
-            </h1>
-            <div class="hero__subtitle">
-              <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации. Мы
-              предоставляем
-              весь спектр данных о ваших конкурентах, что <span>поможет увеличить прибыль</span>
-            </div>
-            <button type="button" class="hero__button main-button btn-reset">
-              Попробовать бесплатно
-            </button>
-          </div>
-        </div>
-      </section>
-      <section class="benefits">
-        <div class="contaienr benefits__container">
-          <h2 class="benefits__title">
-            Будьте одним из первых клиентов и получите бонус
-          </h2>
-          <ul class="benefits__list">
-            <li class="benefits__item">
-              <div class="benefits__item-content">
-                <div class="benefits__item-date">
-                  Апрель - Май
-                </div>
-                <div class="benefits__item-title">
-                  Запуск внутренной аналитики для продавцов на Uzum
-                </div>
-                <div class="benefits__item-text">
-                  <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации.
-                  Мы
-                  предоставляем весь спектр данных о ваших
-                </div>
-              </div>
-              <div class="benefits__item-image">
-                <img src="./img/benefits-1.svg" alt="Запуск внутренной аналитики для продавцов на Uzum">
-              </div>
+        <nav class="nav header__nav nav--profile">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#" class="nav__link link-effect active">
+                Главная
+              </a>
             </li>
-            <li class="benefits__item">
-              <div class="benefits__item-content">
-                <div class="benefits__item-date">
-                  Июнь
-                </div>
-                <div class="benefits__item-title">
-                  Запуск проектов в коммерчискую эксплуатацию
-                </div>
-                <div class="benefits__item-text">
-                  <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации.
-                  Мы предоставляем весь спектр данных о ваших
-                </div>
-              </div>
-              <div class="benefits__item-image">
-                <img src="./img/benefits-2.svg" alt="Запуск проектов  в коммерчискую эксплуатацию">
-              </div>
+            <li class="nav__item">
+              <a href="#change-tariff" class="nav__link link-effect">
+                Купить подписку
+              </a>
             </li>
-            <li class="benefits__item">
-              <div class="benefits__item-content">
-                <div class="benefits__item-date">
-                  Июль - Август
-                </div>
-                <div class="benefits__item-title">
-                  Запуск дашборда, бота и расширения
-                </div>
-                <div class="benefits__item-text">
-                  <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации.
-                  Мы
-                  предоставляем весь спектр данных о ваших
-                </div>
-              </div>
-              <div class="benefits__item-image">
-                <img src="./img/benefits-3.svg" alt="Запуск дашборда, бота и расширения ">
-              </div>
+            <li class="nav__item">
+              <a href="#reviews" class="nav__link link-effect">
+                Отзывы
+              </a>
             </li>
           </ul>
-        </div>
-      </section>
-    </main>
+        </nav>
 
-    @include('partials/footer.html')
-  </div>
+        <div href="./login.html" class="header__buttons">
+          <a class="header__button main-button main-button--without-border btn-reset">
+            Войти
+          </a>
+          <a href="./registration.html" class="header__button main-button main-button--stroke-white btn-reset">
+            Создать аккаунт
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header__mob">
+      <div class="container header__container">
+        <a class="logo header__logo" href="#">
+          <img src="./img/logo.svg" alt="логотип statbook">
+        </a>
+
+        <button type="button" class="header__menu-btn menu-btn btn-reset">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="container hero__container">
+        <div class="hero__content">
+          <h1 class="hero__title">
+            Сервис аналитики для продавцов на <span>UZUM</span>
+          </h1>
+          <div class="hero__subtitle">
+            <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации. Мы
+            предоставляем
+            весь спектр данных о ваших конкурентах, что <span>поможет увеличить прибыль</span>
+          </div>
+          <a href="./registration.html" class="hero__button main-button">
+            Попробовать бесплатно
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="benefits">
+      <div class="container benefits__container">
+        <h2 class="benefits__title">
+          Будьте одним из первых клиентов и получите бонус
+        </h2>
+        <ul class="benefits__list">
+          <li class="benefits__item">
+            <div class="benefits__item-content">
+              <div class="benefits__item-date">
+                Апрель - Май
+              </div>
+              <div class="benefits__item-title">
+                Запуск внутренной аналитики для продавцов на Uzum
+              </div>
+              <div class="benefits__item-text">
+                <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации.
+                Мы
+                предоставляем весь спектр данных о ваших
+              </div>
+            </div>
+            <div class="benefits__item-image">
+              <img src="./img/benefits-1.svg" alt="Запуск внутренной аналитики для продавцов на Uzum">
+            </div>
+          </li>
+          <li class="benefits__item">
+            <div class="benefits__item-content">
+              <div class="benefits__item-date">
+                Июнь
+              </div>
+              <div class="benefits__item-title">
+                Запуск проектов в коммерчискую эксплуатацию
+              </div>
+              <div class="benefits__item-text">
+                <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации.
+                Мы предоставляем весь спектр данных о ваших
+              </div>
+            </div>
+            <div class="benefits__item-image">
+              <img src="./img/benefits-2.svg" alt="Запуск проектов  в коммерчискую эксплуатацию">
+            </div>
+          </li>
+          <li class="benefits__item">
+            <div class="benefits__item-content">
+              <div class="benefits__item-date">
+                Июль - Август
+              </div>
+              <div class="benefits__item-title">
+                Запуск дашборда, бота и расширения
+              </div>
+              <div class="benefits__item-text">
+                <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации.
+                Мы
+                предоставляем весь спектр данных о ваших
+              </div>
+            </div>
+            <div class="benefits__item-image">
+              <img src="./img/benefits-3.svg" alt="Запуск дашборда, бота и расширения ">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="achievements">
+      <div class="container achievements__container">
+        <h2 class="achievements__title">
+          Почему вам стоит выбрать именно наш сервис?
+        </h2>
+        <ul class="achievements__list">
+          <li class="achievements__item">
+            <img class="achievements__item-image" src="./img/achievements-1.svg" alt="Браузерное расширение">
+            <div class="achievements__item-title">
+              Браузерное расширение
+            </div>
+            <div class="achievements__item-text">
+              Экономьте время за счет расширения, которое будет показывать информацию прямо на UZUM
+            </div>
+          </li>
+          <li class="achievements__item">
+            <img class="achievements__item-image" src="./img/achievements-2.svg" alt="Взлет продаж">
+            <div class="achievements__item-title">
+              Взлет продаж
+            </div>
+            <div class="achievements__item-text">
+              Кратно повышайте ваши продажи за счет собранной нами информации
+            </div>
+          </li>
+          <li class="achievements__item">
+            <img class="achievements__item-image" src="./img/achievements-3.svg" alt="Работа с данными">
+            <div class="achievements__item-title">
+              Работа с данными
+            </div>
+            <div class="achievements__item-text">
+              Экономьте время за счет расширения, которое будет показывать информацию прямо на UZUM
+            </div>
+          </li>
+          <li class="achievements__item">
+            <img class="achievements__item-image" src="./img/achievements-4.svg" alt="Удобный интерфейс">
+            <div class="achievements__item-title">
+              Удобный интерфейс
+            </div>
+            <div class="achievements__item-text">
+              Экономьте время за счет расширения, которое будет показывать информацию прямо на UZUM
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section id="change-tariff" class="change-tariff">
+      <div class="container change-tariff__container">
+        <h2 class="change-tariff__title">
+          Выберите тариф для вашего бизнеса
+        </h2>
+        <div class="custom-tabs change-tariff__inner">
+          <div class="custom-tabs__nav change-tariff__switcher switcher">
+            <div class="switcher__cover" style="transform: translate3d(98%, -50%, 0px);"></div>
+            <button class="change-tariff__switch custom-tabs__nav-btn switcher__button no-discount btn-reset">
+              Один месяц
+            </button>
+            <button
+              class="change-tariff__switch custom-tabs__nav-btn custom-tabs__nav-btn--active active switcher__button discount btn-reset">
+              Три месяца
+            </button>
+          </div>
+          <div class="custom-tabs__content">
+            <div class="custom-tabs__panel" tabindex="0">
+              <ul class="change-tariff__list">
+                <li class="change-tariff__item">
+                  <article class="tariff-card">
+                    <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+                    <h3 class="tariff-card__title">
+                      Базовый
+                    </h3>
+                    <div class="tariff-card__price">
+                      <span class="tariff-card__price-amount">0</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
+                    </div>
+                    <ul class="tariff-card__list">
+                      <li class="tariff-card__line">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-card__line">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-card__line tariff-card__line--disable">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-card__line tariff-card__line--disable">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                    <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                    <input type="hidden" name="tariff-type" value="base-tariff">
+                    <input type="hidden" name="period-type" value="period">
+                    <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                      Попробовать
+                    </button>
+                  </article>
+                </li>
+                <li class="change-tariff__item">
+                  <article class="tariff-card tariff-card--primary">
+                    <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+
+                    <h3 class="tariff-card__title">
+                      Профессионал
+                    </h3>
+                    <div class="tariff-card__price">
+                      <span class="tariff-card__price-amount">15</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
+                    </div>
+                    <ul class="tariff-card__list">
+                      <li class="tariff-card__line">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-card__line">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-card__line">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-card__line">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                    <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                    <input type="hidden" name="tariff-type" value="professional-tariff">
+                    <input type="hidden" name="period-type" value="base-tariff">
+                    <button type="button" class="tariff-card__submit btn-reset main-button">
+                      Попробовать
+                    </button>
+                  </article>
+                </li>
+              </ul>
+            </div>
+            <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
+              <ul class="change-tariff__list">
+                <li class="change-tariff__item">
+                  <article class="tariff-card">
+                    <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+
+                    <h3 class="tariff-card__title">
+                      Базовый
+                    </h3>
+                    <div class="tariff-card__price">
+                      <span class="tariff-card__price-amount">0</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
+                    </div>
+                    <ul class="tariff-card__list">
+                      <li class="tariff-card__line">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-card__line">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-card__line tariff-card__line--disable">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-card__line tariff-card__line--disable">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                    <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                    <input type="hidden" name="tariff-type" value="base-tariff">
+                    <input type="hidden" name="period-type" value="base-tariff">
+                    <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                      Попробовать
+                    </button>
+                  </article>
+                </li>
+                <li class="change-tariff__item">
+                  <article class="tariff-card tariff-card--primary">
+                    <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
+
+
+                    <div class="tariff-card__discount">
+                      Скидка 20%
+                    </div>
+                    <h3 class="tariff-card__title">
+                      Профессионал
+                    </h3>
+                    <div class="tariff-card__price">
+                      <div class="tariff-card__price-old">
+                        30$
+                      </div>
+                      <span class="tariff-card__price-amount">15</span>
+                      <span class="tariff-card__price-currency">$</span>
+                      <span class="tariff-card__price-text">за месяц</span>
+                    </div>
+                    <ul class="tariff-card__list">
+                      <li class="tariff-card__line">
+                        Доступ к расширению
+                      </li>
+                      <li class="tariff-card__line">
+                        Позиции товара
+                      </li>
+                      <li class="tariff-card__line">
+                        60 дней периода аналитика
+                      </li>
+                      <li class="tariff-card__line">
+                        5 отчетов по магазинам в сутки
+                      </li>
+                    </ul>
+                    <!-- input hidden -->
+                    <!-- примечания для бэка -->
+                    <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
+                    <input type="hidden" name="tariff-type" value="professional-tariff">
+                    <input type="hidden" name="period-type" value="base-tariff">
+                    <button type="button" class="tariff-card__submit btn-reset main-button">
+                      Попробовать
+                    </button>
+                  </article>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="reviews" class="reviews">
+      <div class="container-lg reviews__container">
+        <h2 class="reviews__title">
+          Пусть наши клиенты расскажут о нас
+        </h2>
+        <div class="reviews__slider-wrapper">
+          <div class="swiper reviews__slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <img class="review-card__image" src="./img/reviews-text.jpg" alt="img">
+                  <div class="review-card__name">
+                    Екатерина Трифонова
+                  </div>
+                  <div class="review-card__text">
+                    Экономьте время за счет расширения, которое будет показывать информацию прямо на UZUM которое будет
+                    показывать информацию прямо на UZUM информа...
+                  </div>
+                  <a href="#" class="review-card__link">
+                    Читать отзыв полностью
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <img class="review-card__image" src="./img/reviews-text.jpg" alt="img">
+                  <div class="review-card__name">
+                    Екатерина Трифонова
+                  </div>
+                  <div class="review-card__text">
+                    Экономьте время за счет расширения, которое будет показывать информацию прямо на UZUM которое будет
+                    показывать информацию прямо на UZUM информа...
+                  </div>
+                  <a href="#" class="review-card__link">
+                    Читать отзыв полностью
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <img class="review-card__image" src="./img/reviews-text.jpg" alt="img">
+                  <div class="review-card__name">
+                    Екатерина Трифонова
+                  </div>
+                  <div class="review-card__text">
+                    Экономьте время за счет расширения, которое будет показывать информацию прямо на UZUM которое будет
+                    показывать информацию прямо на UZUM информа...
+                  </div>
+                  <a href="#" class="review-card__link">
+                    Читать отзыв полностью
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <img class="review-card__image" src="./img/reviews-text.jpg" alt="img">
+                  <div class="review-card__name">
+                    Екатерина Трифонова
+                  </div>
+                  <div class="review-card__text">
+                    Экономьте время за счет расширения, которое будет показывать информацию прямо на UZUM которое будет
+                    показывать информацию прямо на UZUM информа...
+                  </div>
+                  <a href="#" class="review-card__link">
+                    Читать отзыв полностью
+                  </a>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <img class="review-card__image" src="./img/reviews-text.jpg" alt="img">
+                  <div class="review-card__name">
+                    Екатерина Трифонова
+                  </div>
+                  <div class="review-card__text">
+                    Экономьте время за счет расширения, которое будет показывать информацию прямо на UZUM которое будет
+                    показывать информацию прямо на UZUM информа...
+                  </div>
+                  <a href="#" class="review-card__link">
+                    Читать отзыв полностью
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="question">
+      <div class="container question__container">
+        <h2 class="question__title">
+          Остались вопросы?
+        </h2>
+        <h3 class="question__subtitle">
+          Мы собрали подборку из самых популярных вопросов, которые нам задают. Мы детально на них ответили, что может
+          вам помочь
+        </h3>
+        <ul class="accordion__list">
+          <li class="accordion">
+            <button class="accordion__control" aria-expanded="false">
+              <span class="accordion__title">Как вы анализируете данные и какие методы используете?</span>
+              <span class="accordion__icon"></span>
+            </button>
+            <div class="accordion__content" aria-hidden="true">
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, harum!</p>
+            </div>
+          </li>
+          <li class="accordion">
+            <button class="accordion__control" aria-expanded="false">
+              <span class="accordion__title">Как вы анализируете данные и какие методы используете?</span>
+              <span class="accordion__icon"></span>
+            </button>
+            <div class="accordion__content" aria-hidden="true">
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, harum!</p>
+            </div>
+          </li>
+          <li class="accordion">
+            <button class="accordion__control" aria-expanded="false">
+              <span class="accordion__title">Как вы анализируете данные и какие методы используете?</span>
+              <span class="accordion__icon"></span>
+            </button>
+            <div class="accordion__content" aria-hidden="true">
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, harum!</p>
+            </div>
+          </li>
+          <li class="accordion">
+            <button class="accordion__control" aria-expanded="false">
+              <span class="accordion__title">Как вы анализируете данные и какие методы используете?</span>
+              <span class="accordion__icon"></span>
+            </button>
+            <div class="accordion__content" aria-hidden="true">
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, harum!</p>
+            </div>
+          </li>
+          <li class="accordion">
+            <button class="accordion__control" aria-expanded="false">
+              <span class="accordion__title">Как вы анализируете данные и какие методы используете?</span>
+              <span class="accordion__icon"></span>
+            </button>
+            <div class="accordion__content" aria-hidden="true">
+              <h3>Lorem ipsum dolor sit amet.</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, harum!</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="fast-registration">
+      <div class="container fast-registration__container">
+        <h2 class="fast-registration__title">
+          Пройдите быструю регистрацию и начинайте пользоваться уже сегодня
+        </h2>
+        <form action="#" class="fast-registration__form fast-form">
+          <input class="fast-form__input" type="text" name="name" placeholder="Введите ваше имя" required>
+          <div class="fast-form__inputs-phone">
+            <span class="fast-form__phone-code">+998</span>
+            <input class="fast-form__input fast-form__input-phone" type="tel" name="phone"
+              placeholder="Введите ваш номер" required>
+          </div>
+          <button type="submit" class="fast-form__button main-button btn-reset">
+            Зарегистрироваться
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  @include('partials/footer.html')
 </body>
 
 </html>
