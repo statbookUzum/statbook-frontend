@@ -971,7 +971,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
 /* harmony import */ var _components_render_table__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/render-table */ "./src/js/components/render-table.js");
-/* harmony import */ var _components_render_table__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_components_render_table__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _components_accordions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/accordions */ "./src/js/components/accordions.js");
 /* harmony import */ var _components_accordions__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_components_accordions__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var _components_helper__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/helper */ "./src/js/components/helper.js");
@@ -1812,23 +1811,78 @@ if (navButton) {
 /*!*******************************************!*\
   !*** ./src/js/components/render-table.js ***!
   \*******************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var data = [['Категория', 'Продажи', 'Выручка в сред.', 'Выручка', 'Остатки', 'Стоимость остатоков'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.']];
-var testWrapper = document.querySelector('.test-table');
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+ // примечания для бэка
+// тут получаем 2 страницы на которых могут быть таблицы
 
-if (testWrapper) {
-  renderTable();
+var categoryPage = document.querySelector('.main-section--category');
+var shopPage = document.querySelector('.main-section--shop'); // проверяем находимся ли мы на странице категорий
 
-  function renderTable() {
-    testWrapper.innerHTML = "\n                        <tr class=\"table__header\">\n                          ".concat(data[0].map(function (el) {
-      return "<th>".concat(el, "</th>");
-    }), "\n                        </tr>\n                        ").concat(data.map(function (arr, i) {
-      return i !== 0 ? "<tr>".concat(arr.map(function (el) {
-        return "<td>".concat(el, "</td>");
-      }), "</tr>") : null;
-    }), "\n  ");
-  }
+if (categoryPage) {
+  // пример обьекта с данными
+  var categoryData = {
+    categoryName: 'Мягкие игрушки',
+    // тут в идеале "хлебные крошки" одной строкой было бы получать, но если там будет какой-то условно массив, то это тоже не проблема, по массиву пробежаться можно и сформировать нужную html-структуру, но пока оставил просто с одной строкой =)
+    breadcrumbs: ['Главная', 'Все категории', 'Детские товары', 'Игрушки и игры', 'Мягкие игрушка'],
+    totalStat: [{
+      title: 'Заказы',
+      value: '54550'
+    }, {
+      title: 'Выручка',
+      value: '540 млрд сум' // ну и было бы хорошо, если бы значиние проходили уже с млнб млрд и тд
+
+    }, {
+      title: 'Количество позиций',
+      value: '540765'
+    }, {
+      title: 'Коэффициент популярности',
+      value: '89%'
+    }, {
+      title: 'Количество подкатегорий',
+      value: '10'
+    }],
+    tableData: [['Категория', 'Продажи', 'Выручка в сред.', 'Выручка', 'Остатки', 'Стоимость остатоков'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.']]
+  };
+  var table = categoryPage.querySelector('.table');
+  var totalStat = categoryPage.querySelector('.report-statistic__list');
+  var categoryName = categoryPage.querySelector('.shop-report__category-title');
+  var breadcrumbs = categoryPage.querySelector('.shop-report__breadcrumbs');
+  categoryName.textContent = categoryData.categoryName;
+  renderBreadcrumbs(categoryData.breadcrumbs, breadcrumbs);
+  renderTotalStat(categoryData.totalStat, totalStat);
+  renderTable(categoryData.tableData, table);
+}
+
+if (shopPage) {}
+
+function renderTotalStat(data, element) {
+  element.innerHTML = '';
+  data.forEach(function (item) {
+    element.innerHTML += "\n    <li class=\"report-statistic__item\">\n      <div class=\"report-statistic__title\">\n        ".concat(item.title, "\n      </div>\n      <span class=\"report-statistic__value\">\n        ").concat(item.value, "\n      </span>\n    </li>\n    ");
+  });
+  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.setHeight)();
+}
+
+function renderTable(data, element) {
+  element.innerHTML = "\n                        <tr class=\"table__header\">\n                          ".concat(data[0].map(function (el) {
+    return "<th>".concat(el, "</th>");
+  }), "\n                        </tr>\n                        ").concat(data.map(function (arr, i) {
+    return i !== 0 ? "<tr>".concat(arr.map(function (el) {
+      return "<td>".concat(el, "</td>");
+    }), "</tr>") : null;
+  }), "\n                        ");
+  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.setHeight)();
+}
+
+function renderBreadcrumbs(data, element) {
+  element.innerHTML = '';
+  data.forEach(function (item) {
+    element.innerHTML += "<li class=\"shop-report__breadcrumbs-item\">".concat(item, "</li>");
+  });
 }
 
 /***/ }),

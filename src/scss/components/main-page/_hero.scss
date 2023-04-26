@@ -1,31 +1,38 @@
 .hero {
-  padding: 257px 0 260px;
   border-radius: 0px 0px 40px 40px;
 
-  background-image: url("../img/hero-image.svg");
+  background-image: url("../img/achievements-bg.svg");
 
-  background-position: 87% 50%;
-  background-size: 390px;
+  background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
 
   background-color: $color-blue-24;
 
-  @include w($lg) {
-    background-position: 87% 95%;
-  }
+  &__container {
+    padding: 257px 15px 260px;
+    background-image: url("../img/hero-image.svg");
 
-  @include w($md) {
-    padding: 160px 0 550px;
+    background-position: 98% 50%;
+    background-size: 390px;
+    background-repeat: no-repeat;
 
-    background-position: 50% 95%;
-  }
+    @include w($lg) {
+      background-position: 96% 95%;
+    }
 
-  @include w($sm) {
-    padding-bottom: 500px;
-    border-radius: 0;
+    @include w($md) {
+      padding: 160px 15px 550px;
 
-    background-position: 50% 88%;
-    background-size: 290px;
+      background-position: 50% 95%;
+    }
+
+    @include w($sm) {
+      padding-bottom: 500px;
+
+      background-position: 50% 88%;
+      background-size: 290px;
+    }
   }
 
   &__content {
