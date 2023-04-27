@@ -2384,6 +2384,7 @@ input::-webkit-inner-spin-button {
 }
 .custom-tabs__content {
   position: relative;
+  min-height: 400px;
 }
 .custom-tabs__panel {
   position: absolute;

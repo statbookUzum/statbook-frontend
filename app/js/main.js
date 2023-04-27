@@ -1148,109 +1148,113 @@ __webpack_require__.r(__webpack_exports__);
 var saleChart = document.getElementById('saleChart');
 var priceChart = document.getElementById('priceChart');
 var lostChart = document.getElementById('lostChart');
-var chartSaleData = [{
-  date: '01.04',
-  value: '30'
-}, {
-  date: '02.04',
-  value: '10'
-}, {
-  date: '03.04',
-  value: '22'
-}, {
-  date: '04.04',
-  value: '24'
-}, {
-  date: '05.04',
-  value: '7'
-}, {
-  date: '06.04',
-  value: '18'
-}, {
-  date: '07.04',
-  value: '28'
-}, {
-  date: '08.04',
-  value: '10'
-}, {
-  date: '09.04',
-  value: '10'
-}, {
-  date: '10.04',
-  value: '15'
-}, {
-  date: '11.04',
-  value: '12'
-}, {
-  date: '12.04',
-  value: '20'
-}, {
-  date: '13.04',
-  value: '29'
-}, {
-  date: '14.04',
-  value: '9'
-}, {
-  date: '15.04',
-  value: '15'
-}, {
-  date: '16.04',
-  value: '18'
-}, {
-  date: '17.04',
-  value: '30'
-}, {
-  date: '18.04',
-  value: '27'
-}, {
-  date: '19.04',
-  value: '22'
-}, {
-  date: '20.04',
-  value: '17'
-}, {
-  date: '21.04',
-  value: '22'
-}, {
-  date: '22.04',
-  value: '24'
-}, {
-  date: '23.04',
-  value: '27'
-}, {
-  date: '24.04',
-  value: '22'
-}, {
-  date: '25.04',
-  value: '17'
-}, {
-  date: '26.04',
-  value: '15'
-}, {
-  date: '27.04',
-  value: '12'
-}, {
-  date: '28.04',
-  value: '16'
-}, {
-  date: '29.04',
-  value: '19'
-}, {
-  date: '30.04',
-  value: '22'
-}];
+var chartsData = {
+  saleChartData: [{
+    date: '01.04',
+    value: '30'
+  }, {
+    date: '02.04',
+    value: '10'
+  }, {
+    date: '03.04',
+    value: '22'
+  }, {
+    date: '04.04',
+    value: '24'
+  }, {
+    date: '05.04',
+    value: '7'
+  }, {
+    date: '06.04',
+    value: '18'
+  }, {
+    date: '07.04',
+    value: '28'
+  }, {
+    date: '08.04',
+    value: '10'
+  }, {
+    date: '09.04',
+    value: '10'
+  }, {
+    date: '10.04',
+    value: '15'
+  }, {
+    date: '11.04',
+    value: '12'
+  }, {
+    date: '12.04',
+    value: '20'
+  }, {
+    date: '13.04',
+    value: '29'
+  }, {
+    date: '14.04',
+    value: '9'
+  }, {
+    date: '15.04',
+    value: '15'
+  }, {
+    date: '16.04',
+    value: '18'
+  }, {
+    date: '17.04',
+    value: '30'
+  }, {
+    date: '18.04',
+    value: '27'
+  }, {
+    date: '19.04',
+    value: '22'
+  }, {
+    date: '20.04',
+    value: '17'
+  }, {
+    date: '21.04',
+    value: '22'
+  }, {
+    date: '22.04',
+    value: '24'
+  }, {
+    date: '23.04',
+    value: '27'
+  }, {
+    date: '24.04',
+    value: '22'
+  }, {
+    date: '25.04',
+    value: '17'
+  }, {
+    date: '26.04',
+    value: '15'
+  }, {
+    date: '27.04',
+    value: '12'
+  }, {
+    date: '28.04',
+    value: '16'
+  }, {
+    date: '29.04',
+    value: '19'
+  }, {
+    date: '30.04',
+    value: '22'
+  }],
+  priceChartData: [{
+    date: '01.04',
+    value: '30'
+  }],
+  lostChartData: [{
+    date: '01.04',
+    value: '30'
+  }]
+};
 
 if (saleChart) {
-  var labelsData = chartSaleData.map(function (item, index) {
-    // if (index + 1 === 1) {
-    //   return item.date;
-    // }
-    // if ((index + 1) % 5 === 0) {
-    //   return item.date;
-    // }
+  var labelsData = chartsData.saleChartData.map(function (item, index) {
     return item.date;
   });
-  var valueData = chartSaleData.map(function (item) {
+  var valueData = chartsData.saleChartData.map(function (item) {
     return item.value;
   });
   new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(saleChart, {
@@ -1262,7 +1266,8 @@ if (saleChart) {
         data: valueData,
         borderWidth: 0,
         backgroundColor: 'rgba(124, 150, 255, 0.5)',
-        borderRadius: 15
+        borderRadius: 15,
+        hoverBackgroundColor: '#7C96FF'
       }]
     },
     options: {
@@ -1333,17 +1338,11 @@ if (saleChart) {
 }
 
 if (priceChart) {
-  var _labelsData = chartSaleData.map(function (item, index) {
-    // if (index + 1 === 1) {
-    //   return item.date;
-    // }
-    // if ((index + 1) % 5 === 0) {
-    //   return item.date;
-    // }
+  var _labelsData = chartsData.saleChartData.map(function (item, index) {
     return item.date;
   });
 
-  var _valueData = chartSaleData.map(function (item) {
+  var _valueData = chartsData.saleChartData.map(function (item) {
     return item.value;
   });
 
@@ -1356,7 +1355,8 @@ if (priceChart) {
         data: _valueData,
         borderWidth: 0,
         backgroundColor: 'rgba(50, 175, 153, 0.5)',
-        borderRadius: 15
+        borderRadius: 15,
+        hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)'
       }]
     },
     options: {
@@ -1427,7 +1427,7 @@ if (priceChart) {
 }
 
 if (lostChart) {
-  var _labelsData2 = chartSaleData.map(function (item, index) {
+  var _labelsData2 = chartsData.saleChartData.map(function (item, index) {
     // if (index + 1 === 1) {
     //   return item.date;
     // }
@@ -1437,7 +1437,7 @@ if (lostChart) {
     return item.date;
   });
 
-  var _valueData2 = chartSaleData.map(function (item) {
+  var _valueData2 = chartsData.saleChartData.map(function (item) {
     return item.value;
   });
 
@@ -1450,7 +1450,8 @@ if (lostChart) {
         data: _valueData2,
         borderWidth: 0,
         backgroundColor: 'rgba(255, 122, 0, 0.5)',
-        borderRadius: 15
+        borderRadius: 15,
+        hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)'
       }]
     },
     options: {
@@ -1826,7 +1827,6 @@ if (categoryPage) {
   // пример обьекта с данными
   var categoryData = {
     categoryName: 'Мягкие игрушки',
-    // тут в идеале "хлебные крошки" одной строкой было бы получать, но если там будет какой-то условно массив, то это тоже не проблема, по массиву пробежаться можно и сформировать нужную html-структуру, но пока оставил просто с одной строкой =)
     breadcrumbs: ['Главная', 'Все категории', 'Детские товары', 'Игрушки и игры', 'Мягкие игрушка'],
     totalStat: [{
       title: 'Заказы',
@@ -1845,43 +1845,124 @@ if (categoryPage) {
       title: 'Количество подкатегорий',
       value: '10'
     }],
-    tableData: [['Категория', 'Продажи', 'Выручка в сред.', 'Выручка', 'Остатки', 'Стоимость остатоков'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.']]
+    tables: {
+      tableAnalyticData: [['Категория', 'Продажи', 'Выручка в сред.', 'Выручка', 'Остатки', 'Стоимость остатоков'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.']],
+      tableReviewData: [['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'Заказы', 'Выручка'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн']]
+    }
   };
-  var table = categoryPage.querySelector('.table');
-  var totalStat = categoryPage.querySelector('.report-statistic__list');
-  var categoryName = categoryPage.querySelector('.shop-report__category-title');
-  var breadcrumbs = categoryPage.querySelector('.shop-report__breadcrumbs');
-  categoryName.textContent = categoryData.categoryName;
-  renderBreadcrumbs(categoryData.breadcrumbs, breadcrumbs);
-  renderTotalStat(categoryData.totalStat, totalStat);
-  renderTable(categoryData.tableData, table);
+  var tableList = categoryPage.querySelectorAll('.table');
+  var totalStatSlit = categoryPage.querySelectorAll('[data-total]');
+  var categoryNameList = categoryPage.querySelectorAll('[data-title]');
+  var breadcrumbsList = categoryPage.querySelectorAll('[data-breadcrumbs]');
+  categoryNameList.forEach(function (categoryName) {
+    categoryName.textContent = categoryData.categoryName;
+  });
+  renderBreadcrumbs(categoryData.breadcrumbs, breadcrumbsList);
+  renderTotalStat(categoryData.totalStat, totalStatSlit);
+  renderTable(categoryData.tables, tableList);
 }
 
-if (shopPage) {}
+if (shopPage) {
+  var shopData = {
+    cardInfo: {
+      shopName: 'Top Seller',
+      stars: '4.5',
+      reviewsAmount: 480,
+      startTime: '1 декабря 2022 года',
+      // здесь можно дату обьектом передавать
+      description: 'Магазин по продаже компьютерной техники',
+      shopImage: ''
+    },
+    totalStat: [{
+      title: 'Количество продуктов',
+      value: '54550'
+    }, {
+      title: 'Количество категорий',
+      value: '34'
+    }, {
+      title: 'Средняя цена',
+      value: '7.4 млн'
+    }, {
+      title: 'Общая выручка',
+      value: '540 млрд'
+    }],
+    tables: {
+      tableAnalyticData: [['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'Заказы', 'Выручка'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн']],
+      tableReviewData: [['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'АBC Заказы', 'ABC Выручка'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A']]
+    }
+  };
 
-function renderTotalStat(data, element) {
-  element.innerHTML = '';
-  data.forEach(function (item) {
-    element.innerHTML += "\n    <li class=\"report-statistic__item\">\n      <div class=\"report-statistic__title\">\n        ".concat(item.title, "\n      </div>\n      <span class=\"report-statistic__value\">\n        ").concat(item.value, "\n      </span>\n    </li>\n    ");
+  var _tableList = shopPage.querySelectorAll('.table');
+
+  var _totalStatSlit = shopPage.querySelectorAll('[data-total]');
+
+  var sellerCard = shopPage.querySelectorAll('[data-seller-card');
+  renderSellerCard(shopData.cardInfo, sellerCard);
+  renderTotalStat(shopData.totalStat, _totalStatSlit);
+  renderTable(shopData.tables, _tableList);
+}
+
+function renderBreadcrumbs(data, elements) {
+  elements.forEach(function (element) {
+    element.innerHTML = '';
+    data.forEach(function (item) {
+      element.innerHTML += "<li class=\"shop-report__breadcrumbs-item\">".concat(item, "</li>");
+    });
+  });
+}
+
+function renderTotalStat(data, elements) {
+  elements.forEach(function (element) {
+    element.innerHTML = '';
+    data.forEach(function (item) {
+      element.innerHTML += "\n    <li class=\"report-statistic__item\">\n      <div class=\"report-statistic__title\">\n        ".concat(item.title, "\n      </div>\n      <span class=\"report-statistic__value\">\n        ").concat(item.value, "\n      </span>\n    </li>\n    ");
+    });
+  });
+}
+
+function renderTable(tables, elements) {
+  elements.forEach(function (element) {
+    var data;
+
+    if (element.hasAttribute('data-table-analytic')) {
+      data = tables.tableAnalyticData;
+    }
+
+    if (element.hasAttribute('data-table-review')) {
+      data = tables.tableReviewData;
+    }
+
+    var imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
+    element.innerHTML = "\n                        <tr class=\"table__header\">\n                          ".concat(data[0].map(function (el) {
+      if (el.toLowerCase() === 'категория' || el.toLowerCase() === 'остаток') {
+        return "<th>\n                                <button class=\"table__filter-button btn-reset\">\n                                  ".concat(el, "\n                                </button>\n                              </th>");
+      }
+
+      return "<th>".concat(el, "</th>");
+    }).join(' '), "\n                        </tr>\n                        ").concat(data.map(function (arr, i) {
+      if (i !== 0) {
+        return "<tr>".concat(arr.map(function (el, i) {
+          if (imageLinkRegex.test(el)) {
+            return "<td><img src=\"".concat(el, "\" alt=\"").concat(arr[i + 1], "\"></td>");
+          }
+
+          return "<td>".concat(el, "</td>");
+        }).join(' '), "</tr>");
+      }
+    }).join(' '), "\n                        ");
   });
   (0,_helper__WEBPACK_IMPORTED_MODULE_0__.setHeight)();
 }
 
-function renderTable(data, element) {
-  element.innerHTML = "\n                        <tr class=\"table__header\">\n                          ".concat(data[0].map(function (el) {
-    return "<th>".concat(el, "</th>");
-  }), "\n                        </tr>\n                        ").concat(data.map(function (arr, i) {
-    return i !== 0 ? "<tr>".concat(arr.map(function (el) {
-      return "<td>".concat(el, "</td>");
-    }), "</tr>") : null;
-  }), "\n                        ");
-  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.setHeight)();
-}
-
-function renderBreadcrumbs(data, element) {
-  element.innerHTML = '';
-  data.forEach(function (item) {
-    element.innerHTML += "<li class=\"shop-report__breadcrumbs-item\">".concat(item, "</li>");
+function renderSellerCard(data, elements) {
+  var shopName = data.shopName,
+      stars = data.stars,
+      reviewsAmount = data.reviewsAmount,
+      startTime = data.startTime,
+      description = data.description,
+      shopImage = data.shopImage;
+  elements.forEach(function (element) {
+    element.innerHTML = "\n    <div class=\"seller-card__image\">\n      <img src=\"".concat(shopImage ? shopImage : './img/seller-card-default.svg', "\" alt=\"Top Seller\">\n    </div>\n    <div class=\"seller-card__info\">\n      <div class=\"seller-card__info-top\">\n        <h2 class=\"seller-card__title\">\n          ").concat(shopName, "\n        </h2>\n      <div class=\"seller-card__reviews\">\n        <span class=\"seller-card__reviews-score\">").concat(stars, "</span> (<span\n          class=\"seller-card__reviews-count\">").concat(reviewsAmount, " </span> \u043E\u0442\u0437\u044B\u0432\u043E\u0432)\n      </div>\n    </div>\n    <div class=\"seller-card__start\">\n      \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 \u043D\u0430 UZUM \u0441 <span>").concat(startTime, "</span>\n    </div>\n    <div class=\"seller-card__desc\">\n      ").concat(description, "\n    </div>\n    ");
   });
 }
 

@@ -105,13 +105,13 @@
                     <div class="shop-report__category">
                       <div class="shop-report__category-title">
                         <span>
-                          Категория - Мягкие игрушки
+                          Категория - <span data-title>Мягкие игрушки</span>
                         </span>
                         <button type="button" class="shop-report__category-info btn-reset">
 
                         </button>
                       </div>
-                      <ul class="shop-report__breadcrumbs"></ul>
+                      <ul class="shop-report__breadcrumbs" data-breadcrumbs></ul>
                     </div>
                     <div class="shop-report__buttons">
                       <button class="shop-report__report-btn secondary-button btn-reset">
@@ -122,17 +122,22 @@
                             stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
                         </svg>
                       </button>
+                      <select class="shop-report__select" name="report" id="reportSelect" required>
+                        <option value="7day">За 7 дней</option>
+                        <option value="14day">За 14 дней</option>
+                        <option selected value="30day">За 30 дней</option>
+                      </select>
                     </div>
                   </div>
                   <div class="shop-report__statistic report-statistic" data-simplebar>
-                    <ul class="report-statistic__list"></ul>
+                    <ul class="report-statistic__list" data-total></ul>
                   </div>
                   <button class="shop-report__hide hide-report-button btn-reset">
                     Cкрыть аналитику товаров
                   </button>
                   <div class="table-container">
                     <div class="table-wrapper" data-simplebar>
-                      <table class="table"></table>
+                      <table class="table" data-table-analytic></table>
                     </div>
                   </div>
                 </div>
@@ -142,24 +147,10 @@
                   <div class="shop-report__top">
                     <div class="shop-report__category">
                       <div class="shop-report__category-title">
-                        Мягкие игрушки
+                        <span data-title></span>
                       </div>
-                      <ul class="shop-report__breadcrumbs">
-                        <li class="shop-report__breadcrumbs-item">
-                          Главная
-                        </li>
-                        <li class="shop-report__breadcrumbs-item">
-                          Все категории
-                        </li>
-                        <li class="shop-report__breadcrumbs-item">
-                          Детские товары
-                        </li>
-                        <li class="shop-report__breadcrumbs-item">
-                          Игрушки и игры
-                        </li>
-                        <li class="shop-report__breadcrumbs-item">
-                          Мягкие игрушка
-                        </li>
+                      <ul class="shop-report__breadcrumbs" data-breadcrumbs>
+
                       </ul>
                     </div>
                     <div class="shop-report__buttons">
@@ -171,71 +162,23 @@
                             stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
                         </svg>
                       </button>
+                      <select class="shop-report__select" name="report" id="reportSelect" required>
+                        <option value="7day">За 7 дней</option>
+                        <option value="14day">За 14 дней</option>
+                        <option selected value="30day">За 30 дней</option>
+                      </select>
                     </div>
                   </div>
                   <div class="shop-report__statistic report-statistic" data-simplebar>
-                    <ul class="report-statistic__list"></ul>
+                    <ul class="report-statistic__list" data-total></ul>
                   </div>
+                  <div class="element"></div>
                   <button class="shop-report__hide hide-report-button btn-reset">
                     Cкрыть аналитику товаров
                   </button>
                   <div class="table-container">
                     <div class="table-wrapper" data-simplebar>
-                      <table class="table">
-                        <tr class="table__header">
-                          <th>Изображение</th>
-                          <th>Продукт</th>
-                          <th>SKU</th>
-                          <th>
-                            <button class="table__filter-button btn-reset">
-                              Категория
-                            </button>
-                          </th>
-                          <th>
-                            <button class="table__filter-button btn-reset">
-                              Остаток
-                            </button>
-                          </th>
-                          <th>Дней в наличии</th>
-                          <th>АBC Заказы</th>
-                          <th>ABC Выручка</th>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="./img/test-table-img.jpg" alt="test">
-                          </td>
-                          <td><a href="#">54880</a></td>
-                          <td>54250</td>
-                          <td>Детские товары</td>
-                          <td>0 шт.</td>
-                          <td>51</td>
-                          <td>A</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="./img/test-table-img.jpg" alt="test">
-                          </td>
-                          <td><a href="#">54880</a></td>
-                          <td>54750</td>
-                          <td>Авто спорт</td>
-                          <td>19 шт.</td>
-                          <td>11</td>
-                          <td>B</td>
-                          <td>C</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="./img/test-table-img.jpg" alt="test">
-                          </td>
-                          <td><a href="#">54990</a></td>
-                          <td>54550</td>
-                          <td>Канцтовары</td>
-                          <td>230 шт.</td>
-                          <td>78</td>
-                          <td>C</td>
-                          <td>C</td>
-                        </tr>
+                      <table class="table" data-table-review>
                       </table>
                     </div>
                   </div>
