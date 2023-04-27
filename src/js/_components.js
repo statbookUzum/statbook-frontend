@@ -2,7 +2,6 @@
 import './components/nav-menu';
 import './components/tabs';
 import './components/custom-select';
-import './components/charts';
 import './components/modalAndCustomTabs';
 import './components/switcher';
 import './components/custom-input';
@@ -12,6 +11,7 @@ import './components/slider';
 import './components/hide-table';
 import './components/formatSum';
 import './components/smoothScroll';
+import './components/charts';
 import './components/render-table';
 import './components/accordions';
 

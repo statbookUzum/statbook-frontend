@@ -956,20 +956,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_nav_menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/nav-menu */ "./src/js/components/nav-menu.js");
 /* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/tabs */ "./src/js/components/tabs.js");
 /* harmony import */ var _components_custom_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/custom-select */ "./src/js/components/custom-select.js");
-/* harmony import */ var _components_charts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/charts */ "./src/js/components/charts.js");
-/* harmony import */ var _components_modalAndCustomTabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/modalAndCustomTabs */ "./src/js/components/modalAndCustomTabs.js");
-/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/switcher */ "./src/js/components/switcher.js");
-/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_components_switcher__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/custom-input */ "./src/js/components/custom-input.js");
-/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_custom_input__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/validation-form */ "./src/js/components/validation-form.js");
-/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_components_validation_form__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_custom_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/custom-scroll */ "./src/js/components/custom-scroll.js");
-/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
-/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/hide-table */ "./src/js/components/hide-table.js");
-/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
-/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
+/* harmony import */ var _components_modalAndCustomTabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/modalAndCustomTabs */ "./src/js/components/modalAndCustomTabs.js");
+/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/switcher */ "./src/js/components/switcher.js");
+/* harmony import */ var _components_switcher__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_switcher__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/custom-input */ "./src/js/components/custom-input.js");
+/* harmony import */ var _components_custom_input__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_components_custom_input__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/validation-form */ "./src/js/components/validation-form.js");
+/* harmony import */ var _components_validation_form__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_validation_form__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_custom_scroll__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/custom-scroll */ "./src/js/components/custom-scroll.js");
+/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
+/* harmony import */ var _components_hide_table__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/hide-table */ "./src/js/components/hide-table.js");
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
+/* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
+/* harmony import */ var _components_charts__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/charts */ "./src/js/components/charts.js");
 /* harmony import */ var _components_render_table__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/render-table */ "./src/js/components/render-table.js");
 /* harmony import */ var _components_accordions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/accordions */ "./src/js/components/accordions.js");
 /* harmony import */ var _components_accordions__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_components_accordions__WEBPACK_IMPORTED_MODULE_14__);
@@ -1145,381 +1145,492 @@ if (accordions.length) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
 
-var saleChart = document.getElementById('saleChart');
-var priceChart = document.getElementById('priceChart');
-var lostChart = document.getElementById('lostChart');
-var chartsData = {
-  saleChartData: [{
-    date: '01.04',
-    value: '30'
-  }, {
-    date: '02.04',
-    value: '10'
-  }, {
-    date: '03.04',
-    value: '22'
-  }, {
-    date: '04.04',
-    value: '24'
-  }, {
-    date: '05.04',
-    value: '7'
-  }, {
-    date: '06.04',
-    value: '18'
-  }, {
-    date: '07.04',
-    value: '28'
-  }, {
-    date: '08.04',
-    value: '10'
-  }, {
-    date: '09.04',
-    value: '10'
-  }, {
-    date: '10.04',
-    value: '15'
-  }, {
-    date: '11.04',
-    value: '12'
-  }, {
-    date: '12.04',
-    value: '20'
-  }, {
-    date: '13.04',
-    value: '29'
-  }, {
-    date: '14.04',
-    value: '9'
-  }, {
-    date: '15.04',
-    value: '15'
-  }, {
-    date: '16.04',
-    value: '18'
-  }, {
-    date: '17.04',
-    value: '30'
-  }, {
-    date: '18.04',
-    value: '27'
-  }, {
-    date: '19.04',
-    value: '22'
-  }, {
-    date: '20.04',
-    value: '17'
-  }, {
-    date: '21.04',
-    value: '22'
-  }, {
-    date: '22.04',
-    value: '24'
-  }, {
-    date: '23.04',
-    value: '27'
-  }, {
-    date: '24.04',
-    value: '22'
-  }, {
-    date: '25.04',
-    value: '17'
-  }, {
-    date: '26.04',
-    value: '15'
-  }, {
-    date: '27.04',
-    value: '12'
-  }, {
-    date: '28.04',
-    value: '16'
-  }, {
-    date: '29.04',
-    value: '19'
-  }, {
-    date: '30.04',
-    value: '22'
-  }],
-  priceChartData: [{
-    date: '01.04',
-    value: '30'
-  }],
-  lostChartData: [{
-    date: '01.04',
-    value: '30'
-  }]
-};
+var chartsSection = document.querySelector('.main-section--charts');
 
-if (saleChart) {
-  var labelsData = chartsData.saleChartData.map(function (item, index) {
-    return item.date;
-  });
-  var valueData = chartsData.saleChartData.map(function (item) {
-    return item.value;
-  });
-  new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(saleChart, {
-    type: 'bar',
-    data: {
-      labels: labelsData,
-      datasets: [{
-        label: 'График продаж',
-        data: valueData,
-        borderWidth: 0,
-        backgroundColor: 'rgba(124, 150, 255, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: '#7C96FF'
+if (chartsSection) {
+  var saleChart = document.getElementById('saleChart');
+  var priceChart = document.getElementById('priceChart');
+  var lostChart = document.getElementById('lostChart');
+  var productCard = document.querySelector('[data-product-card]');
+  var statList = document.querySelectorAll('.analytics-charts-amount');
+  var analyticsList = document.querySelector('.category-analytics__list');
+  var chartsData = {
+    categoryInfo: {
+      title: 'Электроника',
+      position: '+13',
+      categoryArray: [{
+        date: '01.04',
+        score: 50,
+        position: '+48'
+      }, {
+        date: '02.04',
+        score: 50,
+        position: '+48'
+      }, {
+        date: '03.04',
+        score: 50,
+        position: '+48'
+      }, {
+        date: '04.04',
+        score: 50,
+        position: '+48'
+      }, {
+        date: '05.04',
+        score: 50,
+        position: '+48'
+      }],
+      subcategories: [{
+        title: 'Умный дом и беопасность',
+        position: '-26',
+        categoryArray: [{
+          date: '01.04',
+          score: 50,
+          position: '-48'
+        }]
+      }, {
+        title: 'Умный дом и беопасность',
+        position: '-26',
+        categoryArray: [{
+          date: '01.04',
+          score: 50,
+          position: '-48'
+        }]
       }]
     },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false
+    productInfo: {
+      title: 'Умная лампочка Xiaomi Mi Smart LED Bulb Essential, E27, 9 Вт',
+      price: '30.000',
+      seller: 'GADGET market',
+      description: 'Умный свет, который Вас понимает. Лампочка Xiaomi имеет возможность выбора цвета или регулировки цветовой температуры и яркости...',
+      image: ''
+    },
+    totalStat: {
+      sale: 134,
+      profit: 50000000,
+      average: 3.4
+    },
+    saleChartData: [{
+      date: '01.04',
+      value: '30'
+    }, {
+      date: '02.04',
+      value: '10'
+    }, {
+      date: '03.04',
+      value: '22'
+    }, {
+      date: '04.04',
+      value: '24'
+    }, {
+      date: '05.04',
+      value: '7'
+    }, {
+      date: '06.04',
+      value: '18'
+    }, {
+      date: '07.04',
+      value: '28'
+    }, {
+      date: '08.04',
+      value: '10'
+    }, {
+      date: '09.04',
+      value: '10'
+    }, {
+      date: '10.04',
+      value: '15'
+    }, {
+      date: '11.04',
+      value: '12'
+    }, {
+      date: '12.04',
+      value: '20'
+    }, {
+      date: '13.04',
+      value: '29'
+    }, {
+      date: '14.04',
+      value: '9'
+    }, {
+      date: '15.04',
+      value: '15'
+    }, {
+      date: '16.04',
+      value: '18'
+    }, {
+      date: '17.04',
+      value: '30'
+    }, {
+      date: '18.04',
+      value: '27'
+    }, {
+      date: '19.04',
+      value: '22'
+    }, {
+      date: '20.04',
+      value: '17'
+    }, {
+      date: '21.04',
+      value: '22'
+    }, {
+      date: '22.04',
+      value: '24'
+    }, {
+      date: '23.04',
+      value: '27'
+    }, {
+      date: '24.04',
+      value: '22'
+    }, {
+      date: '25.04',
+      value: '17'
+    }, {
+      date: '26.04',
+      value: '15'
+    }, {
+      date: '27.04',
+      value: '12'
+    }, {
+      date: '28.04',
+      value: '16'
+    }, {
+      date: '29.04',
+      value: '19'
+    }, {
+      date: '30.04',
+      value: '22'
+    }],
+    priceChartData: [{
+      date: '01.04',
+      value: '30'
+    }],
+    lostChartData: [{
+      date: '01.04',
+      value: '30'
+    }]
+  };
+
+  if (saleChart) {
+    var labelsData = chartsData.saleChartData.map(function (item) {
+      return item.date;
+    });
+    var valueData = chartsData.saleChartData.map(function (item) {
+      return item.value;
+    });
+    new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(saleChart, {
+      type: 'bar',
+      data: {
+        labels: labelsData,
+        datasets: [{
+          label: 'График продаж',
+          data: valueData,
+          borderWidth: 0,
+          backgroundColor: 'rgba(124, 150, 255, 0.5)',
+          borderRadius: 15,
+          hoverBackgroundColor: '#7C96FF'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              display: false
+            },
+            ticks: {
+              color: 'rgba(0, 0, 0, 0.25)',
+              font: {
+                family: 'Open Sans',
+                size: 12,
+                weight: 600
+              }
+            }
           },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              callback: function callback(value, index, items) {
+                if (index + 1 === 1) {
+                  return labelsData[index];
+                }
+
+                if ((index + 1) % 5 === 0) {
+                  return labelsData[index];
+                }
+
+                return '';
+              },
+              font: {
+                family: 'Open Sans',
+                size: 12,
+                weight: 600
+              },
+              color: 'rgba(4, 15, 35, 0.25)'
             }
           }
         },
-        x: {
-          grid: {
+        maintainAspectRatio: false,
+        barPercentage: 0.8,
+        plugins: {
+          legend: {
             display: false
           },
-          ticks: {
-            callback: function callback(value, index, items) {
-              if (index + 1 === 1) {
-                return labelsData[index];
+          tooltip: {
+            callbacks: {
+              label: function label(context) {
+                var label = context.dataset.label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+
+                label += context.formattedValue;
+                label += ' млн';
+                return label;
               }
-
-              if ((index + 1) % 5 === 0) {
-                return labelsData[index];
-              }
-
-              return '';
-            },
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
-            },
-            color: 'rgba(4, 15, 35, 0.25)'
-          }
-        }
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            label: function label(context) {
-              var label = context.dataset.label || '';
-
-              if (label) {
-                label += ': ';
-              }
-
-              label += context.formattedValue;
-              label += ' млн';
-              return label;
             }
           }
         }
       }
-    }
-  });
-}
+    });
+  }
 
-if (priceChart) {
-  var _labelsData = chartsData.saleChartData.map(function (item, index) {
-    return item.date;
-  });
+  if (priceChart) {
+    var _labelsData = chartsData.saleChartData.map(function (item) {
+      return item.date;
+    });
 
-  var _valueData = chartsData.saleChartData.map(function (item) {
-    return item.value;
-  });
+    var _valueData = chartsData.saleChartData.map(function (item) {
+      return item.value;
+    });
 
-  new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(priceChart, {
-    type: 'bar',
-    data: {
-      labels: _labelsData,
-      datasets: [{
-        label: 'График цены',
-        data: _valueData,
-        borderWidth: 0,
-        backgroundColor: 'rgba(50, 175, 153, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)'
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false
+    new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(priceChart, {
+      type: 'bar',
+      data: {
+        labels: _labelsData,
+        datasets: [{
+          label: 'График цены',
+          data: _valueData,
+          borderWidth: 0,
+          backgroundColor: 'rgba(50, 175, 153, 0.5)',
+          borderRadius: 15,
+          hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              display: false
+            },
+            ticks: {
+              color: 'rgba(0, 0, 0, 0.25)',
+              font: {
+                family: 'Open Sans',
+                size: 12,
+                weight: 600
+              }
+            }
           },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              callback: function callback(value, index, items) {
+                if (index + 1 === 1) {
+                  return _labelsData[index];
+                }
+
+                if ((index + 1) % 5 === 0) {
+                  return _labelsData[index];
+                }
+
+                return '';
+              },
+              font: {
+                family: 'Open Sans',
+                size: 12,
+                weight: 600
+              },
+              color: 'rgba(4, 15, 35, 0.25)'
             }
           }
         },
-        x: {
-          grid: {
+        maintainAspectRatio: false,
+        barPercentage: 0.8,
+        plugins: {
+          legend: {
             display: false
           },
-          ticks: {
-            callback: function callback(value, index, items) {
-              if (index + 1 === 1) {
-                return _labelsData[index];
+          tooltip: {
+            callbacks: {
+              label: function label(context) {
+                var label = context.dataset.label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+
+                label += context.formattedValue;
+                label += ' млн';
+                return label;
               }
-
-              if ((index + 1) % 5 === 0) {
-                return _labelsData[index];
-              }
-
-              return '';
-            },
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
-            },
-            color: 'rgba(4, 15, 35, 0.25)'
-          }
-        }
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            label: function label(context) {
-              var label = context.dataset.label || '';
-
-              if (label) {
-                label += ': ';
-              }
-
-              label += context.formattedValue;
-              label += ' млн';
-              return label;
             }
           }
         }
       }
-    }
-  });
-}
+    });
+  }
 
-if (lostChart) {
-  var _labelsData2 = chartsData.saleChartData.map(function (item, index) {
-    // if (index + 1 === 1) {
-    //   return item.date;
-    // }
-    // if ((index + 1) % 5 === 0) {
-    //   return item.date;
-    // }
-    return item.date;
-  });
+  if (lostChart) {
+    var _labelsData2 = chartsData.saleChartData.map(function (item) {
+      return item.date;
+    });
 
-  var _valueData2 = chartsData.saleChartData.map(function (item) {
-    return item.value;
-  });
+    var _valueData2 = chartsData.saleChartData.map(function (item) {
+      return item.value;
+    });
 
-  new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(lostChart, {
-    type: 'bar',
-    data: {
-      labels: _labelsData2,
-      datasets: [{
-        label: 'График остатков',
-        data: _valueData2,
-        borderWidth: 0,
-        backgroundColor: 'rgba(255, 122, 0, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)'
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false
+    new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(lostChart, {
+      type: 'bar',
+      data: {
+        labels: _labelsData2,
+        datasets: [{
+          label: 'График остатков',
+          data: _valueData2,
+          borderWidth: 0,
+          backgroundColor: 'rgba(255, 122, 0, 0.5)',
+          borderRadius: 15,
+          hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              display: false
+            },
+            ticks: {
+              color: 'rgba(0, 0, 0, 0.25)',
+              font: {
+                family: 'Open Sans',
+                size: 12,
+                color: 'rgba(4, 15, 35, 0.25)',
+                weight: 600
+              }
+            }
           },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
-              weight: 600
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              callback: function callback(value, index, items) {
+                if (index + 1 === 1) {
+                  return _labelsData2[index];
+                }
+
+                if ((index + 1) % 5 === 0) {
+                  return _labelsData2[index];
+                }
+
+                return '';
+              },
+              font: {
+                family: 'Open Sans',
+                size: 12,
+                weight: 600
+              },
+              color: 'rgba(4, 15, 35, 0.25)'
             }
           }
         },
-        x: {
-          grid: {
+        maintainAspectRatio: false,
+        barPercentage: 0.8,
+        plugins: {
+          legend: {
             display: false
           },
-          ticks: {
-            callback: function callback(value, index, items) {
-              if (index + 1 === 1) {
-                return _labelsData2[index];
+          tooltip: {
+            callbacks: {
+              label: function label(context) {
+                var label = context.dataset.label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+
+                label += context.formattedValue;
+                label += ' шт';
+                return label;
               }
-
-              if ((index + 1) % 5 === 0) {
-                return _labelsData2[index];
-              }
-
-              return '';
-            },
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
-            },
-            color: 'rgba(4, 15, 35, 0.25)'
-          }
-        }
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            label: function label(context) {
-              var label = context.dataset.label || '';
-
-              if (label) {
-                label += ': ';
-              }
-
-              label += context.formattedValue;
-              label += ' шт';
-              return label;
             }
           }
         }
       }
+    });
+  }
+
+  if (productCard) {
+    renderProductCard(chartsData.productInfo, productCard);
+  }
+
+  if (statList.length) {
+    renderTotalStat(chartsData.totalStat, statList);
+  }
+
+  if (analyticsList) {
+    renderCategory(chartsData.categoryInfo, analyticsList, true);
+  }
+
+  function renderProductCard(data, element) {
+    var title = data.title,
+        price = data.price,
+        seller = data.seller,
+        description = data.description,
+        image = data.image;
+    element.innerHTML = "\n    <div class=\"product-info__image\">\n    <img src=\"".concat(image ? image : './img/product-test-image.jpg', "\"\n      alt=\"").concat(title, "\">\n    </div>\n    <div class=\"product-info__title\">\n      ").concat(title, "\n    </div>\n    <div class=\"product-info__price\">\n      \u0426\u0435\u043D\u0430: <span class=\"product-info__price-amount\">").concat(price, "</span> <span\n        class=\"product-info__price-currency\">\u0441\u0443\u043C</span>\n    </div>\n    <div class=\"product-info__seller\">\n      \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446: <span class=\"product-info__seller-name\">").concat(seller, "</span>\n    </div>\n    <div class=\"product-info__description\">\n      ").concat(description, "\n    </div>\n  ");
+  }
+
+  function renderTotalStat(data, elements) {
+    elements.forEach(function (element) {
+      if (element.matches('[data-total-sale]')) {
+        element.textContent = data.sale;
+      }
+
+      if (element.matches('[data-total-profit]')) {
+        element.textContent = +data.profit / 1000000;
+      }
+
+      if (element.matches('[data-total-average]')) {
+        element.textContent = data.average;
+      }
+    });
+  }
+
+  function renderCategory(data, element, firstFlag) {
+    if (firstFlag) {
+      element.innerHTML = '';
     }
-  });
+
+    var positionStyle = data.position < 0 ? 'analytics-line__item-profit--down' : null;
+    console.log(data);
+    element.innerHTML += "\n    <div class=\"category-analytics__line analytics-line\">\n    <div class=\"analytics-line__top\">\n      <div class=\"analytics-line__title\">\n        <div class=\"analytics-line__title-text\">\n          \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F - ".concat(data.title, ".\n        </div>\n        <div class=\"analytics-line__title-report\">\n          \u041E\u0442\u0447\u0435\u0442 \u0417\u0430 30 \u0434\u043D\u0435\u0439\n        </div>\n      </div>\n      <div class=\"analytics-line__positions ").concat(positionStyle, "\">\n        ").concat(data.position, " \u043F\u043E\u0437\u0438\u0446\u0438\u0439\n      </div>\n    </div>\n    <div class=\"analytics-line__content\" data-simplebar>\n      <ul class=\"analytics-line__list\">\n      ").concat(data.categoryArray.map(function (item) {
+      var positionStyle = item.position >= 0 ? 'analytics-line__item-profit--up' : 'analytics-line__item-profit--down';
+      return "\n          <li class=\"analytics-line__item\">\n            <div class=\"analytics-line__item-number\">\n              ".concat(item.score, "\n            </div>\n            <div class=\"analytics-line__item-profit ").concat(positionStyle, "\">\n              ").concat(item.position, "\n            </div>\n            <div class=\"analytics-line__item-date\">\n              ").concat(item.date, "\n            </div>\n          </li>\n        ");
+    }).join(' '), "\n      </ul>\n    </div>\n  </div>\n    ");
+
+    if (data.subcategories) {
+      data.subcategories.forEach(function (subcategory) {
+        renderCategory(subcategory, analyticsList, false);
+      });
+    }
+  }
 }
 
 /***/ }),
