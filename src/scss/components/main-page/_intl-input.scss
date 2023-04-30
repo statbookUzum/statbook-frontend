@@ -1,0 +1,28 @@
+.iti__flag {
+  background-image: url("	https://intl-tel-input.com/intl-tel-input/img/flags.png");
+}
+
+.iti--separate-dial-code.iti--show-flags .iti__selected-dial-code {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 55px;
+  color: $light-color;
+}
+
+.fast-registration {
+  .iti {
+    width: 100%;
+  }
+
+  .iti__flag-container {
+    padding: 0 7px;
+    border-radius: 12px;
+    border: 2px solid $light-color;
+
+    @include w(380px) {
+      padding: 0;
+      border-radius: 0;
+      border: none;
+    }
+  }
+}

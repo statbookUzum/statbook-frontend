@@ -14,6 +14,7 @@ import './components/smoothScroll';
 import './components/charts';
 import './components/render-table';
 import './components/accordions';
+import './components/intl-input';
 
 // helpers
 import './components/helper';

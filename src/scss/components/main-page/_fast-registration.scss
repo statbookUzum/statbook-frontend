@@ -65,10 +65,15 @@
   }
 
   &__input-phone {
-    width: 67%;
+    margin-left: auto !important;
+    display: block;
+    max-width: none;
+    width: 100%;
     flex-shrink: 0;
-    @include w($sm) {
-      width: 60%;
+
+    @media (min-width: 380px) {
+      max-width: 250px;
+      padding-left: 20px !important;
     }
   }
 

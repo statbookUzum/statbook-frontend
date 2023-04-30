@@ -5378,13 +5378,17 @@ td a {
   color: rgba(255, 255, 255, 0.6);
 }
 .fast-form__input-phone {
-  width: 67%;
+  margin-left: auto !important;
+  display: block;
+  max-width: none;
+  width: 100%;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 380px) {
   .fast-form__input-phone {
-    width: 60%;
+    max-width: 250px;
+    padding-left: 20px !important;
   }
 }
 .fast-form__phone-code {
@@ -5417,5 +5421,32 @@ td a {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.iti__flag {
+  background-image: url("	https://intl-tel-input.com/intl-tel-input/img/flags.png");
+}
+
+.iti--separate-dial-code.iti--show-flags .iti__selected-dial-code {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 55px;
+  color: #fff;
+}
+
+.fast-registration .iti {
+  width: 100%;
+}
+.fast-registration .iti__flag-container {
+  padding: 0 7px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+}
+@media screen and (max-width: 380px) {
+  .fast-registration .iti__flag-container {
+    padding: 0;
+    border-radius: 0;
+    border: none;
+  }
 }
 /*# sourceMappingURL=main.css.map */
