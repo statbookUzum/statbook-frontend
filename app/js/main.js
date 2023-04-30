@@ -1118,7 +1118,7 @@ if (accordions.length) {
       var self = e.currentTarget;
       var control = self.querySelector('.accordion__control');
       var content = self.querySelector('.accordion__content');
-      self.classList.toggle('open'); // если открыт аккордеон
+      self.classList.toggle('open');
 
       if (self.classList.contains('open')) {
         control.setAttribute('aria-expanded', true);
@@ -1618,7 +1618,7 @@ if (chartsSection) {
       element.innerHTML = '';
     }
 
-    var positionStyle = data.position < 0 ? 'analytics-line__item-profit--down' : null;
+    var positionStyle = data.position < 0 ? 'analytics-line__positions--down' : null;
     console.log(data);
     element.innerHTML += "\n    <div class=\"category-analytics__line analytics-line\">\n    <div class=\"analytics-line__top\">\n      <div class=\"analytics-line__title\">\n        <div class=\"analytics-line__title-text\">\n          \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F - ".concat(data.title, ".\n        </div>\n        <div class=\"analytics-line__title-report\">\n          \u041E\u0442\u0447\u0435\u0442 \u0417\u0430 30 \u0434\u043D\u0435\u0439\n        </div>\n      </div>\n      <div class=\"analytics-line__positions ").concat(positionStyle, "\">\n        ").concat(data.position, " \u043F\u043E\u0437\u0438\u0446\u0438\u0439\n      </div>\n    </div>\n    <div class=\"analytics-line__content\" data-simplebar>\n      <ul class=\"analytics-line__list\">\n      ").concat(data.categoryArray.map(function (item) {
       var positionStyle = item.position >= 0 ? 'analytics-line__item-profit--up' : 'analytics-line__item-profit--down';
@@ -1898,6 +1898,8 @@ if (tariffButtonsWrapper) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_disable_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../functions/disable-scroll */ "./src/js/functions/disable-scroll.js");
 /* harmony import */ var _functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/enable-scroll */ "./src/js/functions/enable-scroll.js");
+/* harmony import */ var _smoothScroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./smoothScroll */ "./src/js/components/smoothScroll.js");
+
 
 
 var navButton = document.querySelector('.menu-btn');
@@ -1905,16 +1907,26 @@ var navWrapper = document.querySelector('.header__desc');
 var navLink = document.querySelectorAll('.nav__link');
 
 if (navButton) {
-  navButton.addEventListener('click', function () {
-    navButton.classList.toggle('active');
-    navWrapper.classList.toggle('active');
+  if (window.innerWidth < 992) {
+    _smoothScroll__WEBPACK_IMPORTED_MODULE_2__.scroll.destroy();
+    navButton.addEventListener('click', function () {
+      navButton.classList.toggle('active');
+      navWrapper.classList.toggle('active');
 
-    if (navWrapper.matches('.active')) {
-      (0,_functions_disable_scroll__WEBPACK_IMPORTED_MODULE_0__.disableScroll)();
-    } else {
-      (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
-    }
-  });
+      if (navWrapper.matches('.active')) {
+        (0,_functions_disable_scroll__WEBPACK_IMPORTED_MODULE_0__.disableScroll)();
+      } else {
+        (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
+      }
+    });
+    navLink.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
+        navButton.classList.remove('active');
+        navWrapper.classList.remove('active');
+      });
+    });
+  }
 }
 
 /***/ }),
@@ -2121,6 +2133,9 @@ var swiperReviews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.reviews
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "scroll": () => (/* binding */ scroll)
+/* harmony export */ });
 /* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! smooth-scroll */ "./node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js");
 /* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(smooth_scroll__WEBPACK_IMPORTED_MODULE_0__);
 

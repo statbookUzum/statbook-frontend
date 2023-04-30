@@ -517,7 +517,7 @@ if (chartsSection) {
     if (firstFlag) {
       element.innerHTML = '';
     }
-    const positionStyle = data.position < 0 ? 'analytics-line__item-profit--down' : null;
+    const positionStyle = data.position < 0 ? 'analytics-line__positions--down' : null;
     console.log(data);
     element.innerHTML += `
     <div class="category-analytics__line analytics-line">

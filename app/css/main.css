@@ -4849,7 +4849,7 @@ td a {
     flex-direction: column;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .benefits__item {
     gap: 10px;
   }

@@ -1,19 +1,33 @@
 import { disableScroll } from '../functions/disable-scroll';
 import { enableScroll } from '../functions/enable-scroll';
+import { scroll } from './smoothScroll';
 
 const navButton = document.querySelector('.menu-btn');
 const navWrapper = document.querySelector('.header__desc');
 const navLink = document.querySelectorAll('.nav__link')
 
 if (navButton) {
-  navButton.addEventListener('click', () => {
-    navButton.classList.toggle('active');
-    navWrapper.classList.toggle('active');
+  if (window.innerWidth < 992) {
+    scroll.destroy();
 
-    if (navWrapper.matches('.active')) {
-      disableScroll();
-    } else {
-      enableScroll();
-    }
-  });
+    navButton.addEventListener('click', () => {
+      navButton.classList.toggle('active');
+      navWrapper.classList.toggle('active');
+
+      if (navWrapper.matches('.active')) {
+        disableScroll();
+      } else {
+        enableScroll();
+      }
+    });
+
+    navLink.forEach(link => {
+      link.addEventListener('click', (e) => {
+        enableScroll();
+
+        navButton.classList.remove('active');
+        navWrapper.classList.remove('active');
+      });
+    });
+  }
 }

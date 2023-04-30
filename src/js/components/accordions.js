@@ -10,7 +10,6 @@ if (accordions.length) {
 
       self.classList.toggle('open');
 
-      // если открыт аккордеон
       if (self.classList.contains('open')) {
         control.setAttribute('aria-expanded', true);
         content.setAttribute('aria-hidden', false);
