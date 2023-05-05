@@ -45,6 +45,11 @@
     max-width: 650px;
     background-color: transparent;
 
+    overflow: hidden;
+    will-change: max-width;
+    transition: max-width 0.3s ease-in;
+    transition-delay: 0.5s;
+
     .custom-input__input {
       border-radius: 12px;
       border: 2px solid rgba($light-color, 0.4);
@@ -56,6 +61,8 @@
       color: rgba($light-color, 0.6);
 
       background-color: transparent;
+
+      transition: background-color 0.3s ease-in, border-color 0.3s ease-in;
 
       &::placeholder {
         font-weight: inherit;
@@ -72,6 +79,63 @@
       &:focus,
       &:hover {
         border-color: $light-color;
+      }
+    }
+
+    .custom-input__button {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      z-index: 2;
+      padding: 5px 3px;
+      border-radius: 7px;
+      width: 122px;
+
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 170%;
+
+      will-change: transform;
+      transform: translateZ(0);
+      transform: translate(120%, -50%);
+      transition: transform 0.3s ease-in;
+      transition-delay: 0s;
+
+      &:focus,
+      &:hover {
+        animation-name: hvr-pulse-absolute;
+      }
+
+      svg {
+        display: none;
+        width: 100%;
+        height: 100%;
+      }
+
+      @include w($sm) {
+        font-size: 0;
+        padding: 0;
+        width: 25px;
+        height: 25px;
+
+        background-image: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        transform: translate(150%, -50%);
+
+        svg {
+          display: block;
+        }
+      }
+    }
+
+    .custom-input__clean {
+      right: 154px;
+
+      @include w($md) {
+        display: none;
       }
     }
 

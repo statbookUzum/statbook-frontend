@@ -15,6 +15,8 @@ import './components/charts';
 import './components/render-table';
 import './components/accordions';
 import './components/intl-input';
+import './components/https-request';
+import './components/get-data';
 
 // helpers
 import './components/helper';

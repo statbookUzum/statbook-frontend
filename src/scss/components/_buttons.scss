@@ -256,6 +256,15 @@
   }
 }
 
+@keyframes hvr-pulse-absolute {
+  25% {
+    transform: translateY(-50%) scale(1.05);
+  }
+  75% {
+    transform: translateY(-50%) scale(0.95);
+  }
+}
+
 @keyframes hvr-back-pulse {
   50% {
     background-color: rgba($color-blue, 0.75);
