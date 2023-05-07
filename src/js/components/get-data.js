@@ -1,71 +1,109 @@
-import { getShopHelperList, getShopDataWithId } from "./https-request";
+import { getHelperData, getDataWithId } from "./https-request";
+import { showHelperList } from "./search-form/show-helper-list";
+import { renderCategoryList, renderShopList } from "./search-form/renderHelperList";
+import { transformCategoryData, transformShopData } from "./search-form/transformSearchData";
+import { renderBreadcrumbs } from "./search-form/renderBreadcrumbs";
+import { setLoadingAnimation } from "./setLoadingAnimation";
 import { debounce } from "./helper";
 
 const searchForm = document.querySelector('[data-search]');
 
 if (searchForm) {
+  const pageType = document.querySelector('.main').getAttribute('data-page-type');
   const searchInput = searchForm.querySelector('.custom-input__input');
-  const helperList = document.querySelector('.search-form__helper-list');
-  const inputSellerId = searchForm.querySelector('.custom-input__hidden-id');
+  const inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
+  const helperWrapper = document.querySelector('.search-form__helper-wrapper');
 
-  let debounceRender = debounce(renderShopHelperList, 1500);
+  let debounceRender = debounce(renderHelperList, 1500);
 
   searchInput.addEventListener('input', () => {
     debounceRender(searchInput.value);
   });
 
-  function renderShopHelperList(value) {
-    if (!value) {
-      helperList.style.opacity = '0';
-
-      helperList.innerHTML = '';
-    }
+  function renderHelperList(value) {
+    showHelperList(value);
 
     if (value) {
-      helperList.style.opacity = '1';
+      setLoadingAnimation(helperWrapper, true);
 
-      getShopHelperList(value)
-        .then(response => {
-          helperList.innerHTML = '';
-          console.log(response.data);
-          for (let i = 0; i <= 30; i++) {
-            helperList.innerHTML += `
-          <li class="search-form__helper-item" role="button" tabindex="0" data-seller-id="${response.data[i].seller_id}">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M16.9697 16.9697C17.2626 16.6768 17.7374 16.6768 18.0303 16.9697L22.0303 20.9697C22.3232 21.2626 22.3232 21.7374 22.0303 22.0303C21.7374 22.3232 21.2626 22.3232 20.9697 22.0303L16.9697 18.0303C16.6768 17.7374 16.6768 17.2626 16.9697 16.9697Z"
-              fill="rgba(4, 15, 35, 0.3)" />
-            <path
-              d="M20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11Z"
-              stroke="rgba(4, 15, 35, 0.3)" stroke-width="1.5" stroke-linecap="round" />
-          </svg>
-            ${response.data[i].title}
-        </li>
-          `;
-          }
-        })
-        .catch(error => {
-          if (error.request) {
-            helperList.innerHTML = `
-            <li class="search-form__helper-item" role="button">
-            <span>
-              Продавцов не найдено.
-            </span>
-          </li>
-            `;
-            console.log(error.request.response);
-          }
-        });
+      if (pageType === 'category') {
+        getHelperData(value, pageType)
+          .then(response => transformCategoryData(response))
+          .then(responseObj => {
+            renderBreadcrumbs(responseObj.breadcrumbs[responseObj.helperList[0]?.category_id]);
+            renderCategoryList(responseObj.helperList);
+
+            inputHiddenForId.value = responseObj.helperList[0] ? responseObj.helperList[0].category_id : '';
+
+            setLoadingAnimation(helperWrapper, false);
+          })
+          .catch(error => {
+            console.log(error);
+            renderCategoryList(null);
+          });
+      }
+
+      if (pageType === 'shop') {
+        getHelperData(value, pageType)
+          .then(response => transformShopData(response))
+          .then(helperList => {
+            renderShopList(helperList);
+
+            inputHiddenForId.value = helperList[0] ? helperList[0].seller_id : '';
+
+            setLoadingAnimation(helperWrapper, false);
+          })
+          .catch(error => {
+            console.log(error);
+            renderShopList(null);
+          });
+      }
     }
   }
 
-  helperList.addEventListener('click', ({ target }) => {
-    if (target.matches('.search-form__helper-item')) {
-      searchInput.value = target.textContent.trim();
-      inputSellerId.value = target.getAttribute('data-seller-id');
+  helperWrapper.addEventListener('click', ({ target }) => {
+    if (target.matches('.search-form-request')) {
+      const text = target.textContent.trim();
+      const id = target.getAttribute('data-id');
 
-      getShopDataWithId(target.getAttribute('data-seller-id'))
-        .then(response => console.log(response));
+      setLoadingAnimation(helperWrapper, true);
+
+      searchInput.value = text;
+
+      if (inputHiddenForId.value === id) return;
+
+      inputHiddenForId.value = id;
+
+      if (pageType === 'category') {
+        getHelperData(text, pageType)
+          .then(response => transformCategoryData(response))
+          .then(responseObj => {
+            renderBreadcrumbs(responseObj.breadcrumbs[id]);
+            renderCategoryList(responseObj.helperList);
+            searchInput.focus();
+
+            setLoadingAnimation(helperWrapper, false);
+          })
+          .catch(error => {
+            console.log(error);
+            renderCategoryList(null);
+          });
+      }
+
+      if (pageType === 'shop') {
+        getHelperData(text, pageType)
+          .then(response => transformShopData(response))
+          .then(helperList => {
+            renderShopList(helperList);
+            searchInput.focus();
+
+            setLoadingAnimation(helperWrapper, false);
+          })
+          .catch(error => {
+            console.log(error);
+            renderShopList(null);
+          });
+      }
     }
   });
 }

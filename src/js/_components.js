@@ -18,5 +18,11 @@ import './components/intl-input';
 import './components/https-request';
 import './components/get-data';
 
+// search form
+// import './components/search-form/show-helper-list';
+// import './components/search-form/renderHelperList';
+// import './components/search-form/renderBreadcrumbs';
+// import './components/search-form/transformSearchData';
+
 // helpers
-import './components/helper';
+// import './components/helper';

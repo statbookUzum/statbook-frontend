@@ -976,7 +976,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_intl_input__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/intl-input */ "./src/js/components/intl-input.js");
 /* harmony import */ var _components_https_request__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/https-request */ "./src/js/components/https-request.js");
 /* harmony import */ var _components_get_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/get-data */ "./src/js/components/get-data.js");
-/* harmony import */ var _components_helper__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/helper */ "./src/js/components/helper.js");
 // import './components/slider';
 
 
@@ -995,9 +994,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // helpers
-
-
+ // search form
+// import './components/search-form/show-helper-list';
+// import './components/search-form/renderHelperList';
+// import './components/search-form/renderBreadcrumbs';
+// import './components/search-form/transformSearchData';
+// helpers
+// import './components/helper';
 
 /***/ }),
 
@@ -1750,53 +1753,105 @@ if (formatInput) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _https_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./https-request */ "./src/js/components/https-request.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+/* harmony import */ var _search_form_show_helper_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-form/show-helper-list */ "./src/js/components/search-form/show-helper-list.js");
+/* harmony import */ var _search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search-form/renderHelperList */ "./src/js/components/search-form/renderHelperList.js");
+/* harmony import */ var _search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./search-form/transformSearchData */ "./src/js/components/search-form/transformSearchData.js");
+/* harmony import */ var _search_form_renderBreadcrumbs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search-form/renderBreadcrumbs */ "./src/js/components/search-form/renderBreadcrumbs.js");
+/* harmony import */ var _setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./setLoadingAnimation */ "./src/js/components/setLoadingAnimation.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+
+
+
+
+
 
 
 var searchForm = document.querySelector('[data-search]');
 
 if (searchForm) {
+  var pageType = document.querySelector('.main').getAttribute('data-page-type');
   var searchInput = searchForm.querySelector('.custom-input__input');
-  var helperList = document.querySelector('.search-form__helper-list');
-  var inputSellerId = searchForm.querySelector('.custom-input__hidden-id');
-  var debounceRender = (0,_helper__WEBPACK_IMPORTED_MODULE_1__.debounce)(renderShopHelperList, 1500);
+  var inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
+  var helperWrapper = document.querySelector('.search-form__helper-wrapper');
+  var debounceRender = (0,_helper__WEBPACK_IMPORTED_MODULE_6__.debounce)(renderHelperList, 1500);
   searchInput.addEventListener('input', function () {
     debounceRender(searchInput.value);
   });
 
-  function renderShopHelperList(value) {
-    if (!value) {
-      helperList.style.opacity = '0';
-      helperList.innerHTML = '';
-    }
+  function renderHelperList(value) {
+    (0,_search_form_show_helper_list__WEBPACK_IMPORTED_MODULE_1__.showHelperList)(value);
 
     if (value) {
-      helperList.style.opacity = '1';
-      (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getShopHelperList)(value).then(function (response) {
-        helperList.innerHTML = '';
-        console.log(response.data);
+      (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, true);
 
-        for (var i = 0; i <= 30; i++) {
-          helperList.innerHTML += "\n          <li class=\"search-form__helper-item\" role=\"button\" tabindex=\"0\" data-seller-id=\"".concat(response.data[i].seller_id, "\">\n          <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path fill-rule=\"evenodd\" clip-rule=\"evenodd\"\n              d=\"M16.9697 16.9697C17.2626 16.6768 17.7374 16.6768 18.0303 16.9697L22.0303 20.9697C22.3232 21.2626 22.3232 21.7374 22.0303 22.0303C21.7374 22.3232 21.2626 22.3232 20.9697 22.0303L16.9697 18.0303C16.6768 17.7374 16.6768 17.2626 16.9697 16.9697Z\"\n              fill=\"rgba(4, 15, 35, 0.3)\" />\n            <path\n              d=\"M20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11Z\"\n              stroke=\"rgba(4, 15, 35, 0.3)\" stroke-width=\"1.5\" stroke-linecap=\"round\" />\n          </svg>\n            ").concat(response.data[i].title, "\n        </li>\n          ");
-        }
-      }).catch(function (error) {
-        if (error.request) {
-          helperList.innerHTML = "\n            <li class=\"search-form__helper-item\" role=\"button\">\n            <span>\n              \u041F\u0440\u043E\u0434\u0430\u0432\u0446\u043E\u0432 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.\n            </span>\n          </li>\n            ";
-          console.log(error.request.response);
-        }
-      });
+      if (pageType === 'category') {
+        (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(value, pageType).then(function (response) {
+          return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformCategoryData)(response);
+        }).then(function (responseObj) {
+          var _responseObj$helperLi;
+
+          (0,_search_form_renderBreadcrumbs__WEBPACK_IMPORTED_MODULE_4__.renderBreadcrumbs)(responseObj.breadcrumbs[(_responseObj$helperLi = responseObj.helperList[0]) === null || _responseObj$helperLi === void 0 ? void 0 : _responseObj$helperLi.category_id]);
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderCategoryList)(responseObj.helperList);
+          inputHiddenForId.value = responseObj.helperList[0] ? responseObj.helperList[0].category_id : '';
+          (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, false);
+        }).catch(function (error) {
+          console.log(error);
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderCategoryList)(null);
+        });
+      }
+
+      if (pageType === 'shop') {
+        (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(value, pageType).then(function (response) {
+          return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformShopData)(response);
+        }).then(function (helperList) {
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderShopList)(helperList);
+          inputHiddenForId.value = helperList[0] ? helperList[0].seller_id : '';
+          (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, false);
+        }).catch(function (error) {
+          console.log(error);
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderShopList)(null);
+        });
+      }
     }
   }
 
-  helperList.addEventListener('click', function (_ref) {
+  helperWrapper.addEventListener('click', function (_ref) {
     var target = _ref.target;
 
-    if (target.matches('.search-form__helper-item')) {
-      searchInput.value = target.textContent.trim();
-      inputSellerId.value = target.getAttribute('data-seller-id');
-      (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getShopDataWithId)(target.getAttribute('data-seller-id')).then(function (response) {
-        return console.log(response);
-      });
+    if (target.matches('.search-form-request')) {
+      var text = target.textContent.trim();
+      var id = target.getAttribute('data-id');
+      (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, true);
+      searchInput.value = text;
+      if (inputHiddenForId.value === id) return;
+      inputHiddenForId.value = id;
+
+      if (pageType === 'category') {
+        (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(text, pageType).then(function (response) {
+          return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformCategoryData)(response);
+        }).then(function (responseObj) {
+          (0,_search_form_renderBreadcrumbs__WEBPACK_IMPORTED_MODULE_4__.renderBreadcrumbs)(responseObj.breadcrumbs[id]);
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderCategoryList)(responseObj.helperList);
+          searchInput.focus();
+          (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, false);
+        }).catch(function (error) {
+          console.log(error);
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderCategoryList)(null);
+        });
+      }
+
+      if (pageType === 'shop') {
+        (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(text, pageType).then(function (response) {
+          return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformShopData)(response);
+        }).then(function (helperList) {
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderShopList)(helperList);
+          searchInput.focus();
+          (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, false);
+        }).catch(function (error) {
+          console.log(error);
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderShopList)(null);
+        });
+      }
     }
   });
 }
@@ -1903,39 +1958,42 @@ if (tablesToHide.length) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getShopDataWithId": () => (/* binding */ getShopDataWithId),
-/* harmony export */   "getShopHelperList": () => (/* binding */ getShopHelperList)
+/* harmony export */   "getDataWithId": () => (/* binding */ getDataWithId),
+/* harmony export */   "getHelperData": () => (/* binding */ getHelperData)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
 
 
-
-var request = function request(url, data, headers) {
-  return axios__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, data, {
-    headers: headers
-  });
+var getHelperData = function getHelperData(value, searchType) {
+  var urls = {
+    shop: 'https://statbook.uz/server/get_seller/',
+    category: 'https://statbook.uz/server/get_category?title='
+  };
+  var url = urls[searchType] + value;
+  return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url);
 };
-
-var getShopHelperList = function getShopHelperList(value) {
-  var url = 'http://158.160.24.64:84/api/seller/seller_name_by_fragment.php';
+var getDataWithId = function getDataWithId(id) {
+  var days = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 15;
+  var flag = arguments.length > 2 ? arguments[2] : undefined;
+  var urls = {
+    shop: {
+      url: 'http://158.160.24.64:84/api/seller/seller_review.php',
+      idType: 'sellerId'
+    },
+    category: {
+      url: 'http://158.160.24.64:84/api/category/category_review.php',
+      idType: 'categoryId'
+    }
+  };
   var headers = {
     'Content-Type': 'multipart/form-data'
   };
   var data = new FormData();
-  data.append('sellerNameFragment', value);
-  return request(url, data, headers);
-};
-var getShopDataWithId = function getShopDataWithId(id) {
-  var url = 'http://158.160.24.64:84/api/seller/seller_review.php';
-  var headers = {
-    'Content-Type': 'multipart/form-data'
-  };
-  var data = new FormData();
-  data.append('sellerId', id);
-  data.append('startDate', (0,_helper__WEBPACK_IMPORTED_MODULE_0__.subtractDaysFromToday)(15));
+  data.append(urls["".concat(flag)].idType, id);
+  data.append('startDate', (0,_helper__WEBPACK_IMPORTED_MODULE_0__.subtractDaysFromToday)(days));
   data.append('endDate', (0,_helper__WEBPACK_IMPORTED_MODULE_0__.subtractDaysFromToday)(0));
-  return request(url, data, headers);
+  return request(urls["".concat(flag)].url, data, headers);
 };
 
 /***/ }),
@@ -2279,6 +2337,202 @@ function renderSellerCard(data, elements) {
   elements.forEach(function (element) {
     element.innerHTML = "\n    <div class=\"seller-card__image\">\n      <img src=\"".concat(shopImage ? shopImage : './img/seller-card-default.svg', "\" alt=\"Top Seller\">\n    </div>\n    <div class=\"seller-card__info\">\n      <div class=\"seller-card__info-top\">\n        <h2 class=\"seller-card__title\">\n          ").concat(shopName, "\n        </h2>\n      <div class=\"seller-card__reviews\">\n        <span class=\"seller-card__reviews-score\">").concat(stars, "</span> (<span\n          class=\"seller-card__reviews-count\">").concat(reviewsAmount, " </span> \u043E\u0442\u0437\u044B\u0432\u043E\u0432)\n      </div>\n    </div>\n    <div class=\"seller-card__start\">\n      \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 \u043D\u0430 UZUM \u0441 <span>").concat(startTime, "</span>\n    </div>\n    <div class=\"seller-card__desc\">\n      ").concat(description, "\n    </div>\n    ");
   });
+}
+
+/***/ }),
+
+/***/ "./src/js/components/search-form/renderBreadcrumbs.js":
+/*!************************************************************!*\
+  !*** ./src/js/components/search-form/renderBreadcrumbs.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderBreadcrumbs": () => (/* binding */ renderBreadcrumbs)
+/* harmony export */ });
+var parentsWrapper = document.querySelector('.search-form__parents-list');
+function renderBreadcrumbs(parentsList) {
+  if (!parentsList) {
+    parentsWrapper.innerHTML = '<div class="search-form__parents-item">Товары</div>';
+    return;
+  }
+
+  parentsWrapper.innerHTML = "\n        ".concat(parentsList.map(function (parentItem, i) {
+    return "<div class=\"search-form__parents-item search-form-request ".concat(i === parentsList.length - 1 ? 'active' : '', "\" data-id=").concat(parentItem.category_id, " role=\"button\">").concat(parentItem.title_ru ? parentItem.title_ru : parentItem.title_uz, "</div>");
+  }).join(" "), "\n                    ");
+}
+
+/***/ }),
+
+/***/ "./src/js/components/search-form/renderHelperList.js":
+/*!***********************************************************!*\
+  !*** ./src/js/components/search-form/renderHelperList.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderCategoryList": () => (/* binding */ renderCategoryList),
+/* harmony export */   "renderShopList": () => (/* binding */ renderShopList)
+/* harmony export */ });
+var helperList = document.querySelector('.search-form__helper-list');
+function renderCategoryList(arr) {
+  helperList.innerHTML = '';
+
+  if (!arr) {
+    helperList.innerHTML = 'Произошила ошибка, повторите запрос позже';
+  }
+
+  if (arr.length === 0) {
+    helperList.innerHTML = "\n      <div class=\"search-form__helper-item\" role=\"button\">\n        <span>\n          \u041F\u0440\u043E\u0434\u0430\u0432\u0446\u043E\u0432 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.\n        </span>\n      </div>\n    ";
+    return;
+  }
+
+  for (var i = 0; i < arr.length; i++) {
+    var _arr$i = arr[i],
+        category_id = _arr$i.category_id,
+        title_ru = _arr$i.title_ru,
+        title_uz = _arr$i.title_uz;
+    helperList.innerHTML += "\n      <div class=\"search-form__helper-item search-form-request\" role=\"button\" tabindex=\"0\" data-id=\"".concat(category_id, "\">\n      <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\"\n          d=\"M16.9697 16.9697C17.2626 16.6768 17.7374 16.6768 18.0303 16.9697L22.0303 20.9697C22.3232 21.2626 22.3232 21.7374 22.0303 22.0303C21.7374 22.3232 21.2626 22.3232 20.9697 22.0303L16.9697 18.0303C16.6768 17.7374 16.6768 17.2626 16.9697 16.9697Z\"\n          fill=\"rgba(4, 15, 35, 0.3)\" />\n        <path\n          d=\"M20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11Z\"\n          stroke=\"rgba(4, 15, 35, 0.3)\" stroke-width=\"1.5\" stroke-linecap=\"round\" />\n      </svg>\n        ").concat(title_ru ? title_ru : title_uz, "\n      </div>\n      ");
+  }
+}
+function renderShopList(arr) {
+  helperList.innerHTML = '';
+
+  if (!arr) {
+    helperList.innerHTML = 'Произошила ошибка, повторите запрос позже';
+  }
+
+  if (arr.length === 0) {
+    helperList.innerHTML = "\n      <div class=\"search-form__helper-item\" role=\"button\">\n        <span>\n          \u041F\u0440\u043E\u0434\u0430\u0432\u0446\u043E\u0432 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.\n        </span>\n      </div>\n    ";
+    return;
+  }
+
+  for (var i = 0; i < arr.length; i++) {
+    var _arr$i2 = arr[i],
+        seller_id = _arr$i2.seller_id,
+        title = _arr$i2.title,
+        registration_date = _arr$i2.registration_date;
+    helperList.innerHTML += "\n      <div class=\"search-form__helper-item search-form-request\" role=\"button\" tabindex=\"0\" data-id=\"".concat(seller_id, "\">\n      <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\"\n          d=\"M16.9697 16.9697C17.2626 16.6768 17.7374 16.6768 18.0303 16.9697L22.0303 20.9697C22.3232 21.2626 22.3232 21.7374 22.0303 22.0303C21.7374 22.3232 21.2626 22.3232 20.9697 22.0303L16.9697 18.0303C16.6768 17.7374 16.6768 17.2626 16.9697 16.9697Z\"\n          fill=\"rgba(4, 15, 35, 0.3)\" />\n        <path\n          d=\"M20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11Z\"\n          stroke=\"rgba(4, 15, 35, 0.3)\" stroke-width=\"1.5\" stroke-linecap=\"round\" />\n      </svg>\n        ").concat(title, "\n      </div>\n      ");
+  }
+}
+
+/***/ }),
+
+/***/ "./src/js/components/search-form/show-helper-list.js":
+/*!***********************************************************!*\
+  !*** ./src/js/components/search-form/show-helper-list.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "showHelperList": () => (/* binding */ showHelperList)
+/* harmony export */ });
+var helperWrapper = document.querySelector('.search-form__helper-wrapper');
+var showHelperList = function showHelperList(flag) {
+  if (flag) {
+    helperWrapper.style.opacity = '1';
+    return;
+  }
+
+  helperWrapper.style.opacity = '0';
+};
+
+/***/ }),
+
+/***/ "./src/js/components/search-form/transformSearchData.js":
+/*!**************************************************************!*\
+  !*** ./src/js/components/search-form/transformSearchData.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "transformCategoryData": () => (/* binding */ transformCategoryData),
+/* harmony export */   "transformShopData": () => (/* binding */ transformShopData)
+/* harmony export */ });
+function transformCategoryData(response) {
+  var responseObj = {
+    helperList: [],
+    breadcrumbs: {}
+  };
+
+  for (var i = 0; i < 30; i++) {
+    if (!response.data[i]) break;
+    var _response$data$i = response.data[i],
+        category_id = _response$data$i.category_id,
+        title_ru = _response$data$i.title_ru,
+        title_uz = _response$data$i.title_uz,
+        parents_items = _response$data$i.parents_items;
+    responseObj.helperList.push({
+      category_id: category_id,
+      title_ru: title_ru,
+      title_uz: title_uz
+    });
+    responseObj.breadcrumbs[category_id] = parents_items;
+  }
+
+  return responseObj;
+}
+function transformShopData(response) {
+  var helperList = [];
+
+  for (var i = 0; i < 30; i++) {
+    if (!response.data[i]) break;
+    var _response$data$i2 = response.data[i],
+        seller_id = _response$data$i2.seller_id,
+        title = _response$data$i2.title,
+        registration_date = _response$data$i2.registration_date;
+    helperList.push({
+      seller_id: seller_id,
+      title: title,
+      registration_date: registration_date
+    });
+  }
+
+  return helperList;
+}
+
+/***/ }),
+
+/***/ "./src/js/components/setLoadingAnimation.js":
+/*!**************************************************!*\
+  !*** ./src/js/components/setLoadingAnimation.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setLoadingAnimation": () => (/* binding */ setLoadingAnimation)
+/* harmony export */ });
+function setLoadingAnimation(parentElement, flag) {
+  var loader = parentElement.querySelector('.loader-spinner');
+
+  if (loader) {
+    if (flag) {
+      loader.classList.add('active');
+    } else {
+      loader.classList.remove('active');
+    }
+  } else {
+    var loaderElement = document.createElement('div');
+    loaderElement.classList.add('loader-spinner');
+    loaderElement.innerHTML = "\n      <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><style>.spinner_EUy1{animation:spinner_grm3 1.2s infinite}.spinner_f6oS{animation-delay:.1s}.spinner_g3nX{animation-delay:.2s}.spinner_nvEs{animation-delay:.3s}.spinner_MaNM{animation-delay:.4s}.spinner_4nle{animation-delay:.5s}.spinner_ZETM{animation-delay:.6s}.spinner_HXuO{animation-delay:.7s}.spinner_YaQo{animation-delay:.8s}.spinner_GOx1{animation-delay:.9s}.spinner_4vv9{animation-delay:1s}.spinner_NTs9{animation-delay:1.1s}.spinner_auJJ{transform-origin:center;animation:spinner_T3O6 6s linear infinite}@keyframes spinner_grm3{0%,50%{animation-timing-function:cubic-bezier(.27,.42,.37,.99);r:1px}25%{animation-timing-function:cubic-bezier(.53,0,.61,.73);r:2px}}@keyframes spinner_T3O6{0%{transform:rotate(360deg)}100%{transform:rotate(0deg)}}</style><g class=\"spinner_auJJ\"><circle class=\"spinner_EUy1\" cx=\"12\" cy=\"3\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_f6oS\" cx=\"16.50\" cy=\"4.21\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_NTs9\" cx=\"7.50\" cy=\"4.21\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_g3nX\" cx=\"19.79\" cy=\"7.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_4vv9\" cx=\"4.21\" cy=\"7.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_nvEs\" cx=\"21.00\" cy=\"12.00\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_GOx1\" cx=\"3.00\" cy=\"12.00\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_MaNM\" cx=\"19.79\" cy=\"16.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_YaQo\" cx=\"4.21\" cy=\"16.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_4nle\" cx=\"16.50\" cy=\"19.79\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_HXuO\" cx=\"7.50\" cy=\"19.79\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_ZETM\" cx=\"12\" cy=\"21\" r=\"1\"/></g></svg>\n    ";
+    parentElement.insertAdjacentElement('beforeEnd', loaderElement);
+
+    if (flag) {
+      loaderElement.classList.add('active');
+    } else {
+      loaderElement.classList.remove('active');
+    }
+  }
 }
 
 /***/ }),

@@ -68,17 +68,18 @@
     </div>
   </header>
 
-  <main class="main">
+  <main class="main" data-page-type="category">
     <section class="top-section">
       <div class="container">
         <h1 class="top-section__title">
           Анализ категорий на <span>Uzum</span>
         </h1>
 
-        <form action="#" class="search-form top-section__search">
+        <form action="#" class="search-form top-section__search" data-search>
+          <input type="hidden" name="seller-id" class="custom-input__hidden-id">
           <label class="auth-form__label custom-input custom-input--search">
             <input class="custom-input__input" type="text" name="shop-search"
-              placeholder="Найдите нужную вам магазин товаров по названию или ссылке" required>
+              placeholder="Найдите нужную вам категорию по названию или ссылке" required>
             <button type="button" class="custom-input__clean btn-reset">
               <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 1L1 13.9999M14 14L1 1.00006" stroke="#040F23" stroke-opacity="0.4" stroke-width="1.5"
@@ -89,6 +90,16 @@
               Искать
             </button>
           </label>
+          <div class="search-form__helper-wrapper">
+            <div class="search-form__parents-list-wrapper" data-simplebar>
+              <div class="search-form__parents-list">
+                <div class="search-form__parents-item">Товары</div>
+              </div>
+            </div>
+            <div class="search-form__helper-list-wrapper" data-simplebar>
+              <div class="search-form__helper-list"></div>
+            </div>
+          </div>
         </form>
       </div>
     </section>
