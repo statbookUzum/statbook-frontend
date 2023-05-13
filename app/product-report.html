@@ -86,9 +86,10 @@
         </h1>
 
         <form action="#" class="search-form top-section__search" data-search>
+          <input type="hidden" name="products-id" class="custom-input__hidden-id">
           <label class="auth-form__label custom-input custom-input--search">
             <input class="custom-input__input" type="text" name="shop-search"
-              placeholder="Найдите нужную вам магазин товаров по названию или ссылке" required>
+              placeholder="Найдите нужный вам товар по названию или ссылке" required>
             <button type="button" class="custom-input__clean btn-reset">
               <svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
                 <path d="M14 1L1 13.9999M14 14L1 1.00006" stroke="#040F23" stroke-opacity="0.4" stroke-width="1.5"
@@ -97,8 +98,21 @@
             </button>
             <button type="submit" class="custom-input__button main-button btn-reset">
               Искать
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M16.9697 16.9697C17.2626 16.6768 17.7374 16.6768 18.0303 16.9697L22.0303 20.9697C22.3232 21.2626 22.3232 21.7374 22.0303 22.0303C21.7374 22.3232 21.2626 22.3232 20.9697 22.0303L16.9697 18.0303C16.6768 17.7374 16.6768 17.2626 16.9697 16.9697Z"
+                  fill="#224dff" />
+                <path
+                  d="M20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11Z"
+                  stroke="#224dff" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
             </button>
           </label>
+          <div class="search-form__helper-wrapper">
+            <div class="search-form__helper-list-wrapper" data-simplebar>
+              <div class="search-form__helper-list"></div>
+            </div>
+          </div>
         </form>
       </div>
     </section>
@@ -107,8 +121,11 @@
       <div class="container main-section__container">
         <div class="main-section__wrapper product-report main-border">
           <div class="product-report__top">
-            <div class="product-report__info product-info" data-product-card>Воспользуйтесь поиском для выбора нужного
-              товара</div>
+            <div class="product-report__info product-info" data-product-card>
+              <span class="product-info__start-text">
+                Воспользуйтесь поиском для выбора нужного товара
+              </span>
+            </div>
             <div class="product-report__buttons">
               <button class="product-report__report-btn secondary-button btn-reset">
                 Выгрузить отчет
@@ -138,7 +155,7 @@
             </div>
             <div class="custom-tabs__content">
               <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
-                <div class="main-section__inner analytics-charts">
+                <div class="main-section__inner analytics-charts" style="display: none;">
                   <div class="analytics-charts__title">
                     Данные по товару за 30 дней:
                   </div>
@@ -163,8 +180,7 @@
                       <div class="analytics-charts__item-amount">
                         <span class="analytics-charts-amount" data-total-profit>
                           50
-                        </span>
-                        миллионов сум
+                        </span> сум
                       </div>
                     </li>
                     <li class="analytics-charts__item analytics-charts__item--average">
@@ -189,7 +205,7 @@
                         +287%
                       </div>
                     </div>
-                    <span class="chart-span">Млн.</span>
+                    <span class="chart-span">Шт.</span>
                     <div class="chart-container" data-simplebar>
                       <div class="chart-wrapper">
                         <canvas id="saleChart"></canvas>
@@ -212,7 +228,7 @@
                   <div class="analytics-charts__line">
                     <div class="analytics-charts__top">
                       <div class="analytics-charts__line-title">
-                        График продаж за последние 30 дней
+                        График остатков за последние 30 дней
                       </div>
                     </div>
                     <span class="chart-span">Шт.</span>
@@ -229,537 +245,7 @@
                   <div class="category-analytics__title">
                     Аналитика позиций в категориях за 30 дней:
                   </div>
-                  <div class="category-analytics__list">
-                    <div class="category-analytics__line analytics-line">
-                      <div class="analytics-line__top">
-                        <div class="analytics-line__title">
-                          <div class="analytics-line__title-text">
-                            Категория — Электроника.
-                          </div>
-                          <div class="analytics-line__title-report">
-                            Отчет За 30 дней
-                          </div>
-                        </div>
-                        <!-- примечания для бєка -->
-                        <!-- здесь что бы изменить цвет таблицки на красный, когда позиции в минусе, просто дописывай analytics-line__positions--down -->
-                        <div class="analytics-line__positions">
-                          +13 позиций
-                        </div>
-                      </div>
-                      <div class="analytics-line__content" data-simplebar>
-                        <ul class="analytics-line__list">
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              01.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              28
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +28
-                            </div>
-                            <div class="analytics-line__item-date">
-                              02.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              03.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              04.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              10
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              05.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              06.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              30
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              07.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              22
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              08.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              22
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              09.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              10.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              11.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              10
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              12.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              13.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              14.04
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="category-analytics__line analytics-line">
-                      <div class="analytics-line__top">
-                        <div class="analytics-line__title">
-                          <div class="analytics-line__title-text">
-                            Подкатегория — Умный дом и беопасность.
-                          </div>
-                          <div class="analytics-line__title-report">
-                            Отчет За 30 дней
-                          </div>
-                        </div>
-                        <!-- примечания для бєка -->
-                        <!-- здесь что бы изменить цвет таблицки на красный, когда позиции в минусе, просто дописывай analytics-line__positions--down -->
-                        <div class="analytics-line__positions analytics-line__positions--down">
-                          -26 позиций
-                        </div>
-                      </div>
-                      <div class="analytics-line__content" data-simplebar>
-                        <ul class="analytics-line__list">
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <!-- примечания для бэка -->
-                            <!-- здесь что бы именить цвет на зеленый или красный добавляй класс
-                            analytics-line__item-profit--up для зеленого или analytics-line__item-profit--down для
-                            красного -->
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              01.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              28
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -28
-                            </div>
-                            <div class="analytics-line__item-date">
-                              02.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              03.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              04.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              10
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              05.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              06.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              30
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              07.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              22
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              08.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              22
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              09.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              10.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              11.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              10
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit-down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              12.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              13.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              14.04
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="category-analytics__line analytics-line">
-                      <div class="analytics-line__top">
-                        <div class="analytics-line__title">
-                          <div class="analytics-line__title-text">
-                            Категория — Электроника.
-                          </div>
-                          <div class="analytics-line__title-report">
-                            Отчет За 30 дней
-                          </div>
-                        </div>
-                        <!-- примечания для бєка -->
-                        <!-- здесь что бы изменить цвет таблицки на красный, когда позиции в минусе, просто дописывай analytics-line__positions--down -->
-                        <div class="analytics-line__positions">
-                          +13 позиций
-                        </div>
-                      </div>
-                      <div class="analytics-line__content" data-simplebar>
-                        <ul class="analytics-line__list">
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              01.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              28
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +28
-                            </div>
-                            <div class="analytics-line__item-date">
-                              02.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--down">
-                              -48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              03.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              04.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              10
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              05.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              06.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              30
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              07.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              22
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              08.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              22
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              09.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              10.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              11.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              10
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              12.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              13.04
-                            </div>
-                          </li>
-                          <li class="analytics-line__item">
-                            <div class="analytics-line__item-number">
-                              50
-                            </div>
-                            <div class="analytics-line__item-profit analytics-line__item-profit--up">
-                              +48
-                            </div>
-                            <div class="analytics-line__item-date">
-                              14.04
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                  <div class="category-analytics__list"></div>
                 </div>
               </div>
             </div>

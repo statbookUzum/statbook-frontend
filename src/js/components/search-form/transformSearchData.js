@@ -29,3 +29,17 @@ export function transformShopData(response) {
 
   return helperList;
 }
+
+export function transformProductData(response) {
+  const helperList = [];
+
+  for (let i = 0; i < 30; i++) {
+    if (!response.data[i]) break;
+
+    const { product_id, title } = response.data[i];
+
+    helperList.push({ product_id, title });
+  }
+
+  return helperList;
+}

@@ -7,6 +7,14 @@ export function setHeight() {
   });
 }
 
+export function blurElementAndChildren(element) {
+  element.blur();
+  const children = element.children;
+  for (let i = 0; i < children.length; i++) {
+    blurElementAndChildren(children[i]);
+  }
+}
+
 export function debounce(func, ms) {
   let isThrottled = false,
     savedArgs,
@@ -43,4 +51,12 @@ export function subtractDaysFromToday(days) {
   const mm = String(subtractedDate.getMonth() + 1).padStart(2, '0');
   const dd = String(subtractedDate.getDate()).padStart(2, '0');
   return `${yyyy}-${mm}-${dd}`;
+}
+
+export function removeYearFromDate(strDate) {
+  const date = new Date(strDate);
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+
+  return `${mm}.${dd}`;
 }

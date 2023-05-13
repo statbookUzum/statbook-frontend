@@ -11,7 +11,7 @@ import './components/slider';
 import './components/hide-table';
 import './components/formatSum';
 import './components/smoothScroll';
-import './components/charts';
+import './components/render-products';
 import './components/render-table';
 import './components/accordions';
 import './components/intl-input';

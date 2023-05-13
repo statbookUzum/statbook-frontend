@@ -969,7 +969,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/formatSum */ "./src/js/components/formatSum.js");
 /* harmony import */ var _components_formatSum__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_components_formatSum__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _components_smoothScroll__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/smoothScroll */ "./src/js/components/smoothScroll.js");
-/* harmony import */ var _components_charts__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/charts */ "./src/js/components/charts.js");
+/* harmony import */ var _components_render_products__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/render-products */ "./src/js/components/render-products.js");
 /* harmony import */ var _components_render_table__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/render-table */ "./src/js/components/render-table.js");
 /* harmony import */ var _components_accordions__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/accordions */ "./src/js/components/accordions.js");
 /* harmony import */ var _components_accordions__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_components_accordions__WEBPACK_IMPORTED_MODULE_14__);
@@ -1144,506 +1144,6 @@ if (accordions.length) {
 
 /***/ }),
 
-/***/ "./src/js/components/charts.js":
-/*!*************************************!*\
-  !*** ./src/js/components/charts.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
-
-var chartsSection = document.querySelector('.main-section--charts');
-
-if (chartsSection) {
-  var saleChart = document.getElementById('saleChart');
-  var priceChart = document.getElementById('priceChart');
-  var lostChart = document.getElementById('lostChart');
-  var productCard = document.querySelector('[data-product-card]');
-  var statList = document.querySelectorAll('.analytics-charts-amount');
-  var analyticsList = document.querySelector('.category-analytics__list');
-  var chartsData = {
-    categoryInfo: {
-      title: 'Электроника',
-      position: '+13',
-      categoryArray: [{
-        date: '01.04',
-        score: 50,
-        position: '+48'
-      }, {
-        date: '02.04',
-        score: 50,
-        position: '+48'
-      }, {
-        date: '03.04',
-        score: 50,
-        position: '+48'
-      }, {
-        date: '04.04',
-        score: 50,
-        position: '+48'
-      }, {
-        date: '05.04',
-        score: 50,
-        position: '+48'
-      }],
-      subcategories: [{
-        title: 'Умный дом и беопасность',
-        position: '-26',
-        categoryArray: [{
-          date: '01.04',
-          score: 50,
-          position: '-48'
-        }]
-      }, {
-        title: 'Умный дом и беопасность',
-        position: '-26',
-        categoryArray: [{
-          date: '01.04',
-          score: 50,
-          position: '-48'
-        }]
-      }]
-    },
-    productInfo: {
-      title: 'Умная лампочка Xiaomi Mi Smart LED Bulb Essential, E27, 9 Вт',
-      price: '30.000',
-      seller: 'GADGET market',
-      description: 'Умный свет, который Вас понимает. Лампочка Xiaomi имеет возможность выбора цвета или регулировки цветовой температуры и яркости...',
-      image: ''
-    },
-    totalStat: {
-      sale: 134,
-      profit: 50000000,
-      average: 3.4
-    },
-    saleChartData: [{
-      date: '01.04',
-      value: '30'
-    }, {
-      date: '02.04',
-      value: '10'
-    }, {
-      date: '03.04',
-      value: '22'
-    }, {
-      date: '04.04',
-      value: '24'
-    }, {
-      date: '05.04',
-      value: '7'
-    }, {
-      date: '06.04',
-      value: '18'
-    }, {
-      date: '07.04',
-      value: '28'
-    }, {
-      date: '08.04',
-      value: '10'
-    }, {
-      date: '09.04',
-      value: '10'
-    }, {
-      date: '10.04',
-      value: '15'
-    }, {
-      date: '11.04',
-      value: '12'
-    }, {
-      date: '12.04',
-      value: '20'
-    }, {
-      date: '13.04',
-      value: '29'
-    }, {
-      date: '14.04',
-      value: '9'
-    }, {
-      date: '15.04',
-      value: '15'
-    }, {
-      date: '16.04',
-      value: '18'
-    }, {
-      date: '17.04',
-      value: '30'
-    }, {
-      date: '18.04',
-      value: '27'
-    }, {
-      date: '19.04',
-      value: '22'
-    }, {
-      date: '20.04',
-      value: '17'
-    }, {
-      date: '21.04',
-      value: '22'
-    }, {
-      date: '22.04',
-      value: '24'
-    }, {
-      date: '23.04',
-      value: '27'
-    }, {
-      date: '24.04',
-      value: '22'
-    }, {
-      date: '25.04',
-      value: '17'
-    }, {
-      date: '26.04',
-      value: '15'
-    }, {
-      date: '27.04',
-      value: '12'
-    }, {
-      date: '28.04',
-      value: '16'
-    }, {
-      date: '29.04',
-      value: '19'
-    }, {
-      date: '30.04',
-      value: '22'
-    }],
-    priceChartData: [{
-      date: '01.04',
-      value: '30'
-    }],
-    lostChartData: [{
-      date: '01.04',
-      value: '30'
-    }]
-  };
-
-  if (saleChart) {
-    var labelsData = chartsData.saleChartData.map(function (item) {
-      return item.date;
-    });
-    var valueData = chartsData.saleChartData.map(function (item) {
-      return item.value;
-    });
-    new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(saleChart, {
-      type: 'bar',
-      data: {
-        labels: labelsData,
-        datasets: [{
-          label: 'График продаж',
-          data: valueData,
-          borderWidth: 0,
-          backgroundColor: 'rgba(124, 150, 255, 0.5)',
-          borderRadius: 15,
-          hoverBackgroundColor: '#7C96FF'
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              display: false
-            },
-            ticks: {
-              color: 'rgba(0, 0, 0, 0.25)',
-              font: {
-                family: 'Open Sans',
-                size: 12,
-                weight: 600
-              }
-            }
-          },
-          x: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              callback: function callback(value, index, items) {
-                if (index + 1 === 1) {
-                  return labelsData[index];
-                }
-
-                if ((index + 1) % 5 === 0) {
-                  return labelsData[index];
-                }
-
-                return '';
-              },
-              font: {
-                family: 'Open Sans',
-                size: 12,
-                weight: 600
-              },
-              color: 'rgba(4, 15, 35, 0.25)'
-            }
-          }
-        },
-        maintainAspectRatio: false,
-        barPercentage: 0.8,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            callbacks: {
-              label: function label(context) {
-                var label = context.dataset.label || '';
-
-                if (label) {
-                  label += ': ';
-                }
-
-                label += context.formattedValue;
-                label += ' млн';
-                return label;
-              }
-            }
-          }
-        }
-      }
-    });
-  }
-
-  if (priceChart) {
-    var _labelsData = chartsData.saleChartData.map(function (item) {
-      return item.date;
-    });
-
-    var _valueData = chartsData.saleChartData.map(function (item) {
-      return item.value;
-    });
-
-    new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(priceChart, {
-      type: 'bar',
-      data: {
-        labels: _labelsData,
-        datasets: [{
-          label: 'График цены',
-          data: _valueData,
-          borderWidth: 0,
-          backgroundColor: 'rgba(50, 175, 153, 0.5)',
-          borderRadius: 15,
-          hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)'
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              display: false
-            },
-            ticks: {
-              color: 'rgba(0, 0, 0, 0.25)',
-              font: {
-                family: 'Open Sans',
-                size: 12,
-                weight: 600
-              }
-            }
-          },
-          x: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              callback: function callback(value, index, items) {
-                if (index + 1 === 1) {
-                  return _labelsData[index];
-                }
-
-                if ((index + 1) % 5 === 0) {
-                  return _labelsData[index];
-                }
-
-                return '';
-              },
-              font: {
-                family: 'Open Sans',
-                size: 12,
-                weight: 600
-              },
-              color: 'rgba(4, 15, 35, 0.25)'
-            }
-          }
-        },
-        maintainAspectRatio: false,
-        barPercentage: 0.8,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            callbacks: {
-              label: function label(context) {
-                var label = context.dataset.label || '';
-
-                if (label) {
-                  label += ': ';
-                }
-
-                label += context.formattedValue;
-                label += ' млн';
-                return label;
-              }
-            }
-          }
-        }
-      }
-    });
-  }
-
-  if (lostChart) {
-    var _labelsData2 = chartsData.saleChartData.map(function (item) {
-      return item.date;
-    });
-
-    var _valueData2 = chartsData.saleChartData.map(function (item) {
-      return item.value;
-    });
-
-    new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(lostChart, {
-      type: 'bar',
-      data: {
-        labels: _labelsData2,
-        datasets: [{
-          label: 'График остатков',
-          data: _valueData2,
-          borderWidth: 0,
-          backgroundColor: 'rgba(255, 122, 0, 0.5)',
-          borderRadius: 15,
-          hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)'
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: {
-              display: false
-            },
-            ticks: {
-              color: 'rgba(0, 0, 0, 0.25)',
-              font: {
-                family: 'Open Sans',
-                size: 12,
-                color: 'rgba(4, 15, 35, 0.25)',
-                weight: 600
-              }
-            }
-          },
-          x: {
-            grid: {
-              display: false
-            },
-            ticks: {
-              callback: function callback(value, index, items) {
-                if (index + 1 === 1) {
-                  return _labelsData2[index];
-                }
-
-                if ((index + 1) % 5 === 0) {
-                  return _labelsData2[index];
-                }
-
-                return '';
-              },
-              font: {
-                family: 'Open Sans',
-                size: 12,
-                weight: 600
-              },
-              color: 'rgba(4, 15, 35, 0.25)'
-            }
-          }
-        },
-        maintainAspectRatio: false,
-        barPercentage: 0.8,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            callbacks: {
-              label: function label(context) {
-                var label = context.dataset.label || '';
-
-                if (label) {
-                  label += ': ';
-                }
-
-                label += context.formattedValue;
-                label += ' шт';
-                return label;
-              }
-            }
-          }
-        }
-      }
-    });
-  }
-
-  if (productCard) {
-    renderProductCard(chartsData.productInfo, productCard);
-  }
-
-  if (statList.length) {
-    renderTotalStat(chartsData.totalStat, statList);
-  }
-
-  if (analyticsList) {
-    renderCategory(chartsData.categoryInfo, analyticsList, true);
-  }
-
-  function renderProductCard(data, element) {
-    var title = data.title,
-        price = data.price,
-        seller = data.seller,
-        description = data.description,
-        image = data.image;
-    element.innerHTML = "\n    <div class=\"product-info__image\">\n    <img src=\"".concat(image ? image : './img/product-test-image.jpg', "\"\n      alt=\"").concat(title, "\">\n    </div>\n    <div class=\"product-info__title\">\n      ").concat(title, "\n    </div>\n    <div class=\"product-info__price\">\n      \u0426\u0435\u043D\u0430: <span class=\"product-info__price-amount\">").concat(price, "</span> <span\n        class=\"product-info__price-currency\">\u0441\u0443\u043C</span>\n    </div>\n    <div class=\"product-info__seller\">\n      \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446: <span class=\"product-info__seller-name\">").concat(seller, "</span>\n    </div>\n    <div class=\"product-info__description\">\n      ").concat(description, "\n    </div>\n  ");
-  }
-
-  function renderTotalStat(data, elements) {
-    elements.forEach(function (element) {
-      if (element.matches('[data-total-sale]')) {
-        element.textContent = data.sale;
-      }
-
-      if (element.matches('[data-total-profit]')) {
-        element.textContent = +data.profit / 1000000;
-      }
-
-      if (element.matches('[data-total-average]')) {
-        element.textContent = data.average;
-      }
-    });
-  }
-
-  function renderCategory(data, element, firstFlag) {
-    if (firstFlag) {
-      element.innerHTML = '';
-    }
-
-    var positionStyle = data.position < 0 ? 'analytics-line__positions--down' : null;
-    console.log(data);
-    element.innerHTML += "\n    <div class=\"category-analytics__line analytics-line\">\n    <div class=\"analytics-line__top\">\n      <div class=\"analytics-line__title\">\n        <div class=\"analytics-line__title-text\">\n          \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F - ".concat(data.title, ".\n        </div>\n        <div class=\"analytics-line__title-report\">\n          \u041E\u0442\u0447\u0435\u0442 \u0417\u0430 30 \u0434\u043D\u0435\u0439\n        </div>\n      </div>\n      <div class=\"analytics-line__positions ").concat(positionStyle, "\">\n        ").concat(data.position, " \u043F\u043E\u0437\u0438\u0446\u0438\u0439\n      </div>\n    </div>\n    <div class=\"analytics-line__content\" data-simplebar>\n      <ul class=\"analytics-line__list\">\n      ").concat(data.categoryArray.map(function (item) {
-      var positionStyle = item.position >= 0 ? 'analytics-line__item-profit--up' : 'analytics-line__item-profit--down';
-      return "\n          <li class=\"analytics-line__item\">\n            <div class=\"analytics-line__item-number\">\n              ".concat(item.score, "\n            </div>\n            <div class=\"analytics-line__item-profit ").concat(positionStyle, "\">\n              ").concat(item.position, "\n            </div>\n            <div class=\"analytics-line__item-date\">\n              ").concat(item.date, "\n            </div>\n          </li>\n        ");
-    }).join(' '), "\n      </ul>\n    </div>\n  </div>\n    ");
-
-    if (data.subcategories) {
-      data.subcategories.forEach(function (subcategory) {
-        renderCategory(subcategory, analyticsList, false);
-      });
-    }
-  }
-}
-
-/***/ }),
-
 /***/ "./src/js/components/custom-input.js":
 /*!*******************************************!*\
   !*** ./src/js/components/custom-input.js ***!
@@ -1758,7 +1258,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./search-form/transformSearchData */ "./src/js/components/search-form/transformSearchData.js");
 /* harmony import */ var _search_form_renderBreadcrumbs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search-form/renderBreadcrumbs */ "./src/js/components/search-form/renderBreadcrumbs.js");
 /* harmony import */ var _setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./setLoadingAnimation */ "./src/js/components/setLoadingAnimation.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+/* harmony import */ var _render_table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./render-table */ "./src/js/components/render-table.js");
+/* harmony import */ var _render_products__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./render-products */ "./src/js/components/render-products.js");
+/* harmony import */ var _helperCharts_transformChartsData__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./helperCharts/transformChartsData */ "./src/js/components/helperCharts/transformChartsData.js");
+/* harmony import */ var _helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./helperTablePage/_transformDataForTables */ "./src/js/components/helperTablePage/_transformDataForTables.js");
+/* harmony import */ var _helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./helperTablePage/_transformTotalStatData */ "./src/js/components/helperTablePage/_transformTotalStatData.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
 
 
 
@@ -1773,7 +1291,255 @@ if (searchForm) {
   var searchInput = searchForm.querySelector('.custom-input__input');
   var inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
   var helperWrapper = document.querySelector('.search-form__helper-wrapper');
-  var debounceRender = (0,_helper__WEBPACK_IMPORTED_MODULE_6__.debounce)(renderHelperList, 1500);
+  var sectionsContainer = document.querySelector('.custom-tabs__content');
+  var productCard = document.querySelector('[data-product-card]');
+  var statList = document.querySelectorAll('.analytics-charts-amount');
+  var analyticsList = document.querySelector('.category-analytics__list'); //----------------------------------------------------------------------
+
+  var saleChart = document.getElementById('saleChart');
+  var priceChart = document.getElementById('priceChart');
+  var lostChart = document.getElementById('lostChart');
+  var labelsData = ['', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+
+  var sortLabels = function sortLabels(value, index, items) {
+    if (index + 1 === 1) {
+      return labelsData[index];
+    }
+
+    if ((index + 1) % 5 === 0) {
+      return labelsData[index];
+    }
+
+    if (index + 1 === items.length) {
+      return labelsData[index];
+    }
+
+    return '';
+  };
+
+  var saleCht = !saleChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_12__.Chart(saleChart, {
+    type: 'bar',
+    data: {
+      labels: labelsData,
+      datasets: [{
+        label: 'График продаж',
+        data: [],
+        borderWidth: 0,
+        backgroundColor: 'rgba(124, 150, 255, 0.5)',
+        borderRadius: 15,
+        hoverBackgroundColor: '#7C96FF'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600
+            }
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: sortLabels,
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600
+            },
+            color: 'rgba(4, 15, 35, 0.25)'
+          }
+        }
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function label(context) {
+              var label = context.dataset.label || '';
+
+              if (label) {
+                label += ': ';
+              }
+
+              label += context.formattedValue;
+              label += ' шт.';
+              return label;
+            }
+          }
+        }
+      }
+    }
+  }); // const labelsData = chartsData.saleChartData.map(item => item.date);
+  // const valueData = chartsData.saleChartData.map(item => item.value);
+
+  var priceCht = !priceChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_12__.Chart(priceChart, {
+    type: 'bar',
+    data: {
+      labels: labelsData,
+      datasets: [{
+        label: 'График цены',
+        data: [],
+        borderWidth: 0,
+        backgroundColor: 'rgba(50, 175, 153, 0.5)',
+        borderRadius: 15,
+        hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600
+            }
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: sortLabels,
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600
+            },
+            color: 'rgba(4, 15, 35, 0.25)'
+          }
+        }
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function label(context) {
+              var label = context.dataset.label || '';
+
+              if (label) {
+                label += ': ';
+              }
+
+              label += context.formattedValue;
+              label += ' сум';
+              return label;
+            }
+          }
+        }
+      }
+    }
+  }); // const labelsData = chartsData.saleChartData.map(item => item.date);
+  // const valueData = chartsData.saleChartData.map(item => item.value);
+
+  var lostCht = !lostChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_12__.Chart(lostChart, {
+    type: 'bar',
+    data: {
+      labels: labelsData,
+      datasets: [{
+        label: 'График остатков',
+        data: [],
+        borderWidth: 0,
+        backgroundColor: 'rgba(255, 122, 0, 0.5)',
+        borderRadius: 15,
+        hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)'
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            display: false
+          },
+          ticks: {
+            color: 'rgba(0, 0, 0, 0.25)',
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              color: 'rgba(4, 15, 35, 0.25)',
+              weight: 600
+            }
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            callback: sortLabels,
+            font: {
+              family: 'Open Sans',
+              size: 12,
+              weight: 600
+            },
+            color: 'rgba(4, 15, 35, 0.25)'
+          }
+        }
+      },
+      maintainAspectRatio: false,
+      barPercentage: 0.8,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function label(context) {
+              var label = context.dataset.label || '';
+
+              if (label) {
+                label += ': ';
+              }
+
+              label += context.formattedValue;
+              label += ' шт';
+              return label;
+            }
+          }
+        }
+      }
+    }
+  }); // tables variables
+
+  var tableList = document.querySelectorAll('.table');
+  var tableContainers = document.querySelectorAll('.table-container'); // total stat
+
+  var totalStatList = document.querySelectorAll('[data-total]'); // card info
+
+  var sellerCard = document.querySelectorAll('[data-seller-card'); // data for category card
+
+  var categoryCardData = {};
+  var productCardData = {};
+  var breadcrumbsList = document.querySelectorAll('[data-breadcrumbs]'); // временно
+
+  var categoryNameList = document.querySelectorAll('[data-title]');
+  var debounceRender = (0,_helper__WEBPACK_IMPORTED_MODULE_11__.debounce)(renderHelperList, 1500);
   searchInput.addEventListener('input', function () {
     debounceRender(searchInput.value);
   });
@@ -1788,15 +1554,19 @@ if (searchForm) {
         (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(value, pageType).then(function (response) {
           return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformCategoryData)(response);
         }).then(function (responseObj) {
-          var _responseObj$helperLi;
+          var _responseObj$helperLi, _responseObj$helperLi2, _responseObj$breadcru, _responseObj$helperLi3;
 
           (0,_search_form_renderBreadcrumbs__WEBPACK_IMPORTED_MODULE_4__.renderBreadcrumbs)(responseObj.breadcrumbs[(_responseObj$helperLi = responseObj.helperList[0]) === null || _responseObj$helperLi === void 0 ? void 0 : _responseObj$helperLi.category_id]);
           (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderCategoryList)(responseObj.helperList);
           inputHiddenForId.value = responseObj.helperList[0] ? responseObj.helperList[0].category_id : '';
+          categoryCardData.categoryName = (_responseObj$helperLi2 = responseObj.helperList[0]) === null || _responseObj$helperLi2 === void 0 ? void 0 : _responseObj$helperLi2.title_ru;
+          categoryCardData.breadcrumbs = (_responseObj$breadcru = responseObj.breadcrumbs[(_responseObj$helperLi3 = responseObj.helperList[0]) === null || _responseObj$helperLi3 === void 0 ? void 0 : _responseObj$helperLi3.category_id]) === null || _responseObj$breadcru === void 0 ? void 0 : _responseObj$breadcru.map(function (item) {
+            return item.title_ru ? item.title_ru : item.title_uz;
+          });
           (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, false);
         }).catch(function (error) {
-          console.log(error);
           (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderCategoryList)(null);
+          console.log(error);
         });
       }
 
@@ -1812,6 +1582,19 @@ if (searchForm) {
           (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderShopList)(null);
         });
       }
+
+      if (pageType === 'product') {
+        (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(value, pageType).then(function (response) {
+          return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformProductData)(response);
+        }).then(function (helperList) {
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderProductList)(helperList);
+          inputHiddenForId.value = helperList[0] ? helperList[0].product_id : '';
+          (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, false);
+        }).catch(function (error) {
+          console.log(error);
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderProductList)(null);
+        });
+      }
     }
   }
 
@@ -1821,15 +1604,29 @@ if (searchForm) {
     if (target.matches('.search-form-request')) {
       var text = target.textContent.trim();
       var id = target.getAttribute('data-id');
+
+      if (inputHiddenForId.value === id) {
+        searchInput.value = text;
+        (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderShopList)([{
+          seller_id: id,
+          title: text
+        }]);
+        searchInput.focus();
+        return;
+      }
+
       (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, true);
       searchInput.value = text;
-      if (inputHiddenForId.value === id) return;
       inputHiddenForId.value = id;
 
       if (pageType === 'category') {
         (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(text, pageType).then(function (response) {
           return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformCategoryData)(response);
         }).then(function (responseObj) {
+          categoryCardData.categoryName = text;
+          categoryCardData.breadcrumbs = responseObj.breadcrumbs[id].map(function (item) {
+            return item.title_ru ? item.title_ru : item.title_uz;
+          });
           (0,_search_form_renderBreadcrumbs__WEBPACK_IMPORTED_MODULE_4__.renderBreadcrumbs)(responseObj.breadcrumbs[id]);
           (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderCategoryList)(responseObj.helperList);
           searchInput.focus();
@@ -1852,6 +1649,103 @@ if (searchForm) {
           (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderShopList)(null);
         });
       }
+
+      if (pageType === 'product') {
+        productCardData.title = text;
+        (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(text, pageType).then(function (response) {
+          return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformProductData)(response);
+        }).then(function (helperList) {
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderProductList)(helperList);
+          searchInput.focus();
+          (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, false);
+        }).catch(function (error) {
+          console.log(error);
+          (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderProductList)(null);
+        });
+      }
+    }
+  }); // tables and charts
+
+  searchForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
+    var id = inputHiddenForId.value;
+    var label = searchForm.querySelector('.auth-form__label');
+    var button = searchForm.querySelector('button[type=submit]');
+    button.disabled = true;
+    (0,_helper__WEBPACK_IMPORTED_MODULE_11__.blurElementAndChildren)(label);
+    (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(sectionsContainer, true);
+    tableList.forEach(function (table) {
+      return table.innerHTML = '';
+    });
+    setTimeout(_helper__WEBPACK_IMPORTED_MODULE_11__.setHeight, 0);
+
+    if (pageType === 'shop') {
+      (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType).then(function (response) {
+        return {
+          table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_9__.transformDataForTable)(response.data),
+          totalStat: (0,_helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_10__.transformTotalStatData)(response.data.analyze, 'shop'),
+          cardInfo: response.data.card_info[0]
+        };
+      }).then(function (transformData) {
+        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderTable)(transformData.table, tableList);
+        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderTotalStat)(transformData.totalStat, totalStatList);
+        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderSellerCard)(transformData.cardInfo, sellerCard);
+        (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(sectionsContainer, false);
+        button.disabled = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+
+    if (pageType === 'category') {
+      (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType).then(function (response) {
+        console.log(response.data);
+        return {
+          table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_9__.transformDataForTable)(response.data),
+          totalStat: (0,_helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_10__.transformTotalStatData)(response.data.analyze, 'category')
+        };
+      }).then(function (transformData) {
+        categoryNameList.forEach(function (categoryName) {
+          categoryName.textContent = categoryCardData.categoryName;
+        });
+        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderBreadcrumbs)(categoryCardData.breadcrumbs, breadcrumbsList);
+        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderTable)(transformData.table, tableList);
+        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderTotalStat)(transformData.totalStat, totalStatList);
+        (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(sectionsContainer, false);
+        button.disabled = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+
+    if (pageType === 'product') {
+      (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType).then(function (response) {
+        console.log(response.data);
+        document.querySelector('.analytics-charts').style.display = 'block';
+        return {
+          chartsData: (0,_helperCharts_transformChartsData__WEBPACK_IMPORTED_MODULE_8__.transformChartsData)(response.data.chartsInfo),
+          totalStat: response.data.analyze[0],
+          cardInfo: _objectSpread(_objectSpread({}, response.data.analyze[0]), productCardData),
+          positions: response.data.positions
+        };
+      }).then(function (transformData) {
+        (0,_render_products__WEBPACK_IMPORTED_MODULE_7__.renderProductCard)(transformData.cardInfo, productCard);
+        (0,_render_products__WEBPACK_IMPORTED_MODULE_7__.renderTotalStat)(transformData.totalStat, statList);
+        labelsData = transformData.chartsData.dateArr;
+        saleCht.data.datasets[0].data = transformData.chartsData.saleArr;
+        saleCht.update();
+        priceCht.data.datasets[0].data = transformData.chartsData.priceArr;
+        priceCht.update();
+        lostCht.data.datasets[0].data = transformData.chartsData.lostArr;
+        lostCht.update();
+        setTimeout(_helper__WEBPACK_IMPORTED_MODULE_11__.setHeight, 100);
+        (0,_render_products__WEBPACK_IMPORTED_MODULE_7__.renderCategory)(transformData.positions, analyticsList);
+        (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(sectionsContainer, false);
+        button.disabled = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   });
 }
@@ -1867,7 +1761,9 @@ if (searchForm) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "blurElementAndChildren": () => (/* binding */ blurElementAndChildren),
 /* harmony export */   "debounce": () => (/* binding */ debounce),
+/* harmony export */   "removeYearFromDate": () => (/* binding */ removeYearFromDate),
 /* harmony export */   "setHeight": () => (/* binding */ setHeight),
 /* harmony export */   "subtractDaysFromToday": () => (/* binding */ subtractDaysFromToday)
 /* harmony export */ });
@@ -1877,6 +1773,14 @@ function setHeight() {
     var activePanel = wrapper.querySelector('.custom-tabs__panel--active');
     wrapper.style.height = activePanel.offsetHeight + 'px';
   });
+}
+function blurElementAndChildren(element) {
+  element.blur();
+  var children = element.children;
+
+  for (var i = 0; i < children.length; i++) {
+    blurElementAndChildren(children[i]);
+  }
 }
 function debounce(func, ms) {
   var isThrottled = false,
@@ -1911,6 +1815,262 @@ function subtractDaysFromToday(days) {
   var mm = String(subtractedDate.getMonth() + 1).padStart(2, '0');
   var dd = String(subtractedDate.getDate()).padStart(2, '0');
   return "".concat(yyyy, "-").concat(mm, "-").concat(dd);
+}
+function removeYearFromDate(strDate) {
+  var date = new Date(strDate);
+  var mm = String(date.getMonth() + 1).padStart(2, '0');
+  var dd = String(date.getDate()).padStart(2, '0');
+  return "".concat(mm, ".").concat(dd);
+}
+
+/***/ }),
+
+/***/ "./src/js/components/helperCharts/transformChartsData.js":
+/*!***************************************************************!*\
+  !*** ./src/js/components/helperCharts/transformChartsData.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "transformChartsData": () => (/* binding */ transformChartsData)
+/* harmony export */ });
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helper */ "./src/js/components/helper.js");
+
+function transformChartsData(arr) {
+  var resultObj = {
+    dateArr: [],
+    saleArr: [],
+    priceArr: [],
+    lostArr: []
+  };
+  arr.forEach(function (obj) {
+    resultObj.dateArr.push((0,_helper__WEBPACK_IMPORTED_MODULE_0__.removeYearFromDate)(obj.date));
+
+    if (obj.selled_amount >= 0) {
+      resultObj.saleArr.push(obj.selled_amount);
+    } else {
+      console.log(0);
+      resultObj.saleArr.push('0');
+    }
+
+    resultObj.priceArr.push(obj.purchase_price);
+    resultObj.lostArr.push(obj.available_amount);
+  });
+  return resultObj;
+}
+
+/***/ }),
+
+/***/ "./src/js/components/helperTablePage/_transformDataForTables.js":
+/*!**********************************************************************!*\
+  !*** ./src/js/components/helperTablePage/_transformDataForTables.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatNumber": () => (/* binding */ formatNumber),
+/* harmony export */   "transformDataForTable": () => (/* binding */ transformDataForTable)
+/* harmony export */ });
+function transformDataForTable(data) {
+  var arrData = Object.entries(data);
+  var obj = {};
+  var deleteableProp = ['category_id', 'date_range', 'seller_id'];
+
+  if (data.result === 'Информации не найдено') {
+    console.log('Информации не найдено');
+    return {
+      analyze: [],
+      review: []
+    };
+  }
+
+  arrData.forEach(function (el) {
+    var sortedHeader = sortTableArray(Object.entries(removePropertyFromObj(el[1][0], deleteableProp)), 'header');
+    obj[el[0]] = [renameTableHeader(sortedHeader)];
+    el[1].forEach(function (item) {
+      var transformItem = transformObjProperty(removePropertyFromObj(item, deleteableProp));
+      obj[el[0]].push(sortTableArray(Object.entries(transformItem)));
+    });
+  });
+  return obj;
+}
+
+function transformObjProperty(obj) {
+  for (var prop in obj) {
+    if (prop === 'avg_rating' || prop === 'avg_product_rating' || prop === 'rating') {
+      obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(2) : +obj[prop];
+      continue;
+    }
+
+    if (prop === 'missed_revenue_percent') {
+      obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(1) + '%' : +obj[prop] + '%';
+      continue;
+    }
+
+    if (!isNaN(obj[prop])) {
+      if (+obj[prop] % 1 !== 0) {
+        obj[prop] = formatNumber((+obj[prop]).toFixed());
+      } else {
+        obj[prop] = +obj[prop];
+      } // obj[prop] = +obj[prop] % 1 !== 0 ? formatNumber((+obj[prop]).toFixed()) : +obj[prop];
+
+
+      continue;
+    }
+  }
+
+  return obj;
+}
+
+function formatNumber(num) {
+  var result;
+
+  if (num >= 1000000000) {
+    result = (num / 1000000000).toFixed(0) + " млрд.";
+  } else if (num >= 1000000) {
+    result = (num / 1000000).toFixed(0) + " млн.";
+  } else if (num >= 1000) {
+    result = (num / 1000).toFixed(0) + " тыс.";
+  } else {
+    result = num.toString();
+  }
+
+  return result.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+}
+
+function renameTableHeader(arr) {
+  var renameObj = {
+    photo: 'Изображения',
+    title: 'Название товара',
+    sku: 'SKU',
+    product_id: 'ID товара',
+    seller_id: 'ID продавца',
+    seller_title: 'Продавец',
+    actual_price: 'Цена',
+    category_id: 'ID категории',
+    category_title_ru: 'Название категории(рус)',
+    category_title_uz: 'Название категории(узб)',
+    sellers_count: 'Количество продавцов',
+    avg_rating: 'Средний рейтинг',
+    selled_per_for_period: 'Кол-во продаж',
+    revenue: 'Выручка',
+    revenue_base: 'Базовая выручка',
+    available_amount: 'Остаток',
+    reviews_amount: 'Кол-во отзывов',
+    avg_product_rating: 'Средний рейтинг',
+    turnover: 'Оборачиваемость',
+    days_with_remaining_product: 'Дней в наличии',
+    date_range: 'Период времени',
+    average_price: 'Средняя цена',
+    average_base_price: 'Средняя базовая цена',
+    predicted_revenue: 'Прогнозируемая выручка',
+    missed_revenue: 'Упущенная выручка',
+    missed_revenue_percent: 'Процент(%) упущенной выручки',
+    available_amount_price: 'Стоимость остатков',
+    categories_count: 'Количество категорий',
+    available_sku: 'Остаток',
+    available_product: 'Количество товаров',
+    selled_amount: 'Проданное количество',
+    avg_revenue: 'Средний доход',
+    remaining_products_value: 'Стоимость остатков',
+    avg_purchase_price: 'Средняя цена покупки',
+    num_of_active_product: 'Кол-во активных товаров',
+    num_of_active_seller: 'Кол-во активных продавцов',
+    avg_product_selled_amount: 'Среднее кол-во проданного товара',
+    rating: 'Рейтинг'
+  };
+  return arr.map(function (item) {
+    return renameObj[item] ? renameObj[item] : item;
+  });
+}
+
+function sortTableArray(arr, arrayType) {
+  var sortOrder = {
+    photo: 1,
+    title: 2,
+    sku: 3
+  };
+  var sortedArray = arr.sort(function (a, b) {
+    var aVal = sortOrder[a[0]] || 999;
+    var bVal = sortOrder[b[0]] || 999;
+    return aVal - bVal;
+  });
+
+  if (arrayType === 'header') {
+    return sortedArray.map(function (item) {
+      return item[0];
+    });
+  }
+
+  return sortedArray.map(function (item) {
+    return item[1];
+  });
+}
+
+function removePropertyFromObj(obj, deleteablePropArr) {
+  deleteablePropArr.forEach(function (prop) {
+    delete obj[prop];
+  });
+  return obj;
+}
+
+/***/ }),
+
+/***/ "./src/js/components/helperTablePage/_transformTotalStatData.js":
+/*!**********************************************************************!*\
+  !*** ./src/js/components/helperTablePage/_transformTotalStatData.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "transformTotalStatData": () => (/* binding */ transformTotalStatData)
+/* harmony export */ });
+function transformTotalStatData(arr, flag) {
+  var resultArray;
+  console.log(arr);
+
+  if (flag === 'shop') {
+    resultArray = [{
+      title: 'Количество продуктов',
+      value: arr[0].available_sku
+    }, {
+      title: 'Количество категорий',
+      value: arr[0].categories_count
+    }, {
+      title: 'Средняя цена',
+      value: arr[0].avg_purchase_price
+    }, {
+      title: 'Общая выручка',
+      value: arr[0].revenue
+    }];
+  }
+
+  if (flag === 'category') {
+    resultArray = [{
+      title: 'Заказы',
+      value: arr[0].selled_amount
+    }, {
+      title: 'Выручка',
+      value: arr[0].revenue
+    }, {
+      title: 'Количество позиций',
+      value: arr[0].available_product
+    }, {
+      title: 'Количество продавцов',
+      value: arr[0].sellers_count
+    }, {
+      title: 'Количество подкатегорий',
+      value: arr.length
+    }];
+  }
+
+  return resultArray;
 }
 
 /***/ }),
@@ -1968,33 +2128,28 @@ __webpack_require__.r(__webpack_exports__);
 var getHelperData = function getHelperData(value, searchType) {
   var urls = {
     shop: 'https://statbook.uz/server/get_seller/',
-    category: 'https://statbook.uz/server/get_category?title='
+    category: 'https://statbook.uz/server/get_category?title=',
+    product: 'https://statbook.uz/server/get_product?title='
   };
   var url = urls[searchType] + value;
   return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url);
 };
-var getDataWithId = function getDataWithId(id) {
-  var days = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 15;
-  var flag = arguments.length > 2 ? arguments[2] : undefined;
+var getDataWithId = function getDataWithId(id, searchType) {
   var urls = {
-    shop: {
-      url: 'http://158.160.24.64:84/api/seller/seller_review.php',
-      idType: 'sellerId'
-    },
-    category: {
-      url: 'http://158.160.24.64:84/api/category/category_review.php',
-      idType: 'categoryId'
-    }
+    shop: 'https://statbook.uz/server/get_seller_view/',
+    category: 'https://statbook.uz/server/get_category_view/',
+    product: 'https://statbook.uz/server/get_product_analyze/'
   };
-  var headers = {
-    'Content-Type': 'multipart/form-data'
-  };
-  var data = new FormData();
-  data.append(urls["".concat(flag)].idType, id);
-  data.append('startDate', (0,_helper__WEBPACK_IMPORTED_MODULE_0__.subtractDaysFromToday)(days));
-  data.append('endDate', (0,_helper__WEBPACK_IMPORTED_MODULE_0__.subtractDaysFromToday)(0));
-  return request(urls["".concat(flag)].url, data, headers);
-};
+  var url = urls[searchType] + id;
+  return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url);
+}; // export const getCategoryDataWithId = (id) => {
+//   const url = 'https://statbook.uz/server/get_category_view/' + id;
+//   return axios.get(url);
+// }
+// export const getProductDataWithId = (id) => {
+//   const url = 'https://statbook.uz/server/get_product_analyze/' + id;
+//   return axios.get(url);
+// }
 
 /***/ }),
 
@@ -2181,6 +2336,306 @@ if (navButton) {
 
 /***/ }),
 
+/***/ "./src/js/components/render-products.js":
+/*!**********************************************!*\
+  !*** ./src/js/components/render-products.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderCategory": () => (/* binding */ renderCategory),
+/* harmony export */   "renderProductCard": () => (/* binding */ renderProductCard),
+/* harmony export */   "renderTotalStat": () => (/* binding */ renderTotalStat)
+/* harmony export */ });
+/* harmony import */ var _helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helperTablePage/_transformDataForTables */ "./src/js/components/helperTablePage/_transformDataForTables.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+// import { Chart } from "chart.js/auto";
+
+
+var chartsSection = document.querySelector('.main-section--charts');
+var analyticsList = document.querySelector('.category-analytics__list');
+var saleChart = document.getElementById('saleChart');
+var priceChart = document.getElementById('priceChart');
+var lostChart = document.getElementById('lostChart');
+var productCard = document.querySelector('[data-product-card]');
+var statList = document.querySelectorAll('.analytics-charts-amount'); // const labelsData = chartsData.saleChartData.map(item => item.date);
+// const valueData = chartsData.saleChartData.map(item => item.value);
+// export const saleCht = new Chart(saleChart, {
+//   type: 'bar',
+//   data: {
+//     labels: [],
+//     datasets: [{
+//       label: 'График продаж',
+//       data: [],
+//       borderWidth: 0,
+//       backgroundColor: 'rgba(124, 150, 255, 0.5)',
+//       borderRadius: 15,
+//       hoverBackgroundColor: '#7C96FF',
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//         grid: {
+//           display: false,
+//         },
+//         ticks: {
+//           color: 'rgba(0, 0, 0, 0.25)',
+//           font: {
+//             family: 'Open Sans',
+//             size: 12,
+//             weight: 600,
+//           }
+//         }
+//       },
+//       x: {
+//         grid: {
+//           display: false
+//         },
+//         ticks: {
+//           callback: function (value, index, items) {
+//             if (index + 1 === 1) {
+//               return labelsData[index];
+//             }
+//             if ((index + 1) % 5 === 0) {
+//               return labelsData[index];
+//             }
+//             return '';
+//           },
+//           font: {
+//             family: 'Open Sans',
+//             size: 12,
+//             weight: 600,
+//           },
+//           color: 'rgba(4, 15, 35, 0.25)',
+//         }
+//       },
+//     },
+//     maintainAspectRatio: false,
+//     barPercentage: 0.8,
+//     plugins: {
+//       legend: {
+//         display: false,
+//       },
+//       tooltip: {
+//         callbacks: {
+//           label: function (context) {
+//             var label = context.dataset.label || '';
+//             if (label) {
+//               label += ': ';
+//             }
+//             label += context.formattedValue;
+//             label += ' млн';
+//             return label;
+//           }
+//         }
+//       }
+//     }
+//   }
+// });
+// const labelsData = chartsData.saleChartData.map(item => item.date);
+// const valueData = chartsData.saleChartData.map(item => item.value);
+// export const priceCht = new Chart(priceChart, {
+//   type: 'bar',
+//   data: {
+//     labels: [],
+//     datasets: [{
+//       label: 'График цены',
+//       data: [],
+//       borderWidth: 0,
+//       backgroundColor: 'rgba(50, 175, 153, 0.5)',
+//       borderRadius: 15,
+//       hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)',
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//         grid: {
+//           display: false,
+//         },
+//         ticks: {
+//           color: 'rgba(0, 0, 0, 0.25)',
+//           font: {
+//             family: 'Open Sans',
+//             size: 12,
+//             weight: 600,
+//           }
+//         }
+//       },
+//       x: {
+//         grid: {
+//           display: false
+//         },
+//         ticks: {
+//           callback: function (value, index, items) {
+//             if (index + 1 === 1) {
+//               return labelsData[index];
+//             }
+//             if ((index + 1) % 5 === 0) {
+//               return labelsData[index];
+//             }
+//             return '';
+//           },
+//           font: {
+//             family: 'Open Sans',
+//             size: 12,
+//             weight: 600,
+//           },
+//           color: 'rgba(4, 15, 35, 0.25)',
+//         }
+//       },
+//     },
+//     maintainAspectRatio: false,
+//     barPercentage: 0.8,
+//     plugins: {
+//       legend: {
+//         display: false,
+//       },
+//       tooltip: {
+//         callbacks: {
+//           label: function (context) {
+//             var label = context.dataset.label || '';
+//             if (label) {
+//               label += ': ';
+//             }
+//             label += context.formattedValue;
+//             label += ' млн';
+//             return label;
+//           }
+//         }
+//       }
+//     }
+//   }
+// });
+// const labelsData = chartsData.saleChartData.map(item => item.date);
+// const valueData = chartsData.saleChartData.map(item => item.value);
+// export const lostCht = new Chart(lostChart, {
+//   type: 'bar',
+//   data: {
+//     labels: [],
+//     datasets: [{
+//       label: 'График остатков',
+//       data: [],
+//       borderWidth: 0,
+//       backgroundColor: 'rgba(255, 122, 0, 0.5)',
+//       borderRadius: 15,
+//       hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)',
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//         grid: {
+//           display: false,
+//         },
+//         ticks: {
+//           color: 'rgba(0, 0, 0, 0.25)',
+//           font: {
+//             family: 'Open Sans',
+//             size: 12,
+//             color: 'rgba(4, 15, 35, 0.25)',
+//             weight: 600,
+//           }
+//         }
+//       },
+//       x: {
+//         grid: {
+//           display: false
+//         },
+//         ticks: {
+//           callback: function (value, index, items) {
+//             if (index + 1 === 1) {
+//               return labelsData[index];
+//             }
+//             if ((index + 1) % 5 === 0) {
+//               return labelsData[index];
+//             }
+//             return '';
+//           },
+//           font: {
+//             family: 'Open Sans',
+//             size: 12,
+//             weight: 600,
+//           },
+//           color: 'rgba(4, 15, 35, 0.25)',
+//         }
+//       },
+//     },
+//     maintainAspectRatio: false,
+//     barPercentage: 0.8,
+//     plugins: {
+//       legend: {
+//         display: false,
+//       },
+//       tooltip: {
+//         callbacks: {
+//           label: function (context) {
+//             var label = context.dataset.label || '';
+//             if (label) {
+//               label += ': ';
+//             }
+//             label += context.formattedValue;
+//             label += ' шт';
+//             return label;
+//           }
+//         }
+//       }
+//     }
+//   }
+// });
+
+function renderProductCard(data, element) {
+  var title = data.title,
+      avg_purchase_price = data.avg_purchase_price,
+      seller = data.seller,
+      photo = data.photo;
+  element.innerHTML = "\n  <div class=\"product-info__image\">\n  <img src=\"".concat(photo ? photo : './img/product-test-image.jpg', "\"\n    alt=\"").concat(title, "\">\n  </div>\n  <div class=\"product-info__title\">\n    ").concat(title, "\n  </div>\n  <div class=\"product-info__price\">\n    \u0426\u0435\u043D\u0430: <span class=\"product-info__price-amount\">").concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+avg_purchase_price).toFixed(0)), "</span> <span\n      class=\"product-info__price-currency\">\u0441\u0443\u043C</span>\n  </div>\n  <div class=\"product-info__seller\">\n    \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446: <span class=\"product-info__seller-name\">", 'seller', "</span>\n  </div>\n  <div class=\"product-info__description\">\n  </div>\n");
+}
+function renderTotalStat(data, elements) {
+  var revenue = data.revenue,
+      selled_amount = data.selled_amount,
+      date_range = data.date_range;
+  elements.forEach(function (element) {
+    if (element.matches('[data-total-sale]')) {
+      element.textContent = selled_amount;
+    }
+
+    if (element.matches('[data-total-profit]')) {
+      element.textContent = (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+revenue).toFixed());
+    }
+
+    if (element.matches('[data-total-average]')) {
+      element.textContent = (+selled_amount / +date_range).toFixed(2);
+    }
+  });
+}
+function renderCategory(data, element) {
+  element.innerHTML = '';
+
+  for (var category in data) {
+    if (category == '1') continue;
+    var dataArray = Object.entries(data[category]);
+    dataArray.sort(function (a, b) {
+      var dateA = new Date(a[0]).getTime();
+      var dateB = new Date(b[0]).getTime();
+      return dateA - dateB;
+    });
+    var totalProfit = dataArray.length && dataArray[0][1].positionNumber >= dataArray[dataArray.length - 1][1].positionNumber ? 'analytics-line__positions--down' : '';
+    element.innerHTML += "\n    <div class=\"category-analytics__line analytics-line\">\n    <div class=\"analytics-line__top\">\n      <div class=\"analytics-line__title\">\n        <div class=\"analytics-line__title-text\">\n          \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F - ".concat(category, ".\n        </div>\n        <div class=\"analytics-line__title-report\">\n          \u041E\u0442\u0447\u0435\u0442 \u0417\u0430 30 \u0434\u043D\u0435\u0439\n        </div>\n      </div>\n      <div class=\"analytics-line__positions ").concat(totalProfit, "\" style=\"display: ").concat(String(data[category]) === '101' ? 'none' : 'block', "\"></div>\n    </div>\n    <div class=\"analytics-line__content\" data-simplebar>\n      <ul class=\"analytics-line__list\">\n      ").concat(String(data[category]) === '101' ? 'К сожалению, информация по данной категории отсутствует.' : dataArray.map(function (item) {
+      var positionStyle = item[1].delta >= 0 ? 'analytics-line__item-profit--up' : 'analytics-line__item-profit--down';
+      return "\n          <li class=\"analytics-line__item\">\n            <div class=\"analytics-line__item-number\">\n              ".concat(item[1].positionNumber == '101' ? '99+' : item[1].positionNumber, "\n            </div>\n            <div class=\"analytics-line__item-profit ").concat(positionStyle, "\">\n            <?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->\n            <svg width=\"17px\" height=\"17px\" viewBox=\"0 0 24 24\" fill=").concat(item[1].delta >= 0 ? "#32af99" : "#c24141", " style=\"transform: rotate(").concat(item[1].delta >= 0 ? '0' : '-180deg', "); display: ").concat(item[1].delta === 0 ? 'none' : 'block', "\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 3C12.2652 3 12.5196 3.10536 12.7071 3.29289L19.7071 10.2929C20.0976 10.6834 20.0976 11.3166 19.7071 11.7071C19.3166 12.0976 18.6834 12.0976 18.2929 11.7071L13 6.41421V20C13 20.5523 12.5523 21 12 21C11.4477 21 11 20.5523 11 20V6.41421L5.70711 11.7071C5.31658 12.0976 4.68342 12.0976 4.29289 11.7071C3.90237 11.3166 3.90237 10.6834 4.29289 10.2929L11.2929 3.29289C11.4804 3.10536 11.7348 3 12 3Z\"/>\n            </svg>\n            </div>\n            <div class=\"analytics-line__item-date\">\n              ").concat((0,_helper__WEBPACK_IMPORTED_MODULE_1__.removeYearFromDate)(item[0]), "\n            </div>\n          </li>\n        ");
+    }).join(' '), "\n      </ul>\n    </div>\n  </div>\n    ");
+  }
+}
+
+/***/ }),
+
 /***/ "./src/js/components/render-table.js":
 /*!*******************************************!*\
   !*** ./src/js/components/render-table.js ***!
@@ -2189,91 +2644,13 @@ if (navButton) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderBreadcrumbs": () => (/* binding */ renderBreadcrumbs),
+/* harmony export */   "renderSellerCard": () => (/* binding */ renderSellerCard),
+/* harmony export */   "renderTable": () => (/* binding */ renderTable),
+/* harmony export */   "renderTotalStat": () => (/* binding */ renderTotalStat)
+/* harmony export */ });
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
- // примечания для бэка
-// тут получаем 2 страницы на которых могут быть таблицы
-
-var categoryPage = document.querySelector('.main-section--category');
-var shopPage = document.querySelector('.main-section--shop'); // проверяем находимся ли мы на странице категорий
-
-if (categoryPage) {
-  // пример обьекта с данными
-  var categoryData = {
-    categoryName: 'Мягкие игрушки',
-    breadcrumbs: ['Главная', 'Все категории', 'Детские товары', 'Игрушки и игры', 'Мягкие игрушка'],
-    totalStat: [{
-      title: 'Заказы',
-      value: '54550'
-    }, {
-      title: 'Выручка',
-      value: '540 млрд сум' // ну и было бы хорошо, если бы значиние проходили уже с млнб млрд и тд
-
-    }, {
-      title: 'Количество позиций',
-      value: '540765'
-    }, {
-      title: 'Коэффициент популярности',
-      value: '89%'
-    }, {
-      title: 'Количество подкатегорий',
-      value: '10'
-    }],
-    tables: {
-      tableAnalyticData: [['Категория', 'Продажи', 'Выручка в сред.', 'Выручка', 'Остатки', 'Стоимость остатоков'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'], ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.']],
-      tableReviewData: [['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'Заказы', 'Выручка'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн']]
-    }
-  };
-  var tableList = categoryPage.querySelectorAll('.table');
-  var totalStatSlit = categoryPage.querySelectorAll('[data-total]');
-  var categoryNameList = categoryPage.querySelectorAll('[data-title]');
-  var breadcrumbsList = categoryPage.querySelectorAll('[data-breadcrumbs]');
-  categoryNameList.forEach(function (categoryName) {
-    categoryName.textContent = categoryData.categoryName;
-  });
-  renderBreadcrumbs(categoryData.breadcrumbs, breadcrumbsList);
-  renderTotalStat(categoryData.totalStat, totalStatSlit);
-  renderTable(categoryData.tables, tableList);
-}
-
-if (shopPage) {
-  var shopData = {
-    cardInfo: {
-      shopName: 'Top Seller',
-      stars: '4.5',
-      reviewsAmount: 480,
-      startTime: '1 декабря 2022 года',
-      // здесь можно дату обьектом передавать
-      description: 'Магазин по продаже компьютерной техники',
-      shopImage: ''
-    },
-    totalStat: [{
-      title: 'Количество продуктов',
-      value: '54550'
-    }, {
-      title: 'Количество категорий',
-      value: '34'
-    }, {
-      title: 'Средняя цена',
-      value: '7.4 млн'
-    }, {
-      title: 'Общая выручка',
-      value: '540 млрд'
-    }],
-    tables: {
-      tableAnalyticData: [['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'Заказы', 'Выручка'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн']],
-      tableReviewData: [['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'АBC Заказы', 'ABC Выручка'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'], ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A']]
-    }
-  };
-
-  var _tableList = shopPage.querySelectorAll('.table');
-
-  var _totalStatSlit = shopPage.querySelectorAll('[data-total]');
-
-  var sellerCard = shopPage.querySelectorAll('[data-seller-card');
-  renderSellerCard(shopData.cardInfo, sellerCard);
-  renderTotalStat(shopData.totalStat, _totalStatSlit);
-  renderTable(shopData.tables, _tableList);
-}
 
 function renderBreadcrumbs(data, elements) {
   elements.forEach(function (element) {
@@ -2283,7 +2660,6 @@ function renderBreadcrumbs(data, elements) {
     });
   });
 }
-
 function renderTotalStat(data, elements) {
   elements.forEach(function (element) {
     element.innerHTML = '';
@@ -2292,17 +2668,16 @@ function renderTotalStat(data, elements) {
     });
   });
 }
-
 function renderTable(tables, elements) {
   elements.forEach(function (element) {
     var data;
 
     if (element.hasAttribute('data-table-analytic')) {
-      data = tables.tableAnalyticData;
+      data = tables.analyze;
     }
 
     if (element.hasAttribute('data-table-review')) {
-      data = tables.tableReviewData;
+      data = tables.review;
     }
 
     var imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
@@ -2324,18 +2699,22 @@ function renderTable(tables, elements) {
       }
     }).join(' '), "\n                        ");
   });
-  (0,_helper__WEBPACK_IMPORTED_MODULE_0__.setHeight)();
+  setTimeout(_helper__WEBPACK_IMPORTED_MODULE_0__.setHeight, 100);
 }
-
 function renderSellerCard(data, elements) {
-  var shopName = data.shopName,
-      stars = data.stars,
-      reviewsAmount = data.reviewsAmount,
-      startTime = data.startTime,
-      description = data.description,
-      shopImage = data.shopImage;
+  var title = data.title,
+      rating = data.rating,
+      registration_date = data.registration_date,
+      reviews_amount = data.reviews_amount,
+      description = data.description;
+  var dateObj = new Date(registration_date);
+  var day = dateObj.getDate();
+  var month = dateObj.getMonth();
+  console.log(month);
+  var year = dateObj.getFullYear();
+  var monthNamesGenitive = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
   elements.forEach(function (element) {
-    element.innerHTML = "\n    <div class=\"seller-card__image\">\n      <img src=\"".concat(shopImage ? shopImage : './img/seller-card-default.svg', "\" alt=\"Top Seller\">\n    </div>\n    <div class=\"seller-card__info\">\n      <div class=\"seller-card__info-top\">\n        <h2 class=\"seller-card__title\">\n          ").concat(shopName, "\n        </h2>\n      <div class=\"seller-card__reviews\">\n        <span class=\"seller-card__reviews-score\">").concat(stars, "</span> (<span\n          class=\"seller-card__reviews-count\">").concat(reviewsAmount, " </span> \u043E\u0442\u0437\u044B\u0432\u043E\u0432)\n      </div>\n    </div>\n    <div class=\"seller-card__start\">\n      \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 \u043D\u0430 UZUM \u0441 <span>").concat(startTime, "</span>\n    </div>\n    <div class=\"seller-card__desc\">\n      ").concat(description, "\n    </div>\n    ");
+    element.innerHTML = "\n    <div class=\"seller-card__image\">\n      <img src=\"./img/seller-card-default.svg\" alt=\"Top Seller\">\n    </div>\n    <div class=\"seller-card__info\">\n      <div class=\"seller-card__info-top\">\n        <h2 class=\"seller-card__title\">\n          ".concat(title, "\n        </h2>\n      <div class=\"seller-card__reviews\">\n        <span class=\"seller-card__reviews-score\">").concat(rating, "</span> (<span\n          class=\"seller-card__reviews-count\">").concat(reviews_amount, " </span> \u043E\u0442\u0437\u044B\u0432\u043E\u0432)\n      </div>\n    </div>\n    <div class=\"seller-card__start\">\n      \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 \u043D\u0430 UZUM \u0441 <span>").concat(day, " ").concat(monthNamesGenitive[month], " ").concat(year, " \u0433\u043E\u0434\u0430</span>\n    </div>\n    <div class=\"seller-card__desc\">\n      ").concat(description, "\n    </div>\n    ");
   });
 }
 
@@ -2376,6 +2755,7 @@ function renderBreadcrumbs(parentsList) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "renderCategoryList": () => (/* binding */ renderCategoryList),
+/* harmony export */   "renderProductList": () => (/* binding */ renderProductList),
 /* harmony export */   "renderShopList": () => (/* binding */ renderShopList)
 /* harmony export */ });
 var helperList = document.querySelector('.search-form__helper-list');
@@ -2384,10 +2764,11 @@ function renderCategoryList(arr) {
 
   if (!arr) {
     helperList.innerHTML = 'Произошила ошибка, повторите запрос позже';
+    return;
   }
 
   if (arr.length === 0) {
-    helperList.innerHTML = "\n      <div class=\"search-form__helper-item\" role=\"button\">\n        <span>\n          \u041F\u0440\u043E\u0434\u0430\u0432\u0446\u043E\u0432 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.\n        </span>\n      </div>\n    ";
+    helperList.innerHTML = "\n      <div class=\"search-form__helper-item\" role=\"button\">\n        <span>\n          \u0414\u0430\u043D\u043D\u044B\u0445 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0439 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.\n        </span>\n      </div>\n    ";
     return;
   }
 
@@ -2417,6 +2798,25 @@ function renderShopList(arr) {
         title = _arr$i2.title,
         registration_date = _arr$i2.registration_date;
     helperList.innerHTML += "\n      <div class=\"search-form__helper-item search-form-request\" role=\"button\" tabindex=\"0\" data-id=\"".concat(seller_id, "\">\n      <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\"\n          d=\"M16.9697 16.9697C17.2626 16.6768 17.7374 16.6768 18.0303 16.9697L22.0303 20.9697C22.3232 21.2626 22.3232 21.7374 22.0303 22.0303C21.7374 22.3232 21.2626 22.3232 20.9697 22.0303L16.9697 18.0303C16.6768 17.7374 16.6768 17.2626 16.9697 16.9697Z\"\n          fill=\"rgba(4, 15, 35, 0.3)\" />\n        <path\n          d=\"M20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11Z\"\n          stroke=\"rgba(4, 15, 35, 0.3)\" stroke-width=\"1.5\" stroke-linecap=\"round\" />\n      </svg>\n        ").concat(title, "\n      </div>\n      ");
+  }
+}
+function renderProductList(arr) {
+  helperList.innerHTML = '';
+
+  if (!arr) {
+    helperList.innerHTML = 'Произошила ошибка, повторите запрос позже';
+  }
+
+  if (arr.length === 0) {
+    helperList.innerHTML = "\n      <div class=\"search-form__helper-item\" role=\"button\">\n        <span>\n          \u0422\u043E\u0432\u0430\u0440\u043E\u0432 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.\n        </span>\n      </div>\n    ";
+    return;
+  }
+
+  for (var i = 0; i < arr.length; i++) {
+    var _arr$i3 = arr[i],
+        product_id = _arr$i3.product_id,
+        title = _arr$i3.title;
+    helperList.innerHTML += "\n      <div class=\"search-form__helper-item search-form-request\" role=\"button\" tabindex=\"0\" data-id=\"".concat(product_id, "\">\n      <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\"\n          d=\"M16.9697 16.9697C17.2626 16.6768 17.7374 16.6768 18.0303 16.9697L22.0303 20.9697C22.3232 21.2626 22.3232 21.7374 22.0303 22.0303C21.7374 22.3232 21.2626 22.3232 20.9697 22.0303L16.9697 18.0303C16.6768 17.7374 16.6768 17.2626 16.9697 16.9697Z\"\n          fill=\"rgba(4, 15, 35, 0.3)\" />\n        <path\n          d=\"M20 11C20 15.9706 15.9706 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11Z\"\n          stroke=\"rgba(4, 15, 35, 0.3)\" stroke-width=\"1.5\" stroke-linecap=\"round\" />\n      </svg>\n        ").concat(title, "\n      </div>\n      ");
   }
 }
 
@@ -2455,6 +2855,7 @@ var showHelperList = function showHelperList(flag) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "transformCategoryData": () => (/* binding */ transformCategoryData),
+/* harmony export */   "transformProductData": () => (/* binding */ transformProductData),
 /* harmony export */   "transformShopData": () => (/* binding */ transformShopData)
 /* harmony export */ });
 function transformCategoryData(response) {
@@ -2493,6 +2894,22 @@ function transformShopData(response) {
       seller_id: seller_id,
       title: title,
       registration_date: registration_date
+    });
+  }
+
+  return helperList;
+}
+function transformProductData(response) {
+  var helperList = [];
+
+  for (var i = 0; i < 30; i++) {
+    if (!response.data[i]) break;
+    var _response$data$i3 = response.data[i],
+        product_id = _response$data$i3.product_id,
+        title = _response$data$i3.title;
+    helperList.push({
+      product_id: product_id,
+      title: title
     });
   }
 

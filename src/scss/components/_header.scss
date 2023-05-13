@@ -201,7 +201,9 @@
 .header__mob {
   display: none;
   @include w($lg) {
+    position: relative;
     display: block;
+    z-index: 301;
   }
 }
 
@@ -210,7 +212,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 300;
     padding: 150px 0 30px;
     width: 100%;
     height: 100%;
@@ -220,11 +222,12 @@
     background-size: cover;
     background-repeat: no-repeat;
 
-    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+    visibility: hidden;
 
     overflow-y: auto;
-    will-change: transform;
-    transition: transform 0.5s ease-in;
+    will-change: opacity;
+    transition: opacity 0.3s ease-in, visibility 0.3s ease-in-out;
   }
 
   .container {
@@ -243,5 +246,6 @@
 }
 
 .header__desc.active {
-  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  visibility: visible;
 }

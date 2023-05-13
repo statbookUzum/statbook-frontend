@@ -141,6 +141,10 @@
           color: transparent;
         }
       }
+
+      @include w($sm) {
+        padding-right: 50px;
+      }
     }
 
     .custom-input__button {
@@ -166,6 +170,7 @@
   }
 }
 
-[data-page-type="shop"] .search-form__helper-list {
+[data-page-type="shop"] .search-form__helper-list,
+[data-page-type="product"] .search-form__helper-list {
   padding-top: 0;
 }

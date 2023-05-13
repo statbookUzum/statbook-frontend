@@ -4,31 +4,34 @@ import { subtractDaysFromToday } from './helper';
 export const getHelperData = (value, searchType) => {
   const urls = {
     shop: 'https://statbook.uz/server/get_seller/',
-    category: 'https://statbook.uz/server/get_category?title='
+    category: 'https://statbook.uz/server/get_category?title=',
+    product: 'https://statbook.uz/server/get_product?title='
   }
   const url = urls[searchType] + value;
 
   return axios.get(url);
 };
 
-export const getDataWithId = (id, days = 15, flag) => {
+export const getDataWithId = (id, searchType) => {
   const urls = {
-    shop: {
-      url: 'http://158.160.24.64:84/api/seller/seller_review.php',
-      idType: 'sellerId',
-    },
-    category: {
-      url: 'http://158.160.24.64:84/api/category/category_review.php',
-      idType: 'categoryId'
-    }
+    shop: 'https://statbook.uz/server/get_seller_view/',
+    category: 'https://statbook.uz/server/get_category_view/',
+    product: 'https://statbook.uz/server/get_product_analyze/'
   }
 
+  const url = urls[searchType] + id;
 
-  const headers = { 'Content-Type': 'multipart/form-data' };
-  const data = new FormData();
-  data.append(urls[`${flag}`].idType, id);
-  data.append('startDate', subtractDaysFromToday(days));
-  data.append('endDate', subtractDaysFromToday(0));
-
-  return request(urls[`${flag}`].url, data, headers);
+  return axios.get(url);
 }
+
+// export const getCategoryDataWithId = (id) => {
+//   const url = 'https://statbook.uz/server/get_category_view/' + id;
+
+//   return axios.get(url);
+// }
+
+// export const getProductDataWithId = (id) => {
+//   const url = 'https://statbook.uz/server/get_product_analyze/' + id;
+
+//   return axios.get(url);
+// }

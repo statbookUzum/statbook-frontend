@@ -68,6 +68,10 @@
       background-repeat: no-repeat;
     }
   }
+
+  img {
+    border-radius: 10px;
+  }
 }
 
 th {
@@ -95,7 +99,9 @@ td {
   padding: 35px 50px 35px 10px;
   border: none;
 
-  white-space: nowrap;
+  white-space: normal;
+  max-width: 300px;
+  width: 100%;
 
   a {
     text-decoration: underline;

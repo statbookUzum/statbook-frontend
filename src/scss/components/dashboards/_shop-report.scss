@@ -26,6 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
 
     @include w($sm) {
       padding-bottom: 29px;
@@ -79,6 +80,7 @@
   }
 
   &__buttons {
+    flex-shrink: 0;
     max-width: 220px;
     width: 100%;
 

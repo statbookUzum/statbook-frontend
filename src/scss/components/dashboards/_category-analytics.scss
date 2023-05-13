@@ -51,10 +51,12 @@
     );
     &::after {
       content: "";
-      margin-left: 5px;
+      // margin-left: 5px;
       display: block;
-      height: 15px;
-      width: 13px;
+      // height: 15px;
+      // width: 13px;
+      height: 20px;
+      width: 20px;
 
       background-image: url("../img/arrow-up.svg");
 
@@ -119,6 +121,8 @@
   }
 
   &__item-number {
+    text-align: center;
+
     font-size: 35px;
     line-height: 141.5%;
     color: rgba($color-blue-35, 0.7);

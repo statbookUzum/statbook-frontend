@@ -1,212 +1,6 @@
 import { setHeight } from './helper';
 
-// примечания для бэка
-// тут получаем 2 страницы на которых могут быть таблицы
-
-const categoryPage = document.querySelector('.main-section--category');
-const shopPage = document.querySelector('.main-section--shop');
-
-// проверяем находимся ли мы на странице категорий
-if (categoryPage) {
-  // пример обьекта с данными
-  const categoryData = {
-    categoryName: 'Мягкие игрушки',
-    breadcrumbs: [
-      'Главная',
-      'Все категории',
-      'Детские товары',
-      'Игрушки и игры',
-      'Мягкие игрушка',
-    ],
-    totalStat: [
-      {
-        title: 'Заказы',
-        value: '54550'
-      },
-      {
-        title: 'Выручка',
-        value: '540 млрд сум' // ну и было бы хорошо, если бы значиние проходили уже с млнб млрд и тд
-      },
-      {
-        title: 'Количество позиций',
-        value: '540765'
-      },
-      {
-        title: 'Коэффициент популярности',
-        value: '89%'
-      },
-      {
-        title: 'Количество подкатегорий',
-        value: '10'
-      },
-    ],
-    tables: {
-      tableAnalyticData: [
-        ['Категория', 'Продажи', 'Выручка в сред.', 'Выручка', 'Остатки', 'Стоимость остатоков'],
-        ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'],
-        ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'],
-        ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'],
-        ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'],
-        ['Мягкие игрушки', '542500 шт.', '800 млрд.', '600 млрд.', '6504566 шт.', '256 млрд.'],
-      ],
-      tableReviewData: [
-        ['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'Заказы', 'Выручка'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-      ],
-    }
-  }
-
-
-  const tableList = categoryPage.querySelectorAll('.table');
-  const totalStatSlit = categoryPage.querySelectorAll('[data-total]');
-  const categoryNameList = categoryPage.querySelectorAll('[data-title]')
-  const breadcrumbsList = categoryPage.querySelectorAll('[data-breadcrumbs]');
-
-  categoryNameList.forEach(categoryName => {
-    categoryName.textContent = categoryData.categoryName;
-  });
-
-  renderBreadcrumbs(categoryData.breadcrumbs, breadcrumbsList);
-  renderTotalStat(categoryData.totalStat, totalStatSlit)
-  renderTable(categoryData.tables, tableList);
-}
-
-if (shopPage) {
-  const shopData = {
-    cardInfo: {
-      shopName: 'Top Seller',
-      stars: '4.5',
-      reviewsAmount: 480,
-      startTime: '1 декабря 2022 года', // здесь можно дату обьектом передавать
-      description: 'Магазин по продаже компьютерной техники',
-      shopImage: '',
-    },
-    totalStat: [
-      {
-        title: 'Количество продуктов',
-        value: '54550'
-      },
-      {
-        title: 'Количество категорий',
-        value: '34'
-      },
-      {
-        title: 'Средняя цена',
-        value: '7.4 млн'
-      },
-      {
-        title: 'Общая выручка',
-        value: '540 млрд'
-      },
-    ],
-
-    tables: {
-      tableAnalyticData: [
-        ['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'Заказы', 'Выручка'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', '256', '8 млн'],
-      ],
-      tableReviewData: [
-        ['Изображение', 'Продукт', 'SKU', 'Категория', 'Остаток', 'Дней в наличии', 'АBC Заказы', 'ABC Выручка'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-        ['./img/test-table-img.jpg', '54880', '54250', 'Детские товары', '0 шт.', '51', 'A', 'A'],
-      ],
-    }
-  }
-
-  const tableList = shopPage.querySelectorAll('.table');
-  const totalStatSlit = shopPage.querySelectorAll('[data-total]');
-  const sellerCard = shopPage.querySelectorAll('[data-seller-card');
-
-  renderSellerCard(shopData.cardInfo, sellerCard);
-  renderTotalStat(shopData.totalStat, totalStatSlit);
-  renderTable(shopData.tables, tableList);
-}
-
-function renderBreadcrumbs(data, elements) {
+export function renderBreadcrumbs(data, elements) {
   elements.forEach(element => {
     element.innerHTML = '';
 
@@ -216,7 +10,7 @@ function renderBreadcrumbs(data, elements) {
   });
 }
 
-function renderTotalStat(data, elements) {
+export function renderTotalStat(data, elements) {
   elements.forEach(element => {
     element.innerHTML = '';
 
@@ -235,16 +29,16 @@ function renderTotalStat(data, elements) {
   });
 }
 
-function renderTable(tables, elements) {
+export function renderTable(tables, elements) {
   elements.forEach(element => {
     let data;
 
     if (element.hasAttribute('data-table-analytic')) {
-      data = tables.tableAnalyticData;
+      data = tables.analyze;
     }
 
     if (element.hasAttribute('data-table-review')) {
-      data = tables.tableReviewData;
+      data = tables.review;
     }
 
     const imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
@@ -277,29 +71,40 @@ function renderTable(tables, elements) {
                         `;
   });
 
-  setHeight();
+  setTimeout(setHeight, 100);
 }
 
-function renderSellerCard(data, elements) {
-  const { shopName, stars, reviewsAmount, startTime, description, shopImage } = data;
+export function renderSellerCard(data, elements) {
+  const { title, rating, registration_date, reviews_amount, description } = data;
+  const dateObj = new Date(registration_date);
+
+  const day = dateObj.getDate();
+  const month = dateObj.getMonth();
+  console.log(month);
+  const year = dateObj.getFullYear();
+
+  const monthNamesGenitive = [
+    "января", "февраля", "марта", "апреля", "мая", "июня",
+    "июля", "августа", "сентября", "октября", "ноября", "декабря"
+  ];
 
   elements.forEach(element => {
     element.innerHTML = `
     <div class="seller-card__image">
-      <img src="${shopImage ? shopImage : './img/seller-card-default.svg'}" alt="Top Seller">
+      <img src="./img/seller-card-default.svg" alt="Top Seller">
     </div>
     <div class="seller-card__info">
       <div class="seller-card__info-top">
         <h2 class="seller-card__title">
-          ${shopName}
+          ${title}
         </h2>
       <div class="seller-card__reviews">
-        <span class="seller-card__reviews-score">${stars}</span> (<span
-          class="seller-card__reviews-count">${reviewsAmount} </span> отзывов)
+        <span class="seller-card__reviews-score">${rating}</span> (<span
+          class="seller-card__reviews-count">${reviews_amount} </span> отзывов)
       </div>
     </div>
     <div class="seller-card__start">
-      Продавец на UZUM с <span>${startTime}</span>
+      Продавец на UZUM с <span>${day} ${monthNamesGenitive[month]} ${year} года</span>
     </div>
     <div class="seller-card__desc">
       ${description}
