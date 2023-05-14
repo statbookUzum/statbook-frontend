@@ -37,13 +37,9 @@ function transformObjProperty(obj) {
     }
 
     if (!isNaN(obj[prop])) {
-      if (+obj[prop] % 1 !== 0) {
-        obj[prop] = formatNumber((+obj[prop]).toFixed())
-      } else {
-        obj[prop] = +obj[prop];
+      if (typeof (obj[prop]) === 'string' && (obj[prop]).includes('.')) {
+        obj[prop] = formatNumber(+obj[prop]);
       }
-      // obj[prop] = +obj[prop] % 1 !== 0 ? formatNumber((+obj[prop]).toFixed()) : +obj[prop];
-
       continue;
     }
   }
@@ -52,19 +48,37 @@ function transformObjProperty(obj) {
 }
 
 export function formatNumber(num) {
+  if (+num === 0) return 0;
+
   let result;
+  let afterDot = 0;
+  let divider = 0.99999;
+  let unit = '';
 
   if (num >= 1000000000) {
-    result = (num / 1000000000).toFixed(0) + " млрд.";
+    divider = 1000000000;
+    unit = '&nbsp;млрд.';
   } else if (num >= 1000000) {
-    result = (num / 1000000).toFixed(0) + " млн.";
+    divider = 1000000;
+    unit = '&nbsp;млн.';
   } else if (num >= 1000) {
-    result = (num / 1000).toFixed(0) + " тыс.";
-  } else {
-    result = num.toString();
+    divider = 1000;
+    unit = '&nbsp;тыс.';
   }
 
-  return result.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+  const fixedNum = (+num / divider).toFixed(0);
+
+  if (String(fixedNum).length >= 3) {
+    afterDot = 0;
+  } else if (String(fixedNum).length === 2) {
+    afterDot = 1;
+  } else {
+    afterDot = 2;
+  }
+  result = (+num / divider).toFixed(afterDot) + unit;
+
+  // return result.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+  return result;
 }
 
 function renameTableHeader(arr) {
@@ -82,6 +96,7 @@ function renameTableHeader(arr) {
     sellers_count: 'Количество продавцов',
     avg_rating: 'Средний рейтинг',
     selled_per_for_period: 'Кол-во продаж',
+    avg_base_price: 'Средняя базовая цена',
     revenue: 'Выручка',
     revenue_base: 'Базовая выручка',
     available_amount: 'Остаток',

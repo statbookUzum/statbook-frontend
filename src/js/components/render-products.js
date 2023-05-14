@@ -1,263 +1,8 @@
-// import { Chart } from "chart.js/auto";
 import { formatNumber } from "./helperTablePage/_transformDataForTables";
 import { removeYearFromDate } from "./helper";
 
-const chartsSection = document.querySelector('.main-section--charts');
-const analyticsList = document.querySelector('.category-analytics__list');
-
-
-const saleChart = document.getElementById('saleChart');
-const priceChart = document.getElementById('priceChart');
-const lostChart = document.getElementById('lostChart');
-const productCard = document.querySelector('[data-product-card]');
-const statList = document.querySelectorAll('.analytics-charts-amount');
-
-
-// const labelsData = chartsData.saleChartData.map(item => item.date);
-// const valueData = chartsData.saleChartData.map(item => item.value);
-
-// export const saleCht = new Chart(saleChart, {
-//   type: 'bar',
-//   data: {
-//     labels: [],
-//     datasets: [{
-//       label: 'График продаж',
-//       data: [],
-//       borderWidth: 0,
-//       backgroundColor: 'rgba(124, 150, 255, 0.5)',
-//       borderRadius: 15,
-//       hoverBackgroundColor: '#7C96FF',
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//         grid: {
-//           display: false,
-//         },
-//         ticks: {
-//           color: 'rgba(0, 0, 0, 0.25)',
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           }
-//         }
-//       },
-//       x: {
-//         grid: {
-//           display: false
-//         },
-//         ticks: {
-//           callback: function (value, index, items) {
-//             if (index + 1 === 1) {
-//               return labelsData[index];
-//             }
-
-//             if ((index + 1) % 5 === 0) {
-//               return labelsData[index];
-//             }
-
-//             return '';
-//           },
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           },
-//           color: 'rgba(4, 15, 35, 0.25)',
-//         }
-//       },
-//     },
-//     maintainAspectRatio: false,
-//     barPercentage: 0.8,
-//     plugins: {
-//       legend: {
-//         display: false,
-//       },
-//       tooltip: {
-//         callbacks: {
-//           label: function (context) {
-//             var label = context.dataset.label || '';
-//             if (label) {
-//               label += ': ';
-//             }
-//             label += context.formattedValue;
-//             label += ' млн';
-//             return label;
-//           }
-//         }
-//       }
-//     }
-//   }
-// });
-
-
-// const labelsData = chartsData.saleChartData.map(item => item.date);
-// const valueData = chartsData.saleChartData.map(item => item.value);
-
-// export const priceCht = new Chart(priceChart, {
-//   type: 'bar',
-//   data: {
-//     labels: [],
-//     datasets: [{
-//       label: 'График цены',
-//       data: [],
-//       borderWidth: 0,
-//       backgroundColor: 'rgba(50, 175, 153, 0.5)',
-//       borderRadius: 15,
-//       hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)',
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//         grid: {
-//           display: false,
-//         },
-//         ticks: {
-//           color: 'rgba(0, 0, 0, 0.25)',
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           }
-//         }
-//       },
-//       x: {
-//         grid: {
-//           display: false
-//         },
-//         ticks: {
-//           callback: function (value, index, items) {
-//             if (index + 1 === 1) {
-//               return labelsData[index];
-//             }
-
-//             if ((index + 1) % 5 === 0) {
-//               return labelsData[index];
-//             }
-
-//             return '';
-//           },
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           },
-//           color: 'rgba(4, 15, 35, 0.25)',
-//         }
-//       },
-//     },
-//     maintainAspectRatio: false,
-//     barPercentage: 0.8,
-//     plugins: {
-//       legend: {
-//         display: false,
-//       },
-//       tooltip: {
-//         callbacks: {
-//           label: function (context) {
-//             var label = context.dataset.label || '';
-//             if (label) {
-//               label += ': ';
-//             }
-//             label += context.formattedValue;
-//             label += ' млн';
-//             return label;
-//           }
-//         }
-//       }
-//     }
-//   }
-// });
-
-
-// const labelsData = chartsData.saleChartData.map(item => item.date);
-// const valueData = chartsData.saleChartData.map(item => item.value);
-
-// export const lostCht = new Chart(lostChart, {
-//   type: 'bar',
-//   data: {
-//     labels: [],
-//     datasets: [{
-//       label: 'График остатков',
-//       data: [],
-//       borderWidth: 0,
-//       backgroundColor: 'rgba(255, 122, 0, 0.5)',
-//       borderRadius: 15,
-//       hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)',
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//         grid: {
-//           display: false,
-//         },
-//         ticks: {
-//           color: 'rgba(0, 0, 0, 0.25)',
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             color: 'rgba(4, 15, 35, 0.25)',
-//             weight: 600,
-//           }
-//         }
-//       },
-//       x: {
-//         grid: {
-//           display: false
-//         },
-//         ticks: {
-//           callback: function (value, index, items) {
-//             if (index + 1 === 1) {
-//               return labelsData[index];
-//             }
-
-//             if ((index + 1) % 5 === 0) {
-//               return labelsData[index];
-//             }
-
-//             return '';
-//           },
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           },
-//           color: 'rgba(4, 15, 35, 0.25)',
-//         }
-//       },
-//     },
-//     maintainAspectRatio: false,
-//     barPercentage: 0.8,
-//     plugins: {
-//       legend: {
-//         display: false,
-//       },
-//       tooltip: {
-//         callbacks: {
-//           label: function (context) {
-//             var label = context.dataset.label || '';
-//             if (label) {
-//               label += ': ';
-//             }
-//             label += context.formattedValue;
-//             label += ' шт';
-//             return label;
-//           }
-//         }
-//       }
-//     }
-//   }
-// });
-
 export function renderProductCard(data, element) {
-  const { title, avg_purchase_price, seller, photo } = data;
+  const { title, avg_purchase_price, seller_title, photo } = data;
 
   element.innerHTML = `
   <div class="product-info__image">
@@ -272,7 +17,7 @@ export function renderProductCard(data, element) {
       class="product-info__price-currency">сум</span>
   </div>
   <div class="product-info__seller">
-    Продавец: <span class="product-info__seller-name">${'seller'}</span>
+    Продавец: <span class="product-info__seller-name">${seller_title}</span>
   </div>
   <div class="product-info__description">
   </div>
@@ -284,15 +29,15 @@ export function renderTotalStat(data, elements) {
 
   elements.forEach(element => {
     if (element.matches('[data-total-sale]')) {
-      element.textContent = selled_amount;
+      element.textContent = +selled_amount < 0 ? 0 : selled_amount;
     }
 
     if (element.matches('[data-total-profit]')) {
-      element.textContent = formatNumber((+revenue).toFixed());
+      element.innerHTML = +revenue < 0 ? 0 : formatNumber((+revenue).toFixed());
     }
 
     if (element.matches('[data-total-average]')) {
-      element.textContent = (+selled_amount / +date_range).toFixed(2);
+      element.textContent = +selled_amount < 0 ? 0 : (+selled_amount / +date_range).toFixed(2);
     }
   });
 }
@@ -303,7 +48,7 @@ export function renderCategory(data, element) {
   for (let category in data) {
     if (category == '1') continue;
 
-    const dataArray = Object.entries(data[category]);
+    const dataArray = Object.entries(data[category].data);
     dataArray.sort((a, b) => {
       const dateA = new Date(a[0]).getTime();
       const dateB = new Date(b[0]).getTime();
@@ -318,17 +63,14 @@ export function renderCategory(data, element) {
     <div class="analytics-line__top">
       <div class="analytics-line__title">
         <div class="analytics-line__title-text">
-          Категория - ${category}.
-        </div>
-        <div class="analytics-line__title-report">
-          Отчет За 30 дней
+          Категория - ${data[category].category_title}.
         </div>
       </div>
-      <div class="analytics-line__positions ${totalProfit}" style="display: ${String(data[category]) === '101' ? 'none' : 'block'}"></div>
+      <div class="analytics-line__positions ${totalProfit}" style="display: ${String(data[category].data) == '101' ? 'none' : 'block'}"></div>
     </div>
     <div class="analytics-line__content" data-simplebar>
       <ul class="analytics-line__list">
-      ${String(data[category]) === '101'
+      ${String(data[category].data) == '101'
         ? 'К сожалению, информация по данной категории отсутствует.'
         : dataArray.map(item => {
           const positionStyle = item[1].delta >= 0 ? 'analytics-line__item-profit--up' : 'analytics-line__item-profit--down';

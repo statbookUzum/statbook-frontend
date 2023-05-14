@@ -1,16 +1,6 @@
 .shop-report {
-  padding: 28px 40px 0;
-  border-radius: 15px;
-
-  background-color: $light-color;
-
   @include w($md) {
     position: relative;
-
-    .custom-select-opener {
-      height: 52px;
-    }
-
     .custom-select-panel {
       top: 50%;
     }

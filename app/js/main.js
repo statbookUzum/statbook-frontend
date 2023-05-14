@@ -1144,6 +1144,159 @@ if (accordions.length) {
 
 /***/ }),
 
+/***/ "./src/js/components/cashing/cashingLostViewCard.js":
+/*!**********************************************************!*\
+  !*** ./src/js/components/cashing/cashingLostViewCard.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCashingLostViewCard": () => (/* binding */ getCashingLostViewCard),
+/* harmony export */   "setCashingLostViewCard": () => (/* binding */ setCashingLostViewCard)
+/* harmony export */ });
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function getCashingLostViewCard(pageType) {
+  var cashingData;
+
+  if (localStorage.getItem('lostViewCardShop') && pageType === 'shop') {
+    cashingData = localStorage.getItem('lostViewCardShop');
+  } else if (localStorage.getItem('lostViewCardProduct') && pageType === 'product') {
+    cashingData = localStorage.getItem('lostViewCardProduct');
+  } else {
+    return [];
+  }
+
+  cashingData = JSON.parse(cashingData);
+  return cashingData;
+}
+function setCashingLostViewCard(data, typePage) {
+  if (typePage === 'shop') {
+    if (!localStorage.getItem('lostViewCardShop')) {
+      var cashingData = [];
+      cashingData.unshift(data);
+      cashingData = JSON.stringify(cashingData);
+      localStorage.setItem('lostViewCardShop', cashingData);
+      return;
+    }
+
+    var cardItems = localStorage.getItem('lostViewCardShop');
+    cardItems = JSON.parse(cardItems);
+
+    var _iterator = _createForOfIteratorHelper(cardItems),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var item = _step.value;
+        if (item.id === data.id) return;
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    cardItems.unshift(data);
+    if (cardItems.length > 3) cardItems.pop();
+    cardItems = JSON.stringify(cardItems);
+    console.log(cardItems);
+    localStorage.setItem('lostViewCardShop', cardItems);
+  }
+
+  if (typePage === 'product') {
+    if (!localStorage.getItem('lostViewCardProduct')) {
+      var _cashingData = [];
+
+      _cashingData.unshift(data);
+
+      _cashingData = JSON.stringify(_cashingData);
+      localStorage.setItem('lostViewCardProduct', _cashingData);
+      return;
+    }
+
+    var _cardItems = localStorage.getItem('lostViewCardProduct');
+
+    _cardItems = JSON.parse(_cardItems);
+
+    var _iterator2 = _createForOfIteratorHelper(_cardItems),
+        _step2;
+
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var _item = _step2.value;
+        if (_item.title === data.title) return;
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+
+    _cardItems.unshift(data);
+
+    if (_cardItems.length > 3) _cardItems.pop();
+    _cardItems = JSON.stringify(_cardItems);
+    console.log(_cardItems);
+    localStorage.setItem('lostViewCardProduct', _cardItems);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/js/components/cashing/cashingMainData.js":
+/*!******************************************************!*\
+  !*** ./src/js/components/cashing/cashingMainData.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "cashingIdMainData": () => (/* binding */ cashingIdMainData),
+/* harmony export */   "updateCashingIdMainData": () => (/* binding */ updateCashingIdMainData)
+/* harmony export */ });
+function cashingIdMainData(pageType) {
+  if (localStorage.getItem('idMainData')) {
+    var obj = JSON.parse(localStorage.getItem('idMainData'));
+    return obj[pageType];
+  } else {
+    var _obj = {
+      shop: {
+        title: '',
+        id: ''
+      },
+      category: {
+        title: '',
+        breadcrumbs: '',
+        id: ''
+      },
+      product: {
+        title: '',
+        id: ''
+      }
+    };
+    _obj = JSON.stringify(_obj);
+    localStorage.setItem('idMainData', _obj);
+  }
+}
+function updateCashingIdMainData(id, pageType, title, breadcrumbs) {
+  var obj = JSON.parse(localStorage.getItem('idMainData'));
+  obj[pageType].title = title;
+  obj[pageType].id = id;
+  obj[pageType].breadcrumbs = breadcrumbs;
+  console.log(title);
+  JSON.stringify(localStorage.setItem('idMainData', JSON.stringify(obj)));
+}
+
+/***/ }),
+
 /***/ "./src/js/components/custom-input.js":
 /*!*******************************************!*\
   !*** ./src/js/components/custom-input.js ***!
@@ -1258,22 +1411,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./search-form/transformSearchData */ "./src/js/components/search-form/transformSearchData.js");
 /* harmony import */ var _search_form_renderBreadcrumbs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search-form/renderBreadcrumbs */ "./src/js/components/search-form/renderBreadcrumbs.js");
 /* harmony import */ var _setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./setLoadingAnimation */ "./src/js/components/setLoadingAnimation.js");
-/* harmony import */ var _render_table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./render-table */ "./src/js/components/render-table.js");
-/* harmony import */ var _render_products__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./render-products */ "./src/js/components/render-products.js");
-/* harmony import */ var _helperCharts_transformChartsData__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./helperCharts/transformChartsData */ "./src/js/components/helperCharts/transformChartsData.js");
-/* harmony import */ var _helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./helperTablePage/_transformDataForTables */ "./src/js/components/helperTablePage/_transformDataForTables.js");
-/* harmony import */ var _helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./helperTablePage/_transformTotalStatData */ "./src/js/components/helperTablePage/_transformTotalStatData.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
-/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+/* harmony import */ var _get_main_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./get-main-data */ "./src/js/components/get-main-data.js");
+/* harmony import */ var _cashing_cashingMainData__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cashing/cashingMainData */ "./src/js/components/cashing/cashingMainData.js");
 
 
 
@@ -1291,255 +1431,11 @@ if (searchForm) {
   var searchInput = searchForm.querySelector('.custom-input__input');
   var inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
   var helperWrapper = document.querySelector('.search-form__helper-wrapper');
-  var sectionsContainer = document.querySelector('.custom-tabs__content');
-  var productCard = document.querySelector('[data-product-card]');
-  var statList = document.querySelectorAll('.analytics-charts-amount');
-  var analyticsList = document.querySelector('.category-analytics__list'); //----------------------------------------------------------------------
-
-  var saleChart = document.getElementById('saleChart');
-  var priceChart = document.getElementById('priceChart');
-  var lostChart = document.getElementById('lostChart');
-  var labelsData = ['', '', '', '', '', '', '', '', '', '', '', '', '', ''];
-
-  var sortLabels = function sortLabels(value, index, items) {
-    if (index + 1 === 1) {
-      return labelsData[index];
-    }
-
-    if ((index + 1) % 5 === 0) {
-      return labelsData[index];
-    }
-
-    if (index + 1 === items.length) {
-      return labelsData[index];
-    }
-
-    return '';
-  };
-
-  var saleCht = !saleChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_12__.Chart(saleChart, {
-    type: 'bar',
-    data: {
-      labels: labelsData,
-      datasets: [{
-        label: 'График продаж',
-        data: [],
-        borderWidth: 0,
-        backgroundColor: 'rgba(124, 150, 255, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: '#7C96FF'
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false
-          },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
-            }
-          }
-        },
-        x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            callback: sortLabels,
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
-            },
-            color: 'rgba(4, 15, 35, 0.25)'
-          }
-        }
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            label: function label(context) {
-              var label = context.dataset.label || '';
-
-              if (label) {
-                label += ': ';
-              }
-
-              label += context.formattedValue;
-              label += ' шт.';
-              return label;
-            }
-          }
-        }
-      }
-    }
-  }); // const labelsData = chartsData.saleChartData.map(item => item.date);
-  // const valueData = chartsData.saleChartData.map(item => item.value);
-
-  var priceCht = !priceChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_12__.Chart(priceChart, {
-    type: 'bar',
-    data: {
-      labels: labelsData,
-      datasets: [{
-        label: 'График цены',
-        data: [],
-        borderWidth: 0,
-        backgroundColor: 'rgba(50, 175, 153, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)'
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false
-          },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
-            }
-          }
-        },
-        x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            callback: sortLabels,
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
-            },
-            color: 'rgba(4, 15, 35, 0.25)'
-          }
-        }
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            label: function label(context) {
-              var label = context.dataset.label || '';
-
-              if (label) {
-                label += ': ';
-              }
-
-              label += context.formattedValue;
-              label += ' сум';
-              return label;
-            }
-          }
-        }
-      }
-    }
-  }); // const labelsData = chartsData.saleChartData.map(item => item.date);
-  // const valueData = chartsData.saleChartData.map(item => item.value);
-
-  var lostCht = !lostChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_12__.Chart(lostChart, {
-    type: 'bar',
-    data: {
-      labels: labelsData,
-      datasets: [{
-        label: 'График остатков',
-        data: [],
-        borderWidth: 0,
-        backgroundColor: 'rgba(255, 122, 0, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)'
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false
-          },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
-              weight: 600
-            }
-          }
-        },
-        x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            callback: sortLabels,
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600
-            },
-            color: 'rgba(4, 15, 35, 0.25)'
-          }
-        }
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            label: function label(context) {
-              var label = context.dataset.label || '';
-
-              if (label) {
-                label += ': ';
-              }
-
-              label += context.formattedValue;
-              label += ' шт';
-              return label;
-            }
-          }
-        }
-      }
-    }
-  }); // tables variables
-
-  var tableList = document.querySelectorAll('.table');
-  var tableContainers = document.querySelectorAll('.table-container'); // total stat
-
-  var totalStatList = document.querySelectorAll('[data-total]'); // card info
-
-  var sellerCard = document.querySelectorAll('[data-seller-card'); // data for category card
+  var periodSelect = document.querySelector('[data-period-select]');
+  var periodRange = periodSelect.value; // data for category card-name
 
   var categoryCardData = {};
-  var productCardData = {};
-  var breadcrumbsList = document.querySelectorAll('[data-breadcrumbs]'); // временно
-
-  var categoryNameList = document.querySelectorAll('[data-title]');
-  var debounceRender = (0,_helper__WEBPACK_IMPORTED_MODULE_11__.debounce)(renderHelperList, 1500);
+  var debounceRender = (0,_helper__WEBPACK_IMPORTED_MODULE_6__.debounce)(renderHelperList, 1500);
   searchInput.addEventListener('input', function () {
     debounceRender(searchInput.value);
   });
@@ -1588,7 +1484,12 @@ if (searchForm) {
           return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformProductData)(response);
         }).then(function (helperList) {
           (0,_search_form_renderHelperList__WEBPACK_IMPORTED_MODULE_2__.renderProductList)(helperList);
-          inputHiddenForId.value = helperList[0] ? helperList[0].product_id : '';
+
+          if (helperList[0]) {
+            inputHiddenForId.value = helperList[0].product_id;
+            inputHiddenForId.setAttribute('data-hidden-title', helperList[0].title);
+          }
+
           (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(helperWrapper, false);
         }).catch(function (error) {
           console.log(error);
@@ -1651,7 +1552,7 @@ if (searchForm) {
       }
 
       if (pageType === 'product') {
-        productCardData.title = text;
+        inputHiddenForId.setAttribute('data-hidden-title', text);
         (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getHelperData)(text, pageType).then(function (response) {
           return (0,_search_form_transformSearchData__WEBPACK_IMPORTED_MODULE_3__.transformProductData)(response);
         }).then(function (helperList) {
@@ -1668,86 +1569,192 @@ if (searchForm) {
 
   searchForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    var inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
-    var id = inputHiddenForId.value;
-    var label = searchForm.querySelector('.auth-form__label');
-    var button = searchForm.querySelector('button[type=submit]');
-    button.disabled = true;
-    (0,_helper__WEBPACK_IMPORTED_MODULE_11__.blurElementAndChildren)(label);
-    (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(sectionsContainer, true);
-    tableList.forEach(function (table) {
-      return table.innerHTML = '';
-    });
-    setTimeout(_helper__WEBPACK_IMPORTED_MODULE_11__.setHeight, 0);
+    var titleForCash = pageType === 'category' ? categoryCardData.categoryName : inputHiddenForId.getAttribute('data-hidden-title');
+    (0,_cashing_cashingMainData__WEBPACK_IMPORTED_MODULE_8__.updateCashingIdMainData)(inputHiddenForId.value, pageType, titleForCash, categoryCardData.breadcrumbs);
+    (0,_get_main_data__WEBPACK_IMPORTED_MODULE_7__.getMainData)(searchForm, pageType, categoryCardData, periodRange);
+  });
+  periodSelect.addEventListener('change', function () {
+    if (!inputHiddenForId.value || periodRange === periodSelect.value) return;
+    periodRange = periodSelect.value;
+    (0,_get_main_data__WEBPACK_IMPORTED_MODULE_7__.getMainData)(searchForm, pageType, categoryCardData, periodRange);
+  });
+  (0,_cashing_cashingMainData__WEBPACK_IMPORTED_MODULE_8__.cashingIdMainData)(pageType);
+  initMainData(pageType, inputHiddenForId);
 
-    if (pageType === 'shop') {
-      (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType).then(function (response) {
-        return {
-          table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_9__.transformDataForTable)(response.data),
-          totalStat: (0,_helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_10__.transformTotalStatData)(response.data.analyze, 'shop'),
-          cardInfo: response.data.card_info[0]
-        };
-      }).then(function (transformData) {
-        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderTable)(transformData.table, tableList);
-        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderTotalStat)(transformData.totalStat, totalStatList);
-        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderSellerCard)(transformData.cardInfo, sellerCard);
-        (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(sectionsContainer, false);
-        button.disabled = false;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
+  function initMainData(pageType, inputHiddenForId) {
+    var obj = (0,_cashing_cashingMainData__WEBPACK_IMPORTED_MODULE_8__.cashingIdMainData)(pageType);
+    if (!obj.id) return;
+
+    var _cashingIdMainData = (0,_cashing_cashingMainData__WEBPACK_IMPORTED_MODULE_8__.cashingIdMainData)(pageType),
+        title = _cashingIdMainData.title,
+        id = _cashingIdMainData.id,
+        breadcrumbs = _cashingIdMainData.breadcrumbs;
+
+    console.log(title);
 
     if (pageType === 'category') {
-      (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType).then(function (response) {
-        console.log(response.data);
-        return {
-          table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_9__.transformDataForTable)(response.data),
-          totalStat: (0,_helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_10__.transformTotalStatData)(response.data.analyze, 'category')
-        };
-      }).then(function (transformData) {
-        categoryNameList.forEach(function (categoryName) {
-          categoryName.textContent = categoryCardData.categoryName;
-        });
-        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderBreadcrumbs)(categoryCardData.breadcrumbs, breadcrumbsList);
-        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderTable)(transformData.table, tableList);
-        (0,_render_table__WEBPACK_IMPORTED_MODULE_6__.renderTotalStat)(transformData.totalStat, totalStatList);
-        (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(sectionsContainer, false);
-        button.disabled = false;
-      }).catch(function (error) {
-        console.log(error);
-      });
+      categoryCardData.title = title;
+      categoryCardData.breadcrumbs = breadcrumbs;
+    } else {
+      inputHiddenForId.setAttribute('data-hidden-title', title);
     }
 
-    if (pageType === 'product') {
-      (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType).then(function (response) {
-        console.log(response.data);
-        document.querySelector('.analytics-charts').style.display = 'block';
-        return {
-          chartsData: (0,_helperCharts_transformChartsData__WEBPACK_IMPORTED_MODULE_8__.transformChartsData)(response.data.chartsInfo),
-          totalStat: response.data.analyze[0],
-          cardInfo: _objectSpread(_objectSpread({}, response.data.analyze[0]), productCardData),
-          positions: response.data.positions
-        };
-      }).then(function (transformData) {
-        (0,_render_products__WEBPACK_IMPORTED_MODULE_7__.renderProductCard)(transformData.cardInfo, productCard);
-        (0,_render_products__WEBPACK_IMPORTED_MODULE_7__.renderTotalStat)(transformData.totalStat, statList);
-        labelsData = transformData.chartsData.dateArr;
-        saleCht.data.datasets[0].data = transformData.chartsData.saleArr;
-        saleCht.update();
-        priceCht.data.datasets[0].data = transformData.chartsData.priceArr;
-        priceCht.update();
-        lostCht.data.datasets[0].data = transformData.chartsData.lostArr;
-        lostCht.update();
-        setTimeout(_helper__WEBPACK_IMPORTED_MODULE_11__.setHeight, 100);
-        (0,_render_products__WEBPACK_IMPORTED_MODULE_7__.renderCategory)(transformData.positions, analyticsList);
-        (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_5__.setLoadingAnimation)(sectionsContainer, false);
-        button.disabled = false;
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
+    inputHiddenForId.value = id;
+    (0,_get_main_data__WEBPACK_IMPORTED_MODULE_7__.getMainData)(searchForm, pageType, categoryCardData, periodRange);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/js/components/get-main-data.js":
+/*!********************************************!*\
+  !*** ./src/js/components/get-main-data.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getMainData": () => (/* binding */ getMainData)
+/* harmony export */ });
+/* harmony import */ var _https_request__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./https-request */ "./src/js/components/https-request.js");
+/* harmony import */ var _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helperCharts/createCharts */ "./src/js/components/helperCharts/createCharts.js");
+/* harmony import */ var _render_table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./render-table */ "./src/js/components/render-table.js");
+/* harmony import */ var _render_products__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./render-products */ "./src/js/components/render-products.js");
+/* harmony import */ var _helperCharts_transformChartsData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helperCharts/transformChartsData */ "./src/js/components/helperCharts/transformChartsData.js");
+/* harmony import */ var _helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helperTablePage/_transformDataForTables */ "./src/js/components/helperTablePage/_transformDataForTables.js");
+/* harmony import */ var _helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helperTablePage/_transformTotalStatData */ "./src/js/components/helperTablePage/_transformTotalStatData.js");
+/* harmony import */ var _helperTablePage_checkAmountLineOfShopDesc__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./helperTablePage/_checkAmountLineOfShopDesc */ "./src/js/components/helperTablePage/_checkAmountLineOfShopDesc.js");
+/* harmony import */ var _setLoadingAnimation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./setLoadingAnimation */ "./src/js/components/setLoadingAnimation.js");
+/* harmony import */ var _cashing_cashingLostViewCard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cashing/cashingLostViewCard */ "./src/js/components/cashing/cashingLostViewCard.js");
+/* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./slider */ "./src/js/components/slider.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+var sectionsContainer = document.querySelector('.custom-tabs__content');
+var productCard = document.querySelector('[data-product-card]');
+var statList = document.querySelectorAll('.analytics-charts-amount');
+var analyticsList = document.querySelector('.category-analytics__list');
+var productInfo = document.querySelector('.product-info');
+var mainSectionInner = document.querySelector('.main-section__inner'); // tables variables
+
+var tableList = document.querySelectorAll('.table'); // total stat
+
+var totalStatList = document.querySelectorAll('[data-total]'); // card info
+
+var sellerCard = document.querySelectorAll('[data-seller-card'); // временно
+
+var categoryNameList = document.querySelectorAll('[data-title]');
+var breadcrumbsList = document.querySelectorAll('[data-breadcrumbs]');
+function getMainData(searchForm, pageType, categoryCardData, period) {
+  var inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
+  var id = inputHiddenForId.value;
+  var label = searchForm.querySelector('.auth-form__label');
+  var button = searchForm.querySelector('button[type=submit]');
+  button.disabled = true;
+  (0,_helper__WEBPACK_IMPORTED_MODULE_11__.blurElementAndChildren)(label);
+  (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_8__.setLoadingAnimation)(mainSectionInner, true);
+  tableList.forEach(function (table) {
+    return table.innerHTML = '';
   });
+  setTimeout(_helper__WEBPACK_IMPORTED_MODULE_11__.setHeight, 0);
+
+  if (pageType === 'shop') {
+    (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType, period).then(function (response) {
+      return {
+        table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_5__.transformDataForTable)(response.data),
+        totalStat: (0,_helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_6__.transformTotalStatData)(response.data.analyze, 'shop'),
+        cardInfo: response.data.card_info[0]
+      };
+    }).then(function (transformData) {
+      (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderTable)(transformData.table, tableList);
+      (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderTotalStat)(transformData.totalStat, totalStatList);
+      (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderSellerCard)(transformData.cardInfo, sellerCard);
+      (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_8__.setLoadingAnimation)(mainSectionInner, false);
+      button.disabled = false;
+      (0,_helperTablePage_checkAmountLineOfShopDesc__WEBPACK_IMPORTED_MODULE_7__.checkDescLine)();
+      (0,_cashing_cashingLostViewCard__WEBPACK_IMPORTED_MODULE_9__.setCashingLostViewCard)(transformData.cardInfo, pageType);
+      (0,_slider__WEBPACK_IMPORTED_MODULE_10__.createLastShopCards)();
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  if (pageType === 'category') {
+    (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType, period).then(function (response) {
+      console.log(response.data);
+      return {
+        totalStat: (0,_helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_6__.transformTotalStatData)(response.data.analyze, 'category'),
+        table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_5__.transformDataForTable)(response.data)
+      };
+    }).then(function (transformData) {
+      categoryNameList.forEach(function (categoryName) {
+        categoryName.textContent = categoryCardData.categoryName;
+      });
+      (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderBreadcrumbs)(categoryCardData.breadcrumbs, breadcrumbsList);
+      (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderTable)(transformData.table, tableList);
+      (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderTotalStat)(transformData.totalStat, totalStatList);
+      (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_8__.setLoadingAnimation)(mainSectionInner, false);
+      button.disabled = false;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  if (pageType === 'product') {
+    (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_8__.setLoadingAnimation)(mainSectionInner, true);
+    (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType, period).then(function (response) {
+      console.log(response.data);
+      document.querySelector('.analytics-charts').style.display = 'block';
+      return {
+        chartsData: (0,_helperCharts_transformChartsData__WEBPACK_IMPORTED_MODULE_4__.transformChartsData)(response.data.chartsInfo),
+        totalStat: response.data.analyze[0],
+        cardInfo: _objectSpread(_objectSpread({}, response.data.analyze[0]), {}, {
+          title: inputHiddenForId.getAttribute('data-hidden-title')
+        }),
+        positions: response.data.positions
+      };
+    }).then(function (transformData) {
+      console.log(transformData.cardInfo);
+      (0,_render_products__WEBPACK_IMPORTED_MODULE_3__.renderProductCard)(transformData.cardInfo, productCard);
+      (0,_render_products__WEBPACK_IMPORTED_MODULE_3__.renderTotalStat)(transformData.totalStat, statList);
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.saleCht.data.datasets[0].data = transformData.chartsData.saleArr;
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.saleCht.data.labels = transformData.chartsData.dateArr;
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.saleCht.update();
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.priceCht.data.datasets[0].data = transformData.chartsData.priceArr;
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.priceCht.data.labels = transformData.chartsData.dateArr;
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.priceCht.update();
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.lostCht.data.datasets[0].data = transformData.chartsData.lostArr;
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.lostCht.data.labels = transformData.chartsData.dateArr;
+      _helperCharts_createCharts__WEBPACK_IMPORTED_MODULE_1__.lostCht.update();
+      (0,_helper__WEBPACK_IMPORTED_MODULE_11__.changePeriods)(period);
+      (0,_render_products__WEBPACK_IMPORTED_MODULE_3__.renderCategory)(transformData.positions, analyticsList);
+      setTimeout(_helper__WEBPACK_IMPORTED_MODULE_11__.setHeight, 100);
+      (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_8__.setLoadingAnimation)(mainSectionInner, false); // setLoadingAnimation(productInfo, false);
+
+      (0,_cashing_cashingLostViewCard__WEBPACK_IMPORTED_MODULE_9__.setCashingLostViewCard)(transformData.cardInfo, pageType);
+      (0,_slider__WEBPACK_IMPORTED_MODULE_10__.createLastShopCards)();
+      button.disabled = false;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
 }
 
 /***/ }),
@@ -1762,6 +1769,7 @@ if (searchForm) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "blurElementAndChildren": () => (/* binding */ blurElementAndChildren),
+/* harmony export */   "changePeriods": () => (/* binding */ changePeriods),
 /* harmony export */   "debounce": () => (/* binding */ debounce),
 /* harmony export */   "removeYearFromDate": () => (/* binding */ removeYearFromDate),
 /* harmony export */   "setHeight": () => (/* binding */ setHeight),
@@ -1822,6 +1830,319 @@ function removeYearFromDate(strDate) {
   var dd = String(date.getDate()).padStart(2, '0');
   return "".concat(mm, ".").concat(dd);
 }
+function changePeriods(period) {
+  if (!period) return;
+  var periodElements = document.querySelectorAll('[data-days-report]');
+
+  if (periodElements.length) {
+    periodElements.forEach(function (item) {
+      item.textContent = period;
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./src/js/components/helperCharts/createCharts.js":
+/*!********************************************************!*\
+  !*** ./src/js/components/helperCharts/createCharts.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "lostCht": () => (/* binding */ lostCht),
+/* harmony export */   "priceCht": () => (/* binding */ priceCht),
+/* harmony export */   "saleCht": () => (/* binding */ saleCht),
+/* harmony export */   "setLabelsData": () => (/* binding */ setLabelsData)
+/* harmony export */ });
+/* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
+
+var saleChart = document.getElementById('saleChart');
+var priceChart = document.getElementById('priceChart');
+var lostChart = document.getElementById('lostChart');
+var labelsData = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+
+var sortLabels = function sortLabels(value, index, items) {
+  // items = labelsData;
+  if (index + 1 === 1) {
+    return labelsData[index];
+  }
+
+  if ((index + 1) % 5 === 0) {
+    return labelsData[index];
+  }
+
+  if (index + 1 === items.length) {
+    return labelsData[index];
+  }
+
+  return '';
+};
+
+var saleCht = !saleChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(saleChart, {
+  type: 'bar',
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'График продаж',
+      data: [],
+      borderWidth: 0,
+      backgroundColor: 'rgba(124, 150, 255, 0.5)',
+      borderRadius: 15,
+      hoverBackgroundColor: '#7C96FF'
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          display: false
+        },
+        ticks: {
+          color: 'rgba(0, 0, 0, 0.25)',
+          font: {
+            family: 'Open Sans',
+            size: 12,
+            weight: 600
+          }
+        }
+      },
+      x: {
+        grid: {
+          display: false
+        },
+        ticks: {
+          callback: function callback(value, index, items) {
+            if (index + 1 === 1) {
+              return saleCht.data.labels[index];
+            }
+
+            if (items.length === 7 && index + 1 === 4) {
+              return saleCht.data.labels[3];
+            }
+
+            if ((index + 1) % 5 === 0 && items.length !== 7) {
+              return saleCht.data.labels[index];
+            }
+
+            if (index + 1 === items.length) {
+              return saleCht.data.labels[index];
+            }
+
+            return '';
+          },
+          font: {
+            family: 'Open Sans',
+            size: 12,
+            weight: 600
+          },
+          color: 'rgba(4, 15, 35, 0.25)'
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    barPercentage: 0.8,
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          label: function label(context) {
+            var label = context.dataset.label || '';
+
+            if (label) {
+              label += ': ';
+            }
+
+            label += context.formattedValue;
+            label += ' шт.';
+            return label;
+          }
+        }
+      }
+    }
+  }
+});
+var priceCht = !priceChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(priceChart, {
+  type: 'bar',
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'График цены',
+      data: [],
+      borderWidth: 0,
+      backgroundColor: 'rgba(50, 175, 153, 0.5)',
+      borderRadius: 15,
+      hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)'
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          display: false
+        },
+        ticks: {
+          color: 'rgba(0, 0, 0, 0.25)',
+          font: {
+            family: 'Open Sans',
+            size: 12,
+            weight: 600
+          }
+        }
+      },
+      x: {
+        grid: {
+          display: false
+        },
+        ticks: {
+          callback: function callback(value, index, items) {
+            if (index + 1 === 1) {
+              return priceCht.data.labels[index];
+            }
+
+            if (items.length === 7 && index + 1 === 4) {
+              return priceCht.data.labels[3];
+            }
+
+            if ((index + 1) % 5 === 0 && items.length !== 7) {
+              return priceCht.data.labels[index];
+            }
+
+            if (index + 1 === items.length) {
+              return priceCht.data.labels[index];
+            }
+
+            return '';
+          },
+          font: {
+            family: 'Open Sans',
+            size: 12,
+            weight: 600
+          },
+          color: 'rgba(4, 15, 35, 0.25)'
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    barPercentage: 0.8,
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          label: function label(context) {
+            var label = context.dataset.label || '';
+
+            if (label) {
+              label += ': ';
+            }
+
+            label += context.formattedValue;
+            label += ' сум';
+            return label;
+          }
+        }
+      }
+    }
+  }
+});
+var lostCht = !lostChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(lostChart, {
+  type: 'bar',
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'График остатков',
+      data: [],
+      borderWidth: 0,
+      backgroundColor: 'rgba(255, 122, 0, 0.5)',
+      borderRadius: 15,
+      hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)'
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          display: false
+        },
+        ticks: {
+          color: 'rgba(0, 0, 0, 0.25)',
+          font: {
+            family: 'Open Sans',
+            size: 12,
+            color: 'rgba(4, 15, 35, 0.25)',
+            weight: 600
+          }
+        }
+      },
+      x: {
+        grid: {
+          display: false
+        },
+        ticks: {
+          callback: function callback(value, index, items) {
+            if (index + 1 === 1) {
+              return lostCht.data.labels[index];
+            }
+
+            if (items.length === 7 && index + 1 === 4) {
+              return lostCht.data.labels[3];
+            }
+
+            if ((index + 1) % 5 === 0 && items.length !== 7) {
+              return lostCht.data.labels[index];
+            }
+
+            if (index + 1 === items.length) {
+              return lostCht.data.labels[index];
+            }
+
+            return '';
+          },
+          font: {
+            family: 'Open Sans',
+            size: 12,
+            weight: 600
+          },
+          color: 'rgba(4, 15, 35, 0.25)'
+        }
+      }
+    },
+    maintainAspectRatio: false,
+    barPercentage: 0.8,
+    plugins: {
+      legend: {
+        display: false
+      },
+      tooltip: {
+        callbacks: {
+          label: function label(context) {
+            var label = context.dataset.label || '';
+
+            if (label) {
+              label += ': ';
+            }
+
+            label += context.formattedValue;
+            label += ' шт';
+            return label;
+          }
+        }
+      }
+    }
+  }
+});
+function setLabelsData(value) {
+  labelsData = value;
+}
 
 /***/ }),
 
@@ -1847,18 +2168,43 @@ function transformChartsData(arr) {
   };
   arr.forEach(function (obj) {
     resultObj.dateArr.push((0,_helper__WEBPACK_IMPORTED_MODULE_0__.removeYearFromDate)(obj.date));
-
-    if (obj.selled_amount >= 0) {
-      resultObj.saleArr.push(obj.selled_amount);
-    } else {
-      console.log(0);
-      resultObj.saleArr.push('0');
-    }
+    resultObj.saleArr.push(obj.selled_amount); // if (obj.selled_amount >= 0) {
+    // } else {
+    //   console.log(0);
+    //   resultObj.saleArr.push('0');
+    // }
 
     resultObj.priceArr.push(obj.purchase_price);
     resultObj.lostArr.push(obj.available_amount);
   });
   return resultObj;
+}
+
+/***/ }),
+
+/***/ "./src/js/components/helperTablePage/_checkAmountLineOfShopDesc.js":
+/*!*************************************************************************!*\
+  !*** ./src/js/components/helperTablePage/_checkAmountLineOfShopDesc.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkDescLine": () => (/* binding */ checkDescLine)
+/* harmony export */ });
+function checkDescLine() {
+  var desc = document.querySelector('.seller-card__desc');
+  var fullDesc = document.querySelector('.seller-card__desc-full');
+  var lineHeight = window.getComputedStyle(desc).getPropertyValue('line-height');
+  var height = desc.offsetHeight;
+  console.log(parseInt(lineHeight), height);
+  var lineAmount = Math.floor(height / parseInt(lineHeight));
+  console.log(lineAmount);
+
+  if (lineAmount < 3) {
+    fullDesc.style.display = 'none';
+  }
 }
 
 /***/ }),
@@ -1912,12 +2258,9 @@ function transformObjProperty(obj) {
     }
 
     if (!isNaN(obj[prop])) {
-      if (+obj[prop] % 1 !== 0) {
-        obj[prop] = formatNumber((+obj[prop]).toFixed());
-      } else {
-        obj[prop] = +obj[prop];
-      } // obj[prop] = +obj[prop] % 1 !== 0 ? formatNumber((+obj[prop]).toFixed()) : +obj[prop];
-
+      if (typeof obj[prop] === 'string' && obj[prop].includes('.')) {
+        obj[prop] = formatNumber(+obj[prop]);
+      }
 
       continue;
     }
@@ -1927,19 +2270,36 @@ function transformObjProperty(obj) {
 }
 
 function formatNumber(num) {
+  if (+num === 0) return 0;
   var result;
+  var afterDot = 0;
+  var divider = 0.99999;
+  var unit = '';
 
   if (num >= 1000000000) {
-    result = (num / 1000000000).toFixed(0) + " млрд.";
+    divider = 1000000000;
+    unit = '&nbsp;млрд.';
   } else if (num >= 1000000) {
-    result = (num / 1000000).toFixed(0) + " млн.";
+    divider = 1000000;
+    unit = '&nbsp;млн.';
   } else if (num >= 1000) {
-    result = (num / 1000).toFixed(0) + " тыс.";
-  } else {
-    result = num.toString();
+    divider = 1000;
+    unit = '&nbsp;тыс.';
   }
 
-  return result.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+  var fixedNum = (+num / divider).toFixed(0);
+
+  if (String(fixedNum).length >= 3) {
+    afterDot = 0;
+  } else if (String(fixedNum).length === 2) {
+    afterDot = 1;
+  } else {
+    afterDot = 2;
+  }
+
+  result = (+num / divider).toFixed(afterDot) + unit; // return result.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+
+  return result;
 }
 
 function renameTableHeader(arr) {
@@ -1957,6 +2317,7 @@ function renameTableHeader(arr) {
     sellers_count: 'Количество продавцов',
     avg_rating: 'Средний рейтинг',
     selled_per_for_period: 'Кол-во продаж',
+    avg_base_price: 'Средняя базовая цена',
     revenue: 'Выручка',
     revenue_base: 'Базовая выручка',
     available_amount: 'Остаток',
@@ -2031,6 +2392,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "transformTotalStatData": () => (/* binding */ transformTotalStatData)
 /* harmony export */ });
+/* harmony import */ var _transformDataForTables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_transformDataForTables */ "./src/js/components/helperTablePage/_transformDataForTables.js");
+
 function transformTotalStatData(arr, flag) {
   var resultArray;
   console.log(arr);
@@ -2052,18 +2415,30 @@ function transformTotalStatData(arr, flag) {
   }
 
   if (flag === 'category') {
+    var obj = {
+      selled_amount: 0,
+      revenue: 0,
+      available_product: 0,
+      sellers_count: 0
+    };
+    arr.forEach(function (item) {
+      obj['selled_amount'] += +item.selled_amount;
+      obj['revenue'] += +item.revenue;
+      obj['available_product'] += +item.available_product;
+      obj['sellers_count'] += +item.sellers_count;
+    });
     resultArray = [{
       title: 'Заказы',
-      value: arr[0].selled_amount
+      value: obj.selled_amount
     }, {
       title: 'Выручка',
-      value: arr[0].revenue
+      value: (0,_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)(obj.revenue)
     }, {
       title: 'Количество позиций',
-      value: arr[0].available_product
+      value: obj.available_product
     }, {
       title: 'Количество продавцов',
-      value: arr[0].sellers_count
+      value: obj.sellers_count
     }, {
       title: 'Количество подкатегорий',
       value: arr.length
@@ -2089,7 +2464,7 @@ var tablesToHide = document.querySelectorAll('.table');
 
 if (tablesToHide.length) {
   tablesToHide.forEach(function (table) {
-    var hideTableButton = table.closest('.shop-report').querySelector('.hide-report-button');
+    var hideTableButton = table.closest('.custom-tabs__panel').querySelector('.hide-report-button');
     var tableContainer = table.closest('.table-container');
     hideTableButton.addEventListener('click', function () {
       if (!tableContainer.matches('.hidden')) {
@@ -2121,35 +2496,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getDataWithId": () => (/* binding */ getDataWithId),
 /* harmony export */   "getHelperData": () => (/* binding */ getHelperData)
 /* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 
 var getHelperData = function getHelperData(value, searchType) {
   var urls = {
-    shop: 'https://statbook.uz/server/get_seller/',
+    shop: 'https://statbook.uz/server/get_seller?title=',
     category: 'https://statbook.uz/server/get_category?title=',
     product: 'https://statbook.uz/server/get_product?title='
   };
   var url = urls[searchType] + value;
-  return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url);
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url);
 };
-var getDataWithId = function getDataWithId(id, searchType) {
+var getDataWithId = function getDataWithId(id, searchType, period) {
   var urls = {
     shop: 'https://statbook.uz/server/get_seller_view/',
     category: 'https://statbook.uz/server/get_category_view/',
     product: 'https://statbook.uz/server/get_product_analyze/'
   };
-  var url = urls[searchType] + id;
-  return axios__WEBPACK_IMPORTED_MODULE_1__["default"].get(url);
-}; // export const getCategoryDataWithId = (id) => {
-//   const url = 'https://statbook.uz/server/get_category_view/' + id;
-//   return axios.get(url);
-// }
-// export const getProductDataWithId = (id) => {
-//   const url = 'https://statbook.uz/server/get_product_analyze/' + id;
-//   return axios.get(url);
-// }
+  var url = urls[searchType] + id + "".concat(period ? '?range=' + period : '');
+  return axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(url);
+};
 
 /***/ }),
 
@@ -2351,251 +2717,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helperTablePage/_transformDataForTables */ "./src/js/components/helperTablePage/_transformDataForTables.js");
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
-// import { Chart } from "chart.js/auto";
 
-
-var chartsSection = document.querySelector('.main-section--charts');
-var analyticsList = document.querySelector('.category-analytics__list');
-var saleChart = document.getElementById('saleChart');
-var priceChart = document.getElementById('priceChart');
-var lostChart = document.getElementById('lostChart');
-var productCard = document.querySelector('[data-product-card]');
-var statList = document.querySelectorAll('.analytics-charts-amount'); // const labelsData = chartsData.saleChartData.map(item => item.date);
-// const valueData = chartsData.saleChartData.map(item => item.value);
-// export const saleCht = new Chart(saleChart, {
-//   type: 'bar',
-//   data: {
-//     labels: [],
-//     datasets: [{
-//       label: 'График продаж',
-//       data: [],
-//       borderWidth: 0,
-//       backgroundColor: 'rgba(124, 150, 255, 0.5)',
-//       borderRadius: 15,
-//       hoverBackgroundColor: '#7C96FF',
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//         grid: {
-//           display: false,
-//         },
-//         ticks: {
-//           color: 'rgba(0, 0, 0, 0.25)',
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           }
-//         }
-//       },
-//       x: {
-//         grid: {
-//           display: false
-//         },
-//         ticks: {
-//           callback: function (value, index, items) {
-//             if (index + 1 === 1) {
-//               return labelsData[index];
-//             }
-//             if ((index + 1) % 5 === 0) {
-//               return labelsData[index];
-//             }
-//             return '';
-//           },
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           },
-//           color: 'rgba(4, 15, 35, 0.25)',
-//         }
-//       },
-//     },
-//     maintainAspectRatio: false,
-//     barPercentage: 0.8,
-//     plugins: {
-//       legend: {
-//         display: false,
-//       },
-//       tooltip: {
-//         callbacks: {
-//           label: function (context) {
-//             var label = context.dataset.label || '';
-//             if (label) {
-//               label += ': ';
-//             }
-//             label += context.formattedValue;
-//             label += ' млн';
-//             return label;
-//           }
-//         }
-//       }
-//     }
-//   }
-// });
-// const labelsData = chartsData.saleChartData.map(item => item.date);
-// const valueData = chartsData.saleChartData.map(item => item.value);
-// export const priceCht = new Chart(priceChart, {
-//   type: 'bar',
-//   data: {
-//     labels: [],
-//     datasets: [{
-//       label: 'График цены',
-//       data: [],
-//       borderWidth: 0,
-//       backgroundColor: 'rgba(50, 175, 153, 0.5)',
-//       borderRadius: 15,
-//       hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)',
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//         grid: {
-//           display: false,
-//         },
-//         ticks: {
-//           color: 'rgba(0, 0, 0, 0.25)',
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           }
-//         }
-//       },
-//       x: {
-//         grid: {
-//           display: false
-//         },
-//         ticks: {
-//           callback: function (value, index, items) {
-//             if (index + 1 === 1) {
-//               return labelsData[index];
-//             }
-//             if ((index + 1) % 5 === 0) {
-//               return labelsData[index];
-//             }
-//             return '';
-//           },
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           },
-//           color: 'rgba(4, 15, 35, 0.25)',
-//         }
-//       },
-//     },
-//     maintainAspectRatio: false,
-//     barPercentage: 0.8,
-//     plugins: {
-//       legend: {
-//         display: false,
-//       },
-//       tooltip: {
-//         callbacks: {
-//           label: function (context) {
-//             var label = context.dataset.label || '';
-//             if (label) {
-//               label += ': ';
-//             }
-//             label += context.formattedValue;
-//             label += ' млн';
-//             return label;
-//           }
-//         }
-//       }
-//     }
-//   }
-// });
-// const labelsData = chartsData.saleChartData.map(item => item.date);
-// const valueData = chartsData.saleChartData.map(item => item.value);
-// export const lostCht = new Chart(lostChart, {
-//   type: 'bar',
-//   data: {
-//     labels: [],
-//     datasets: [{
-//       label: 'График остатков',
-//       data: [],
-//       borderWidth: 0,
-//       backgroundColor: 'rgba(255, 122, 0, 0.5)',
-//       borderRadius: 15,
-//       hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)',
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true,
-//         grid: {
-//           display: false,
-//         },
-//         ticks: {
-//           color: 'rgba(0, 0, 0, 0.25)',
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             color: 'rgba(4, 15, 35, 0.25)',
-//             weight: 600,
-//           }
-//         }
-//       },
-//       x: {
-//         grid: {
-//           display: false
-//         },
-//         ticks: {
-//           callback: function (value, index, items) {
-//             if (index + 1 === 1) {
-//               return labelsData[index];
-//             }
-//             if ((index + 1) % 5 === 0) {
-//               return labelsData[index];
-//             }
-//             return '';
-//           },
-//           font: {
-//             family: 'Open Sans',
-//             size: 12,
-//             weight: 600,
-//           },
-//           color: 'rgba(4, 15, 35, 0.25)',
-//         }
-//       },
-//     },
-//     maintainAspectRatio: false,
-//     barPercentage: 0.8,
-//     plugins: {
-//       legend: {
-//         display: false,
-//       },
-//       tooltip: {
-//         callbacks: {
-//           label: function (context) {
-//             var label = context.dataset.label || '';
-//             if (label) {
-//               label += ': ';
-//             }
-//             label += context.formattedValue;
-//             label += ' шт';
-//             return label;
-//           }
-//         }
-//       }
-//     }
-//   }
-// });
 
 function renderProductCard(data, element) {
   var title = data.title,
       avg_purchase_price = data.avg_purchase_price,
-      seller = data.seller,
+      seller_title = data.seller_title,
       photo = data.photo;
-  element.innerHTML = "\n  <div class=\"product-info__image\">\n  <img src=\"".concat(photo ? photo : './img/product-test-image.jpg', "\"\n    alt=\"").concat(title, "\">\n  </div>\n  <div class=\"product-info__title\">\n    ").concat(title, "\n  </div>\n  <div class=\"product-info__price\">\n    \u0426\u0435\u043D\u0430: <span class=\"product-info__price-amount\">").concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+avg_purchase_price).toFixed(0)), "</span> <span\n      class=\"product-info__price-currency\">\u0441\u0443\u043C</span>\n  </div>\n  <div class=\"product-info__seller\">\n    \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446: <span class=\"product-info__seller-name\">", 'seller', "</span>\n  </div>\n  <div class=\"product-info__description\">\n  </div>\n");
+  element.innerHTML = "\n  <div class=\"product-info__image\">\n  <img src=\"".concat(photo ? photo : './img/product-test-image.jpg', "\"\n    alt=\"").concat(title, "\">\n  </div>\n  <div class=\"product-info__title\">\n    ").concat(title, "\n  </div>\n  <div class=\"product-info__price\">\n    \u0426\u0435\u043D\u0430: <span class=\"product-info__price-amount\">").concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+avg_purchase_price).toFixed(0)), "</span> <span\n      class=\"product-info__price-currency\">\u0441\u0443\u043C</span>\n  </div>\n  <div class=\"product-info__seller\">\n    \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446: <span class=\"product-info__seller-name\">").concat(seller_title, "</span>\n  </div>\n  <div class=\"product-info__description\">\n  </div>\n");
 }
 function renderTotalStat(data, elements) {
   var revenue = data.revenue,
@@ -2603,15 +2732,15 @@ function renderTotalStat(data, elements) {
       date_range = data.date_range;
   elements.forEach(function (element) {
     if (element.matches('[data-total-sale]')) {
-      element.textContent = selled_amount;
+      element.textContent = +selled_amount < 0 ? 0 : selled_amount;
     }
 
     if (element.matches('[data-total-profit]')) {
-      element.textContent = (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+revenue).toFixed());
+      element.innerHTML = +revenue < 0 ? 0 : (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+revenue).toFixed());
     }
 
     if (element.matches('[data-total-average]')) {
-      element.textContent = (+selled_amount / +date_range).toFixed(2);
+      element.textContent = +selled_amount < 0 ? 0 : (+selled_amount / +date_range).toFixed(2);
     }
   });
 }
@@ -2620,14 +2749,14 @@ function renderCategory(data, element) {
 
   for (var category in data) {
     if (category == '1') continue;
-    var dataArray = Object.entries(data[category]);
+    var dataArray = Object.entries(data[category].data);
     dataArray.sort(function (a, b) {
       var dateA = new Date(a[0]).getTime();
       var dateB = new Date(b[0]).getTime();
       return dateA - dateB;
     });
     var totalProfit = dataArray.length && dataArray[0][1].positionNumber >= dataArray[dataArray.length - 1][1].positionNumber ? 'analytics-line__positions--down' : '';
-    element.innerHTML += "\n    <div class=\"category-analytics__line analytics-line\">\n    <div class=\"analytics-line__top\">\n      <div class=\"analytics-line__title\">\n        <div class=\"analytics-line__title-text\">\n          \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F - ".concat(category, ".\n        </div>\n        <div class=\"analytics-line__title-report\">\n          \u041E\u0442\u0447\u0435\u0442 \u0417\u0430 30 \u0434\u043D\u0435\u0439\n        </div>\n      </div>\n      <div class=\"analytics-line__positions ").concat(totalProfit, "\" style=\"display: ").concat(String(data[category]) === '101' ? 'none' : 'block', "\"></div>\n    </div>\n    <div class=\"analytics-line__content\" data-simplebar>\n      <ul class=\"analytics-line__list\">\n      ").concat(String(data[category]) === '101' ? 'К сожалению, информация по данной категории отсутствует.' : dataArray.map(function (item) {
+    element.innerHTML += "\n    <div class=\"category-analytics__line analytics-line\">\n    <div class=\"analytics-line__top\">\n      <div class=\"analytics-line__title\">\n        <div class=\"analytics-line__title-text\">\n          \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F - ".concat(data[category].category_title, ".\n        </div>\n      </div>\n      <div class=\"analytics-line__positions ").concat(totalProfit, "\" style=\"display: ").concat(String(data[category].data) == '101' ? 'none' : 'block', "\"></div>\n    </div>\n    <div class=\"analytics-line__content\" data-simplebar>\n      <ul class=\"analytics-line__list\">\n      ").concat(String(data[category].data) == '101' ? 'К сожалению, информация по данной категории отсутствует.' : dataArray.map(function (item) {
       var positionStyle = item[1].delta >= 0 ? 'analytics-line__item-profit--up' : 'analytics-line__item-profit--down';
       return "\n          <li class=\"analytics-line__item\">\n            <div class=\"analytics-line__item-number\">\n              ".concat(item[1].positionNumber == '101' ? '99+' : item[1].positionNumber, "\n            </div>\n            <div class=\"analytics-line__item-profit ").concat(positionStyle, "\">\n            <?xml version=\"1.0\" encoding=\"utf-8\"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->\n            <svg width=\"17px\" height=\"17px\" viewBox=\"0 0 24 24\" fill=").concat(item[1].delta >= 0 ? "#32af99" : "#c24141", " style=\"transform: rotate(").concat(item[1].delta >= 0 ? '0' : '-180deg', "); display: ").concat(item[1].delta === 0 ? 'none' : 'block', "\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 3C12.2652 3 12.5196 3.10536 12.7071 3.29289L19.7071 10.2929C20.0976 10.6834 20.0976 11.3166 19.7071 11.7071C19.3166 12.0976 18.6834 12.0976 18.2929 11.7071L13 6.41421V20C13 20.5523 12.5523 21 12 21C11.4477 21 11 20.5523 11 20V6.41421L5.70711 11.7071C5.31658 12.0976 4.68342 12.0976 4.29289 11.7071C3.90237 11.3166 3.90237 10.6834 4.29289 10.2929L11.2929 3.29289C11.4804 3.10536 11.7348 3 12 3Z\"/>\n            </svg>\n            </div>\n            <div class=\"analytics-line__item-date\">\n              ").concat((0,_helper__WEBPACK_IMPORTED_MODULE_1__.removeYearFromDate)(item[0]), "\n            </div>\n          </li>\n        ");
     }).join(' '), "\n      </ul>\n    </div>\n  </div>\n    ");
@@ -2714,7 +2843,7 @@ function renderSellerCard(data, elements) {
   var year = dateObj.getFullYear();
   var monthNamesGenitive = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
   elements.forEach(function (element) {
-    element.innerHTML = "\n    <div class=\"seller-card__image\">\n      <img src=\"./img/seller-card-default.svg\" alt=\"Top Seller\">\n    </div>\n    <div class=\"seller-card__info\">\n      <div class=\"seller-card__info-top\">\n        <h2 class=\"seller-card__title\">\n          ".concat(title, "\n        </h2>\n      <div class=\"seller-card__reviews\">\n        <span class=\"seller-card__reviews-score\">").concat(rating, "</span> (<span\n          class=\"seller-card__reviews-count\">").concat(reviews_amount, " </span> \u043E\u0442\u0437\u044B\u0432\u043E\u0432)\n      </div>\n    </div>\n    <div class=\"seller-card__start\">\n      \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 \u043D\u0430 UZUM \u0441 <span>").concat(day, " ").concat(monthNamesGenitive[month], " ").concat(year, " \u0433\u043E\u0434\u0430</span>\n    </div>\n    <div class=\"seller-card__desc\">\n      ").concat(description, "\n    </div>\n    ");
+    element.innerHTML = "\n    <div class=\"seller-card__image\">\n      <img src=\"./img/seller-card-default.svg\" alt=\"Top Seller\">\n    </div>\n    <div class=\"seller-card__info\">\n      <div class=\"seller-card__info-top\">\n        <h2 class=\"seller-card__title\">\n          ".concat(title, "\n        </h2>\n      <div class=\"seller-card__reviews\">\n        <span class=\"seller-card__reviews-score\">").concat(rating, "</span> (<span\n          class=\"seller-card__reviews-count\">").concat(reviews_amount, " </span> \u043E\u0442\u0437\u044B\u0432\u043E\u0432)\n      </div>\n    </div>\n    <div class=\"seller-card__start\">\n      \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446 \u043D\u0430 UZUM \u0441 <span>").concat(day, " ").concat(monthNamesGenitive[month], " ").concat(year, " \u0433\u043E\u0434\u0430</span>\n    </div>\n    <div class=\"seller-card__desc\">\n      ").concat(description, "\n    </div>\n\n    <div class=\"seller-card__desc-full\">\n      ").concat(description, "\n    </div>\n    ");
   });
 }
 
@@ -2781,6 +2910,7 @@ function renderCategoryList(arr) {
   }
 }
 function renderShopList(arr) {
+  console.log(arr);
   helperList.innerHTML = '';
 
   if (!arr) {
@@ -2941,7 +3071,7 @@ function setLoadingAnimation(parentElement, flag) {
   } else {
     var loaderElement = document.createElement('div');
     loaderElement.classList.add('loader-spinner');
-    loaderElement.innerHTML = "\n      <svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><style>.spinner_EUy1{animation:spinner_grm3 1.2s infinite}.spinner_f6oS{animation-delay:.1s}.spinner_g3nX{animation-delay:.2s}.spinner_nvEs{animation-delay:.3s}.spinner_MaNM{animation-delay:.4s}.spinner_4nle{animation-delay:.5s}.spinner_ZETM{animation-delay:.6s}.spinner_HXuO{animation-delay:.7s}.spinner_YaQo{animation-delay:.8s}.spinner_GOx1{animation-delay:.9s}.spinner_4vv9{animation-delay:1s}.spinner_NTs9{animation-delay:1.1s}.spinner_auJJ{transform-origin:center;animation:spinner_T3O6 6s linear infinite}@keyframes spinner_grm3{0%,50%{animation-timing-function:cubic-bezier(.27,.42,.37,.99);r:1px}25%{animation-timing-function:cubic-bezier(.53,0,.61,.73);r:2px}}@keyframes spinner_T3O6{0%{transform:rotate(360deg)}100%{transform:rotate(0deg)}}</style><g class=\"spinner_auJJ\"><circle class=\"spinner_EUy1\" cx=\"12\" cy=\"3\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_f6oS\" cx=\"16.50\" cy=\"4.21\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_NTs9\" cx=\"7.50\" cy=\"4.21\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_g3nX\" cx=\"19.79\" cy=\"7.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_4vv9\" cx=\"4.21\" cy=\"7.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_nvEs\" cx=\"21.00\" cy=\"12.00\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_GOx1\" cx=\"3.00\" cy=\"12.00\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_MaNM\" cx=\"19.79\" cy=\"16.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_YaQo\" cx=\"4.21\" cy=\"16.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_4nle\" cx=\"16.50\" cy=\"19.79\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_HXuO\" cx=\"7.50\" cy=\"19.79\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_ZETM\" cx=\"12\" cy=\"21\" r=\"1\"/></g></svg>\n    ";
+    loaderElement.innerHTML = "\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><style>.spinner_EUy1{animation:spinner_grm3 1.2s infinite}.spinner_f6oS{animation-delay:.1s}.spinner_g3nX{animation-delay:.2s}.spinner_nvEs{animation-delay:.3s}.spinner_MaNM{animation-delay:.4s}.spinner_4nle{animation-delay:.5s}.spinner_ZETM{animation-delay:.6s}.spinner_HXuO{animation-delay:.7s}.spinner_YaQo{animation-delay:.8s}.spinner_GOx1{animation-delay:.9s}.spinner_4vv9{animation-delay:1s}.spinner_NTs9{animation-delay:1.1s}.spinner_auJJ{transform-origin:center;animation:spinner_T3O6 6s linear infinite}@keyframes spinner_grm3{0%,50%{animation-timing-function:cubic-bezier(.27,.42,.37,.99);r:1px}25%{animation-timing-function:cubic-bezier(.53,0,.61,.73);r:2px}}@keyframes spinner_T3O6{0%{transform:rotate(360deg)}100%{transform:rotate(0deg)}}</style><g class=\"spinner_auJJ\"><circle class=\"spinner_EUy1\" cx=\"12\" cy=\"3\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_f6oS\" cx=\"16.50\" cy=\"4.21\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_NTs9\" cx=\"7.50\" cy=\"4.21\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_g3nX\" cx=\"19.79\" cy=\"7.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_4vv9\" cx=\"4.21\" cy=\"7.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_nvEs\" cx=\"21.00\" cy=\"12.00\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_GOx1\" cx=\"3.00\" cy=\"12.00\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_MaNM\" cx=\"19.79\" cy=\"16.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_YaQo\" cx=\"4.21\" cy=\"16.50\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_4nle\" cx=\"16.50\" cy=\"19.79\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_HXuO\" cx=\"7.50\" cy=\"19.79\" r=\"1\"/><circle class=\"spinner_EUy1 spinner_ZETM\" cx=\"12\" cy=\"21\" r=\"1\"/></g></svg>\n    ";
     parentElement.insertAdjacentElement('beforeEnd', loaderElement);
 
     if (flag) {
@@ -2962,19 +3092,35 @@ function setLoadingAnimation(parentElement, flag) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createLastShopCards": () => (/* binding */ createLastShopCards)
+/* harmony export */ });
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+/* harmony import */ var _cashing_cashingLostViewCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cashing/cashingLostViewCard */ "./src/js/components/cashing/cashingLostViewCard.js");
 
-var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.last-view__slider', {
-  slidesPerView: 1,
-  breakpoints: {
-    768: {
-      slidesPerView: 2
-    },
-    1300: {
-      slidesPerView: 3
-    }
+
+var wrapper = document.querySelector('.last-view__slider .swiper-wrapper');
+var pageType = document.querySelector('.main').getAttribute('data-page-type');
+createLastShopCards();
+function createLastShopCards() {
+  if (wrapper) {
+    var data = (0,_cashing_cashingLostViewCard__WEBPACK_IMPORTED_MODULE_1__.getCashingLostViewCard)(pageType);
+    wrapper.innerHTML = data.map(function (item) {
+      return "\n    <div class=\"swiper-slide\">\n      <article class=\"market-article last-view__article\">\n        <form action=\"#\" class=\"market-article__form\">\n          <div class=\"market-article__top\">\n            <img class=\"market-article__image\" src=\"".concat(item.photo ? item.photo : './img/seller-card-default.svg', "\" alt=\"GADGET Market\">\n            <div class=\"market-article__info\">\n              <h2 class=\"market-article__title\">\n                ").concat(item.title, "\n              </h2>\n              <div class=\"market-article__reviews\">\n                <span class=\"market-article__reviews-score\">").concat(item.rating, "</span> (<span\n                  class=\"market-article__reviews-count\">").concat(item.reviews_amount, " </span> \u043E\u0442\u0437\u044B\u0432\u043E\u0432)\n              </div>\n              <div class=\"market-article__desc\">\n                ").concat(item.description ? item.description : '', "\n              </div>\n            </div>\n          </div>\n          <button type=\"submit\" class=\"market-article__submit main-button main-button--stroke-blue btn-reset\">\n            \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0443\n          </button>\n        </form>\n      </article>\n  </div>\n    ");
+    }).join(' ');
+    var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.last-view__slider', {
+      slidesPerView: 1,
+      breakpoints: {
+        768: {
+          slidesPerView: 2
+        },
+        1300: {
+          slidesPerView: 3
+        }
+      }
+    });
   }
-});
+}
 var swiperReviews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.reviews__slider', {
   slidesPerView: 1,
   breakpoints: {

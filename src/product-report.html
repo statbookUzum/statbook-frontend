@@ -76,7 +76,7 @@
         </h1>
 
         <form action="#" class="search-form top-section__search" data-search>
-          <input type="hidden" name="products-id" class="custom-input__hidden-id">
+          <input type="hidden" name="products-id" class="custom-input__hidden-id" data-hidden-title="">
           <label class="auth-form__label custom-input custom-input--search">
             <input class="custom-input__input" type="text" name="shop-search"
               placeholder="Найдите нужный вам товар по названию или ссылке" required>
@@ -125,10 +125,11 @@
                     stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
                 </svg>
               </button>
-              <select class="product-report__select" name="product-report" id="reportSelect" required>
-                <option value="7day">За 7 дней</option>
-                <option value="14day">За 14 дней</option>
-                <option selected value="30day">За 30 дней</option>
+              <select class="product-report__select" name="product-report" id="reportSelect" data-period-select
+                required>
+                <option selected value="7">За 7 дней</option>
+                <option value="14">За 14 дней</option>
+                <option value="30">За 30 дней</option>
               </select>
             </div>
           </div>
@@ -147,7 +148,7 @@
               <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
                 <div class="main-section__inner analytics-charts" style="display: none;">
                   <div class="analytics-charts__title">
-                    Данные по товару за 30 дней:
+                    Данные по товару за <span data-days-report>7</span> дней:
                   </div>
                   <ul class="analytics-charts__list">
                     <li class="analytics-charts__item analytics-charts__item--sale">
@@ -189,7 +190,7 @@
                   <div class="analytics-charts__line">
                     <div class="analytics-charts__top">
                       <div class="analytics-charts__line-title">
-                        График продаж за последние 30 дней
+                        График продаж за последние <span data-days-report>7</span> дней
                       </div>
                       <div class="analytics-charts__line-profit">
                         +287%
@@ -205,7 +206,7 @@
                   <div class="analytics-charts__line">
                     <div class="analytics-charts__top">
                       <div class="analytics-charts__line-title">
-                        График цены за последние 30 дней
+                        График цены за последние <span data-days-report>7</span> дней
                       </div>
                     </div>
                     <span class="chart-span">Млн.</span>
@@ -218,7 +219,7 @@
                   <div class="analytics-charts__line">
                     <div class="analytics-charts__top">
                       <div class="analytics-charts__line-title">
-                        График остатков за последние 30 дней
+                        График остатков за последние <span data-days-report>7</span> дней
                       </div>
                     </div>
                     <span class="chart-span">Шт.</span>
@@ -233,7 +234,7 @@
               <div class=" custom-tabs__panel" tabindex="0">
                 <div class="main-section__inner category-analytics">
                   <div class="category-analytics__title">
-                    Аналитика позиций в категориях за 30 дней:
+                    Аналитика позиций в категориях за <span data-days-report>7</span> дней:
                   </div>
                   <div class="category-analytics__list"></div>
                 </div>

@@ -76,7 +76,7 @@
         </h1>
 
         <form action="#" class="search-form top-section__search" tabindex="0" data-search>
-          <input type="hidden" name="seller-id" class="custom-input__hidden-id">
+          <input type="hidden" name="seller-id" class="custom-input__hidden-id" data-hidden-title="">
           <label class="auth-form__label custom-input custom-input--search">
             <input class="custom-input__input" type="text" name="shop-search"
               placeholder="Найдите нужную вам магазин товаров по названию или ссылке" required>
@@ -121,73 +121,54 @@
                 Сводный анализ
               </button>
             </div>
-            <div class="custom-tabs__content">
-              <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
-                <div class="main-section__inner shop-report">
-                  <div class="shop-report__top">
-                    <div class="shop-report__seller seller-card" data-seller-card>
-                      <p>Воспользуйтесь поиском для выбора нужного магазина</p>
-                    </div>
-                    <div class="shop-report__buttons">
-                      <button class="shop-report__report-btn secondary-button btn-reset">
-                        Выгрузить отчет
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
-                            stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
-                        </svg>
-                      </button>
-                      <select class="shop-report__select" name="report" id="reportSelect" required>
-                        <option value="7day">За 7 дней</option>
-                        <option value="14day">За 14 дней</option>
-                        <option selected value="30day">За 30 дней</option>
-                      </select>
-                    </div>
+            <div class="main-section__inner shop-report">
+              <div class="main-section__top">
+                <div class="shop-report__top">
+                  <div class="shop-report__seller seller-card" data-seller-card>
+                    <p>Воспользуйтесь поиском для выбора нужного магазина</p>
                   </div>
-                  <div class="shop-report__statistic report-statistic" data-simplebar>
-                    <ul class="report-statistic__list" data-total></ul>
+                  <div class="shop-report__buttons">
+                    <button class="shop-report__report-btn secondary-button btn-reset">
+                      Выгрузить отчет
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
+                          stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
+                      </svg>
+                    </button>
+                    <select class="shop-report__select" name="report" id="reportSelect" data-period-select required>
+                      <option selected value="7">За 7 дней</option>
+                      <option value="14">За 14 дней</option>
+                      <option value="30">За 30 дней</option>
+                    </select>
                   </div>
-                  <button class="shop-report__hide hide-report-button btn-reset">
-                    Cкрыть аналитику товаров
-                  </button>
-                  <div class="table-container">
-                    <div class="table-wrapper" data-simplebar>
-                      <table class="table" data-table-review></table>
+                </div>
+                <div class="shop-report__statistic report-statistic" data-simplebar>
+                  <ul class="report-statistic__list" data-total></ul>
+                </div>
+              </div>
+              <div class="custom-tabs__content">
+                <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
+                  <div class="main-section__inner-table shop-report">
+                    <button class="shop-report__hide hide-report-button btn-reset">
+                      Cкрыть аналитику товаров
+                    </button>
+                    <div class="table-container">
+                      <div class="table-wrapper" data-simplebar>
+                        <table class="table" data-table-review></table>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class=" custom-tabs__panel" tabindex="0">
-                <div class="main-section__inner shop-report">
-                  <div class="shop-report__top">
-                    <div class="shop-report__seller seller-card" data-seller-card>
-                      <p>Воспользуйтесь поиском для выбора нужного магазина</p>
-                    </div>
-                    <div class="shop-report__buttons">
-                      <button class="shop-report__report-btn secondary-button btn-reset">
-                        Выгрузить отчет
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M8 4V4C5.79086 4 4 5.79086 4 8V15.6C4 17.8402 4 18.9603 4.43597 19.816C4.81947 20.5686 5.43139 21.1805 6.18404 21.564C7.03968 22 8.15979 22 10.4 22H13.6C15.8402 22 16.9603 22 17.816 21.564C18.5686 21.1805 19.1805 20.5686 19.564 19.816C20 18.9603 20 17.8402 20 15.6V8C20 5.79086 18.2091 4 16 4V4M8 4V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V4M8 4V4C8 4.46466 8 4.69698 8.03843 4.89018C8.19624 5.68356 8.81644 6.30376 9.60982 6.46157C9.80302 6.5 10.0353 6.5 10.5 6.5H13.5C13.9647 6.5 14.197 6.5 14.3902 6.46157C15.1836 6.30376 15.8038 5.68356 15.9616 4.89018C16 4.69698 16 4.46466 16 4V4"
-                            stroke="#040F23" stroke-opacity="0.3" stroke-width="1.5" />
-                        </svg>
-                      </button>
-                      <select class="shop-report__select" name="report" id="reportSelect" required>
-                        <option value="7day">За 7 дней</option>
-                        <option value="14day">За 14 дней</option>
-                        <option selected value="30day">За 30 дней</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="shop-report__statistic report-statistic" data-simplebar>
-                    <ul class="report-statistic__list" data-total></ul>
-                  </div>
-                  <button class="shop-report__hide hide-report-button btn-reset">
-                    Cкрыть аналитику товаров
-                  </button>
-                  <div class="table-container">
-                    <div class="table-wrapper" data-simplebar>
-                      <table class="table" data-table-analytic></table>
+                <div class=" custom-tabs__panel" tabindex="0">
+                  <div class="main-section__inner-table shop-report">
+                    <button class="shop-report__hide hide-report-button btn-reset">
+                      Cкрыть аналитику товаров
+                    </button>
+                    <div class="table-container">
+                      <div class="table-wrapper" data-simplebar>
+                        <table class="table" data-table-analytic></table>
+                      </div>
                     </div>
                   </div>
                 </div>

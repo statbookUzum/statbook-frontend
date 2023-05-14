@@ -118,7 +118,7 @@
   display: none;
 }
 
-.shop-report {
+.main-section__inner {
   .custom-select-option:first-child {
     display: block;
   }
@@ -128,6 +128,10 @@
     padding-bottom: 14px;
     border-width: 2px;
     border-color: rgba($color-blue-35, 0.3);
+  }
+
+  .custom-select-container {
+    height: 52px;
   }
 }
 

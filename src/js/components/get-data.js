@@ -1,16 +1,13 @@
-import { getHelperData, getDataWithId } from "./https-request";
+import { getHelperData } from "./https-request";
 import { showHelperList } from "./search-form/show-helper-list";
 import { renderCategoryList, renderShopList, renderProductList } from "./search-form/renderHelperList";
 import { transformCategoryData, transformShopData, transformProductData } from "./search-form/transformSearchData";
 import { renderBreadcrumbs } from "./search-form/renderBreadcrumbs";
 import { setLoadingAnimation } from "./setLoadingAnimation";
-import { renderTable, renderTotalStat, renderBreadcrumbs as renderTableBreadcrumbs, renderSellerCard } from "./render-table";
-import { renderProductCard, renderTotalStat as renderProductTotalStat, renderCategory } from "./render-products";
-import { transformChartsData } from "./helperCharts/transformChartsData";
-import { transformDataForTable } from "./helperTablePage/_transformDataForTables";
-import { transformTotalStatData } from "./helperTablePage/_transformTotalStatData";
-import { debounce, setHeight, blurElementAndChildren } from "./helper";
-import { Chart } from "chart.js/auto";
+import { debounce } from "./helper";
+import { getMainData } from "./get-main-data";
+import { cashingIdMainData } from "./cashing/cashingMainData";
+import { updateCashingIdMainData } from "./cashing/cashingMainData";
 
 const searchForm = document.querySelector('[data-search]');
 
@@ -19,262 +16,11 @@ if (searchForm) {
   const searchInput = searchForm.querySelector('.custom-input__input');
   const inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
   const helperWrapper = document.querySelector('.search-form__helper-wrapper');
-  const sectionsContainer = document.querySelector('.custom-tabs__content');
-  const productCard = document.querySelector('[data-product-card]');
-  const statList = document.querySelectorAll('.analytics-charts-amount');
-  const analyticsList = document.querySelector('.category-analytics__list');
+  const periodSelect = document.querySelector('[data-period-select]');
+  let periodRange = periodSelect.value;
 
-
-  //----------------------------------------------------------------------
-  const saleChart = document.getElementById('saleChart');
-  const priceChart = document.getElementById('priceChart');
-  const lostChart = document.getElementById('lostChart');
-
-  let labelsData = ['', '', '', '', '', '', '', '', '', '', '', '', '', '',];
-  const sortLabels = (value, index, items) => {
-    if (index + 1 === 1) {
-      return labelsData[index];
-    }
-
-    if ((index + 1) % 5 === 0) {
-      return labelsData[index];
-    }
-
-    if ((index + 1) === items.length) {
-      return labelsData[index];
-    }
-
-    return '';
-  }
-
-  const saleCht = !saleChart ? null : new Chart(saleChart, {
-    type: 'bar',
-    data: {
-      labels: labelsData,
-      datasets: [{
-        label: 'График продаж',
-        data: [],
-        borderWidth: 0,
-        backgroundColor: 'rgba(124, 150, 255, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: '#7C96FF',
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false,
-          },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600,
-            }
-          }
-        },
-        x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            callback: sortLabels,
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600,
-            },
-            color: 'rgba(4, 15, 35, 0.25)',
-          }
-        },
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              var label = context.dataset.label || '';
-              if (label) {
-                label += ': ';
-              }
-              label += context.formattedValue;
-              label += ' шт.';
-              return label;
-            }
-          }
-        }
-      }
-    }
-  });
-
-
-  // const labelsData = chartsData.saleChartData.map(item => item.date);
-  // const valueData = chartsData.saleChartData.map(item => item.value);
-
-  const priceCht = !priceChart ? null : new Chart(priceChart, {
-    type: 'bar',
-    data: {
-      labels: labelsData,
-      datasets: [{
-        label: 'График цены',
-        data: [],
-        borderWidth: 0,
-        backgroundColor: 'rgba(50, 175, 153, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: 'rgba(50, 175, 153, 0.8)',
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false,
-          },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600,
-            }
-          }
-        },
-        x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            callback: sortLabels,
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600,
-            },
-            color: 'rgba(4, 15, 35, 0.25)',
-          }
-        },
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              var label = context.dataset.label || '';
-              if (label) {
-                label += ': ';
-              }
-              label += context.formattedValue;
-              label += ' сум';
-              return label;
-            }
-          }
-        }
-      }
-    }
-  });
-
-
-  // const labelsData = chartsData.saleChartData.map(item => item.date);
-  // const valueData = chartsData.saleChartData.map(item => item.value);
-
-  const lostCht = !lostChart ? null : new Chart(lostChart, {
-    type: 'bar',
-    data: {
-      labels: labelsData,
-      datasets: [{
-        label: 'График остатков',
-        data: [],
-        borderWidth: 0,
-        backgroundColor: 'rgba(255, 122, 0, 0.5)',
-        borderRadius: 15,
-        hoverBackgroundColor: 'rgba(255, 122, 0, 0.8)',
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-          grid: {
-            display: false,
-          },
-          ticks: {
-            color: 'rgba(0, 0, 0, 0.25)',
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              color: 'rgba(4, 15, 35, 0.25)',
-              weight: 600,
-            }
-          }
-        },
-        x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            callback: sortLabels,
-            font: {
-              family: 'Open Sans',
-              size: 12,
-              weight: 600,
-            },
-            color: 'rgba(4, 15, 35, 0.25)',
-          }
-        },
-      },
-      maintainAspectRatio: false,
-      barPercentage: 0.8,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              var label = context.dataset.label || '';
-              if (label) {
-                label += ': ';
-              }
-              label += context.formattedValue;
-              label += ' шт';
-              return label;
-            }
-          }
-        }
-      }
-    }
-  });
-
-  // tables variables
-  const tableList = document.querySelectorAll('.table');
-  const tableContainers = document.querySelectorAll('.table-container');
-
-  // total stat
-  const totalStatList = document.querySelectorAll('[data-total]');
-
-  // card info
-  const sellerCard = document.querySelectorAll('[data-seller-card');
-
-  // data for category card
+  // data for category card-name
   const categoryCardData = {};
-  const productCardData = {};
-
-  const breadcrumbsList = document.querySelectorAll('[data-breadcrumbs]');
-
-  // временно
-  const categoryNameList = document.querySelectorAll('[data-title]')
 
   let debounceRender = debounce(renderHelperList, 1500);
 
@@ -331,7 +77,10 @@ if (searchForm) {
           .then(helperList => {
             renderProductList(helperList);
 
-            inputHiddenForId.value = helperList[0] ? helperList[0].product_id : '';
+            if (helperList[0]) {
+              inputHiddenForId.value = helperList[0].product_id;
+              inputHiddenForId.setAttribute('data-hidden-title', helperList[0].title);
+            }
 
             setLoadingAnimation(helperWrapper, false);
           })
@@ -398,7 +147,7 @@ if (searchForm) {
       }
 
       if (pageType === 'product') {
-        productCardData.title = text;
+        inputHiddenForId.setAttribute('data-hidden-title', text);
 
         getHelperData(text, pageType)
           .then(response => transformProductData(response))
@@ -421,105 +170,42 @@ if (searchForm) {
   searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
-    const id = inputHiddenForId.value;
-    const label = searchForm.querySelector('.auth-form__label');
-    const button = searchForm.querySelector('button[type=submit]');
+    const titleForCash = pageType === 'category' ? categoryCardData.categoryName : inputHiddenForId.getAttribute('data-hidden-title');
 
-    button.disabled = true;
-    blurElementAndChildren(label);
+    updateCashingIdMainData(inputHiddenForId.value, pageType, titleForCash, categoryCardData.breadcrumbs);
 
-    setLoadingAnimation(sectionsContainer, true);
-    tableList.forEach(table => table.innerHTML = '');
-    setTimeout(setHeight, 0);
+    getMainData(searchForm, pageType, categoryCardData, periodRange);
+  });
 
+  periodSelect.addEventListener('change', () => {
 
-    if (pageType === 'shop') {
-      getDataWithId(id, pageType)
-        .then(response => {
-          return {
-            table: transformDataForTable(response.data),
-            totalStat: transformTotalStatData(response.data.analyze, 'shop'),
-            cardInfo: response.data.card_info[0],
-          }
-        })
-        .then(transformData => {
-          renderTable(transformData.table, tableList);
-          renderTotalStat(transformData.totalStat, totalStatList);
-          renderSellerCard(transformData.cardInfo, sellerCard);
+    if (!inputHiddenForId.value || periodRange === periodSelect.value) return;
 
-          setLoadingAnimation(sectionsContainer, false);
-          button.disabled = false;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+    periodRange = periodSelect.value;
+    getMainData(searchForm, pageType, categoryCardData, periodRange);
+  });
+
+  cashingIdMainData(pageType);
+  initMainData(pageType, inputHiddenForId);
+
+  function initMainData(pageType, inputHiddenForId) {
+    const obj = cashingIdMainData(pageType);
+
+    if (!obj.id) return;
+
+    const { title, id, breadcrumbs } = cashingIdMainData(pageType);
+
+    console.log(title);
 
     if (pageType === 'category') {
-
-      getDataWithId(id, pageType)
-        .then(response => {
-          console.log(response.data);
-          return {
-            table: transformDataForTable(response.data),
-            totalStat: transformTotalStatData(response.data.analyze, 'category'),
-          }
-        })
-        .then(transformData => {
-
-          categoryNameList.forEach(categoryName => {
-            categoryName.textContent = categoryCardData.categoryName;
-          });
-
-          renderTableBreadcrumbs(categoryCardData.breadcrumbs, breadcrumbsList);
-          renderTable(transformData.table, tableList);
-          renderTotalStat(transformData.totalStat, totalStatList);
-
-          setLoadingAnimation(sectionsContainer, false);
-          button.disabled = false;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      categoryCardData.title = title;
+      categoryCardData.breadcrumbs = breadcrumbs;
+    } else {
+      inputHiddenForId.setAttribute('data-hidden-title', title);
     }
 
-    if (pageType === 'product') {
+    inputHiddenForId.value = id;
 
-      getDataWithId(id, pageType)
-        .then(response => {
-          console.log(response.data);
-          document.querySelector('.analytics-charts').style.display = 'block';
-
-          return {
-            chartsData: transformChartsData(response.data.chartsInfo),
-            totalStat: response.data.analyze[0],
-            cardInfo: { ...response.data.analyze[0], ...productCardData },
-            positions: response.data.positions,
-          }
-        })
-        .then(transformData => {
-          renderProductCard(transformData.cardInfo, productCard);
-          renderProductTotalStat(transformData.totalStat, statList);
-
-          labelsData = transformData.chartsData.dateArr;
-          saleCht.data.datasets[0].data = transformData.chartsData.saleArr;
-          saleCht.update();
-          priceCht.data.datasets[0].data = transformData.chartsData.priceArr;
-          priceCht.update();
-          lostCht.data.datasets[0].data = transformData.chartsData.lostArr;
-          lostCht.update();
-
-          setTimeout(setHeight, 100);
-
-          renderCategory(transformData.positions, analyticsList);
-
-          setLoadingAnimation(sectionsContainer, false);
-          button.disabled = false;
-        })
-        .catch(error => {
-          console.log(error);
-        })
-    }
-  });
+    getMainData(searchForm, pageType, categoryCardData, periodRange,);
+  }
 }

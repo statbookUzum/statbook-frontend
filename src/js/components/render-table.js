@@ -109,6 +109,10 @@ export function renderSellerCard(data, elements) {
     <div class="seller-card__desc">
       ${description}
     </div>
+
+    <div class="seller-card__desc-full">
+      ${description}
+    </div>
     `;
   });
 }

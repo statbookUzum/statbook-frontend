@@ -18,6 +18,21 @@
     }
   }
 
+  &__inner {
+    position: relative;
+    padding-top: 28px;
+    border-radius: 15px;
+    background-color: #fff;
+  }
+
+  &__inner-table {
+    padding: 0 40px 0;
+  }
+
+  &__top {
+    padding: 0 40px;
+  }
+
   &__switcher {
     margin: 0 auto 46px;
     max-width: 400px;
@@ -46,4 +61,10 @@
       padding-bottom: 97px;
     }
   }
+}
+
+.main-section.analytics-chart {
+  padding-top: 0;
+  border-radius: 0;
+  background-color: transparent;
 }

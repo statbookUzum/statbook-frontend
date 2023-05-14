@@ -60,3 +60,15 @@ export function removeYearFromDate(strDate) {
 
   return `${mm}.${dd}`;
 }
+
+export function changePeriods(period) {
+  if (!period) return;
+
+  const periodElements = document.querySelectorAll('[data-days-report]');
+
+  if (periodElements.length) {
+    periodElements.forEach(item => {
+      item.textContent = period;
+    })
+  }
+}
