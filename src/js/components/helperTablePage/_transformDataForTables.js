@@ -1,7 +1,9 @@
 export function transformDataForTable(data) {
-  const arrData = Object.entries(data);
+  const arrData = Object.entries({ review: data.review, analyze: data.analyze });
   const obj = {};
   const deleteableProp = ['category_id', 'date_range', 'seller_id'];
+
+  console.log(arrData);
 
   if (data.result === 'Информации не найдено') {
     console.log('Информации не найдено');
@@ -19,16 +21,19 @@ export function transformDataForTable(data) {
     });
   });
 
+  console.log(obj);
+
   return obj;
 }
 
 function transformObjProperty(obj) {
   for (let prop in obj) {
-    if (prop === 'avg_rating' || prop === 'avg_product_rating' || prop === 'rating') {
-      obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(2) : +obj[prop];
+    if (prop)
+      if (prop === 'avg_rating' || prop === 'avg_product_rating' || prop === 'rating') {
+        obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(2) : +obj[prop];
 
-      continue;
-    }
+        continue;
+      }
 
     if (prop === 'missed_revenue_percent') {
       obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(1) + '%' : +obj[prop] + '%';
@@ -42,6 +47,8 @@ function transformObjProperty(obj) {
       }
       continue;
     }
+
+
   }
 
   return obj;
@@ -122,6 +129,7 @@ function renameTableHeader(arr) {
     num_of_active_seller: 'Кол-во активных продавцов',
     avg_product_selled_amount: 'Среднее кол-во проданного товара',
     rating: 'Рейтинг',
+    num_of_active_category: 'Кол-во активных категорий'
   }
 
   return arr.map(item => {

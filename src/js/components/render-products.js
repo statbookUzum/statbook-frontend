@@ -25,6 +25,7 @@ export function renderProductCard(data, element) {
 }
 
 export function renderTotalStat(data, elements) {
+  console.log(data);
   const { revenue, selled_amount, date_range } = data;
 
   elements.forEach(element => {

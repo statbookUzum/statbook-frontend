@@ -42,10 +42,21 @@ export function renderTable(tables, elements) {
     }
 
     const imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
+    let indexOfImg = -1;
+    let indexOfTitle = -1;
 
     element.innerHTML = `
                         <tr class="table__header">
-                          ${data[0].map(el => {
+                          ${data[0].map((el, i) => {
+      if (el.toLowerCase() === 'изображения') {
+        indexOfImg = i;
+        return `<th class="sticky">${el}</th>`
+      }
+
+      if (el.toLowerCase() === 'название товара') {
+        indexOfTitle = i;
+        return `<th class="sticky" style="left: 114px;">${el}</th>`
+      }
       if (el.toLowerCase() === 'категория' || el.toLowerCase() === 'остаток') {
         return `<th>
                                 <button class="table__filter-button btn-reset">
@@ -61,7 +72,11 @@ export function renderTable(tables, elements) {
       if (i !== 0) {
         return `<tr>${arr.map((el, i) => {
           if (imageLinkRegex.test(el)) {
-            return `<td><img src="${el}" alt="${arr[i + 1]}"></td>`
+            return `<td class="sticky" style="left: 0"><img src="${el}" alt="${arr[i + 1]}"></td>`
+          }
+
+          if (i === indexOfTitle) {
+            return `<td class="sticky" style="left: 114px; text-align: left;">${el}</td>`
           }
 
           return `<td>${el}</td>`
@@ -80,7 +95,6 @@ export function renderSellerCard(data, elements) {
 
   const day = dateObj.getDate();
   const month = dateObj.getMonth();
-  console.log(month);
   const year = dateObj.getFullYear();
 
   const monthNamesGenitive = [

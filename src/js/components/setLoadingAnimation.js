@@ -23,3 +23,9 @@ export function setLoadingAnimation(parentElement, flag) {
     }
   }
 }
+
+document.querySelectorAll('.loader-spinner').forEach(el => {
+  setTimeout(() => {
+    el.classList.remove('active');
+  }, 500);
+});

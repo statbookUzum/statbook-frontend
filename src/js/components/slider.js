@@ -10,11 +10,12 @@ export function createLastShopCards() {
   if (wrapper) {
     const data = getCashingLostViewCard(pageType);
 
-    wrapper.innerHTML = data.map(item => {
-      return `
+    if (pageType === 'shop') {
+      wrapper.innerHTML = data.map(item => {
+        return `
     <div class="swiper-slide">
-      <article class="market-article last-view__article">
-        <form action="#" class="market-article__form">
+      <article class="market-article last-view__article" data-market-id="${item.seller_id}">
+        <div action="#" class="market-article__form">
           <div class="market-article__top">
             <img class="market-article__image" src="${item.photo ? item.photo : './img/seller-card-default.svg'}" alt="GADGET Market">
             <div class="market-article__info">
@@ -33,11 +34,42 @@ export function createLastShopCards() {
           <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
             Смотреть аналитику
           </button>
-        </form>
+        </div>
       </article>
   </div>
     `
-    }).join(' ');
+      }).join(' ');
+    }
+
+    if (pageType === 'product') {
+      wrapper.innerHTML = data.map(item => {
+        return `
+    <div class="swiper-slide">
+      <article class="market-article last-view__article" data-market-id="${item.product_id}">
+        <div action="#" class="market-article__form">
+          <div class="market-article__top">
+            <img class="market-article__image" src="${item.photo ? item.photo : './img/seller-card-default.svg'}" alt="GADGET Market">
+            <div class="market-article__info">
+              <h2 class="market-article__title market-article__title--product">
+                ${item.title}
+              </h2>
+              <div class="market-article__seller">
+                Продавец:
+                <div class="market-article__seller-name">
+                ${item.seller_title}
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
+            Смотреть аналитику
+          </button>
+        </div>
+      </article>
+  </div>
+    `
+      }).join(' ');
+    }
 
     const swiper = new Swiper('.last-view__slider', {
       slidesPerView: 1,

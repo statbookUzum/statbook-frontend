@@ -26,11 +26,27 @@
   }
 
   &__inner-table {
-    padding: 0 40px 0;
+    padding: 0 40px;
+
+    @include w($sm) {
+      padding: 0 10px;
+    }
+
+    @include w($xsm) {
+      padding: 0;
+    }
   }
 
   &__top {
     padding: 0 40px;
+
+    @include w($sm) {
+      padding: 0 10px 0;
+    }
+
+    @include w($xsm) {
+      padding: 0;
+    }
   }
 
   &__switcher {
@@ -38,28 +54,26 @@
     max-width: 400px;
 
     background-color: $light-color;
-  }
 
-  &--shop {
-    .main-section__switcher {
-      @include w($md) {
-        margin-bottom: 183px;
-      }
+    @include w($md) {
+      margin-bottom: 70px;
     }
   }
 
   &--category {
     padding-bottom: 190px;
-    .main-section__switcher {
-      margin-bottom: 70px;
-      @include w($md) {
-        margin-bottom: 130px;
-      }
-    }
 
     @include w($md) {
       padding-bottom: 97px;
     }
+  }
+}
+
+[data-page-type="product"] {
+  .main-section__inner {
+    padding-top: 0;
+    border-radius: 0;
+    background-color: transparent;
   }
 }
 

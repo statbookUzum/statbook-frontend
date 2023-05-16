@@ -10,6 +10,8 @@ import { setLoadingAnimation } from "./setLoadingAnimation";
 import { setCashingLostViewCard } from "./cashing/cashingLostViewCard";
 import { createLastShopCards } from "./slider";
 import { setHeight, blurElementAndChildren, changePeriods } from './helper';
+import { updateCashingIdMainData } from "./cashing/cashingMainData";
+import { setDataToXlsx } from "./toXlsx";
 
 const sectionsContainer = document.querySelector('.custom-tabs__content');
 const productCard = document.querySelector('[data-product-card]');
@@ -57,6 +59,9 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         renderTotalStat(transformData.totalStat, totalStatList);
         renderSellerCard(transformData.cardInfo, sellerCard);
 
+        setDataToXlsx(transformData.table.review, transformData.cardInfo.title);
+        updateCashingIdMainData(pageType, transformData.cardInfo, transformData.totalStat);
+
         setLoadingAnimation(mainSectionInner, false);
         button.disabled = false;
 
@@ -65,6 +70,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         createLastShopCards();
       })
       .catch(error => {
+        setDataToXlsx(null);
         console.log(error);
       });
   }
@@ -73,7 +79,6 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
     getDataWithId(id, pageType, period)
       .then(response => {
-        console.log(response.data);
         return {
           totalStat: transformTotalStatData(response.data.analyze, 'category'),
           table: transformDataForTable(response.data),
@@ -89,6 +94,9 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         renderTable(transformData.table, tableList);
         renderTotalStat(transformData.totalStat, totalStatList);
 
+        setDataToXlsx(transformData.table.review, categoryCardData.categoryName);
+        updateCashingIdMainData(pageType, { title: categoryCardData.categoryName }, transformData.totalStat, categoryCardData.breadcrumbs);
+
         setLoadingAnimation(mainSectionInner, false);
         button.disabled = false;
       })
@@ -99,9 +107,9 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
   if (pageType === 'product') {
     setLoadingAnimation(mainSectionInner, true);
+    setLoadingAnimation(productInfo, true);
     getDataWithId(id, pageType, period)
       .then(response => {
-        console.log(response.data);
         document.querySelector('.analytics-charts').style.display = 'block';
 
         return {
@@ -112,7 +120,6 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         }
       })
       .then(transformData => {
-        console.log(transformData.cardInfo);
         renderProductCard(transformData.cardInfo, productCard);
         renderProductTotalStat(transformData.totalStat, statList);
 
@@ -133,7 +140,9 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
         setTimeout(setHeight, 100);
         setLoadingAnimation(mainSectionInner, false);
-        // setLoadingAnimation(productInfo, false);
+        setLoadingAnimation(productInfo, false);
+        updateCashingIdMainData(pageType, transformData.cardInfo);
+
         setCashingLostViewCard(transformData.cardInfo, pageType);
         createLastShopCards();
         button.disabled = false;

@@ -17,6 +17,7 @@ import './components/accordions';
 import './components/intl-input';
 import './components/https-request';
 import './components/get-data';
+import './components/toXlsx';
 
 // search form
 // import './components/search-form/show-helper-list';

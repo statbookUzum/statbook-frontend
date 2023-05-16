@@ -2650,6 +2650,19 @@ input::-webkit-inner-spin-button {
   font-weight: 600;
   font-size: 20px;
 }
+.market-article__title--product {
+  margin-bottom: 17px;
+}
+.market-article__seller {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 141.5%;
+  color: rgba(4, 15, 35, 0.4);
+}
+.market-article__seller-name {
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: underline;
+}
 .market-article__reviews {
   margin-bottom: 19px;
   display: -webkit-box;
@@ -2773,10 +2786,30 @@ input::-webkit-inner-spin-button {
   background-color: #fff;
 }
 .main-section__inner-table {
-  padding: 0 40px 0;
+  padding: 0 40px;
+}
+@media screen and (max-width: 576px) {
+  .main-section__inner-table {
+    padding: 0 10px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .main-section__inner-table {
+    padding: 0;
+  }
 }
 .main-section__top {
   padding: 0 40px;
+}
+@media screen and (max-width: 576px) {
+  .main-section__top {
+    padding: 0 10px 0;
+  }
+}
+@media screen and (max-width: 370px) {
+  .main-section__top {
+    padding: 0;
+  }
 }
 .main-section__switcher {
   margin: 0 auto 46px;
@@ -2784,25 +2817,23 @@ input::-webkit-inner-spin-button {
   background-color: #fff;
 }
 @media screen and (max-width: 768px) {
-  .main-section--shop .main-section__switcher {
-    margin-bottom: 183px;
+  .main-section__switcher {
+    margin-bottom: 70px;
   }
 }
 .main-section--category {
   padding-bottom: 190px;
 }
-.main-section--category .main-section__switcher {
-  margin-bottom: 70px;
-}
-@media screen and (max-width: 768px) {
-  .main-section--category .main-section__switcher {
-    margin-bottom: 130px;
-  }
-}
 @media screen and (max-width: 768px) {
   .main-section--category {
     padding-bottom: 97px;
   }
+}
+
+[data-page-type=product] .main-section__inner {
+  padding-top: 0;
+  border-radius: 0;
+  background-color: transparent;
 }
 
 .main-section.analytics-chart {
@@ -2825,6 +2856,11 @@ input::-webkit-inner-spin-button {
     padding-right: 20px;
   }
 }
+@media screen and (max-width: 576px) {
+  .shop-report__seller {
+    margin-bottom: 20px;
+  }
+}
 .shop-report__top {
   padding-bottom: 36px;
   display: -webkit-box;
@@ -2841,12 +2877,23 @@ input::-webkit-inner-spin-button {
 @media screen and (max-width: 576px) {
   .shop-report__top {
     padding-bottom: 29px;
+    display: block;
   }
 }
 .shop-report__category {
   font-family: "Open Sans", sans-serif;
 }
+@media screen and (max-width: 576px) {
+  .shop-report__category {
+    margin-bottom: 20px;
+  }
+}
+.shop-report__load-title {
+  position: relative;
+  display: inline-block;
+}
 .shop-report__category-title {
+  position: relative;
   margin-bottom: 3px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2895,12 +2942,8 @@ input::-webkit-inner-spin-button {
 }
 @media screen and (max-width: 768px) {
   .shop-report__buttons {
-    position: absolute;
-    top: -115px;
-    left: 0;
     max-width: none;
     width: 100%;
-    height: 100px;
   }
 }
 .shop-report__report-btn {
@@ -3159,9 +3202,10 @@ input::-webkit-inner-spin-button {
 .table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 15px;
 }
 .table__header {
-  text-align: left;
+  text-align: center;
 }
 .table__filter-button {
   display: -webkit-box;
@@ -3182,19 +3226,28 @@ input::-webkit-inner-spin-button {
   background-repeat: no-repeat;
 }
 .table img {
+  margin: 0 auto;
   border-radius: 10px;
+  height: 60px;
 }
 
 th {
   position: sticky;
   top: 0;
   z-index: 20;
-  padding: 12px 50px 12px 10px;
+  padding: 12px 10px 12px 10px;
   white-space: nowrap;
   background-color: #f7f7f8;
 }
+th.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 22;
+}
 
 tr {
+  position: relative;
   text-align: left;
   white-space: nowrap;
 }
@@ -3203,11 +3256,18 @@ tr:not(:first-child), tr:not(:last-child) {
 }
 
 td {
-  padding: 35px 50px 35px 10px;
+  padding: 15px 10px 15px 10px;
   border: none;
   white-space: normal;
   max-width: 300px;
   width: 100%;
+  text-align: center;
+}
+td.sticky {
+  position: sticky;
+  left: 0;
+  z-index: 21;
+  background-color: #fff;
 }
 td a {
   text-decoration: underline;
@@ -3251,6 +3311,11 @@ td a {
 }
 .product-report__info {
   margin-bottom: 0;
+}
+@media screen and (max-width: 576px) {
+  .product-report__info {
+    margin-bottom: 20px;
+  }
 }
 .product-report__tabs {
   padding-top: 68px;

@@ -50,6 +50,22 @@
 
     font-weight: 600;
     font-size: 20px;
+
+    &--product {
+      margin-bottom: 17px;
+    }
+  }
+
+  &__seller {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 141.5%;
+    color: rgba($color-blue-35, 0.4);
+  }
+
+  &__seller-name {
+    color: rgba($color-darkblack, 0.8);
+    text-decoration: underline;
   }
 
   &__reviews {

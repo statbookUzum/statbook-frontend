@@ -32,6 +32,10 @@
   &__info {
     // margin-bottom: 35px;
     margin-bottom: 0;
+
+    @include w($sm) {
+      margin-bottom: 20px;
+    }
   }
 
   &__tabs {

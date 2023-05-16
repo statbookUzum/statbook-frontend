@@ -3,8 +3,6 @@ import { formatNumber } from "./_transformDataForTables";
 export function transformTotalStatData(arr, flag) {
   let resultArray;
 
-  console.log(arr);
-
   if (flag === 'shop') {
     resultArray = [
       {

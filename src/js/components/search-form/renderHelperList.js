@@ -41,7 +41,6 @@ export function renderCategoryList(arr) {
 }
 
 export function renderShopList(arr) {
-  console.log(arr);
   helperList.innerHTML = '';
 
   if (!arr) {

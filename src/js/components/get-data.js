@@ -6,8 +6,6 @@ import { renderBreadcrumbs } from "./search-form/renderBreadcrumbs";
 import { setLoadingAnimation } from "./setLoadingAnimation";
 import { debounce } from "./helper";
 import { getMainData } from "./get-main-data";
-import { cashingIdMainData } from "./cashing/cashingMainData";
-import { updateCashingIdMainData } from "./cashing/cashingMainData";
 
 const searchForm = document.querySelector('[data-search]');
 
@@ -17,6 +15,7 @@ if (searchForm) {
   const inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
   const helperWrapper = document.querySelector('.search-form__helper-wrapper');
   const periodSelect = document.querySelector('[data-period-select]');
+  const lastViewContainer = document.querySelector('.last-view__slider');
   let periodRange = periodSelect.value;
 
   // data for category card-name
@@ -97,19 +96,23 @@ if (searchForm) {
       const text = target.textContent.trim();
       const id = target.getAttribute('data-id');
 
-      if (inputHiddenForId.value === id) {
-        searchInput.value = text;
+      // if (inputHiddenForId.value === id) {
+      //   searchInput.value = text;
 
-        renderShopList([{ seller_id: id, title: text }]);
-        searchInput.focus();
-        return;
-      }
+      //   renderShopList([{ seller_id: id, title: text }]);
+      //   searchInput.focus();
+      //   return;
+      // }
 
-      setLoadingAnimation(helperWrapper, true);
+      // setLoadingAnimation(helperWrapper, true);
 
       searchInput.value = text;
-
       inputHiddenForId.value = id;
+
+      if (pageType === 'shop') {
+        getMainData(searchForm, pageType, categoryCardData, periodRange);
+        renderShopList([{ seller_id: id, title: text }]);
+      }
 
       if (pageType === 'category') {
         getHelperData(text, pageType)
@@ -131,37 +134,11 @@ if (searchForm) {
           });
       }
 
-      if (pageType === 'shop') {
-        getHelperData(text, pageType)
-          .then(response => transformShopData(response))
-          .then(helperList => {
-            renderShopList(helperList);
-            searchInput.focus();
-
-            setLoadingAnimation(helperWrapper, false);
-          })
-          .catch(error => {
-            console.log(error);
-            renderShopList(null);
-          });
-      }
-
       if (pageType === 'product') {
         inputHiddenForId.setAttribute('data-hidden-title', text);
 
-        getHelperData(text, pageType)
-          .then(response => transformProductData(response))
-          .then(helperList => {
-            renderProductList(helperList);
-
-            searchInput.focus();
-
-            setLoadingAnimation(helperWrapper, false);
-          })
-          .catch(error => {
-            console.log(error);
-            renderProductList(null);
-          });
+        getMainData(searchForm, pageType, categoryCardData, periodRange);
+        renderShopList([{ product_id: id, title: text }]);
       }
     }
   });
@@ -171,8 +148,6 @@ if (searchForm) {
     e.preventDefault();
 
     const titleForCash = pageType === 'category' ? categoryCardData.categoryName : inputHiddenForId.getAttribute('data-hidden-title');
-
-    updateCashingIdMainData(inputHiddenForId.value, pageType, titleForCash, categoryCardData.breadcrumbs);
 
     getMainData(searchForm, pageType, categoryCardData, periodRange);
   });
@@ -185,27 +160,16 @@ if (searchForm) {
     getMainData(searchForm, pageType, categoryCardData, periodRange);
   });
 
-  cashingIdMainData(pageType);
-  initMainData(pageType, inputHiddenForId);
+  if (lastViewContainer) {
+    lastViewContainer.addEventListener('click', ({ target }) => {
+      if (target.matches('.market-article__submit')) {
+        inputHiddenForId.value = target.closest('.market-article').getAttribute('data-market-id');
+        const title = target.closest('.market-article').querySelector('.market-article__title').textContent;
+        inputHiddenForId.setAttribute('data-hidden-title', title);
+        searchInput.scrollIntoView({ behavior: 'auto' });
 
-  function initMainData(pageType, inputHiddenForId) {
-    const obj = cashingIdMainData(pageType);
-
-    if (!obj.id) return;
-
-    const { title, id, breadcrumbs } = cashingIdMainData(pageType);
-
-    console.log(title);
-
-    if (pageType === 'category') {
-      categoryCardData.title = title;
-      categoryCardData.breadcrumbs = breadcrumbs;
-    } else {
-      inputHiddenForId.setAttribute('data-hidden-title', title);
-    }
-
-    inputHiddenForId.value = id;
-
-    getMainData(searchForm, pageType, categoryCardData, periodRange,);
+        getMainData(searchForm, pageType, categoryCardData, periodRange);
+      }
+    });
   }
 }

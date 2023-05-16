@@ -36,7 +36,6 @@ export function setCashingLostViewCard(data, typePage) {
     if (cardItems.length > 3) cardItems.pop();
 
     cardItems = JSON.stringify(cardItems);
-    console.log(cardItems);
     localStorage.setItem('lostViewCardShop', cardItems);
   }
 
@@ -62,7 +61,6 @@ export function setCashingLostViewCard(data, typePage) {
     if (cardItems.length > 3) cardItems.pop();
 
     cardItems = JSON.stringify(cardItems);
-    console.log(cardItems);
     localStorage.setItem('lostViewCardProduct', cardItems);
   }
 }
