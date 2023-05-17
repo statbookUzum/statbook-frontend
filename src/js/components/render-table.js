@@ -1,4 +1,5 @@
 import { setHeight } from './helper';
+import { transformTableItem } from './helperTablePage/_transformDataForTables';
 
 export function renderBreadcrumbs(data, elements) {
   elements.forEach(element => {
@@ -21,7 +22,7 @@ export function renderTotalStat(data, elements) {
         ${item.title}
       </div>
       <span class="report-statistic__value">
-        ${item.value}
+        ${transformTableItem(item.value)}
       </span>
     </li>
     `
@@ -30,6 +31,7 @@ export function renderTotalStat(data, elements) {
 }
 
 export function renderTable(tables, elements) {
+  console.log(1);
   elements.forEach(element => {
     let data;
 
@@ -57,9 +59,9 @@ export function renderTable(tables, elements) {
         indexOfTitle = i;
         return `<th class="sticky" style="left: 114px;">${el}</th>`
       }
-      if (el.toLowerCase() === 'категория' || el.toLowerCase() === 'остаток') {
+      if (el.toLowerCase() === 'категория' || el.toLowerCase() === 'остатоĸ (в наличии), шт.' || el.toLowerCase() === 'теĸущая цена, uzs' || el.toLowerCase() === 'кол-во продаж, шт' || el.toLowerCase() === 'выручĸа, uzs') {
         return `<th>
-                                <button class="table__filter-button btn-reset">
+                                <button class="table__filter-button btn-reset" data-index-sort="${i}" data-table-type="${element.hasAttribute('data-table-analytic') ? 'analyze' : 'review'}" data-filter-type="less">
                                   ${el}
                                 </button>
                               </th>`
@@ -72,14 +74,14 @@ export function renderTable(tables, elements) {
       if (i !== 0) {
         return `<tr>${arr.map((el, i) => {
           if (imageLinkRegex.test(el)) {
-            return `<td class="sticky" style="left: 0"><img src="${el}" alt="${arr[i + 1]}"></td>`
+            return `<td class="sticky" style="left: 0"><img loading="lazy" src="${el}" alt="${arr[i + 1]}"></td>`
           }
 
           if (i === indexOfTitle) {
             return `<td class="sticky" style="left: 114px; text-align: left;">${el}</td>`
           }
 
-          return `<td>${el}</td>`
+          return `<td>${transformTableItem(el)}</td>`
         }).join(' ')}</tr>`
       }
     }).join(' ')}

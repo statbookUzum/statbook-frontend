@@ -8,6 +8,8 @@ let nameOfXlsx = 'Данные';
 downloadBtn.addEventListener('click', () => {
   if (!dataForXlsx) return;
 
+  nameOfXlsx = nameOfXlsx.replace(/\s/g, '_');
+
   const workbook = XLSX.utils.book_new();
   const sheet = XLSX.utils.aoa_to_sheet(dataForXlsx);
   XLSX.utils.book_append_sheet(workbook, sheet, nameOfXlsx);

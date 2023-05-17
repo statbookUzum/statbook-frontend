@@ -12,6 +12,7 @@ import { createLastShopCards } from "./slider";
 import { setHeight, blurElementAndChildren, changePeriods } from './helper';
 import { updateCashingIdMainData } from "./cashing/cashingMainData";
 import { setDataToXlsx } from "./toXlsx";
+import { setTableData } from "./sortTable";
 
 const sectionsContainer = document.querySelector('.custom-tabs__content');
 const productCard = document.querySelector('[data-product-card]');
@@ -55,6 +56,8 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         }
       })
       .then(transformData => {
+
+        setTableData(transformData.table);
         renderTable(transformData.table, tableList);
         renderTotalStat(transformData.totalStat, totalStatList);
         renderSellerCard(transformData.cardInfo, sellerCard);
@@ -85,6 +88,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         }
       })
       .then(transformData => {
+        setTableData(transformData.table);
 
         categoryNameList.forEach(categoryName => {
           categoryName.textContent = categoryCardData.categoryName;

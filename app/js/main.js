@@ -977,7 +977,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_https_request__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/https-request */ "./src/js/components/https-request.js");
 /* harmony import */ var _components_get_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/get-data */ "./src/js/components/get-data.js");
 /* harmony import */ var _components_toXlsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/toXlsx */ "./src/js/components/toXlsx.js");
+/* harmony import */ var _components_sortTable__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/sortTable */ "./src/js/components/sortTable.js");
 // import './components/slider';
+
 
 
 
@@ -1649,11 +1651,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
 /* harmony import */ var _cashing_cashingMainData__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./cashing/cashingMainData */ "./src/js/components/cashing/cashingMainData.js");
 /* harmony import */ var _toXlsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./toXlsx */ "./src/js/components/toXlsx.js");
+/* harmony import */ var _sortTable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./sortTable */ "./src/js/components/sortTable.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1705,6 +1709,7 @@ function getMainData(searchForm, pageType, categoryCardData, period) {
         cardInfo: response.data.card_info[0]
       };
     }).then(function (transformData) {
+      (0,_sortTable__WEBPACK_IMPORTED_MODULE_14__.setTableData)(transformData.table);
       (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderTable)(transformData.table, tableList);
       (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderTotalStat)(transformData.totalStat, totalStatList);
       (0,_render_table__WEBPACK_IMPORTED_MODULE_2__.renderSellerCard)(transformData.cardInfo, sellerCard);
@@ -1728,6 +1733,7 @@ function getMainData(searchForm, pageType, categoryCardData, period) {
         table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_5__.transformDataForTable)(response.data)
       };
     }).then(function (transformData) {
+      (0,_sortTable__WEBPACK_IMPORTED_MODULE_14__.setTableData)(transformData.table);
       categoryNameList.forEach(function (categoryName) {
         categoryName.textContent = categoryCardData.categoryName;
       });
@@ -2245,7 +2251,8 @@ function checkDescLine() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "formatNumber": () => (/* binding */ formatNumber),
-/* harmony export */   "transformDataForTable": () => (/* binding */ transformDataForTable)
+/* harmony export */   "transformDataForTable": () => (/* binding */ transformDataForTable),
+/* harmony export */   "transformTableItem": () => (/* binding */ transformTableItem)
 /* harmony export */ });
 function transformDataForTable(data) {
   var arrData = Object.entries({
@@ -2253,7 +2260,7 @@ function transformDataForTable(data) {
     analyze: data.analyze
   });
   var obj = {};
-  var deleteableProp = ['category_id', 'date_range', 'seller_id'];
+  var deleteableProp = ['category_id', 'date_range', 'seller_id', 'seller_title'];
   console.log(arrData);
 
   if (data.result === 'Информации не найдено') {
@@ -2272,7 +2279,6 @@ function transformDataForTable(data) {
       obj[el[0]].push(sortTableArray(Object.entries(transformItem)));
     });
   });
-  console.log(obj);
   return obj;
 }
 
@@ -2286,20 +2292,27 @@ function transformObjProperty(obj) {
     if (prop === 'missed_revenue_percent') {
       obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(1) + '%' : +obj[prop] + '%';
       continue;
-    }
+    } // if (!isNaN(obj[prop])) {
+    //   if (typeof (obj[prop]) === 'string' && (obj[prop]).includes('.')) {
+    //     obj[prop] = formatNumber(+obj[prop]);
+    //   }
+    //   continue;
+    // }
 
-    if (!isNaN(obj[prop])) {
-      if (typeof obj[prop] === 'string' && obj[prop].includes('.')) {
-        obj[prop] = formatNumber(+obj[prop]);
-      }
-
-      continue;
-    }
   }
 
   return obj;
 }
 
+function transformTableItem(item) {
+  if (!isNaN(item)) {
+    if (typeof item === 'string' && item.includes('.')) {
+      return formatNumber(item);
+    }
+  }
+
+  return item;
+}
 function formatNumber(num) {
   if (+num === 0) return 0;
   var result;
@@ -2341,40 +2354,41 @@ function renameTableHeader(arr) {
     product_id: 'ID товара',
     seller_id: 'ID продавца',
     seller_title: 'Продавец',
-    actual_price: 'Цена',
+    actual_price: 'Теĸущая цена, UZS',
     category_id: 'ID категории',
     category_title_ru: 'Название категории(рус)',
     category_title_uz: 'Название категории(узб)',
     sellers_count: 'Количество продавцов',
     avg_rating: 'Средний рейтинг',
-    selled_per_for_period: 'Кол-во продаж',
-    avg_base_price: 'Средняя базовая цена',
-    revenue: 'Выручка',
-    revenue_base: 'Базовая выручка',
-    available_amount: 'Остаток',
+    selled_per_for_period: 'Кол-во продаж, шт',
+    avg_base_price: 'Ср. Базовая цена,. UZS',
+    revenue: 'Выручка, UZS',
+    revenue_base: 'Базовая выручка, UZS',
+    available_amount: 'Остатоĸ (в наличии), шт.',
     reviews_amount: 'Кол-во отзывов',
     avg_product_rating: 'Средний рейтинг',
-    turnover: 'Оборачиваемость',
+    turnover: 'Оборачиваемость, дней',
     days_with_remaining_product: 'Дней в наличии',
     date_range: 'Период времени',
-    average_price: 'Средняя цена',
-    average_base_price: 'Средняя базовая цена',
-    predicted_revenue: 'Прогнозируемая выручка',
-    missed_revenue: 'Упущенная выручка',
-    missed_revenue_percent: 'Процент(%) упущенной выручки',
+    average_price: 'Средняя цена, UZS',
+    average_base_price: 'Ср. базовая цена, UZS',
+    predicted_revenue: 'Прогнозируемая выручĸа, UZS',
+    missed_revenue: 'Упущенная выручĸа, UZS',
+    missed_revenue_percent: 'Доля упущенной выручĸи, %',
     available_amount_price: 'Стоимость остатков',
     categories_count: 'Количество категорий',
     available_sku: 'Остаток',
     available_product: 'Количество товаров',
     selled_amount: 'Проданное количество',
     avg_revenue: 'Средний доход',
-    remaining_products_value: 'Стоимость остатков',
-    avg_purchase_price: 'Средняя цена покупки',
+    remaining_products_value: 'Стоимость остатĸов (по теĸ. цене), UZS',
+    avg_purchase_price: 'Средняя цена, UZS',
     num_of_active_product: 'Кол-во активных товаров',
     num_of_active_seller: 'Кол-во активных продавцов',
     avg_product_selled_amount: 'Среднее кол-во проданного товара',
     rating: 'Рейтинг',
-    num_of_active_category: 'Кол-во активных категорий'
+    num_of_active_category: 'Кол-во активных категорий',
+    avg_bill: 'Средний чеĸ'
   };
   return arr.map(function (item) {
     return renameObj[item] ? renameObj[item] : item;
@@ -2385,7 +2399,9 @@ function sortTableArray(arr, arrayType) {
   var sortOrder = {
     photo: 1,
     title: 2,
-    sku: 3
+    product_id: 3,
+    sku: 4,
+    actual_price: 5
   };
   var sortedArray = arr.sort(function (a, b) {
     var aVal = sortOrder[a[0]] || 999;
@@ -2812,6 +2828,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "renderTotalStat": () => (/* binding */ renderTotalStat)
 /* harmony export */ });
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
+/* harmony import */ var _helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helperTablePage/_transformDataForTables */ "./src/js/components/helperTablePage/_transformDataForTables.js");
+
 
 function renderBreadcrumbs(data, elements) {
   elements.forEach(function (element) {
@@ -2825,11 +2843,12 @@ function renderTotalStat(data, elements) {
   elements.forEach(function (element) {
     element.innerHTML = '';
     data.forEach(function (item) {
-      element.innerHTML += "\n    <li class=\"report-statistic__item\">\n      <div class=\"report-statistic__title\">\n        ".concat(item.title, "\n      </div>\n      <span class=\"report-statistic__value\">\n        ").concat(item.value, "\n      </span>\n    </li>\n    ");
+      element.innerHTML += "\n    <li class=\"report-statistic__item\">\n      <div class=\"report-statistic__title\">\n        ".concat(item.title, "\n      </div>\n      <span class=\"report-statistic__value\">\n        ").concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_1__.transformTableItem)(item.value), "\n      </span>\n    </li>\n    ");
     });
   });
 }
 function renderTable(tables, elements) {
+  console.log(1);
   elements.forEach(function (element) {
     var data;
 
@@ -2855,8 +2874,8 @@ function renderTable(tables, elements) {
         return "<th class=\"sticky\" style=\"left: 114px;\">".concat(el, "</th>");
       }
 
-      if (el.toLowerCase() === 'категория' || el.toLowerCase() === 'остаток') {
-        return "<th>\n                                <button class=\"table__filter-button btn-reset\">\n                                  ".concat(el, "\n                                </button>\n                              </th>");
+      if (el.toLowerCase() === 'категория' || el.toLowerCase() === 'остатоĸ (в наличии), шт.' || el.toLowerCase() === 'теĸущая цена, uzs' || el.toLowerCase() === 'кол-во продаж, шт' || el.toLowerCase() === 'выручĸа, uzs') {
+        return "<th>\n                                <button class=\"table__filter-button btn-reset\" data-index-sort=\"".concat(i, "\" data-table-type=\"").concat(element.hasAttribute('data-table-analytic') ? 'analyze' : 'review', "\" data-filter-type=\"less\">\n                                  ").concat(el, "\n                                </button>\n                              </th>");
       }
 
       return "<th>".concat(el, "</th>");
@@ -2864,14 +2883,14 @@ function renderTable(tables, elements) {
       if (i !== 0) {
         return "<tr>".concat(arr.map(function (el, i) {
           if (imageLinkRegex.test(el)) {
-            return "<td class=\"sticky\" style=\"left: 0\"><img src=\"".concat(el, "\" alt=\"").concat(arr[i + 1], "\"></td>");
+            return "<td class=\"sticky\" style=\"left: 0\"><img loading=\"lazy\" src=\"".concat(el, "\" alt=\"").concat(arr[i + 1], "\"></td>");
           }
 
           if (i === indexOfTitle) {
             return "<td class=\"sticky\" style=\"left: 114px; text-align: left;\">".concat(el, "</td>");
           }
 
-          return "<td>".concat(el, "</td>");
+          return "<td>".concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_1__.transformTableItem)(el), "</td>");
         }).join(' '), "</tr>");
       }
     }).join(' '), "\n                        ");
@@ -3215,6 +3234,63 @@ var scroll = new (smooth_scroll__WEBPACK_IMPORTED_MODULE_0___default())('a[href*
 
 /***/ }),
 
+/***/ "./src/js/components/sortTable.js":
+/*!****************************************!*\
+  !*** ./src/js/components/sortTable.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setTableData": () => (/* binding */ setTableData)
+/* harmony export */ });
+/* harmony import */ var _render_table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render-table */ "./src/js/components/render-table.js");
+
+var tableData = null;
+var filterTypeDown = true;
+var tableList = document.querySelectorAll('.table');
+
+if (tableList.length) {
+  tableList.forEach(function (table) {
+    table.addEventListener('click', function (_ref) {
+      var target = _ref.target;
+
+      if (target.matches('.table__filter-button')) {
+        if (target.getAttribute('data-table-type') === 'analyze') {
+          sortTable(tableData.analyze, target.getAttribute('data-index-sort'), target.getAttribute('data-filter-type'));
+          (0,_render_table__WEBPACK_IMPORTED_MODULE_0__.renderTable)(tableData, [table]);
+        }
+
+        if (target.getAttribute('data-table-type') === 'review') {
+          sortTable(tableData.review, target.getAttribute('data-index-sort'), target.getAttribute('data-filter-type'));
+          (0,_render_table__WEBPACK_IMPORTED_MODULE_0__.renderTable)(tableData, [table]);
+        }
+
+        filterTypeDown = !filterTypeDown;
+      }
+    });
+  });
+
+  function sortTable(table, i) {
+    if (!table) return;
+    table.sort(function (a, b) {
+      if (filterTypeDown) {
+        console.log('less');
+        return a[i] - b[i];
+      }
+
+      return b[i] - a[i];
+    });
+  }
+}
+
+function setTableData(data) {
+  tableData = data;
+}
+
+/***/ }),
+
 /***/ "./src/js/components/switcher.js":
 /*!***************************************!*\
   !*** ./src/js/components/switcher.js ***!
@@ -3288,6 +3364,7 @@ var dataForXlsx = null;
 var nameOfXlsx = 'Данные';
 downloadBtn.addEventListener('click', function () {
   if (!dataForXlsx) return;
+  nameOfXlsx = nameOfXlsx.replace(/\s/g, '_');
   var workbook = _node_modules_xlsx_xlsx_mjs__WEBPACK_IMPORTED_MODULE_0__.utils.book_new();
   var sheet = _node_modules_xlsx_xlsx_mjs__WEBPACK_IMPORTED_MODULE_0__.utils.aoa_to_sheet(dataForXlsx);
   _node_modules_xlsx_xlsx_mjs__WEBPACK_IMPORTED_MODULE_0__.utils.book_append_sheet(workbook, sheet, nameOfXlsx);

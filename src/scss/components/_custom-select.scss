@@ -53,12 +53,6 @@
     border-left: 2px solid rgba($color-blue-35, 0.3);
     border-bottom: 2px solid rgba($color-blue-35, 0.3);
 
-    // background-image: url("../img/arrow-down.svg");
-
-    // background-position: center;
-    // background-size: contain;
-    // background-repeat: no-repeat;
-
     transform: translateY(-50%) rotate(-45deg);
     transition: transform 0.3s ease-in-out;
   }

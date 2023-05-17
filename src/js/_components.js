@@ -18,6 +18,7 @@ import './components/intl-input';
 import './components/https-request';
 import './components/get-data';
 import './components/toXlsx';
+import './components/sortTable';
 
 // search form
 // import './components/search-form/show-helper-list';

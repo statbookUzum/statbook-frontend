@@ -94,6 +94,7 @@ th {
 
     @include w($md) {
       position: sticky;
+      left: auto !important;
     }
   }
 }

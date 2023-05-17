@@ -1,7 +1,7 @@
 export function transformDataForTable(data) {
   const arrData = Object.entries({ review: data.review, analyze: data.analyze });
   const obj = {};
-  const deleteableProp = ['category_id', 'date_range', 'seller_id'];
+  const deleteableProp = ['category_id', 'date_range', 'seller_id', 'seller_title'];
 
   console.log(arrData);
 
@@ -21,8 +21,6 @@ export function transformDataForTable(data) {
     });
   });
 
-  console.log(obj);
-
   return obj;
 }
 
@@ -41,17 +39,27 @@ function transformObjProperty(obj) {
       continue;
     }
 
-    if (!isNaN(obj[prop])) {
-      if (typeof (obj[prop]) === 'string' && (obj[prop]).includes('.')) {
-        obj[prop] = formatNumber(+obj[prop]);
-      }
-      continue;
-    }
+    // if (!isNaN(obj[prop])) {
+    //   if (typeof (obj[prop]) === 'string' && (obj[prop]).includes('.')) {
+    //     obj[prop] = formatNumber(+obj[prop]);
+    //   }
+    //   continue;
+    // }
 
 
   }
 
   return obj;
+}
+
+export function transformTableItem(item) {
+  if (!isNaN(item)) {
+    if (typeof (item) === 'string' && (item).includes('.')) {
+      return formatNumber(item);
+    }
+  }
+
+  return item;
 }
 
 export function formatNumber(num) {
@@ -96,40 +104,41 @@ function renameTableHeader(arr) {
     product_id: 'ID товара',
     seller_id: 'ID продавца',
     seller_title: 'Продавец',
-    actual_price: 'Цена',
+    actual_price: 'Теĸущая цена, UZS',
     category_id: 'ID категории',
     category_title_ru: 'Название категории(рус)',
     category_title_uz: 'Название категории(узб)',
     sellers_count: 'Количество продавцов',
     avg_rating: 'Средний рейтинг',
-    selled_per_for_period: 'Кол-во продаж',
-    avg_base_price: 'Средняя базовая цена',
-    revenue: 'Выручка',
-    revenue_base: 'Базовая выручка',
-    available_amount: 'Остаток',
+    selled_per_for_period: 'Кол-во продаж, шт',
+    avg_base_price: 'Ср. Базовая цена,. UZS',
+    revenue: 'Выручка, UZS',
+    revenue_base: 'Базовая выручка, UZS',
+    available_amount: 'Остатоĸ (в наличии), шт.',
     reviews_amount: 'Кол-во отзывов',
     avg_product_rating: 'Средний рейтинг',
-    turnover: 'Оборачиваемость',
+    turnover: 'Оборачиваемость, дней',
     days_with_remaining_product: 'Дней в наличии',
     date_range: 'Период времени',
-    average_price: 'Средняя цена',
-    average_base_price: 'Средняя базовая цена',
-    predicted_revenue: 'Прогнозируемая выручка',
-    missed_revenue: 'Упущенная выручка',
-    missed_revenue_percent: 'Процент(%) упущенной выручки',
+    average_price: 'Средняя цена, UZS',
+    average_base_price: 'Ср. базовая цена, UZS',
+    predicted_revenue: 'Прогнозируемая выручĸа, UZS',
+    missed_revenue: 'Упущенная выручĸа, UZS',
+    missed_revenue_percent: 'Доля упущенной выручĸи, %',
     available_amount_price: 'Стоимость остатков',
     categories_count: 'Количество категорий',
     available_sku: 'Остаток',
     available_product: 'Количество товаров',
     selled_amount: 'Проданное количество',
     avg_revenue: 'Средний доход',
-    remaining_products_value: 'Стоимость остатков',
-    avg_purchase_price: 'Средняя цена покупки',
+    remaining_products_value: 'Стоимость остатĸов (по теĸ. цене), UZS',
+    avg_purchase_price: 'Средняя цена, UZS',
     num_of_active_product: 'Кол-во активных товаров',
     num_of_active_seller: 'Кол-во активных продавцов',
     avg_product_selled_amount: 'Среднее кол-во проданного товара',
     rating: 'Рейтинг',
-    num_of_active_category: 'Кол-во активных категорий'
+    num_of_active_category: 'Кол-во активных категорий',
+    avg_bill: 'Средний чеĸ',
   }
 
   return arr.map(item => {
@@ -139,7 +148,7 @@ function renameTableHeader(arr) {
 }
 
 function sortTableArray(arr, arrayType) {
-  const sortOrder = { photo: 1, title: 2, sku: 3 };
+  const sortOrder = { photo: 1, title: 2, product_id: 3, sku: 4, actual_price: 5 };
   const sortedArray = arr.sort((a, b) => {
     const aVal = sortOrder[a[0]] || 999;
     const bVal = sortOrder[b[0]] || 999;
