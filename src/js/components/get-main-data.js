@@ -46,11 +46,14 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
   tableList.forEach(table => table.innerHTML = '');
   setTimeout(setHeight, 0);
 
+  let startTime;
+  let endTime;
+
   if (pageType === 'shop') {
     getDataWithId(id, pageType, period)
       .then(response => {
         return {
-          table: transformDataForTable(response.data),
+          table: transformDataForTable(response.data, pageType),
           totalStat: transformTotalStatData(response.data.analyze, 'shop'),
           cardInfo: response.data.card_info[0],
         }
@@ -84,7 +87,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
       .then(response => {
         return {
           totalStat: transformTotalStatData(response.data.analyze, 'category'),
-          table: transformDataForTable(response.data),
+          table: transformDataForTable(response.data, 'category'),
         }
       })
       .then(transformData => {
@@ -114,6 +117,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
     setLoadingAnimation(productInfo, true);
     getDataWithId(id, pageType, period)
       .then(response => {
+        console.log(response.data);
         document.querySelector('.analytics-charts').style.display = 'block';
 
         return {

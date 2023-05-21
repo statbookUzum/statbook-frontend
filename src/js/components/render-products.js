@@ -2,7 +2,7 @@ import { formatNumber } from "./helperTablePage/_transformDataForTables";
 import { removeYearFromDate } from "./helper";
 
 export function renderProductCard(data, element) {
-  const { title, avg_purchase_price, seller_title, photo } = data;
+  const { title, avg_purchase_price, seller_title, photo, rating, reviews_amount, remaining_products_value, remaining_product, } = data;
 
   element.innerHTML = `
   <div class="product-info__image">
@@ -12,12 +12,22 @@ export function renderProductCard(data, element) {
   <div class="product-info__title">
     ${title}
   </div>
+  <div class="product-info__reviews">
+        <span class="product-info__reviews-score">${rating}</span> (<span class="product-info__reviews-count">${reviews_amount} </span> отзывов)
+      </div>
   <div class="product-info__price">
-    Цена: <span class="product-info__price-amount">${formatNumber((+avg_purchase_price).toFixed(0))}</span> <span
+    Цена: <span class="product-info__price-amount">${formatNumber((+remaining_products_value).toFixed(0))}</span> <span
       class="product-info__price-currency">сум</span>
   </div>
   <div class="product-info__seller">
     Продавец: <span class="product-info__seller-name">${seller_title}</span>
+  </div>
+  <div class="product-info__price-avg">
+  Ср. цена продаж: <span class="product-info__price-avg-amount">${formatNumber((+avg_purchase_price).toFixed(0))}</span> <span
+      class="product-info__price-currency">сум</span>
+  </div>
+  <div class="product-info__lost">
+    Остаток (в наличии): <span class="product-info__lost-count">${remaining_product} шт.</span>
   </div>
   <div class="product-info__description">
   </div>

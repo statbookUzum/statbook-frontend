@@ -46,10 +46,8 @@ export function renderTable(tables, elements) {
     const imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
     let indexOfImg = -1;
     let indexOfTitle = -1;
-
-    element.innerHTML = `
-                        <tr class="table__header">
-                          ${data[0].map((el, i) => {
+    const arrRowTableEl = [];
+    const arrHeaderTableEl = data[0].map((el, i) => {
       if (el.toLowerCase() === 'изображения') {
         indexOfImg = i;
         return `<th class="sticky">${el}</th>`
@@ -68,23 +66,35 @@ export function renderTable(tables, elements) {
       }
 
       return `<th>${el}</th>`
-    }).join(' ')}
-                        </tr>
-                        ${data.map((arr, i) => {
+    })
+
+    for (let i = 0; i < data.length; i++) {
+      if (i > 300) break;
+
       if (i !== 0) {
-        return `<tr>${arr.map((el, i) => {
-          if (imageLinkRegex.test(el)) {
-            return `<td class="sticky" style="left: 0"><img loading="lazy" src="${el}" alt="${arr[i + 1]}"></td>`
-          }
+        arrRowTableEl.push(
+          `<tr>${data[i].map((el, index) => {
+            if (imageLinkRegex.test(el)) {
+              return `<td class="sticky" style="left: 0"><img loading="lazy" class="table-img" src="${el}" alt="${data[i][index + 1]}"></td>`
+            }
 
-          if (i === indexOfTitle) {
-            return `<td class="sticky" style="left: 114px; text-align: left;">${el}</td>`
-          }
+            if (index === indexOfTitle) {
+              return `<td class="sticky" style="left: 114px; text-align: left;">${el}</td>`
+            }
 
-          return `<td>${transformTableItem(el)}</td>`
-        }).join(' ')}</tr>`
+            return `<td>${transformTableItem(el)}</td>`
+          }).join(' ')}</tr>`
+        )
       }
-    }).join(' ')}
+    }
+
+
+
+    element.innerHTML = `
+                        <tr class="table__header">
+                          ${arrHeaderTableEl.join(' ')}
+                        </tr>
+                        ${arrRowTableEl.join(' ')}
                         `;
   });
 

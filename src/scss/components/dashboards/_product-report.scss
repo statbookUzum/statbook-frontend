@@ -74,8 +74,42 @@
     }
   }
 
+  &__reviews {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+    font-family: $secondary-font-family;
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  &__reviews-score {
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.8);
+
+    &::before {
+      content: "";
+      margin-right: 4px;
+      height: 24px;
+      width: 24px;
+      background-image: url("../img/star.svg");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__reviews-count {
+    margin-right: 5px;
+    display: inline-block;
+  }
+
   &__title {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     grid-column: 3/9;
 
     font-weight: 600;
@@ -89,6 +123,7 @@
   }
 
   &__price {
+    margin-bottom: 10px;
     grid-column: 3/6;
     align-self: flex-end;
     display: flex;
@@ -106,7 +141,27 @@
     }
   }
 
+  &__price-avg {
+    margin-bottom: 10px;
+    grid-column: 3/7;
+    align-self: flex-end;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+
+    font-size: 18px;
+    line-height: 141.5%;
+
+    color: rgba($color-blue-35, 0.4);
+  }
+
   &__price-amount {
+    font-size: 35px;
+    white-space: nowrap;
+    color: rgba($color-blue-35, 0.8);
+  }
+
+  &__price-avg-amount {
     font-size: 35px;
     white-space: nowrap;
     color: rgba($color-blue-35, 0.8);
@@ -130,6 +185,19 @@
       grid-column: 1/9;
       grid-row: 5/6;
     }
+  }
+
+  &__lost {
+    grid-column: 3/7;
+    align-self: flex-end;
+
+    font-size: 18px;
+    line-height: 141.5%;
+    color: rgba($color-blue-35, 0.4);
+  }
+
+  &__lost-count {
+    color: rgba($color-blue-35, 0.8);
   }
 
   &__seller-name {

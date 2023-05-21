@@ -6,34 +6,34 @@ export function transformTotalStatData(arr, flag) {
   if (flag === 'shop') {
     resultArray = [
       {
-        title: 'Количество продуктов',
-        value: arr[0].available_sku,
+        title: 'Продано товаров, шт',
+        value: arr[0].selled_amount,
       },
       {
-        title: 'Количество категорий',
+        title: 'Выручĸа, UZS',
+        value: arr[0].revenue,
+      },
+      {
+        title: 'Количество ĸатегорий',
         value: arr[0].categories_count,
       },
       {
-        title: 'Средняя цена',
-        value: arr[0].avg_purchase_price,
-      },
-      {
-        title: 'Общая выручка',
-        value: arr[0].revenue,
+        title: 'Средний чеĸ',
+        value: arr[0].avg_bill,
       }
     ];
   }
 
   if (flag === 'category') {
     const obj = {
-      selled_amount: 0,
+      orders_amount_per_day: 0,
       revenue: 0,
       available_product: 0,
       sellers_count: 0,
     };
 
     arr.forEach(item => {
-      obj['selled_amount'] += +item.selled_amount;
+      obj['orders_amount_per_day'] += +item.orders_amount_per_day;
       obj['revenue'] += +item.revenue;
       obj['available_product'] += +item.available_product;
       obj['sellers_count'] += +item.sellers_count;
@@ -41,25 +41,25 @@ export function transformTotalStatData(arr, flag) {
 
     resultArray = [
       {
-        title: 'Заказы',
-        value: obj.selled_amount,
+        title: 'Количество подкатегорий',
+        value: arr.length,
       },
       {
-        title: 'Выручка',
+        title: 'Количество заĸазов',
+        value: obj.orders_amount_per_day,
+      },
+      {
+        title: 'Выручĸа, UZS',
         value: formatNumber(obj.revenue),
-      },
-      {
-        title: 'Количество позиций',
-        value: obj.available_product,
       },
       {
         title: 'Количество продавцов',
         value: obj.sellers_count,
       },
       {
-        title: 'Количество подкатегорий',
-        value: arr.length,
-      }
+        title: 'Количество товаров',
+        value: obj.available_product,
+      },
     ];
   }
 

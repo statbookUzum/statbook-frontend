@@ -3,25 +3,9 @@ import { Chart } from "chart.js/auto";
 const saleChart = document.getElementById('saleChart');
 const priceChart = document.getElementById('priceChart');
 const lostChart = document.getElementById('lostChart');
+const priceLevelSpan = document.querySelector('.chart-span--price');
 
 let labelsData = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
-const sortLabels = (value, index, items) => {
-
-  // items = labelsData;
-  if (index + 1 === 1) {
-    return labelsData[index];
-  }
-
-  if ((index + 1) % 5 === 0) {
-    return labelsData[index];
-  }
-
-  if ((index + 1) === items.length) {
-    return labelsData[index];
-  }
-
-  return '';
-}
 
 export const saleCht = !saleChart ? null : new Chart(saleChart, {
   type: 'bar',
@@ -44,6 +28,10 @@ export const saleCht = !saleChart ? null : new Chart(saleChart, {
           display: false,
         },
         ticks: {
+          callback: (value, index, items) => {
+            // console.log(value);
+            return value;
+          },
           color: 'rgba(0, 0, 0, 0.25)',
           font: {
             family: 'Open Sans',
@@ -129,6 +117,16 @@ export const priceCht = !priceChart ? null : new Chart(priceChart, {
           display: false,
         },
         ticks: {
+          callback: (value, index, items) => {
+            const lastIndex = items[items.length - 1];
+            if (value === 0) return value;
+            if (index === 1) {
+              priceLevelSpan.textContent = lastIndex.value > 1000000 ? 'Млн.' : 'Тыс.';
+            }
+            const num = (value / (lastIndex.value > 1000000 ? 1000000 : 1000));
+
+            return num % 1 === 0 ? num.toFixed(1) : num;
+          },
           color: 'rgba(0, 0, 0, 0.25)',
           font: {
             family: 'Open Sans',

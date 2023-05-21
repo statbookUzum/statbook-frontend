@@ -19,6 +19,7 @@ import './components/https-request';
 import './components/get-data';
 import './components/toXlsx';
 import './components/sortTable';
+import './components/helperTablePage/_scaleTableImg';
 
 // search form
 // import './components/search-form/show-helper-list';

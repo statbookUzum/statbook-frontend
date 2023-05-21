@@ -54,7 +54,7 @@ export function setCashingLostViewCard(data, typePage) {
     cardItems = JSON.parse(cardItems);
 
     for (let item of cardItems) {
-      if (item.title === data.title) return;
+      if (item.product_id === data.product_id) return;
     }
     cardItems.unshift(data);
 

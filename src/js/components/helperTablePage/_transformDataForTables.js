@@ -1,9 +1,8 @@
-export function transformDataForTable(data) {
+export function transformDataForTable(data, pageType) {
+  console.log(data);
   const arrData = Object.entries({ review: data.review, analyze: data.analyze });
   const obj = {};
-  const deleteableProp = ['category_id', 'date_range', 'seller_id', 'seller_title'];
-
-  console.log(arrData);
+  let deleteableProp;
 
   if (data.result === 'Информации не найдено') {
     console.log('Информации не найдено');
@@ -11,15 +10,31 @@ export function transformDataForTable(data) {
   }
 
   arrData.forEach(el => {
-    const sortedHeader = sortTableArray(Object.entries(removePropertyFromObj(el[1][0], deleteableProp)), 'header');
+    if (el[0] === 'review' && pageType === 'shop') {
+      deleteableProp = ['date_range', 'seller_id', 'seller_title'];
+    }
+
+    if (el[0] === 'review' && pageType === 'category') {
+      deleteableProp = ['category_id', 'date_range', 'seller_id', 'categories_count', 'category_graph_ru', 'category_graph_uz'];
+    }
+
+    if (el[0] === 'analyze' && pageType === 'shop') {
+      deleteableProp = ['seller_id', 'selled_amount', 'categories_count', 'revenue', 'avg_revenue', 'average_price', 'avg_bill', 'date_range', 'orders_amount_per_day', 'avg_purchase_price'];
+    }
+
+    const sortedHeader = sortTableArray(Object.entries(removePropertyFromObj(el[1][0], deleteableProp)), 'header', el[0]);
     obj[el[0]] = [renameTableHeader(sortedHeader)];
+
+
 
     el[1].forEach(item => {
       const transformItem = transformObjProperty(removePropertyFromObj(item, deleteableProp));
 
-      obj[el[0]].push(sortTableArray(Object.entries(transformItem)));
+      obj[el[0]].push(sortTableArray(Object.entries(transformItem), null, el[0]));
     });
   });
+
+  console.log(obj);
 
   return obj;
 }
@@ -38,15 +53,6 @@ function transformObjProperty(obj) {
 
       continue;
     }
-
-    // if (!isNaN(obj[prop])) {
-    //   if (typeof (obj[prop]) === 'string' && (obj[prop]).includes('.')) {
-    //     obj[prop] = formatNumber(+obj[prop]);
-    //   }
-    //   continue;
-    // }
-
-
   }
 
   return obj;
@@ -63,7 +69,7 @@ export function transformTableItem(item) {
 }
 
 export function formatNumber(num) {
-  if (+num === 0) return 0;
+  if (+num <= 0) return 0;
 
   let result;
   let afterDot = 0;
@@ -114,7 +120,7 @@ function renameTableHeader(arr) {
     avg_base_price: 'Ср. Базовая цена,. UZS',
     revenue: 'Выручка, UZS',
     revenue_base: 'Базовая выручка, UZS',
-    available_amount: 'Остатоĸ (в наличии), шт.',
+    available_amount: 'Остаток (в наличии), шт.',
     reviews_amount: 'Кол-во отзывов',
     avg_product_rating: 'Средний рейтинг',
     turnover: 'Оборачиваемость, дней',
@@ -127,7 +133,7 @@ function renameTableHeader(arr) {
     missed_revenue_percent: 'Доля упущенной выручĸи, %',
     available_amount_price: 'Стоимость остатков',
     categories_count: 'Количество категорий',
-    available_sku: 'Остаток',
+    available_sku: 'Остатоĸ (в наличии), шт.',
     available_product: 'Количество товаров',
     selled_amount: 'Проданное количество',
     avg_revenue: 'Средний доход',
@@ -139,6 +145,7 @@ function renameTableHeader(arr) {
     rating: 'Рейтинг',
     num_of_active_category: 'Кол-во активных категорий',
     avg_bill: 'Средний чеĸ',
+    orders_amount_per_day: 'Количество заказов',
   }
 
   return arr.map(item => {
@@ -147,8 +154,27 @@ function renameTableHeader(arr) {
   });
 }
 
-function sortTableArray(arr, arrayType) {
-  const sortOrder = { photo: 1, title: 2, product_id: 3, sku: 4, actual_price: 5 };
+function sortTableArray(arr, arrayType, tableType) {
+  let sortOrder;
+
+  if (tableType === 'analyze') {
+    sortOrder = {
+      available_product: 1,
+      num_of_active_product: 2,
+      available_sku: 3,
+      remaining_products_value: 4,
+      num_of_active_category: 5,
+    };
+  } else {
+    sortOrder = {
+      photo: 1,
+      title: 2,
+      product_id: 3,
+      sku: 4,
+      actual_price: 5
+    };
+  }
+
   const sortedArray = arr.sort((a, b) => {
     const aVal = sortOrder[a[0]] || 999;
     const bVal = sortOrder[b[0]] || 999;
@@ -163,9 +189,13 @@ function sortTableArray(arr, arrayType) {
 }
 
 function removePropertyFromObj(obj, deleteablePropArr) {
+  const copyObj = JSON.parse(JSON.stringify(obj));
+
+  console.log(deleteablePropArr);
+
   deleteablePropArr.forEach(prop => {
-    delete obj[prop];
+    delete copyObj[prop];
   });
 
-  return obj;
+  return copyObj;
 }

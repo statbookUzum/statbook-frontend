@@ -978,7 +978,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_get_data__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/get-data */ "./src/js/components/get-data.js");
 /* harmony import */ var _components_toXlsx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/toXlsx */ "./src/js/components/toXlsx.js");
 /* harmony import */ var _components_sortTable__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/sortTable */ "./src/js/components/sortTable.js");
+/* harmony import */ var _components_helperTablePage_scaleTableImg__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/helperTablePage/_scaleTableImg */ "./src/js/components/helperTablePage/_scaleTableImg.js");
+/* harmony import */ var _components_helperTablePage_scaleTableImg__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_components_helperTablePage_scaleTableImg__WEBPACK_IMPORTED_MODULE_20__);
 // import './components/slider';
+
 
 
 
@@ -1234,7 +1237,7 @@ function setCashingLostViewCard(data, typePage) {
     try {
       for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
         var _item = _step2.value;
-        if (_item.title === data.title) return;
+        if (_item.product_id === data.product_id) return;
       }
     } catch (err) {
       _iterator2.e(err);
@@ -1700,11 +1703,13 @@ function getMainData(searchForm, pageType, categoryCardData, period) {
     return table.innerHTML = '';
   });
   setTimeout(_helper__WEBPACK_IMPORTED_MODULE_11__.setHeight, 0);
+  var startTime;
+  var endTime;
 
   if (pageType === 'shop') {
     (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType, period).then(function (response) {
       return {
-        table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_5__.transformDataForTable)(response.data),
+        table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_5__.transformDataForTable)(response.data, pageType),
         totalStat: (0,_helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_6__.transformTotalStatData)(response.data.analyze, 'shop'),
         cardInfo: response.data.card_info[0]
       };
@@ -1730,7 +1735,7 @@ function getMainData(searchForm, pageType, categoryCardData, period) {
     (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType, period).then(function (response) {
       return {
         totalStat: (0,_helperTablePage_transformTotalStatData__WEBPACK_IMPORTED_MODULE_6__.transformTotalStatData)(response.data.analyze, 'category'),
-        table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_5__.transformDataForTable)(response.data)
+        table: (0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_5__.transformDataForTable)(response.data, 'category')
       };
     }).then(function (transformData) {
       (0,_sortTable__WEBPACK_IMPORTED_MODULE_14__.setTableData)(transformData.table);
@@ -1755,6 +1760,7 @@ function getMainData(searchForm, pageType, categoryCardData, period) {
     (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_8__.setLoadingAnimation)(mainSectionInner, true);
     (0,_setLoadingAnimation__WEBPACK_IMPORTED_MODULE_8__.setLoadingAnimation)(productInfo, true);
     (0,_https_request__WEBPACK_IMPORTED_MODULE_0__.getDataWithId)(id, pageType, period).then(function (response) {
+      console.log(response.data);
       document.querySelector('.analytics-charts').style.display = 'block';
       return {
         chartsData: (0,_helperCharts_transformChartsData__WEBPACK_IMPORTED_MODULE_4__.transformChartsData)(response.data.chartsInfo),
@@ -1862,7 +1868,7 @@ function removeYearFromDate(strDate) {
   var date = new Date(strDate);
   var mm = String(date.getMonth() + 1).padStart(2, '0');
   var dd = String(date.getDate()).padStart(2, '0');
-  return "".concat(mm, ".").concat(dd);
+  return "".concat(dd, ".").concat(mm);
 }
 function changePeriods(period) {
   if (!period) return;
@@ -1896,25 +1902,8 @@ __webpack_require__.r(__webpack_exports__);
 var saleChart = document.getElementById('saleChart');
 var priceChart = document.getElementById('priceChart');
 var lostChart = document.getElementById('lostChart');
+var priceLevelSpan = document.querySelector('.chart-span--price');
 var labelsData = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
-
-var sortLabels = function sortLabels(value, index, items) {
-  // items = labelsData;
-  if (index + 1 === 1) {
-    return labelsData[index];
-  }
-
-  if ((index + 1) % 5 === 0) {
-    return labelsData[index];
-  }
-
-  if (index + 1 === items.length) {
-    return labelsData[index];
-  }
-
-  return '';
-};
-
 var saleCht = !saleChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__.Chart(saleChart, {
   type: 'bar',
   data: {
@@ -1936,6 +1925,10 @@ var saleCht = !saleChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__
           display: false
         },
         ticks: {
+          callback: function callback(value, index, items) {
+            // console.log(value);
+            return value;
+          },
           color: 'rgba(0, 0, 0, 0.25)',
           font: {
             family: 'Open Sans',
@@ -2022,6 +2015,17 @@ var priceCht = !priceChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0
           display: false
         },
         ticks: {
+          callback: function callback(value, index, items) {
+            var lastIndex = items[items.length - 1];
+            if (value === 0) return value;
+
+            if (index === 1) {
+              priceLevelSpan.textContent = lastIndex.value > 1000000 ? 'Млн.' : 'Тыс.';
+            }
+
+            var num = value / (lastIndex.value > 1000000 ? 1000000 : 1000);
+            return num % 1 === 0 ? num.toFixed(1) : num;
+          },
           color: 'rgba(0, 0, 0, 0.25)',
           font: {
             family: 'Open Sans',
@@ -2241,6 +2245,47 @@ function checkDescLine() {
 
 /***/ }),
 
+/***/ "./src/js/components/helperTablePage/_scaleTableImg.js":
+/*!*************************************************************!*\
+  !*** ./src/js/components/helperTablePage/_scaleTableImg.js ***!
+  \*************************************************************/
+/***/ (() => {
+
+var table = document.querySelector('.table');
+
+if (table) {
+  var tooltipEl = document.createElement('div');
+  tooltipEl.classList.add('table-tooltip');
+  document.body.appendChild(tooltipEl);
+  table.addEventListener('mouseover', function (_ref) {
+    var target = _ref.target;
+
+    if (target.matches('.table-img')) {
+      var x = target.getBoundingClientRect().right.toFixed();
+      var y = target.getBoundingClientRect().bottom.toFixed();
+      var imgPath = target.getAttribute('src');
+      var altImg = target.getAttribute('alt');
+      tooltipEl.innerHTML = "<img src=\"".concat(imgPath, "\" alt=\"").concat(altImg, "\">");
+      tooltipEl.style.cssText = "left: ".concat(x, "px; top: ").concat(y, "px;");
+      tooltipEl.classList.add('active');
+      target.addEventListener('mouseleave', function (_ref2) {
+        var target = _ref2.target;
+
+        if (target.matches('.table-img')) {
+          console.log('leave');
+          tooltipEl.classList.remove('active');
+          tooltipEl.style.cssText = 'left: 0; top: 0;';
+          return;
+        }
+      }, {
+        once: true
+      });
+    }
+  });
+}
+
+/***/ }),
+
 /***/ "./src/js/components/helperTablePage/_transformDataForTables.js":
 /*!**********************************************************************!*\
   !*** ./src/js/components/helperTablePage/_transformDataForTables.js ***!
@@ -2254,14 +2299,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "transformDataForTable": () => (/* binding */ transformDataForTable),
 /* harmony export */   "transformTableItem": () => (/* binding */ transformTableItem)
 /* harmony export */ });
-function transformDataForTable(data) {
+function transformDataForTable(data, pageType) {
+  console.log(data);
   var arrData = Object.entries({
     review: data.review,
     analyze: data.analyze
   });
   var obj = {};
-  var deleteableProp = ['category_id', 'date_range', 'seller_id', 'seller_title'];
-  console.log(arrData);
+  var deleteableProp;
 
   if (data.result === 'Информации не найдено') {
     console.log('Информации не найдено');
@@ -2272,13 +2317,26 @@ function transformDataForTable(data) {
   }
 
   arrData.forEach(function (el) {
-    var sortedHeader = sortTableArray(Object.entries(removePropertyFromObj(el[1][0], deleteableProp)), 'header');
+    if (el[0] === 'review' && pageType === 'shop') {
+      deleteableProp = ['date_range', 'seller_id', 'seller_title'];
+    }
+
+    if (el[0] === 'review' && pageType === 'category') {
+      deleteableProp = ['category_id', 'date_range', 'seller_id', 'categories_count', 'category_graph_ru', 'category_graph_uz'];
+    }
+
+    if (el[0] === 'analyze' && pageType === 'shop') {
+      deleteableProp = ['seller_id', 'selled_amount', 'categories_count', 'revenue', 'avg_revenue', 'average_price', 'avg_bill', 'date_range', 'orders_amount_per_day', 'avg_purchase_price'];
+    }
+
+    var sortedHeader = sortTableArray(Object.entries(removePropertyFromObj(el[1][0], deleteableProp)), 'header', el[0]);
     obj[el[0]] = [renameTableHeader(sortedHeader)];
     el[1].forEach(function (item) {
       var transformItem = transformObjProperty(removePropertyFromObj(item, deleteableProp));
-      obj[el[0]].push(sortTableArray(Object.entries(transformItem)));
+      obj[el[0]].push(sortTableArray(Object.entries(transformItem), null, el[0]));
     });
   });
+  console.log(obj);
   return obj;
 }
 
@@ -2292,13 +2350,7 @@ function transformObjProperty(obj) {
     if (prop === 'missed_revenue_percent') {
       obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(1) + '%' : +obj[prop] + '%';
       continue;
-    } // if (!isNaN(obj[prop])) {
-    //   if (typeof (obj[prop]) === 'string' && (obj[prop]).includes('.')) {
-    //     obj[prop] = formatNumber(+obj[prop]);
-    //   }
-    //   continue;
-    // }
-
+    }
   }
 
   return obj;
@@ -2314,7 +2366,7 @@ function transformTableItem(item) {
   return item;
 }
 function formatNumber(num) {
-  if (+num === 0) return 0;
+  if (+num <= 0) return 0;
   var result;
   var afterDot = 0;
   var divider = 0.99999;
@@ -2364,7 +2416,7 @@ function renameTableHeader(arr) {
     avg_base_price: 'Ср. Базовая цена,. UZS',
     revenue: 'Выручка, UZS',
     revenue_base: 'Базовая выручка, UZS',
-    available_amount: 'Остатоĸ (в наличии), шт.',
+    available_amount: 'Остаток (в наличии), шт.',
     reviews_amount: 'Кол-во отзывов',
     avg_product_rating: 'Средний рейтинг',
     turnover: 'Оборачиваемость, дней',
@@ -2377,7 +2429,7 @@ function renameTableHeader(arr) {
     missed_revenue_percent: 'Доля упущенной выручĸи, %',
     available_amount_price: 'Стоимость остатков',
     categories_count: 'Количество категорий',
-    available_sku: 'Остаток',
+    available_sku: 'Остатоĸ (в наличии), шт.',
     available_product: 'Количество товаров',
     selled_amount: 'Проданное количество',
     avg_revenue: 'Средний доход',
@@ -2388,21 +2440,35 @@ function renameTableHeader(arr) {
     avg_product_selled_amount: 'Среднее кол-во проданного товара',
     rating: 'Рейтинг',
     num_of_active_category: 'Кол-во активных категорий',
-    avg_bill: 'Средний чеĸ'
+    avg_bill: 'Средний чеĸ',
+    orders_amount_per_day: 'Количество заказов'
   };
   return arr.map(function (item) {
     return renameObj[item] ? renameObj[item] : item;
   });
 }
 
-function sortTableArray(arr, arrayType) {
-  var sortOrder = {
-    photo: 1,
-    title: 2,
-    product_id: 3,
-    sku: 4,
-    actual_price: 5
-  };
+function sortTableArray(arr, arrayType, tableType) {
+  var sortOrder;
+
+  if (tableType === 'analyze') {
+    sortOrder = {
+      available_product: 1,
+      num_of_active_product: 2,
+      available_sku: 3,
+      remaining_products_value: 4,
+      num_of_active_category: 5
+    };
+  } else {
+    sortOrder = {
+      photo: 1,
+      title: 2,
+      product_id: 3,
+      sku: 4,
+      actual_price: 5
+    };
+  }
+
   var sortedArray = arr.sort(function (a, b) {
     var aVal = sortOrder[a[0]] || 999;
     var bVal = sortOrder[b[0]] || 999;
@@ -2421,10 +2487,12 @@ function sortTableArray(arr, arrayType) {
 }
 
 function removePropertyFromObj(obj, deleteablePropArr) {
+  var copyObj = JSON.parse(JSON.stringify(obj));
+  console.log(deleteablePropArr);
   deleteablePropArr.forEach(function (prop) {
-    delete obj[prop];
+    delete copyObj[prop];
   });
-  return obj;
+  return copyObj;
 }
 
 /***/ }),
@@ -2447,48 +2515,48 @@ function transformTotalStatData(arr, flag) {
 
   if (flag === 'shop') {
     resultArray = [{
-      title: 'Количество продуктов',
-      value: arr[0].available_sku
+      title: 'Продано товаров, шт',
+      value: arr[0].selled_amount
     }, {
-      title: 'Количество категорий',
+      title: 'Выручĸа, UZS',
+      value: arr[0].revenue
+    }, {
+      title: 'Количество ĸатегорий',
       value: arr[0].categories_count
     }, {
-      title: 'Средняя цена',
-      value: arr[0].avg_purchase_price
-    }, {
-      title: 'Общая выручка',
-      value: arr[0].revenue
+      title: 'Средний чеĸ',
+      value: arr[0].avg_bill
     }];
   }
 
   if (flag === 'category') {
     var obj = {
-      selled_amount: 0,
+      orders_amount_per_day: 0,
       revenue: 0,
       available_product: 0,
       sellers_count: 0
     };
     arr.forEach(function (item) {
-      obj['selled_amount'] += +item.selled_amount;
+      obj['orders_amount_per_day'] += +item.orders_amount_per_day;
       obj['revenue'] += +item.revenue;
       obj['available_product'] += +item.available_product;
       obj['sellers_count'] += +item.sellers_count;
     });
     resultArray = [{
-      title: 'Заказы',
-      value: obj.selled_amount
+      title: 'Количество подкатегорий',
+      value: arr.length
     }, {
-      title: 'Выручка',
+      title: 'Количество заĸазов',
+      value: obj.orders_amount_per_day
+    }, {
+      title: 'Выручĸа, UZS',
       value: (0,_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)(obj.revenue)
-    }, {
-      title: 'Количество позиций',
-      value: obj.available_product
     }, {
       title: 'Количество продавцов',
       value: obj.sellers_count
     }, {
-      title: 'Количество подкатегорий',
-      value: arr.length
+      title: 'Количество товаров',
+      value: obj.available_product
     }];
   }
 
@@ -2770,8 +2838,12 @@ function renderProductCard(data, element) {
   var title = data.title,
       avg_purchase_price = data.avg_purchase_price,
       seller_title = data.seller_title,
-      photo = data.photo;
-  element.innerHTML = "\n  <div class=\"product-info__image\">\n  <img src=\"".concat(photo ? photo : './img/product-test-image.jpg', "\"\n    alt=\"").concat(title, "\">\n  </div>\n  <div class=\"product-info__title\">\n    ").concat(title, "\n  </div>\n  <div class=\"product-info__price\">\n    \u0426\u0435\u043D\u0430: <span class=\"product-info__price-amount\">").concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+avg_purchase_price).toFixed(0)), "</span> <span\n      class=\"product-info__price-currency\">\u0441\u0443\u043C</span>\n  </div>\n  <div class=\"product-info__seller\">\n    \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446: <span class=\"product-info__seller-name\">").concat(seller_title, "</span>\n  </div>\n  <div class=\"product-info__description\">\n  </div>\n");
+      photo = data.photo,
+      rating = data.rating,
+      reviews_amount = data.reviews_amount,
+      remaining_products_value = data.remaining_products_value,
+      remaining_product = data.remaining_product;
+  element.innerHTML = "\n  <div class=\"product-info__image\">\n  <img src=\"".concat(photo ? photo : './img/product-test-image.jpg', "\"\n    alt=\"").concat(title, "\">\n  </div>\n  <div class=\"product-info__title\">\n    ").concat(title, "\n  </div>\n  <div class=\"product-info__reviews\">\n        <span class=\"product-info__reviews-score\">").concat(rating, "</span> (<span class=\"product-info__reviews-count\">").concat(reviews_amount, " </span> \u043E\u0442\u0437\u044B\u0432\u043E\u0432)\n      </div>\n  <div class=\"product-info__price\">\n    \u0426\u0435\u043D\u0430: <span class=\"product-info__price-amount\">").concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+remaining_products_value).toFixed(0)), "</span> <span\n      class=\"product-info__price-currency\">\u0441\u0443\u043C</span>\n  </div>\n  <div class=\"product-info__seller\">\n    \u041F\u0440\u043E\u0434\u0430\u0432\u0435\u0446: <span class=\"product-info__seller-name\">").concat(seller_title, "</span>\n  </div>\n  <div class=\"product-info__price-avg\">\n  \u0421\u0440. \u0446\u0435\u043D\u0430 \u043F\u0440\u043E\u0434\u0430\u0436: <span class=\"product-info__price-avg-amount\">").concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_0__.formatNumber)((+avg_purchase_price).toFixed(0)), "</span> <span\n      class=\"product-info__price-currency\">\u0441\u0443\u043C</span>\n  </div>\n  <div class=\"product-info__lost\">\n    \u041E\u0441\u0442\u0430\u0442\u043E\u043A (\u0432 \u043D\u0430\u043B\u0438\u0447\u0438\u0438): <span class=\"product-info__lost-count\">").concat(remaining_product, " \u0448\u0442.</span>\n  </div>\n  <div class=\"product-info__description\">\n  </div>\n");
 }
 function renderTotalStat(data, elements) {
   console.log(data);
@@ -2863,7 +2935,8 @@ function renderTable(tables, elements) {
     var imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
     var indexOfImg = -1;
     var indexOfTitle = -1;
-    element.innerHTML = "\n                        <tr class=\"table__header\">\n                          ".concat(data[0].map(function (el, i) {
+    var arrRowTableEl = [];
+    var arrHeaderTableEl = data[0].map(function (el, i) {
       if (el.toLowerCase() === 'изображения') {
         indexOfImg = i;
         return "<th class=\"sticky\">".concat(el, "</th>");
@@ -2879,21 +2952,33 @@ function renderTable(tables, elements) {
       }
 
       return "<th>".concat(el, "</th>");
-    }).join(' '), "\n                        </tr>\n                        ").concat(data.map(function (arr, i) {
+    });
+
+    var _loop = function _loop(i) {
+      if (i > 300) return "break";
+
       if (i !== 0) {
-        return "<tr>".concat(arr.map(function (el, i) {
+        arrRowTableEl.push("<tr>".concat(data[i].map(function (el, index) {
           if (imageLinkRegex.test(el)) {
-            return "<td class=\"sticky\" style=\"left: 0\"><img loading=\"lazy\" src=\"".concat(el, "\" alt=\"").concat(arr[i + 1], "\"></td>");
+            return "<td class=\"sticky\" style=\"left: 0\"><img loading=\"lazy\" class=\"table-img\" src=\"".concat(el, "\" alt=\"").concat(data[i][index + 1], "\"></td>");
           }
 
-          if (i === indexOfTitle) {
+          if (index === indexOfTitle) {
             return "<td class=\"sticky\" style=\"left: 114px; text-align: left;\">".concat(el, "</td>");
           }
 
           return "<td>".concat((0,_helperTablePage_transformDataForTables__WEBPACK_IMPORTED_MODULE_1__.transformTableItem)(el), "</td>");
-        }).join(' '), "</tr>");
+        }).join(' '), "</tr>"));
       }
-    }).join(' '), "\n                        ");
+    };
+
+    for (var i = 0; i < data.length; i++) {
+      var _ret = _loop(i);
+
+      if (_ret === "break") break;
+    }
+
+    element.innerHTML = "\n                        <tr class=\"table__header\">\n                          ".concat(arrHeaderTableEl.join(' '), "\n                        </tr>\n                        ").concat(arrRowTableEl.join(' '), "\n                        ");
   });
   setTimeout(_helper__WEBPACK_IMPORTED_MODULE_0__.setHeight, 100);
 }
