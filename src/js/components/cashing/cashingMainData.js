@@ -31,7 +31,7 @@ function initMainData(pageType) {
   if (pageType === 'product') {
     const productCard = document.querySelector('[data-product-card]');
 
-    renderProductCard(obj.cardData, productCard);
+    renderProductCard(obj.cardData, productCard, obj.breadcrumbs);
   }
 }
 
@@ -66,7 +66,7 @@ export function updateCashingIdMainData(pageType, cardData, totalData, breadcrum
   }
 
   if (pageType === 'product') {
-    obj[pageType] = { cardData, totalData };
+    obj[pageType] = { cardData, totalData, breadcrumbs };
   }
 
   JSON.stringify(localStorage.setItem('idMainData', JSON.stringify(obj)));

@@ -13,6 +13,7 @@ import { setHeight, blurElementAndChildren, changePeriods } from './helper';
 import { updateCashingIdMainData } from "./cashing/cashingMainData";
 import { setDataToXlsx } from "./toXlsx";
 import { setTableData } from "./sortTable";
+import { setError } from "./setError";
 
 const sectionsContainer = document.querySelector('.custom-tabs__content');
 const productCard = document.querySelector('[data-product-card]');
@@ -43,120 +44,173 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
   blurElementAndChildren(label);
 
   setLoadingAnimation(mainSectionInner, true);
+  setError(mainSectionInner, false);
   tableList.forEach(table => table.innerHTML = '');
   setTimeout(setHeight, 0);
 
-  let startTime;
-  let endTime;
+  try {
+    if (pageType === 'shop') {
+      getDataWithId(id, pageType, period)
+        .then(response => {
+          return {
+            table: transformDataForTable(response.data, pageType),
+            totalStat: transformTotalStatData(response.data.analyze, 'shop'),
+            cardInfo: response.data.card_info[0],
+          }
+        })
+        .then(transformData => {
 
-  if (pageType === 'shop') {
-    getDataWithId(id, pageType, period)
-      .then(response => {
-        return {
-          table: transformDataForTable(response.data, pageType),
-          totalStat: transformTotalStatData(response.data.analyze, 'shop'),
-          cardInfo: response.data.card_info[0],
-        }
-      })
-      .then(transformData => {
+          setTableData(transformData.table);
+          renderTable(transformData.table, tableList);
+          renderTotalStat(transformData.totalStat, totalStatList);
+          renderSellerCard(transformData.cardInfo, sellerCard);
 
-        setTableData(transformData.table);
-        renderTable(transformData.table, tableList);
-        renderTotalStat(transformData.totalStat, totalStatList);
-        renderSellerCard(transformData.cardInfo, sellerCard);
+          const arrToXlsx = [
+            [`Анализ магазинов за ${period} дней`],
+            ...transformData.table.analyze,
+            [`Обзор магазинов за ${period} дней`],
+            ...transformData.table.review,
+          ]
 
-        setDataToXlsx(transformData.table.review, transformData.cardInfo.title);
-        updateCashingIdMainData(pageType, transformData.cardInfo, transformData.totalStat);
+          setDataToXlsx(arrToXlsx, transformData.cardInfo.title);
+          updateCashingIdMainData(pageType, transformData.cardInfo, transformData.totalStat);
 
-        setLoadingAnimation(mainSectionInner, false);
-        button.disabled = false;
+          setLoadingAnimation(mainSectionInner, false);
+          button.disabled = false;
 
-        checkDescLine();
-        setCashingLostViewCard(transformData.cardInfo, pageType);
-        createLastShopCards();
-      })
-      .catch(error => {
-        setDataToXlsx(null);
-        console.log(error);
-      });
-  }
-
-  if (pageType === 'category') {
-
-    getDataWithId(id, pageType, period)
-      .then(response => {
-        return {
-          totalStat: transformTotalStatData(response.data.analyze, 'category'),
-          table: transformDataForTable(response.data, 'category'),
-        }
-      })
-      .then(transformData => {
-        setTableData(transformData.table);
-
-        categoryNameList.forEach(categoryName => {
-          categoryName.textContent = categoryCardData.categoryName;
+          checkDescLine();
+          setCashingLostViewCard(transformData.cardInfo, pageType);
+          createLastShopCards();
+        })
+        .catch(error => {
+          setDataToXlsx(null);
+          setError(mainSectionInner, true);
+          button.disabled = false;
+          console.log(error);
         });
+    }
 
-        renderTableBreadcrumbs(categoryCardData.breadcrumbs, breadcrumbsList);
-        renderTable(transformData.table, tableList);
-        renderTotalStat(transformData.totalStat, totalStatList);
+    if (pageType === 'category') {
 
-        setDataToXlsx(transformData.table.review, categoryCardData.categoryName);
-        updateCashingIdMainData(pageType, { title: categoryCardData.categoryName }, transformData.totalStat, categoryCardData.breadcrumbs);
+      getDataWithId(id, pageType, period)
+        .then(response => {
+          console.log(response.data);
+          return {
+            totalStat: transformTotalStatData(response.data.analyze, 'category'),
+            table: transformDataForTable(response.data, 'category'),
+          }
+        })
+        .then(transformData => {
+          setTableData(transformData.table);
 
-        setLoadingAnimation(mainSectionInner, false);
-        button.disabled = false;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+          categoryNameList.forEach(categoryName => {
+            categoryName.textContent = categoryCardData.categoryName;
+          });
 
-  if (pageType === 'product') {
-    setLoadingAnimation(mainSectionInner, true);
-    setLoadingAnimation(productInfo, true);
-    getDataWithId(id, pageType, period)
-      .then(response => {
-        console.log(response.data);
-        document.querySelector('.analytics-charts').style.display = 'block';
+          renderTableBreadcrumbs(categoryCardData.breadcrumbs, breadcrumbsList);
+          renderTable(transformData.table, tableList);
+          renderTotalStat(transformData.totalStat, totalStatList);
 
-        return {
-          chartsData: transformChartsData(response.data.chartsInfo),
-          totalStat: response.data.analyze[0],
-          cardInfo: { ...response.data.analyze[0], title: inputHiddenForId.getAttribute('data-hidden-title') },
-          positions: response.data.positions,
-        }
-      })
-      .then(transformData => {
-        renderProductCard(transformData.cardInfo, productCard);
-        renderProductTotalStat(transformData.totalStat, statList);
+          const arrToXlsx = [
+            [`Категории за ${period} дней`],
+            ...transformData.table.analyze,
+            [`Обзор категорий за ${period} дней`],
+            ...transformData.table.review,
+          ]
 
-        saleCht.data.datasets[0].data = transformData.chartsData.saleArr;
-        saleCht.data.labels = transformData.chartsData.dateArr;
-        saleCht.update();
+          setDataToXlsx(arrToXlsx, categoryCardData.categoryName);
+          updateCashingIdMainData(pageType, { title: categoryCardData.categoryName }, transformData.totalStat, categoryCardData.breadcrumbs);
 
-        priceCht.data.datasets[0].data = transformData.chartsData.priceArr;
-        priceCht.data.labels = transformData.chartsData.dateArr;
-        priceCht.update();
+          setLoadingAnimation(mainSectionInner, false);
+          button.disabled = false;
+        })
+        .catch(error => {
+          setDataToXlsx(null);
+          setError(mainSectionInner, true);
+          button.disabled = false;
+          console.log(error);
+        });
+    }
 
-        lostCht.data.datasets[0].data = transformData.chartsData.lostArr;
-        lostCht.data.labels = transformData.chartsData.dateArr;
-        lostCht.update();
+    if (pageType === 'product') {
+      setLoadingAnimation(mainSectionInner, true);
+      setLoadingAnimation(productInfo, true);
+      getDataWithId(id, pageType, period)
+        .then(response => {
+          console.log(response.data);
+          document.querySelector('.analytics-charts').style.display = 'block';
 
-        changePeriods(period);
-        renderCategory(transformData.positions, analyticsList);
+          return {
+            chartsData: transformChartsData(response.data.chartsInfo),
+            cardInfo: { ...response.data.analyze[0], title: inputHiddenForId.getAttribute('data-hidden-title') },
+            positions: response.data.positions,
+          }
+        })
+        .then(transformData => {
+          renderProductCard(transformData.cardInfo, productCard, transformData.positions);
+          renderProductTotalStat(transformData.cardInfo, statList);
 
-        setTimeout(setHeight, 100);
-        setLoadingAnimation(mainSectionInner, false);
-        setLoadingAnimation(productInfo, false);
-        updateCashingIdMainData(pageType, transformData.cardInfo);
+          saleCht.data.datasets[0].data = transformData.chartsData.saleArr;
+          saleCht.data.labels = transformData.chartsData.dateArr;
+          saleCht.update();
 
-        setCashingLostViewCard(transformData.cardInfo, pageType);
-        createLastShopCards();
-        button.disabled = false;
-      })
-      .catch(error => {
-        console.log(error);
-      })
+          priceCht.data.datasets[0].data = transformData.chartsData.priceArr;
+          priceCht.data.labels = transformData.chartsData.dateArr;
+          priceCht.update();
+
+          lostCht.data.datasets[0].data = transformData.chartsData.lostArr;
+          lostCht.data.labels = transformData.chartsData.dateArr;
+          lostCht.update();
+
+          changePeriods(period);
+          renderCategory(transformData.positions, analyticsList);
+
+          console.log(transformData.chartsData.saleArr);
+
+          const arrToXlsx = [
+            ['Название продукта', transformData.cardInfo.title],
+            ['Цена продукта', transformData.cardInfo.remaining_products_value],
+            ['Средняя цена продаж', transformData.cardInfo.avg_purchase_price],
+            ['Продавец', transformData.cardInfo.seller_title],
+            ['Остаток (в наличии)', transformData.cardInfo.remaining_products],
+            ['Продажи', transformData.cardInfo.selled_amount],
+            ['Выручка', transformData.cardInfo.revenue],
+            ['Рейтинг', transformData.cardInfo.rating],
+            [''],
+            [`Продажи за последние ${period} дней`],
+            transformData.chartsData.dateArr,
+            transformData.chartsData.saleArr,
+            [''],
+            [`Изменение цены за последние ${period} дней`],
+            transformData.chartsData.dateArr,
+            transformData.chartsData.priceArr,
+            [''],
+            [`Кол-во остатков за последние ${period} дней`],
+            transformData.chartsData.dateArr,
+            transformData.chartsData.lostArr,
+          ]
+
+
+          setDataToXlsx(arrToXlsx, transformData.cardInfo.seller_title);
+          setTimeout(setHeight, 100);
+          setLoadingAnimation(mainSectionInner, false);
+          setLoadingAnimation(productInfo, false);
+          updateCashingIdMainData(pageType, transformData.cardInfo, null, transformData.positions);
+
+          setCashingLostViewCard(transformData.cardInfo, pageType);
+          createLastShopCards();
+          button.disabled = false;
+        })
+        .catch(error => {
+          setDataToXlsx(null);
+          setError(productInfo, true);
+          button.disabled = false;
+          console.log(error);
+        })
+    }
+  } catch (error) {
+    console.log(error);
+    setLoadingAnimation(mainSectionInner, false);
+    alert('Кажется что-то пошло не так, попробуйте позже')
   }
 }

@@ -1,4 +1,4 @@
-const table = document.querySelector('.table');
+const table = document.querySelector('[data-table-review]');
 
 if (table) {
   const tooltipEl = document.createElement('div');
@@ -18,7 +18,6 @@ if (table) {
 
       target.addEventListener('mouseleave', ({ target }) => {
         if (target.matches('.table-img')) {
-          console.log('leave');
           tooltipEl.classList.remove('active');
           tooltipEl.style.cssText = 'left: 0; top: 0;'
 

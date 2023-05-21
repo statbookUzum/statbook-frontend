@@ -55,6 +55,8 @@
   &__filter-button {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
 
     &::after {
       content: "";
@@ -70,6 +72,39 @@
     }
   }
 
+  &__link {
+    position: relative;
+    color: $color-blue;
+
+    cursor: pointer;
+
+    &::before {
+      content: "Ссылка скопирована!";
+      position: absolute;
+      top: -100%;
+      left: -50%;
+      padding: 5px;
+      border-radius: 10px;
+      width: fit-content;
+      height: fit-content;
+      color: $light-color;
+
+      font-size: 12px;
+      line-height: 1;
+
+      background-color: rgba($color-blue-35, 0.7);
+
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    &.copy::before {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
   img {
     margin: 0 auto;
     border-radius: 10px;
@@ -82,7 +117,7 @@
 th {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 22;
   padding: 12px 10px 12px 10px;
   white-space: nowrap;
 
@@ -92,7 +127,7 @@ th {
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 22;
+    z-index: 23;
 
     @include w($md) {
       position: sticky;
@@ -129,12 +164,27 @@ td {
     @include w($md) {
       position: static;
     }
+
+    &--border {
+      padding: 0;
+    }
   }
 
   a {
     text-decoration: underline;
     color: $color-blue;
   }
+}
+
+.table-wrapper.scrolling {
+  .sticky__border {
+    box-shadow: 3px 0px 8px -8px #040f23;
+  }
+}
+
+.sticky__border {
+  padding: 15px 10px 15px 10px;
+  display: block;
 }
 
 .table-tooltip {

@@ -5,20 +5,30 @@ const downloadBtn = document.querySelector('.report-btn');
 let dataForXlsx = null;
 let nameOfXlsx = 'Данные';
 
-downloadBtn.addEventListener('click', () => {
-  if (!dataForXlsx) return;
+if (downloadBtn) {
+  downloadBtn.addEventListener('click', () => {
+    if (!dataForXlsx) return;
 
-  nameOfXlsx = nameOfXlsx.replace(/\s/g, '_');
+    try {
+      nameOfXlsx = nameOfXlsx.replace(/\s/g, '_');
 
-  const workbook = XLSX.utils.book_new();
-  const sheet = XLSX.utils.aoa_to_sheet(dataForXlsx);
-  XLSX.utils.book_append_sheet(workbook, sheet, nameOfXlsx);
-
-  XLSX.writeFile(workbook, `${nameOfXlsx}_statbook_report.xlsx`);
-});
+      const workbook = XLSX.utils.book_new();
+      const sheet = XLSX.utils.aoa_to_sheet(dataForXlsx);
+      XLSX.utils.book_append_sheet(workbook, sheet, nameOfXlsx);
 
 
-export function setDataToXlsx(data, title) {
+      XLSX.writeFile(workbook, `${nameOfXlsx}_statbook_report.xlsx`);
+    } catch (error) {
+      alert('Что-то пошло не так, попробуйте выгрузить отчет позже');
+    }
+  });
+}
+
+export function setDataToXlsx(data, title, productCharts) {
   dataForXlsx = data;
   nameOfXlsx = title;
+
+  if (productCharts) {
+    productChart = productCharts;
+  }
 }

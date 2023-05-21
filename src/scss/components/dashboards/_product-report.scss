@@ -55,14 +55,30 @@
     column-gap: 12px;
   }
 
+  @include w($sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   &__start-text {
     grid-column: 1/8;
     font-size: 20px;
   }
 
+  &__breadcrumbs {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    grid-column: 1/9;
+    grid-row: 1/2;
+
+    div {
+      white-space: nowrap;
+    }
+  }
+
   &__image {
     grid-column: 1/3;
-    grid-row: 1/4;
+    grid-row: 2/4;
     display: flex;
     justify-content: center;
 
@@ -71,6 +87,10 @@
     img {
       border-radius: 10px;
       height: 130px;
+    }
+
+    @include w($sm) {
+      justify-content: flex-start;
     }
   }
 
@@ -139,6 +159,10 @@
       margin-top: 6px;
       grid-column: 3/9;
     }
+
+    @include w($sm) {
+      grid-column-start: 1;
+    }
   }
 
   &__price-avg {
@@ -153,6 +177,10 @@
     line-height: 141.5%;
 
     color: rgba($color-blue-35, 0.4);
+
+    @include w($sm) {
+      grid-column-start: 1;
+    }
   }
 
   &__price-amount {
@@ -194,6 +222,10 @@
     font-size: 18px;
     line-height: 141.5%;
     color: rgba($color-blue-35, 0.4);
+
+    @include w($sm) {
+      grid-column-start: 1;
+    }
   }
 
   &__lost-count {

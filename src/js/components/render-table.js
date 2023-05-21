@@ -31,7 +31,6 @@ export function renderTotalStat(data, elements) {
 }
 
 export function renderTable(tables, elements) {
-  console.log(1);
   elements.forEach(element => {
     let data;
 
@@ -46,6 +45,7 @@ export function renderTable(tables, elements) {
     const imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
     let indexOfImg = -1;
     let indexOfTitle = -1;
+    let indexLink = -1;
     const arrRowTableEl = [];
     const arrHeaderTableEl = data[0].map((el, i) => {
       if (el.toLowerCase() === 'изображения') {
@@ -55,17 +55,25 @@ export function renderTable(tables, elements) {
 
       if (el.toLowerCase() === 'название товара') {
         indexOfTitle = i;
-        return `<th class="sticky" style="left: 114px;">${el}</th>`
-      }
-      if (el.toLowerCase() === 'категория' || el.toLowerCase() === 'остатоĸ (в наличии), шт.' || el.toLowerCase() === 'теĸущая цена, uzs' || el.toLowerCase() === 'кол-во продаж, шт' || el.toLowerCase() === 'выручĸа, uzs') {
-        return `<th>
-                                <button class="table__filter-button btn-reset" data-index-sort="${i}" data-table-type="${element.hasAttribute('data-table-analytic') ? 'analyze' : 'review'}" data-filter-type="less">
-                                  ${el}
-                                </button>
-                              </th>`
+        return `<th class="sticky" style="left: 114px;">
+              ${el}
+      </th>`
       }
 
-      return `<th>${el}</th>`
+      if (el.toLowerCase() === 'ссылка на товар') {
+        indexLink = i;
+        return `<th>${el}</th>`
+      }
+
+      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku') {
+        return `<th>${el}</th>`
+      }
+
+      return `<th>
+      <button class="table__filter-button btn-reset" data-index-sort="${i}" data-table-type="${element.hasAttribute('data-table-analytic') ? 'analyze' : 'review'}" data-filter-type="less">
+        ${el}
+      </button>
+    </th>`
     })
 
     for (let i = 0; i < data.length; i++) {
@@ -79,7 +87,13 @@ export function renderTable(tables, elements) {
             }
 
             if (index === indexOfTitle) {
-              return `<td class="sticky" style="left: 114px; text-align: left;">${el}</td>`
+              return `<td class="sticky sticky--border" style="left: 114px; text-align: left;"><span class="sticky__border">${el}</span></td>`
+            }
+
+            if (index === indexLink) {
+              return `
+              <td><span data-link="${el}" class="table__link">Ссылка на продукт</span></td>
+              `
             }
 
             return `<td>${transformTableItem(el)}</td>`

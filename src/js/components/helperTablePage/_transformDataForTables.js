@@ -16,13 +16,21 @@ export function transformDataForTable(data, pageType) {
 
     if (el[0] === 'review' && pageType === 'category') {
       deleteableProp = ['category_id', 'date_range', 'seller_id', 'categories_count', 'category_graph_ru', 'category_graph_uz'];
+
+      el[1][0].link = `https://uzum.uz/ru/product/${el[1][0].product_id}?skuid=${el[1][0].sku}`;
+    }
+
+    if (el[0] === 'analyze' && pageType === 'category') {
+      deleteableProp = ['link'];
     }
 
     if (el[0] === 'analyze' && pageType === 'shop') {
       deleteableProp = ['seller_id', 'selled_amount', 'categories_count', 'revenue', 'avg_revenue', 'average_price', 'avg_bill', 'date_range', 'orders_amount_per_day', 'avg_purchase_price'];
     }
 
+
     const sortedHeader = sortTableArray(Object.entries(removePropertyFromObj(el[1][0], deleteableProp)), 'header', el[0]);
+
     obj[el[0]] = [renameTableHeader(sortedHeader)];
 
 
@@ -30,11 +38,13 @@ export function transformDataForTable(data, pageType) {
     el[1].forEach(item => {
       const transformItem = transformObjProperty(removePropertyFromObj(item, deleteableProp));
 
+      if (el[0] === 'review' && pageType === 'category') {
+        transformItem.link = `https://uzum.uz/ru/product/${transformItem.product_id}?skuid=${transformItem.sku}`;
+      }
+
       obj[el[0]].push(sortTableArray(Object.entries(transformItem), null, el[0]));
     });
   });
-
-  console.log(obj);
 
   return obj;
 }
@@ -59,6 +69,10 @@ function transformObjProperty(obj) {
 }
 
 export function transformTableItem(item) {
+  if (+item < 0) {
+    return 0;
+  }
+
   if (!isNaN(item)) {
     if (typeof (item) === 'string' && (item).includes('.')) {
       return formatNumber(item);
@@ -69,6 +83,7 @@ export function transformTableItem(item) {
 }
 
 export function formatNumber(num) {
+  // console.log(num);
   if (+num <= 0) return 0;
 
   let result;
@@ -146,6 +161,7 @@ function renameTableHeader(arr) {
     num_of_active_category: 'Кол-во активных категорий',
     avg_bill: 'Средний чеĸ',
     orders_amount_per_day: 'Количество заказов',
+    link: 'Ссылка на товар'
   }
 
   return arr.map(item => {
@@ -169,6 +185,7 @@ function sortTableArray(arr, arrayType, tableType) {
     sortOrder = {
       photo: 1,
       title: 2,
+      seller_title: 2,
       product_id: 3,
       sku: 4,
       actual_price: 5
@@ -185,13 +202,13 @@ function sortTableArray(arr, arrayType, tableType) {
     return sortedArray.map(item => item[0]);
   }
 
+  const resultArr = sortedArray.map(item => item[1]);
+
   return sortedArray.map(item => item[1]);
 }
 
 function removePropertyFromObj(obj, deleteablePropArr) {
   const copyObj = JSON.parse(JSON.stringify(obj));
-
-  console.log(deleteablePropArr);
 
   deleteablePropArr.forEach(prop => {
     delete copyObj[prop];

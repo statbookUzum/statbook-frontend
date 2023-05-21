@@ -1,13 +1,20 @@
 import { formatNumber } from "./helperTablePage/_transformDataForTables";
 import { removeYearFromDate } from "./helper";
 
-export function renderProductCard(data, element) {
+export function renderProductCard(data, element, breadcrumbs) {
   const { title, avg_purchase_price, seller_title, photo, rating, reviews_amount, remaining_products_value, remaining_product, } = data;
+
+  console.log(breadcrumbs);
 
   element.innerHTML = `
   <div class="product-info__image">
   <img src="${photo ? photo : './img/product-test-image.jpg'}"
     alt="${title}">
+  </div>
+  <div class="product-info__breadcrumbs">
+  ${Object.values(breadcrumbs).map((item, index, items) => {
+    return `<div>${index + 1 !== items.length ? item.category_title + '/' : item.category_title}</div>`;
+  }).join(' ')}
   </div>
   <div class="product-info__title">
     ${title}

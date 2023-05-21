@@ -1,7 +1,6 @@
 const accordions = document.querySelectorAll('.accordion');
 
 if (accordions.length) {
-
   accordions.forEach(el => {
     el.addEventListener('click', (e) => {
       const self = e.currentTarget;
