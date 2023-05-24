@@ -1,4 +1,4 @@
-import * as XLSX from '../../../node_modules/xlsx/xlsx.mjs';
+import { utils, writeFile } from "xlsx";
 
 const downloadBtn = document.querySelector('.report-btn');
 
@@ -12,23 +12,19 @@ if (downloadBtn) {
     try {
       nameOfXlsx = nameOfXlsx.replace(/\s/g, '_');
 
-      const workbook = XLSX.utils.book_new();
-      const sheet = XLSX.utils.aoa_to_sheet(dataForXlsx);
-      XLSX.utils.book_append_sheet(workbook, sheet, nameOfXlsx);
+      const workbook = utils.book_new();
+      const sheet = utils.aoa_to_sheet(dataForXlsx);
+      utils.book_append_sheet(workbook, sheet, nameOfXlsx);
 
 
-      XLSX.writeFile(workbook, `${nameOfXlsx}_statbook_report.xlsx`);
+      writeFile(workbook, `${nameOfXlsx}_statbook_report.xlsx`);
     } catch (error) {
       alert('Что-то пошло не так, попробуйте выгрузить отчет позже');
     }
   });
 }
 
-export function setDataToXlsx(data, title, productCharts) {
+export function setDataToXlsx(data, title) {
   dataForXlsx = data;
   nameOfXlsx = title;
-
-  if (productCharts) {
-    productChart = productCharts;
-  }
 }

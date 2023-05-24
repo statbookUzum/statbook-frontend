@@ -95,7 +95,6 @@ if (tariffButtonsWrapper) {
       const card = target.closest('.tariff-card');
       const tariffInput = card.querySelector('[name=tariff-type]');
       const periodInput = card.querySelector('[name=period-type]');
-      console.log(tariffInput, periodInput)
       const title = card.querySelector('.tariff-card__title');
 
       tariffConfirmButton.setAttribute('data-tariffid', tariffInput.value);

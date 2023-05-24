@@ -1,9 +1,8 @@
+import { tableList } from "./vars";
 import { setHeight } from "./helper";
 
-const tablesToHide = document.querySelectorAll('.table');
-
-if (tablesToHide.length) {
-  tablesToHide.forEach(table => {
+if (tableList.length) {
+  tableList.forEach(table => {
     const hideTableButton = table.closest('.custom-tabs__panel').querySelector('.hide-report-button');
     const tableContainer = table.closest('.table-container');
 

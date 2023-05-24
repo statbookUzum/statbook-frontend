@@ -2,9 +2,7 @@ import { formatNumber } from "./helperTablePage/_transformDataForTables";
 import { removeYearFromDate } from "./helper";
 
 export function renderProductCard(data, element, breadcrumbs) {
-  const { title, avg_purchase_price, seller_title, photo, rating, reviews_amount, remaining_products_value, remaining_product, } = data;
-
-  console.log(breadcrumbs);
+  const { title, avg_purchase_price, seller_title, photo, rating, reviews_amount, actual_purchase_price, remaining_product, } = data;
 
   element.innerHTML = `
   <div class="product-info__image">
@@ -23,7 +21,7 @@ export function renderProductCard(data, element, breadcrumbs) {
         <span class="product-info__reviews-score">${rating}</span> (<span class="product-info__reviews-count">${reviews_amount} </span> отзывов)
       </div>
   <div class="product-info__price">
-    Цена: <span class="product-info__price-amount">${formatNumber((+remaining_products_value).toFixed(0))}</span> <span
+    Цена: <span class="product-info__price-amount">${formatNumber((+actual_purchase_price).toFixed(0))}</span> <span
       class="product-info__price-currency">сум</span>
   </div>
   <div class="product-info__seller">
@@ -42,7 +40,6 @@ export function renderProductCard(data, element, breadcrumbs) {
 }
 
 export function renderTotalStat(data, elements) {
-  console.log(data);
   const { revenue, selled_amount, date_range } = data;
 
   elements.forEach(element => {

@@ -1,3 +1,4 @@
+import { tableList } from "./vars";
 import { getDataWithId } from "./https-request";
 import { saleCht, priceCht, lostCht } from "./helperCharts/createCharts";
 import { renderTable, renderTotalStat, renderBreadcrumbs as renderTableBreadcrumbs, renderSellerCard } from "./render-table";
@@ -15,24 +16,7 @@ import { setDataToXlsx } from "./toXlsx";
 import { setTableData } from "./sortTable";
 import { setError } from "./setError";
 
-const sectionsContainer = document.querySelector('.custom-tabs__content');
-const productCard = document.querySelector('[data-product-card]');
-const statList = document.querySelectorAll('.analytics-charts-amount');
-const analyticsList = document.querySelector('.category-analytics__list');
-const productInfo = document.querySelector('.product-info');
 const mainSectionInner = document.querySelector('.main-section__inner');
-
-// tables variables
-const tableList = document.querySelectorAll('.table');
-// total stat
-const totalStatList = document.querySelectorAll('[data-total]');
-// card info
-const sellerCard = document.querySelectorAll('[data-seller-card');
-
-// временно
-const categoryNameList = document.querySelectorAll('[data-title]')
-
-const breadcrumbsList = document.querySelectorAll('[data-breadcrumbs]');
 
 export function getMainData(searchForm, pageType, categoryCardData, period) {
   const inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
@@ -50,6 +34,9 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
   try {
     if (pageType === 'shop') {
+      const totalStat = document.querySelector('[data-total]');
+      const sellerCard = document.querySelectorAll('[data-seller-card');
+
       getDataWithId(id, pageType, period)
         .then(response => {
           return {
@@ -62,7 +49,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
           setTableData(transformData.table);
           renderTable(transformData.table, tableList);
-          renderTotalStat(transformData.totalStat, totalStatList);
+          renderTotalStat(transformData.totalStat, totalStat);
           renderSellerCard(transformData.cardInfo, sellerCard);
 
           const arrToXlsx = [
@@ -91,6 +78,9 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
     }
 
     if (pageType === 'category') {
+      const totalStat = document.querySelector('[data-total]');
+      const categoryName = document.querySelector('[data-title]');
+      const breadcrumbsEl = document.querySelector('[data-breadcrumbs]');
 
       getDataWithId(id, pageType, period)
         .then(response => {
@@ -103,23 +93,22 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         .then(transformData => {
           setTableData(transformData.table);
 
-          categoryNameList.forEach(categoryName => {
-            categoryName.textContent = categoryCardData.categoryName;
-          });
 
-          renderTableBreadcrumbs(categoryCardData.breadcrumbs, breadcrumbsList);
+          categoryName.textContent = categoryCardData.categoryName;
+
+          renderTableBreadcrumbs(categoryCardData.breadcrumbs, breadcrumbsEl);
           renderTable(transformData.table, tableList);
-          renderTotalStat(transformData.totalStat, totalStatList);
+          renderTotalStat(transformData.totalStat, totalStat);
 
           const arrToXlsx = [
             [`Категории за ${period} дней`],
             ...transformData.table.analyze,
             [`Обзор категорий за ${period} дней`],
             ...transformData.table.review,
-          ]
+          ];
 
           setDataToXlsx(arrToXlsx, categoryCardData.categoryName);
-          updateCashingIdMainData(pageType, { title: categoryCardData.categoryName }, transformData.totalStat, categoryCardData.breadcrumbs);
+          updateCashingIdMainData(pageType, { title: categoryCardData.categoryName, category_id: id }, transformData.totalStat, categoryCardData.breadcrumbs);
 
           setLoadingAnimation(mainSectionInner, false);
           button.disabled = false;
@@ -133,6 +122,11 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
     }
 
     if (pageType === 'product') {
+      const productCard = document.querySelector('[data-product-card]');
+      const statList = document.querySelectorAll('.analytics-charts-amount');
+      const analyticsList = document.querySelector('.category-analytics__list');
+      const productInfo = document.querySelector('.product-info');
+
       setLoadingAnimation(mainSectionInner, true);
       setLoadingAnimation(productInfo, true);
       getDataWithId(id, pageType, period)
@@ -164,8 +158,6 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
           changePeriods(period);
           renderCategory(transformData.positions, analyticsList);
-
-          console.log(transformData.chartsData.saleArr);
 
           const arrToXlsx = [
             ['Название продукта', transformData.cardInfo.title],

@@ -1,13 +1,11 @@
 .table-container {
   position: relative;
   margin: 0 -40px;
-  padding: 0 40px;
+  padding: 0 20px;
   padding-bottom: 90px;
   will-change: height, padding;
 
   overflow: hidden;
-
-  // transition: padding 0.3s ease-in-out, height 0.3s ease-in-out;
 
   &::before {
     content: "";
@@ -22,6 +20,10 @@
 
   &.hidden {
     padding-bottom: 0;
+  }
+
+  @include w($sm) {
+    padding: 0 10px;
   }
 }
 
@@ -212,5 +214,15 @@ td {
   &.active {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+.main[data-page-type="shop"] [data-table-analytic] {
+  .table__filter-button {
+    pointer-events: none;
+
+    &::after {
+      display: none;
+    }
   }
 }

@@ -3,10 +3,10 @@ import { enableScroll } from '../functions/enable-scroll';
 import { scroll } from './smoothScroll';
 
 const navButton = document.querySelector('.menu-btn');
-const navWrapper = document.querySelector('.header__desc');
-const navLink = document.querySelectorAll('.nav__link')
 
 if (navButton) {
+  const navWrapper = document.querySelector('.header__desc');
+  const navLink = document.querySelectorAll('.nav__link')
   if (window.innerWidth < 992) {
     scroll.destroy();
 

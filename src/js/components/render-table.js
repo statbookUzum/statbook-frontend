@@ -1,22 +1,20 @@
 import { setHeight } from './helper';
 import { transformTableItem } from './helperTablePage/_transformDataForTables';
 
-export function renderBreadcrumbs(data, elements) {
-  elements.forEach(element => {
-    element.innerHTML = '';
+export function renderBreadcrumbs(data, element) {
 
-    data.forEach(item => {
-      element.innerHTML += `<li class="shop-report__breadcrumbs-item">${item}</li>`;
-    });
+  element.innerHTML = '';
+
+  data.forEach(item => {
+    element.innerHTML += `<li class="shop-report__breadcrumbs-item">${item}</li>`;
   });
 }
 
-export function renderTotalStat(data, elements) {
-  elements.forEach(element => {
-    element.innerHTML = '';
+export function renderTotalStat(data, element) {
+  element.innerHTML = '';
 
-    data.forEach(item => {
-      element.innerHTML += `
+  data.forEach(item => {
+    element.innerHTML += `
     <li class="report-statistic__item">
       <div class="report-statistic__title">
         ${item.title}
@@ -26,7 +24,6 @@ export function renderTotalStat(data, elements) {
       </span>
     </li>
     `
-    });
   });
 }
 
@@ -48,7 +45,7 @@ export function renderTable(tables, elements) {
     let indexLink = -1;
     const arrRowTableEl = [];
     const arrHeaderTableEl = data[0].map((el, i) => {
-      if (el.toLowerCase() === 'изображения') {
+      if (el.toLowerCase() === 'изображение') {
         indexOfImg = i;
         return `<th class="sticky">${el}</th>`
       }
@@ -82,9 +79,11 @@ export function renderTable(tables, elements) {
       if (i !== 0) {
         arrRowTableEl.push(
           `<tr>${data[i].map((el, index) => {
-            if (imageLinkRegex.test(el)) {
-              return `<td class="sticky" style="left: 0"><img loading="lazy" class="table-img" src="${el}" alt="${data[i][index + 1]}"></td>`
+            if (imageLinkRegex.test(el) || index === indexOfImg) {
+              return `<td class="sticky" style="left: 0"><img loading="lazy" class="table-img" src="${el}" alt=""></td>`
             }
+
+            // ${data[i][index + 1]} к картинке альту
 
             if (index === indexOfTitle) {
               return `<td class="sticky sticky--border" style="left: 114px; text-align: left;"><span class="sticky__border">${el}</span></td>`

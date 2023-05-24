@@ -1,18 +1,18 @@
 import Swiper from 'swiper';
+import { pageType, lastViewContainer } from './vars';
 import { getCashingLostViewCard } from './cashing/cashingLostViewCard';
 
-const wrapper = document.querySelector('.last-view__slider .swiper-wrapper');
-const pageType = document.querySelector('.main').getAttribute('data-page-type');
-
-createLastShopCards();
+if (lastViewContainer) {
+  createLastShopCards();
+}
 
 export function createLastShopCards() {
-  if (wrapper) {
-    const data = getCashingLostViewCard(pageType);
+  const wrapper = lastViewContainer.querySelector('.swiper-wrapper');
+  const data = getCashingLostViewCard(pageType);
 
-    if (pageType === 'shop') {
-      wrapper.innerHTML = data.map(item => {
-        return `
+  if (pageType === 'shop') {
+    wrapper.innerHTML = data.map(item => {
+      return `
     <div class="swiper-slide">
       <article class="market-article last-view__article" data-market-id="${item.seller_id}">
         <div action="#" class="market-article__form">
@@ -38,12 +38,12 @@ export function createLastShopCards() {
       </article>
   </div>
     `
-      }).join(' ');
-    }
+    }).join(' ');
+  }
 
-    if (pageType === 'product') {
-      wrapper.innerHTML = data.map(item => {
-        return `
+  if (pageType === 'product') {
+    wrapper.innerHTML = data.map(item => {
+      return `
     <div class="swiper-slide">
       <article class="market-article last-view__article" data-market-id="${item.product_id}">
         <div action="#" class="market-article__form">
@@ -68,22 +68,21 @@ export function createLastShopCards() {
       </article>
   </div>
     `
-      }).join(' ');
-    }
-
-    const swiper = new Swiper('.last-view__slider', {
-      slidesPerView: 1,
-
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-        },
-        1300: {
-          slidesPerView: 3,
-        }
-      }
-    });
+    }).join(' ');
   }
+
+  const swiper = new Swiper('.last-view__slider', {
+    slidesPerView: 1,
+
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      1300: {
+        slidesPerView: 3,
+      }
+    }
+  });
 }
 
 const swiperReviews = new Swiper('.reviews__slider', {

@@ -56,25 +56,10 @@
 
   &__country {
     margin-bottom: 5%;
-    display: flex;
-    align-items: center;
 
     font-weight: 700;
     font-size: 18px;
     line-height: 55px;
-
-    &::before {
-      content: "";
-      margin-right: 12px;
-      height: 28px;
-      width: 28px;
-
-      background-image: url("../img/uz-flag.svg");
-
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
 
     &--top {
       margin-bottom: 0;
@@ -82,11 +67,101 @@
     }
 
     @include w($lg) {
-      display: none;
-
       &--top {
         display: flex;
       }
+    }
+  }
+
+  &__country-btn {
+    position: relative;
+    z-index: 2;
+    border-radius: 10px;
+    border: 1.5px solid rgba($light-color, 0.4);
+    width: 180px;
+    height: 50px;
+
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 17px;
+      height: 12px;
+      width: 12px;
+      border-left: 2px solid rgba($light-color, 0.4);
+      border-bottom: 2px solid rgba($light-color, 0.4);
+      transform: translateY(-50%) rotate(-45deg);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover {
+      overflow: visible;
+      border: none;
+
+      .footer__country-list {
+        border-radius: 10px;
+        border: 1px solid rgba($light-color, 0.4);
+      }
+
+      .footer__country-item {
+        border-bottom: 1px solid rgba($light-color, 0.4);
+      }
+    }
+  }
+
+  &__country-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    height: 200%;
+    overflow: hidden;
+  }
+
+  &__country-item {
+    padding-left: 19px;
+    display: flex;
+    align-items: center;
+    height: 50%;
+    order: 0;
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 55px;
+    color: rgba($light-color, 0.8);
+
+    background-color: $color-blue-24;
+
+    &::before {
+      content: "";
+      margin-right: 12px;
+      height: 28px;
+      width: 28px;
+
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &[data-get-lang="ru"] {
+      &::before {
+        background-image: url("../img/ru-flag.svg");
+      }
+    }
+
+    &[data-get-lang="uz"] {
+      &::before {
+        background-image: url("../img/uz-flag.svg");
+      }
+    }
+
+    &.active {
+      order: -1;
     }
   }
 
@@ -165,10 +240,6 @@
     justify-items: center;
     gap: 10px;
 
-    &-humo {
-      transform: translate(6px, 3px) scale(1.28);
-    }
-
     @include w($lg) {
       display: flex;
       align-items: center;
@@ -176,13 +247,13 @@
       width: 100%;
 
       overflow-x: auto;
-
-      &-humo {
-        transform: translate(0, 0) scale(1);
-      }
     }
 
     img {
+      &:last-child {
+        grid-column: 1/3;
+      }
+
       @include w($lg) {
         flex-shrink: 0;
         flex-grow: 1;

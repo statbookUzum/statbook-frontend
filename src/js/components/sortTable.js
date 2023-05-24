@@ -1,11 +1,11 @@
+import { tableList } from "./vars";
 import { renderTable } from "./render-table";
 
 let tableData = null;
-let filterTypeDown = true;
-
-const tableList = document.querySelectorAll('.table');
 
 if (tableList.length) {
+  let filterTypeDown = true;
+
   tableList.forEach(table => {
     table.addEventListener('click', ({ target }) => {
       if (target.matches('.table__filter-button')) {
@@ -30,7 +30,6 @@ if (tableList.length) {
 
     table.sort((a, b) => {
       if (filterTypeDown) {
-        console.log('less');
         return a[i] - b[i];
       }
 

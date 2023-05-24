@@ -1,4 +1,4 @@
-const helperWrapper = document.querySelector('.search-form__helper-wrapper');
+import { helperWrapper } from "../vars";
 
 export const showHelperList = (flag) => {
   if (flag) {

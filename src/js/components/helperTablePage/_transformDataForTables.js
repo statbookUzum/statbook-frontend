@@ -1,5 +1,4 @@
 export function transformDataForTable(data, pageType) {
-  console.log(data);
   const arrData = Object.entries({ review: data.review, analyze: data.analyze });
   const obj = {};
   let deleteableProp;
@@ -21,7 +20,7 @@ export function transformDataForTable(data, pageType) {
     }
 
     if (el[0] === 'analyze' && pageType === 'category') {
-      deleteableProp = ['link'];
+      deleteableProp = ['link', 'date_range'];
     }
 
     if (el[0] === 'analyze' && pageType === 'shop') {
@@ -73,6 +72,10 @@ export function transformTableItem(item) {
     return 0;
   }
 
+  if (item == null) {
+    item = 'Данные обрабатываются'
+  }
+
   if (!isNaN(item)) {
     if (typeof (item) === 'string' && (item).includes('.')) {
       return formatNumber(item);
@@ -83,7 +86,6 @@ export function transformTableItem(item) {
 }
 
 export function formatNumber(num) {
-  // console.log(num);
   if (+num <= 0) return 0;
 
   let result;
@@ -119,7 +121,7 @@ export function formatNumber(num) {
 
 function renameTableHeader(arr) {
   const renameObj = {
-    photo: 'Изображения',
+    photo: 'Изображение',
     title: 'Название товара',
     sku: 'SKU',
     product_id: 'ID товара',
@@ -131,7 +133,7 @@ function renameTableHeader(arr) {
     category_title_uz: 'Название категории(узб)',
     sellers_count: 'Количество продавцов',
     avg_rating: 'Средний рейтинг',
-    selled_per_for_period: 'Кол-во продаж, шт',
+    selled_per_for_period: 'Кол-во продаж, шт.',
     avg_base_price: 'Ср. Базовая цена,. UZS',
     revenue: 'Выручка, UZS',
     revenue_base: 'Базовая выручка, UZS',
@@ -146,21 +148,21 @@ function renameTableHeader(arr) {
     predicted_revenue: 'Прогнозируемая выручĸа, UZS',
     missed_revenue: 'Упущенная выручĸа, UZS',
     missed_revenue_percent: 'Доля упущенной выручĸи, %',
-    available_amount_price: 'Стоимость остатков',
+    available_amount_price: 'Стоимость остатков, UZS',
     categories_count: 'Количество категорий',
     available_sku: 'Остатоĸ (в наличии), шт.',
-    available_product: 'Количество товаров',
-    selled_amount: 'Проданное количество',
-    avg_revenue: 'Средний доход',
+    available_product: 'Количество товаров, шт.',
+    selled_amount: 'Кол-во продаж, шт',
+    avg_revenue: 'Средний доход, UZS',
     remaining_products_value: 'Стоимость остатĸов (по теĸ. цене), UZS',
     avg_purchase_price: 'Средняя цена, UZS',
-    num_of_active_product: 'Кол-во активных товаров',
-    num_of_active_seller: 'Кол-во активных продавцов',
-    avg_product_selled_amount: 'Среднее кол-во проданного товара',
+    num_of_active_product: 'Кол-во акт. товаров, шт.',
+    num_of_active_seller: 'Кол-во акт. продавцов',
+    avg_product_selled_amount: 'Ср. кол-во прод.товара, шт.',
     rating: 'Рейтинг',
     num_of_active_category: 'Кол-во активных категорий',
     avg_bill: 'Средний чеĸ',
-    orders_amount_per_day: 'Количество заказов',
+    orders_amount_per_day: 'Количество заказов, шт.',
     link: 'Ссылка на товар'
   }
 
@@ -176,10 +178,28 @@ function sortTableArray(arr, arrayType, tableType) {
   if (tableType === 'analyze') {
     sortOrder = {
       available_product: 1,
+      category_title_ru: 1,
       num_of_active_product: 2,
-      available_sku: 3,
-      remaining_products_value: 4,
-      num_of_active_category: 5,
+      category_title_uz: 2,
+      category_id: 3,
+      sellers_count: 4,
+      num_of_active_seller: 5,
+      available_product: 6,
+      num_of_active_product: 7,
+      selled_amount: 8,
+      avg_product_selled_amount: 9,
+      orders_amount_per_day: 10,
+      avg_purchase_price: 11,
+      avg_revenue: 12,
+      revenue: 13,
+      avg_bill: 14,
+      available_sku: 15,
+      remaining_products_value: 16,
+      available_amount: 15,
+      available_amount_price: 16,
+      reviews_amount: 17,
+      avg_rating: 18,
+      num_of_active_category: 18,
     };
   } else {
     sortOrder = {
@@ -201,8 +221,6 @@ function sortTableArray(arr, arrayType, tableType) {
   if (arrayType === 'header') {
     return sortedArray.map(item => item[0]);
   }
-
-  const resultArr = sortedArray.map(item => item[1]);
 
   return sortedArray.map(item => item[1]);
 }

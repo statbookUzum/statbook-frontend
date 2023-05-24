@@ -6,16 +6,13 @@ import { renderBreadcrumbs } from "./search-form/renderBreadcrumbs";
 import { setLoadingAnimation } from "./setLoadingAnimation";
 import { debounce } from "./helper";
 import { getMainData } from "./get-main-data";
-
-const searchForm = document.querySelector('[data-search]');
+import { searchForm, pageType, helperWrapper, lastViewContainer } from "./vars";
 
 if (searchForm) {
-  const pageType = document.querySelector('.main').getAttribute('data-page-type');
   const searchInput = searchForm.querySelector('.custom-input__input');
   const inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
-  const helperWrapper = document.querySelector('.search-form__helper-wrapper');
   const periodSelect = document.querySelector('[data-period-select]');
-  const lastViewContainer = document.querySelector('.last-view__slider');
+  const mainWrapper = document.querySelector('.main-section__wrapper');
   let periodRange = periodSelect.value;
 
   // data for category card-name
@@ -172,4 +169,22 @@ if (searchForm) {
       }
     });
   }
+
+  // function renderUploadDataBtn() {
+  //   const btn = document.createElement('button');
+  //   btn.classList.add('main-button', 'btn-reset', 'upload-btn');
+  //   btn.textContent = 'Загрузить все данные';
+  //   btn.style.cssText = 'margin: -65px auto 0; max-width: 300px';
+
+  //   mainWrapper.appendChild(btn);
+
+  //   btn.addEventListener('click', () => {
+  //     btn.remove();
+  //     getMainData(searchForm, pageType, categoryCardData, periodRange);
+  //   }, { once: true });
+  // }
+
+  // if (inputHiddenForId.value) {
+  //   renderUploadDataBtn();
+  // }
 }

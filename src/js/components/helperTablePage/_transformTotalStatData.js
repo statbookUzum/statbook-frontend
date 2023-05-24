@@ -39,8 +39,6 @@ export function transformTotalStatData(arr, flag) {
       obj['sellers_count'] += +item.sellers_count;
     });
 
-    console.log(obj.revenue);
-
     resultArray = [
       {
         title: 'Количество подкатегорий',

@@ -29,7 +29,6 @@ export const saleCht = !saleChart ? null : new Chart(saleChart, {
         },
         ticks: {
           callback: (value, index, items) => {
-            // console.log(value);
             return value;
           },
           color: 'rgba(0, 0, 0, 0.25)',

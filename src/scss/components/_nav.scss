@@ -15,6 +15,10 @@
     &:not(:last-child) {
       margin-right: 30px;
 
+      @include w($xl) {
+        margin-right: 15px;
+      }
+
       @include w($lg) {
         margin-right: 0;
       }

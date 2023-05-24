@@ -9,12 +9,10 @@ tableWrapperList.forEach(tableWrapper => {
     const scrollDistance = simpleBar.getScrollElement().scrollLeft;
 
     if (scrollDistance >= 20 && !(tableWrapper.matches('.scrolling'))) {
-      console.log('scroll');
       tableWrapper.classList.add('scrolling');
     }
 
     if (scrollDistance < 20 && tableWrapper.matches('.scrolling')) {
-      console.log('no-scroll');
       tableWrapper.classList.remove('scrolling');
     }
   });
