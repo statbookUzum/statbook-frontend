@@ -24,12 +24,12 @@ function initMainData(pageType) {
   if (pageType === 'category') {
     const totalStat = document.querySelector('[data-total]');
     const categoryName = document.querySelector('[data-title]');
-    const breadcrumbsList = document.querySelectorAll('[data-breadcrumbs]');
+    const breadcrumbsEl = document.querySelector('[data-breadcrumbs]');
 
     hiddenInput.setAttribute('value', obj.category_id);
     categoryName.textContent = obj.title;
     renderTotalStat(obj.totalData, totalStat);
-    renderBreadcrumbs(obj.breadcrumbs, breadcrumbsList);
+    renderBreadcrumbs(obj.breadcrumbs, breadcrumbsEl);
   }
 
   if (pageType === 'product') {

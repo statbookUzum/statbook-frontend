@@ -1,6 +1,7 @@
 import GraphModal from 'graph-modal';
-import SmoothScroll from 'smooth-scroll';
+// import SmoothScroll from 'smooth-scroll';
 import { setHeight } from './helper';
+import { scroll } from './smoothScroll';
 
 const customTabsList = document.querySelectorAll('.custom-tabs');
 const tariffButtonsWrapper = document.querySelector('.change-tariff__inner');
@@ -47,7 +48,7 @@ if (customTabsList.length) {
     })
 
     if (customTabs.matches('.profile-info__custom-tabs')) {
-      const scroll = new SmoothScroll();
+      // const scroll = new SmoothScroll();
 
       // modal listeners
       topUpButton.addEventListener('click', () => {

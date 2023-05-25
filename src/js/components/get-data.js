@@ -163,7 +163,6 @@ if (searchForm) {
         inputHiddenForId.value = target.closest('.market-article').getAttribute('data-market-id');
         const title = target.closest('.market-article').querySelector('.market-article__title').textContent;
         inputHiddenForId.setAttribute('data-hidden-title', title);
-        searchInput.scrollIntoView({ behavior: 'auto' });
 
         getMainData(searchForm, pageType, categoryCardData, periodRange);
       }

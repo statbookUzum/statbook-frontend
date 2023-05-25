@@ -17,6 +17,7 @@ import { setTableData } from "./sortTable";
 import { setError } from "./setError";
 
 const mainSectionInner = document.querySelector('.main-section__inner');
+let requestStatus = false;
 
 export function getMainData(searchForm, pageType, categoryCardData, period) {
   const inputHiddenForId = searchForm.querySelector('.custom-input__hidden-id');
@@ -24,6 +25,9 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
   const label = searchForm.querySelector('.auth-form__label');
   const button = searchForm.querySelector('button[type=submit]');
 
+  if (requestStatus) return;
+
+  requestStatus = true;
   button.disabled = true;
   blurElementAndChildren(label);
 
@@ -31,6 +35,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
   setError(mainSectionInner, false);
   tableList.forEach(table => table.innerHTML = '');
   setTimeout(setHeight, 0);
+  mainSectionInner.scrollIntoView({ block: 'center', behavior: 'auto' });
 
   try {
     if (pageType === 'shop') {
@@ -52,12 +57,16 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           renderTotalStat(transformData.totalStat, totalStat);
           renderSellerCard(transformData.cardInfo, sellerCard);
 
-          const arrToXlsx = [
-            [`Анализ магазинов за ${period} дней`],
-            ...transformData.table.analyze,
-            [`Обзор магазинов за ${period} дней`],
-            ...transformData.table.review,
-          ]
+          const arrToXlsx = {
+            firstSheet: [
+              [`Анализ магазинов за ${period} дней`],
+              ...transformData.table.analyze,
+            ],
+            secondSheet: [
+              [`Обзор магазинов за ${period} дней`],
+              ...transformData.table.review,
+            ]
+          }
 
           setDataToXlsx(arrToXlsx, transformData.cardInfo.title);
           updateCashingIdMainData(pageType, transformData.cardInfo, transformData.totalStat);
@@ -68,11 +77,13 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           checkDescLine();
           setCashingLostViewCard(transformData.cardInfo, pageType);
           createLastShopCards();
+          requestStatus = false;
         })
         .catch(error => {
           setDataToXlsx(null);
           setError(mainSectionInner, true);
           button.disabled = false;
+          requestStatus = false;
           console.log(error);
         });
     }
@@ -100,23 +111,29 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           renderTable(transformData.table, tableList);
           renderTotalStat(transformData.totalStat, totalStat);
 
-          const arrToXlsx = [
-            [`Категории за ${period} дней`],
-            ...transformData.table.analyze,
-            [`Обзор категорий за ${period} дней`],
-            ...transformData.table.review,
-          ];
+          const arrToXlsx = {
+            firstSheet: [
+              [`Категории за ${period} дней`],
+              ...transformData.table.analyze,
+            ],
+            secondSheet: [
+              [`Обзор категорий за ${period} дней`],
+              ...transformData.table.review,
+            ]
+          };
 
           setDataToXlsx(arrToXlsx, categoryCardData.categoryName);
           updateCashingIdMainData(pageType, { title: categoryCardData.categoryName, category_id: id }, transformData.totalStat, categoryCardData.breadcrumbs);
 
           setLoadingAnimation(mainSectionInner, false);
           button.disabled = false;
+          requestStatus = false;
         })
         .catch(error => {
           setDataToXlsx(null);
           setError(mainSectionInner, true);
           button.disabled = false;
+          requestStatus = false;
           console.log(error);
         });
     }
@@ -159,28 +176,30 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           changePeriods(period);
           renderCategory(transformData.positions, analyticsList);
 
-          const arrToXlsx = [
-            ['Название продукта', transformData.cardInfo.title],
-            ['Цена продукта', transformData.cardInfo.remaining_products_value],
-            ['Средняя цена продаж', transformData.cardInfo.avg_purchase_price],
-            ['Продавец', transformData.cardInfo.seller_title],
-            ['Остаток (в наличии)', transformData.cardInfo.remaining_products],
-            ['Продажи', transformData.cardInfo.selled_amount],
-            ['Выручка', transformData.cardInfo.revenue],
-            ['Рейтинг', transformData.cardInfo.rating],
-            [''],
-            [`Продажи за последние ${period} дней`],
-            transformData.chartsData.dateArr,
-            transformData.chartsData.saleArr,
-            [''],
-            [`Изменение цены за последние ${period} дней`],
-            transformData.chartsData.dateArr,
-            transformData.chartsData.priceArr,
-            [''],
-            [`Кол-во остатков за последние ${period} дней`],
-            transformData.chartsData.dateArr,
-            transformData.chartsData.lostArr,
-          ]
+          const arrToXlsx = {
+            firstSheet: [
+              ['Название продукта', transformData.cardInfo.title],
+              ['Цена продукта', transformData.cardInfo.remaining_products_value],
+              ['Средняя цена продаж', transformData.cardInfo.avg_purchase_price],
+              ['Продавец', transformData.cardInfo.seller_title],
+              ['Остаток (в наличии)', transformData.cardInfo.remaining_products],
+              ['Продажи', transformData.cardInfo.selled_amount],
+              ['Выручка', transformData.cardInfo.revenue],
+              ['Рейтинг', transformData.cardInfo.rating],
+              [''],
+              [`Продажи за последние ${period} дней`],
+              transformData.chartsData.dateArr,
+              transformData.chartsData.saleArr,
+              [''],
+              [`Изменение цены за последние ${period} дней`],
+              transformData.chartsData.dateArr,
+              transformData.chartsData.priceArr,
+              [''],
+              [`Кол-во остатков за последние ${period} дней`],
+              transformData.chartsData.dateArr,
+              transformData.chartsData.lostArr,
+            ]
+          }
 
 
           setDataToXlsx(arrToXlsx, transformData.cardInfo.seller_title);
@@ -192,11 +211,13 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           setCashingLostViewCard(transformData.cardInfo, pageType);
           createLastShopCards();
           button.disabled = false;
+          requestStatus = false;
         })
         .catch(error => {
           setDataToXlsx(null);
           setError(productInfo, true);
           button.disabled = false;
+          requestStatus = false;
           console.log(error);
         })
     }

@@ -62,7 +62,7 @@ export function renderTable(tables, elements) {
         return `<th>${el}</th>`
       }
 
-      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku') {
+      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец') {
         return `<th>${el}</th>`
       }
 
@@ -80,13 +80,14 @@ export function renderTable(tables, elements) {
         arrRowTableEl.push(
           `<tr>${data[i].map((el, index) => {
             if (imageLinkRegex.test(el) || index === indexOfImg) {
-              return `<td class="sticky" style="left: 0"><img loading="lazy" class="table-img" src="${el}" alt=""></td>`
+              const img = el === '' || String(el) === 'null' ? 'img/no-image.svg' : el;
+
+              return `<td class="sticky" style="left: 0"><img loading="lazy" class="table-img" src="${img}" alt="${data[i][index + 1]}"></td>`
             }
 
-            // ${data[i][index + 1]} к картинке альту
-
             if (index === indexOfTitle) {
-              return `<td class="sticky sticky--border" style="left: 114px; text-align: left;"><span class="sticky__border">${el}</span></td>`
+              const title = String(el) !== 'null' ? el : 'Данные обрабатываются';
+              return `<td class="sticky sticky--border" style="left: 114px; text-align: left;"><span class="sticky__border">${title}</span></td>`
             }
 
             if (index === indexLink) {

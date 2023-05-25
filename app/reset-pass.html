@@ -1,1 +1,74 @@
-<!DOCTYPE html><html lang="ru" class="page"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="shortcut icon" href="favicon.ico" type="image/x-icon"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="theme-color" content="#111111"><title>Statebook/Восстановление пароля</title><link rel="stylesheet" href="css/vendor.css"><link rel="stylesheet" href="css/main.css"><script defer="defer" src="js/main.js"></script></head><body class="page__body auth"><header class="header"><div class="container"><a class="logo" href="#"><img src="./img/logo.svg" alt="логотип statbook"></a></div></header><main class="main"><h1 class="visually-hidden">Восстановить пароль на statbook</h1><div class="container main__container"><div class="auth-form"><form id="reset-pass-form" class="validation-form" action="#"><h2 class="auth-form__title">Восстановить пароль</h2><label class="auth-form__label custom-input custom-input--password"><input class="custom-input__input" type="password" data-name="new-password" name="password" placeholder="Введите новый пароль" required> <span class="custom-input__span"></span> <button type="button" class="custom-input__pass-btn btn-reset"></button></label> <label class="auth-form__label custom-input custom-input--password"><input class="custom-input__input" type="password" data-name="reaped-password" name="password_confirmation" placeholder="Повторите пароль" required> <span class="custom-input__span"></span> <button type="button" class="custom-input__pass-btn btn-reset"></button></label> <button class="auth-form__submit btn-reset main-button" type="submit">Восстановить пароль</button> <input type="hidden" name="mail"></form></div></div></main><footer class="footer-small"><div class="container footer-small__container"><div class="footer-small__links"><a href="./privacy-policy.html" class="footer-small__link">Политика конфиденциальности</a> <a href="./terms.html" class="footer-small__link">Пользовательское соглашение</a></div><div class="footer-small__copy">Statbook 2023 Все права защищены</div></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#111111">
+  <title>Statebook/Восстановление пароля</title>
+  <link rel="stylesheet" href="css/vendor.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script defer src="js/main.js"></script>
+</head>
+
+<body class="page__body auth">
+  <header class="header">
+    <div class="container">
+      <a class="logo" href="#">
+        <img src="./img/logo.svg" alt="логотип statbook">
+      </a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <h1 class="visually-hidden">
+      Восстановить пароль на statbook
+    </h1>
+    <div class="container main__container">
+      <div class="auth-form">
+        <form id="reset-pass-form" class="validation-form" action="#">
+          <h2 class="auth-form__title">
+            Восстановить пароль
+          </h2>
+
+          <label class="auth-form__label custom-input custom-input--password">
+            <input class="custom-input__input" type="password" data-name="new-password" name="password"
+              placeholder="Введите новый пароль" required>
+            <span class="custom-input__span"></span>
+            <button type="button" class="custom-input__pass-btn btn-reset"></button>
+          </label>
+          <label class="auth-form__label custom-input custom-input--password">
+            <input class="custom-input__input" type="password" data-name="reaped-password" name="password_confirmation"
+              placeholder="Повторите пароль" required>
+            <span class="custom-input__span"></span>
+            <button type="button" class="custom-input__pass-btn btn-reset"></button>
+          </label>
+
+          <button class="auth-form__submit btn-reset main-button" type="submit">
+            Восстановить пароль
+          </button>
+
+          <input type="hidden" name="mail">
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-small">
+  <div class="container footer-small__container">
+    <div class="footer-small__links">
+      <a href="./privacy-policy.html" class="footer-small__link">Политика конфиденциальности</a>
+      <a href="./terms.html" class="footer-small__link">Пользовательское соглашение</a>
+    </div>
+    <div class="footer-small__copy">
+      Statbook 2023 Все права защищены
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>
