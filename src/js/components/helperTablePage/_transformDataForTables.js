@@ -28,22 +28,24 @@ export function transformDataForTable(data, pageType) {
     }
 
 
-    const sortedHeader = sortTableArray(Object.entries(removePropertyFromObj(el[1][0], deleteableProp)), 'header', el[0]);
+    const sortedHeader = sortTableArray(Object.entries(el[1][0]), 'header', el[0], deleteableProp);
 
     obj[el[0]] = [renameTableHeader(sortedHeader)];
 
 
 
     el[1].forEach(item => {
-      const transformItem = transformObjProperty(removePropertyFromObj(item, deleteableProp));
+      const transformItem = transformObjProperty(item);
 
       if (el[0] === 'review' && pageType === 'category') {
         transformItem.link = `https://uzum.uz/ru/product/${transformItem.product_id}?skuid=${transformItem.sku}`;
       }
 
-      obj[el[0]].push(sortTableArray(Object.entries(transformItem), null, el[0]));
+      obj[el[0]].push(sortTableArray(Object.entries(transformItem), null, el[0], deleteableProp));
     });
   });
+
+  console.log(obj);
 
   return obj;
 }
@@ -172,7 +174,7 @@ function renameTableHeader(arr) {
   });
 }
 
-function sortTableArray(arr, arrayType, tableType) {
+function sortTableArray(arr, arrayType, tableType, deleteableProp) {
   let sortOrder;
 
   if (tableType === 'analyze') {
@@ -218,19 +220,15 @@ function sortTableArray(arr, arrayType, tableType) {
     return aVal - bVal;
   });
 
-  if (arrayType === 'header') {
-    return sortedArray.map(item => item[0]);
-  }
+  let index = arrayType === 'header' ? 0 : 1;
 
-  return sortedArray.map(item => item[1]);
-}
+  const result = [];
 
-function removePropertyFromObj(obj, deleteablePropArr) {
-  const copyObj = JSON.parse(JSON.stringify(obj));
-
-  deleteablePropArr.forEach(prop => {
-    delete copyObj[prop];
+  sortedArray.forEach(item => {
+    if (!deleteableProp.includes(item[0])) {
+      result.push(item[index]);
+    }
   });
 
-  return copyObj;
+  return result;
 }

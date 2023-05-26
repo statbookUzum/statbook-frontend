@@ -17,6 +17,7 @@ import { setTableData } from "./sortTable";
 import { setError } from "./setError";
 
 const mainSectionInner = document.querySelector('.main-section__inner');
+const mainSectionWrapper = document.querySelector('.main-section__wrapper');
 let requestStatus = false;
 
 export function getMainData(searchForm, pageType, categoryCardData, period) {
@@ -35,7 +36,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
   setError(mainSectionInner, false);
   tableList.forEach(table => table.innerHTML = '');
   setTimeout(setHeight, 0);
-  mainSectionInner.scrollIntoView({ block: 'center', behavior: 'auto' });
+  mainSectionWrapper.scrollIntoView({ block: 'center', behavior: 'auto' });
 
   try {
     if (pageType === 'shop') {
@@ -44,6 +45,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
       getDataWithId(id, pageType, period)
         .then(response => {
+          console.log(response.data);
           return {
             table: transformDataForTable(response.data, pageType),
             totalStat: transformTotalStatData(response.data.analyze, 'shop'),
@@ -202,7 +204,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           }
 
 
-          setDataToXlsx(arrToXlsx, transformData.cardInfo.seller_title);
+          setDataToXlsx(arrToXlsx, transformData.cardInfo.seller_title, 'product');
           setTimeout(setHeight, 100);
           setLoadingAnimation(mainSectionInner, false);
           setLoadingAnimation(productInfo, false);

@@ -137,29 +137,6 @@
 
     background-color: $color-blue-24;
 
-    &::before {
-      content: "";
-      margin-right: 12px;
-      height: 28px;
-      width: 28px;
-
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    &[data-get-lang="ru"] {
-      &::before {
-        background-image: url("../img/ru-flag.svg");
-      }
-    }
-
-    &[data-get-lang="uz"] {
-      &::before {
-        background-image: url("../img/uz-flag.svg");
-      }
-    }
-
     &.active {
       order: -1;
     }

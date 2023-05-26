@@ -4,6 +4,7 @@ const downloadBtn = document.querySelector('.report-btn');
 
 let dataForXlsx = null;
 let nameOfXlsx = 'Данные';
+let isProductPage = false;
 
 if (downloadBtn) {
   downloadBtn.addEventListener('click', () => {
@@ -13,11 +14,13 @@ if (downloadBtn) {
       const { firstSheet, secondSheet } = dataForXlsx;
 
       nameOfXlsx = nameOfXlsx.replace(/\s/g, '_');
-
+      nameOfXlsx = nameOfXlsx.slice(0, 10);
 
       const workbook = utils.book_new();
       if (firstSheet) {
-        stringToNumber(firstSheet);
+        if (!isProductPage) {
+          stringToNumber(firstSheet);
+        }
         const sheet = utils.aoa_to_sheet(firstSheet);
         utils.book_append_sheet(workbook, sheet, 'Analyze_' + nameOfXlsx);
       }
@@ -43,8 +46,7 @@ function stringToNumber(arr) {
   arr.forEach((item, i) => {
     if (i === 1) {
       item.forEach((childItem, j) => {
-        console.log(childItem.toLowerCase());
-        if (childItem.toLowerCase() === 'изображение' || childItem.toLowerCase() === 'название товара' || childItem.toLowerCase() === 'id товара' || childItem.toLowerCase() === 'sku' || childItem.toLowerCase() === 'доля упущенной выручĸи, %') {
+        if (childItem.toLowerCase() === 'изображение' || childItem.toLowerCase() === 'название товара' || childItem.toLowerCase() === 'id товара' || childItem.toLowerCase() === 'sku' || childItem.toLowerCase() === 'доля упущенной выручĸи, %' || childItem.toLowerCase() === 'продавец' || childItem.toLowerCase() === 'ссылка на товар' || childItem.toLowerCase() === 'название категории(рус)' || childItem.toLowerCase() === 'название категории(узб)') {
           exceptIndex.push(j);
         }
       });
@@ -58,12 +60,10 @@ function stringToNumber(arr) {
       });
     }
   });
-
-  console.log(exceptIndex);
-  console.log(arr);
 }
 
-export function setDataToXlsx(data, title) {
+export function setDataToXlsx(data, title, pageType) {
   dataForXlsx = data;
   nameOfXlsx = title;
+  isProductPage = pageType === 'product' ? true : false;
 }

@@ -131,7 +131,7 @@ export function renderSellerCard(data, elements) {
   elements.forEach(element => {
     element.innerHTML = `
     <div class="seller-card__image">
-      <img src="./img/seller-card-default.svg" alt="Top Seller">
+      <img src="img/seller-card-default.svg" alt="Top Seller">
     </div>
     <div class="seller-card__info">
       <div class="seller-card__info-top">
