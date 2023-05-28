@@ -1,10 +1,12 @@
+import { changeLang } from "../change-lang";
+
 const helperList = document.querySelector('.search-form__helper-list');
 
 export function renderCategoryList(arr) {
   helperList.innerHTML = '';
 
   if (!arr) {
-    helperList.innerHTML = 'Произошила ошибка, повторите запрос позже';
+    helperList.innerHTML = changeLang('Произошла ошибка, повторите запрос позже');
 
     return;
   }
@@ -13,7 +15,7 @@ export function renderCategoryList(arr) {
     helperList.innerHTML = `
       <div class="search-form__helper-item" role="button">
         <span>
-          Данных категорий не найдено.
+        ${changeLang('Данных категорий не найдено')}.
         </span>
       </div>
     `;
@@ -44,14 +46,14 @@ export function renderShopList(arr) {
   helperList.innerHTML = '';
 
   if (!arr) {
-    helperList.innerHTML = 'Произошила ошибка, повторите запрос позже';
+    helperList.innerHTML = changeLang('Произошла ошибка, повторите запрос позже');
   }
 
   if (arr.length === 0) {
     helperList.innerHTML = `
       <div class="search-form__helper-item" role="button">
         <span>
-          Продавцов не найдено.
+          ${changeLang('Продавцов не найдено')}.
         </span>
       </div>
     `;
@@ -82,14 +84,14 @@ export function renderProductList(arr) {
   helperList.innerHTML = '';
 
   if (!arr) {
-    helperList.innerHTML = 'Произошила ошибка, повторите запрос позже';
+    helperList.innerHTML = changeLang('Произошила ошибка, повторите запрос позже');
   }
 
   if (arr.length === 0) {
     helperList.innerHTML = `
       <div class="search-form__helper-item" role="button">
         <span>
-          Товаров не найдено.
+        ${changeLang('Товаров не найдено')}.
         </span>
       </div>
     `;

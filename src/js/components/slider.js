@@ -1,5 +1,6 @@
 import Swiper from 'swiper';
 import { pageType, lastViewContainer } from './vars';
+import { changeLang } from './change-lang';
 import { getCashingLostViewCard } from './cashing/cashingLostViewCard';
 
 if (lastViewContainer) {
@@ -17,14 +18,14 @@ export function createLastShopCards() {
       <article class="market-article last-view__article" data-market-id="${item.seller_id}">
         <div action="#" class="market-article__form">
           <div class="market-article__top">
-            <img class="market-article__image" src="${item.photo ? item.photo : './img/seller-card-default.svg'}" alt="GADGET Market">
+            <img class="market-article__image" src="${item.photo ? item.photo : './img/seller-card-default.svg'}" alt="${item.title}">
             <div class="market-article__info">
               <h2 class="market-article__title">
                 ${item.title}
               </h2>
               <div class="market-article__reviews">
                 <span class="market-article__reviews-score">${item.rating}</span> (<span
-                  class="market-article__reviews-count">${item.reviews_amount} </span> отзывов)
+                  class="market-article__reviews-count">${item.reviews_amount} </span> ${changeLang('отзывов')})
               </div>
               <div class="market-article__desc">
                 ${item.description ? item.description : ''}
@@ -32,7 +33,7 @@ export function createLastShopCards() {
             </div>
           </div>
           <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
-            Смотреть аналитику
+            ${changeLang('Смотреть аналитику')}
           </button>
         </div>
       </article>
@@ -48,13 +49,13 @@ export function createLastShopCards() {
       <article class="market-article last-view__article" data-market-id="${item.product_id}">
         <div action="#" class="market-article__form">
           <div class="market-article__top">
-            <img class="market-article__image" src="${item.photo ? item.photo : './img/seller-card-default.svg'}" alt="GADGET Market">
+            <img class="market-article__image" src="${item.photo ? item.photo : './img/seller-card-default.svg'}" alt="${item.title}">
             <div class="market-article__info">
               <h2 class="market-article__title market-article__title--product">
                 ${item.title}
               </h2>
               <div class="market-article__seller">
-                Продавец:
+                ${changeLang('Продавец')}:
                 <div class="market-article__seller-name">
                 ${item.seller_title}
                 </div>
@@ -62,7 +63,7 @@ export function createLastShopCards() {
             </div>
           </div>
           <button type="submit" class="market-article__submit main-button main-button--stroke-blue btn-reset">
-            Смотреть аналитику
+            ${changeLang('Смотреть аналитику')}
           </button>
         </div>
       </article>

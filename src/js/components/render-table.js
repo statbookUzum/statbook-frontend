@@ -1,5 +1,7 @@
+import { typeOfLang } from './vars';
 import { setHeight } from './helper';
 import { transformTableItem } from './helperTablePage/_transformDataForTables';
+import { changeLang } from "./change-lang";
 
 export function renderBreadcrumbs(data, element) {
 
@@ -17,7 +19,7 @@ export function renderTotalStat(data, element) {
     element.innerHTML += `
     <li class="report-statistic__item">
       <div class="report-statistic__title">
-        ${item.title}
+        ${changeLang(item.title)}
       </div>
       <span class="report-statistic__value">
         ${transformTableItem(item.value)}
@@ -42,27 +44,37 @@ export function renderTable(tables, elements) {
     const imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
     let indexOfImg = -1;
     let indexOfTitle = -1;
+    let titleWidth = 114;
     let indexLink = -1;
     const arrRowTableEl = [];
     const arrHeaderTableEl = data[0].map((el, i) => {
-      if (el.toLowerCase() === 'изображение') {
+      if (el.toLowerCase() === 'изображение' || el.toLowerCase() === 'rasm') {
         indexOfImg = i;
         return `<th class="sticky">${el}</th>`
       }
 
       if (el.toLowerCase() === 'название товара') {
         indexOfTitle = i;
-        return `<th class="sticky" style="left: 114px;">
+        titleWidth = 114;
+        return `<th class="sticky" style="left: ${titleWidth}px; text-align: left;">
               ${el}
       </th>`
       }
 
-      if (el.toLowerCase() === 'ссылка на товар') {
+      if (el.toLowerCase() === 'mahsulot nomi') {
+        indexOfTitle = i;
+        titleWidth = 55;
+        return `<th class="sticky" style="left: ${titleWidth}px; text-align: left;">
+              ${el}
+      </th>`
+      }
+
+      if (el.toLowerCase() === 'ссылка на товар' || el.toLowerCase() === 'havola') {
         indexLink = i;
         return `<th>${el}</th>`
       }
 
-      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец') {
+      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец' || el.toLowerCase() === 'mahsulot id' || el.toLowerCase() === 'Sotuvchi') {
         return `<th>${el}</th>`
       }
 
@@ -86,8 +98,8 @@ export function renderTable(tables, elements) {
             }
 
             if (index === indexOfTitle) {
-              const title = String(el) !== 'null' ? el : 'Данные обрабатываются';
-              return `<td class="sticky sticky--border" style="left: 114px; text-align: left;"><span class="sticky__border">${title}</span></td>`
+              const title = String(el) !== 'null' ? el : changeLang('Данные обрабатываются');
+              return `<td class="sticky sticky--border" style="left: ${titleWidth}px; text-align: left;"><span class="sticky__border">${title}</span></td>`
             }
 
             if (index === indexLink) {
@@ -123,15 +135,19 @@ export function renderSellerCard(data, elements) {
   const month = dateObj.getMonth();
   const year = dateObj.getFullYear();
 
-  const monthNamesGenitive = [
+  const monthNamesGenitive = typeOfLang === 'ru' ? [
     "января", "февраля", "марта", "апреля", "мая", "июня",
     "июля", "августа", "сентября", "октября", "ноября", "декабря"
-  ];
+  ] :
+    [
+      "yanvar", "fevral", "mart", "aprel", "may", "iyun",
+      "iyul", "avgust", "sentyabr", "oktyabr", "noyabr", "dekabr"
+    ]
 
   elements.forEach(element => {
     element.innerHTML = `
     <div class="seller-card__image">
-      <img src="img/seller-card-default.svg" alt="Top Seller">
+      <img src="img/seller-card-default.svg" alt="${title}">
     </div>
     <div class="seller-card__info">
       <div class="seller-card__info-top">
@@ -140,11 +156,12 @@ export function renderSellerCard(data, elements) {
         </h2>
       <div class="seller-card__reviews">
         <span class="seller-card__reviews-score">${rating}</span> (<span
-          class="seller-card__reviews-count">${reviews_amount} </span> отзывов)
+          class="seller-card__reviews-count">${reviews_amount} </span> ${changeLang('отзывов')})
       </div>
     </div>
     <div class="seller-card__start">
-      Продавец на UZUM с <span>${day} ${monthNamesGenitive[month]} ${year} года</span>
+    ${typeOfLang === 'ru' ? `Продавец на UZUM с <span>${day} ${monthNamesGenitive[month]} ${year} года</span>`
+        : `<span>${year} yilning ${day} ${monthNamesGenitive[month]} dan Uzumda sotuvchi</span>`}
     </div>
     <div class="seller-card__desc">
       ${description}

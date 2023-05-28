@@ -15,6 +15,7 @@ import { updateCashingIdMainData } from "./cashing/cashingMainData";
 import { setDataToXlsx } from "./toXlsx";
 import { setTableData } from "./sortTable";
 import { setError } from "./setError";
+import { changeLang } from "./change-lang";
 
 const mainSectionInner = document.querySelector('.main-section__inner');
 const mainSectionWrapper = document.querySelector('.main-section__wrapper');
@@ -226,6 +227,6 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
   } catch (error) {
     console.log(error);
     setLoadingAnimation(mainSectionInner, false);
-    alert('Кажется что-то пошло не так, попробуйте позже')
+    alert(changeLang('Кажется что-то пошло не так, попробуйте позже'));
   }
 }

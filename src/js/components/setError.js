@@ -1,3 +1,5 @@
+import { changeLang } from "./change-lang";
+
 export function setError(parentElement, flag) {
   const errorEl = parentElement.querySelector('.error-container');
 
@@ -10,7 +12,7 @@ export function setError(parentElement, flag) {
   } else {
     const errorElement = document.createElement('div');
     errorElement.classList.add('error-container');
-    errorElement.innerHTML = 'Кажется что-то пошло не так, попробуйте позже.';
+    errorElement.innerHTML = changeLang('Кажется что-то пошло не так, попробуйте позже');
 
     parentElement.insertAdjacentElement('beforeEnd', errorElement);
 

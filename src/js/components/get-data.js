@@ -93,16 +93,6 @@ if (searchForm) {
       const text = target.textContent.trim();
       const id = target.getAttribute('data-id');
 
-      // if (inputHiddenForId.value === id) {
-      //   searchInput.value = text;
-
-      //   renderShopList([{ seller_id: id, title: text }]);
-      //   searchInput.focus();
-      //   return;
-      // }
-
-      // setLoadingAnimation(helperWrapper, true);
-
       searchInput.value = text;
       inputHiddenForId.value = id;
 

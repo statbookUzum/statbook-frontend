@@ -1,3 +1,6 @@
+import { typeOfLang } from "../vars";
+import { changeLang } from "../change-lang";
+
 export function transformDataForTable(data, pageType) {
   const arrData = Object.entries({ review: data.review, analyze: data.analyze });
   const obj = {};
@@ -30,7 +33,7 @@ export function transformDataForTable(data, pageType) {
 
     const sortedHeader = sortTableArray(Object.entries(el[1][0]), 'header', el[0], deleteableProp);
 
-    obj[el[0]] = [renameTableHeader(sortedHeader)];
+    obj[el[0]] = [renameTableHeader(sortedHeader, typeOfLang)];
 
 
 
@@ -75,7 +78,7 @@ export function transformTableItem(item) {
   }
 
   if (item == null) {
-    item = 'Данные обрабатываются'
+    item = changeLang('Данные обрабатываются');
   }
 
   if (!isNaN(item)) {
@@ -97,13 +100,13 @@ export function formatNumber(num) {
 
   if (num >= 1000000000) {
     divider = 1000000000;
-    unit = '&nbsp;млрд.';
+    unit = `&nbsp;${changeLang('млрд')}.`;
   } else if (num >= 1000000) {
     divider = 1000000;
-    unit = '&nbsp;млн.';
+    unit = `&nbsp;${changeLang('млн')}.`;
   } else if (num >= 1000) {
     divider = 1000;
-    unit = '&nbsp;тыс.';
+    unit = `&nbsp;${changeLang('тыс')}.`;
   }
 
   const fixedNum = (+num / divider).toFixed(0);
@@ -121,8 +124,8 @@ export function formatNumber(num) {
   return result;
 }
 
-function renameTableHeader(arr) {
-  const renameObj = {
+function renameTableHeader(arr, langType) {
+  const renameObjRu = {
     photo: 'Изображение',
     title: 'Название товара',
     sku: 'SKU',
@@ -154,7 +157,7 @@ function renameTableHeader(arr) {
     categories_count: 'Количество категорий',
     available_sku: 'Остатоĸ (в наличии), шт.',
     available_product: 'Количество товаров, шт.',
-    selled_amount: 'Кол-во продаж, шт',
+    selled_amount: 'Кол-во продаж, шт.',
     avg_revenue: 'Средний доход, UZS',
     remaining_products_value: 'Стоимость остатĸов (по теĸ. цене), UZS',
     avg_purchase_price: 'Средняя цена, UZS',
@@ -168,9 +171,57 @@ function renameTableHeader(arr) {
     link: 'Ссылка на товар'
   }
 
-  return arr.map(item => {
+  const renameObjUz = {
+    photo: 'Rasm',
+    title: 'Mahsulot nomi',
+    sku: 'SKU',
+    product_id: 'Mahsulot ID',
+    seller_id: 'Sotuvchi ID',
+    seller_title: 'Sotuvchi',
+    actual_price: 'Joriy narx, UZS',
+    average_price: 'O’rtacha narx',
+    category_id: 'Toifa ID',
+    category_title_ru: 'Toifa nomi (rus)',
+    category_title_uz: 'Toifa nomi (uzb)',
+    sellers_count: 'Sotuvchilar soni, dona',
+    avg_base_price: 'O’rtacha asosiy narx, UZS',
+    selled_amount: 'Sotuvlar soni, dona',
+    selled_per_for_period: 'Sotish soni, dona',
+    revenue: 'Daromad, UZS',
+    revenue_base: 'Asosiy daromad, UZS',
+    available_amount: 'Qoldiq (mavjud), dona',
+    available_amount_price: 'Qoldiqlar qiymati, UZS',
+    reviews_amount: 'Sharhlar soni',
+    avg_rating: 'O’rtacha reyting',
+    avg_product_rating: 'O’rtacha reyting',
+    turnover: 'Aylanma, kunlar',
+    days_with_remaining_product: 'Mavjud kunlar',
+    predicted_revenue: 'Kutilayotgan daromad, UZS',
+    missed_revenue: 'Yo`qotilgan daromad, UZS',
+    missed_revenue_percent: 'Yo`qotilgan daromadning ulushi, %',
+    link: 'Havola',
+    num_of_active_seller: 'Faol sotuvchilar soni',
+    available_product: 'Mahsulotlar soni, dona',
+    num_of_active_product: 'Faol mahsulotlar soni, dona',
+    avg_product_selled_amount: 'O’rtacha sotilgan mahsulotlar soni, dona',
+    orders_amount_per_day: 'Buyurtmalar soni, dona',
+    avg_purchase_price: 'O’rtacha narx, UZS',
+    avg_revenue: 'O’rtacha daromad, UZS',
+    avg_bill: 'O’rtacha chek',
+    available_sku: 'Qoldiq (mavjud), dona',
+    remaining_products_value: 'Qoldiqlar qiymati, UZS',
+    rating: 'O’rtacha reyting',
+    num_of_active_category: 'Faol toifalar soni',
+  }
 
-    return renameObj[item] ? renameObj[item] : item;
+
+
+  return arr.map(item => {
+    if (langType === 'uz') {
+      return renameObjUz[item] ? renameObjUz[item] : item;
+    } else {
+      return renameObjRu[item] ? renameObjRu[item] : item;
+    }
   });
 }
 

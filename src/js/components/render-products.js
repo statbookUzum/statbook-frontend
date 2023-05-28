@@ -1,5 +1,6 @@
 import { formatNumber } from "./helperTablePage/_transformDataForTables";
 import { removeYearFromDate } from "./helper";
+import { changeLang } from "./change-lang";
 
 export function renderProductCard(data, element, breadcrumbs) {
   const { title, avg_purchase_price, seller_title, photo, rating, reviews_amount, actual_purchase_price, remaining_product, } = data;
@@ -18,21 +19,21 @@ export function renderProductCard(data, element, breadcrumbs) {
     ${title}
   </div>
   <div class="product-info__reviews">
-        <span class="product-info__reviews-score">${rating}</span> (<span class="product-info__reviews-count">${reviews_amount} </span> отзывов)
+        <span class="product-info__reviews-score">${rating}</span> (<span class="product-info__reviews-count">${reviews_amount} </span> ${changeLang('отзывов')})
       </div>
   <div class="product-info__price">
-    Цена: <span class="product-info__price-amount">${formatNumber((+actual_purchase_price).toFixed(0))}</span> <span
-      class="product-info__price-currency">сум</span>
+    ${changeLang('Цена')}: <span class="product-info__price-amount">${formatNumber((+actual_purchase_price).toFixed(0))}</span> <span
+      class="product-info__price-currency">${changeLang('сум')}</span>
   </div>
   <div class="product-info__seller">
-    Продавец: <span class="product-info__seller-name">${seller_title}</span>
+    ${changeLang('Продавец')}: <span class="product-info__seller-name">${seller_title}</span>
   </div>
   <div class="product-info__price-avg">
-  Ср. цена продаж: <span class="product-info__price-avg-amount">${formatNumber((+avg_purchase_price).toFixed(0))}</span> <span
-      class="product-info__price-currency">сум</span>
+  ${changeLang('Ср. цена продаж')}: <span class="product-info__price-avg-amount">${formatNumber((+avg_purchase_price).toFixed(0))}</span> <span
+      class="product-info__price-currency">${changeLang('сум')}</span>
   </div>
   <div class="product-info__lost">
-    Остаток (в наличии): <span class="product-info__lost-count">${remaining_product} шт.</span>
+    ${changeLang('Остаток (в наличии)')}: <span class="product-info__lost-count">${remaining_product} ${changeLang('шт.')}</span>
   </div>
   <div class="product-info__description">
   </div>

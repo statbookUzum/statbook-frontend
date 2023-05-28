@@ -1,3 +1,5 @@
+import { changeLang } from "./change-lang";
+
 const forms = document.querySelectorAll('.validation-form');
 
 forms.forEach(form => {
@@ -36,7 +38,7 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
   if (label.matches('.custom-input--password')) {
     // string length
     if (input.value.length < 6) {
-      onErrors[`${inputName}`].errorNode.textContent = 'Пароль должен содержать минимум 6 символов';
+      onErrors[`${inputName}`].errorNode.textContent = changeLang('Пароль должен содержать минимум 6 символов');
       label.classList.add('custom-input--error');
       onErrors[`${inputName}`].errorFlag = true;
       disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
@@ -48,7 +50,7 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
     const cyrillicRegex = /[а-яА-Я]/;
 
     if (cyrillicRegex.test(input.value)) {
-      onErrors[`${inputName}`].errorNode.textContent = 'Пароль не должен содержать кириллицы';
+      onErrors[`${inputName}`].errorNode.textContent = changeLang('Пароль не должен содержать кириллицы');
       label.classList.add('custom-input--error');
       onErrors[`${inputName}`].errorFlag = true;
       disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
@@ -64,7 +66,7 @@ function inputValidate(label, inputName, onErrors, submitBtn, input, form) {
       const labelNew = newPassword.closest('label');
       const labelReaped = reapedPassword.closest('label');
       if (reapedPassword.value !== newPassword.value) {
-        onErrors['password_confirmation'].errorNode.textContent = 'Пароли не совпадают!';
+        onErrors['password_confirmation'].errorNode.textContent = changeLang('Пароли не совпадают');
         label.classList.add('custom-input--error');
         onErrors[`${inputName}`].errorFlag = true;
         disabledBtn(Object.values(onErrors).map(el => el.errorFlag), submitBtn);
