@@ -1405,7 +1405,7 @@ function changeLang(word) {
     'смотреть аналитику': 'Tahlilni ko`rib chiqish',
     'количество подкатегорий': 'Kichik toifalar soni',
     'количество заĸазов': 'Buyurtmalar soni'
-  }, _defineProperty(_langObj, "\u0432\u044B\u0440\u0443\u0447\u0138\u0430, uzs", 'Daromad, UZS'), _defineProperty(_langObj, 'количество продавцов', 'Sotuvchilar soni'), _defineProperty(_langObj, 'количество товаров', 'Mahsulotlar soni'), _defineProperty(_langObj, 'цена', 'Narx'), _defineProperty(_langObj, 'ср. цена продаж', 'O`rtacha narx, UZS'), _defineProperty(_langObj, 'остаток (в наличии)', 'Qoldiq (mavjud), dona'), _defineProperty(_langObj, 'продавец', 'Sotuvchi'), _defineProperty(_langObj, 'сум', 'so`m'), _defineProperty(_langObj, 'шт.', 'dona'), _defineProperty(_langObj, 'пароль не должен содержать кириллицы', 'Parolda kirill yozuvi bo`lmasligi kerak'), _defineProperty(_langObj, 'пароль должен содержать минимум 6 символов', 'Parol kamida 6 ta belgidan iborat bo`lishi kerak'), _defineProperty(_langObj, 'пароли не совпадают', 'Parollar mos kelmadi'), _defineProperty(_langObj, 'произошла ошибка, повторите запрос позже', 'Hatolik ro`y berdi. Iltimos keyinroq yana urinib ko`ring'), _defineProperty(_langObj, 'продавцов не найдено', 'Sotuvchilar topilmadi'), _defineProperty(_langObj, 'данных категорий не найдено', 'Turkum maʼlumotlari topilmadi'), _defineProperty(_langObj, 'товаров не найдено', 'Mahsulotlar topilmadi'), _defineProperty(_langObj, 'кажется что-то пошло не так, попробуйте позже', 'Nimadir xato ketdi shekilli, keyinroq qayta urinib ko‘ring'), _defineProperty(_langObj, 'данные обрабатываются', 'Ma`lumotlar ishlanmoqda'), _langObj);
+  }, _defineProperty(_langObj, "\u0432\u044B\u0440\u0443\u0447\u0138\u0430, uzs", 'Daromad, UZS'), _defineProperty(_langObj, 'количество продавцов', 'Sotuvchilar soni'), _defineProperty(_langObj, 'количество товаров', 'Mahsulotlar soni'), _defineProperty(_langObj, 'цена', 'Narx'), _defineProperty(_langObj, 'ср. цена продаж', 'O`rtacha narx, UZS'), _defineProperty(_langObj, 'остаток (в наличии)', 'Qoldiq (mavjud), dona'), _defineProperty(_langObj, 'продавец', 'Sotuvchi'), _defineProperty(_langObj, 'сум', 'so`m'), _defineProperty(_langObj, 'шт.', 'dona'), _defineProperty(_langObj, 'пароль не должен содержать кириллицы', 'Parolda kirill yozuvi bo`lmasligi kerak'), _defineProperty(_langObj, 'пароль должен содержать минимум 6 символов', 'Parol kamida 6 ta belgidan iborat bo`lishi kerak'), _defineProperty(_langObj, 'пароли не совпадают', 'Parollar mos kelmadi'), _defineProperty(_langObj, 'произошла ошибка, повторите запрос позже', 'Hatolik ro`y berdi. Iltimos keyinroq yana urinib ko`ring'), _defineProperty(_langObj, 'продавцов не найдено', 'Sotuvchilar topilmadi'), _defineProperty(_langObj, 'данных категорий не найдено', 'Turkum maʼlumotlari topilmadi'), _defineProperty(_langObj, 'товаров не найдено', 'Mahsulotlar topilmadi'), _defineProperty(_langObj, 'кажется что-то пошло не так, попробуйте позже', 'Nimadir xato ketdi shekilli, keyinroq qayta urinib ko‘ring'), _defineProperty(_langObj, 'данные обрабатываются', 'Ma`lumotlar ishlanmoqda'), _defineProperty(_langObj, 'график продаж', 'Sotuvlar grafiki'), _defineProperty(_langObj, 'график цены', 'Narx grafiki'), _defineProperty(_langObj, 'график остатков', 'Qoldiqlar grafiki'), _langObj);
   return _vars__WEBPACK_IMPORTED_MODULE_0__.typeOfLang === 'ru' ? word : langObj[word.toLowerCase()];
 }
 
@@ -1996,6 +1996,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setLabelsData": () => (/* binding */ setLabelsData)
 /* harmony export */ });
 /* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
+/* harmony import */ var _change_lang__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../change-lang */ "./src/js/components/change-lang.js");
+
 
 var saleChart = document.getElementById('saleChart');
 var priceChart = document.getElementById('priceChart');
@@ -2007,7 +2009,7 @@ var saleCht = !saleChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__
   data: {
     labels: [],
     datasets: [{
-      label: 'График продаж',
+      label: (0,_change_lang__WEBPACK_IMPORTED_MODULE_1__.changeLang)('График продаж'),
       data: [],
       borderWidth: 0,
       backgroundColor: 'rgba(124, 150, 255, 0.5)',
@@ -2083,7 +2085,7 @@ var saleCht = !saleChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__
             }
 
             label += context.formattedValue;
-            label += ' шт.';
+            label += ' ' + (0,_change_lang__WEBPACK_IMPORTED_MODULE_1__.changeLang)('шт.');
             return label;
           }
         }
@@ -2096,7 +2098,7 @@ var priceCht = !priceChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0
   data: {
     labels: [],
     datasets: [{
-      label: 'График цены',
+      label: (0,_change_lang__WEBPACK_IMPORTED_MODULE_1__.changeLang)('График цены'),
       data: [],
       borderWidth: 0,
       backgroundColor: 'rgba(50, 175, 153, 0.5)',
@@ -2117,7 +2119,7 @@ var priceCht = !priceChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0
             if (value === 0) return value;
 
             if (index === 1) {
-              priceLevelSpan.textContent = lastIndex.value > 1000000 ? 'Млн.' : 'Тыс.';
+              priceLevelSpan.textContent = lastIndex.value > 1000000 ? (0,_change_lang__WEBPACK_IMPORTED_MODULE_1__.changeLang)('Млн') : (0,_change_lang__WEBPACK_IMPORTED_MODULE_1__.changeLang)('Тыс') + '.';
             }
 
             var num = value / (lastIndex.value > 1000000 ? 1000000 : 1000);
@@ -2180,7 +2182,7 @@ var priceCht = !priceChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0
             }
 
             label += context.formattedValue;
-            label += ' сум';
+            label += ' ' + (0,_change_lang__WEBPACK_IMPORTED_MODULE_1__.changeLang)('сум');
             return label;
           }
         }
@@ -2193,7 +2195,7 @@ var lostCht = !lostChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__
   data: {
     labels: [],
     datasets: [{
-      label: 'График остатков',
+      label: (0,_change_lang__WEBPACK_IMPORTED_MODULE_1__.changeLang)('График остатков'),
       data: [],
       borderWidth: 0,
       backgroundColor: 'rgba(255, 122, 0, 0.5)',
@@ -2267,7 +2269,7 @@ var lostCht = !lostChart ? null : new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__
             }
 
             label += context.formattedValue;
-            label += ' шт';
+            label += ' ' + (0,_change_lang__WEBPACK_IMPORTED_MODULE_1__.changeLang)('шт.');
             return label;
           }
         }

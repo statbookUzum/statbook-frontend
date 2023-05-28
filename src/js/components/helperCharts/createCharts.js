@@ -1,4 +1,5 @@
 import { Chart } from "chart.js/auto";
+import { changeLang } from "../change-lang";
 
 const saleChart = document.getElementById('saleChart');
 const priceChart = document.getElementById('priceChart');
@@ -12,7 +13,7 @@ export const saleCht = !saleChart ? null : new Chart(saleChart, {
   data: {
     labels: [],
     datasets: [{
-      label: 'График продаж',
+      label: changeLang('График продаж'),
       data: [],
       borderWidth: 0,
       backgroundColor: 'rgba(124, 150, 255, 0.5)',
@@ -86,7 +87,7 @@ export const saleCht = !saleChart ? null : new Chart(saleChart, {
               label += ': ';
             }
             label += context.formattedValue;
-            label += ' шт.';
+            label += ' ' + changeLang('шт.');
             return label;
           }
         }
@@ -100,7 +101,7 @@ export const priceCht = !priceChart ? null : new Chart(priceChart, {
   data: {
     labels: [],
     datasets: [{
-      label: 'График цены',
+      label: changeLang('График цены'),
       data: [],
       borderWidth: 0,
       backgroundColor: 'rgba(50, 175, 153, 0.5)',
@@ -120,7 +121,7 @@ export const priceCht = !priceChart ? null : new Chart(priceChart, {
             const lastIndex = items[items.length - 1];
             if (value === 0) return value;
             if (index === 1) {
-              priceLevelSpan.textContent = lastIndex.value > 1000000 ? 'Млн.' : 'Тыс.';
+              priceLevelSpan.textContent = lastIndex.value > 1000000 ? changeLang('Млн') : changeLang('Тыс') + '.';
             }
             const num = (value / (lastIndex.value > 1000000 ? 1000000 : 1000));
 
@@ -181,7 +182,7 @@ export const priceCht = !priceChart ? null : new Chart(priceChart, {
               label += ': ';
             }
             label += context.formattedValue;
-            label += ' сум';
+            label += ' ' + changeLang('сум');
             return label;
           }
         }
@@ -195,7 +196,7 @@ export const lostCht = !lostChart ? null : new Chart(lostChart, {
   data: {
     labels: [],
     datasets: [{
-      label: 'График остатков',
+      label: changeLang('График остатков'),
       data: [],
       borderWidth: 0,
       backgroundColor: 'rgba(255, 122, 0, 0.5)',
@@ -267,7 +268,7 @@ export const lostCht = !lostChart ? null : new Chart(lostChart, {
               label += ': ';
             }
             label += context.formattedValue;
-            label += ' шт';
+            label += ' ' + changeLang('шт.');
             return label;
           }
         }
