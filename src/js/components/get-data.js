@@ -7,6 +7,7 @@ import { setLoadingAnimation } from "./setLoadingAnimation";
 import { debounce } from "./helper";
 import { getMainData } from "./get-main-data";
 import { searchForm, pageType, helperWrapper, lastViewContainer } from "./vars";
+import { changeLang } from "./change-lang";
 
 if (searchForm) {
   const searchInput = searchForm.querySelector('.custom-input__input');
@@ -159,21 +160,34 @@ if (searchForm) {
     });
   }
 
-  // function renderUploadDataBtn() {
-  //   const btn = document.createElement('button');
-  //   btn.classList.add('main-button', 'btn-reset', 'upload-btn');
-  //   btn.textContent = 'Загрузить все данные';
-  //   btn.style.cssText = 'margin: -65px auto 0; max-width: 300px';
+  function renderUploadDataBtn() {
+    const btn = document.createElement('button');
+    btn.classList.add('main-button', 'btn-reset', 'upload-btn');
+    btn.textContent = changeLang('Загрузить все данные');
+    btn.style.cssText = 'margin: -65px auto 0; max-width: 300px';
 
-  //   mainWrapper.appendChild(btn);
+    mainWrapper.appendChild(btn);
 
-  //   btn.addEventListener('click', () => {
-  //     btn.remove();
-  //     getMainData(searchForm, pageType, categoryCardData, periodRange);
-  //   }, { once: true });
-  // }
+    btn.addEventListener('click', () => {
+      if (pageType === 'category') {
+        const { category } = JSON.parse(localStorage.getItem('idMainData'));
 
-  // if (inputHiddenForId.value) {
-  //   renderUploadDataBtn();
-  // }
+        categoryCardData.categoryName = category.title;
+        categoryCardData.breadcrumbs = category.breadcrumbs;
+      }
+
+      if (pageType === 'product') {
+        const { product } = JSON.parse(localStorage.getItem('idMainData'));
+
+        inputHiddenForId.setAttribute('data-hidden-title', product.cardData.title);
+      }
+
+      btn.remove();
+      getMainData(searchForm, pageType, categoryCardData, periodRange);
+    }, { once: true });
+  }
+
+  if (inputHiddenForId.value) {
+    renderUploadDataBtn();
+  }
 }

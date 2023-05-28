@@ -1405,7 +1405,7 @@ function changeLang(word) {
     'смотреть аналитику': 'Tahlilni ko`rib chiqish',
     'количество подкатегорий': 'Kichik toifalar soni',
     'количество заĸазов': 'Buyurtmalar soni'
-  }, _defineProperty(_langObj, "\u0432\u044B\u0440\u0443\u0447\u0138\u0430, uzs", 'Daromad, UZS'), _defineProperty(_langObj, 'количество продавцов', 'Sotuvchilar soni'), _defineProperty(_langObj, 'количество товаров', 'Mahsulotlar soni'), _defineProperty(_langObj, 'цена', 'Narx'), _defineProperty(_langObj, 'ср. цена продаж', 'O`rtacha narx, UZS'), _defineProperty(_langObj, 'остаток (в наличии)', 'Qoldiq (mavjud), dona'), _defineProperty(_langObj, 'продавец', 'Sotuvchi'), _defineProperty(_langObj, 'сум', 'so`m'), _defineProperty(_langObj, 'шт.', 'dona'), _defineProperty(_langObj, 'пароль не должен содержать кириллицы', 'Parolda kirill yozuvi bo`lmasligi kerak'), _defineProperty(_langObj, 'пароль должен содержать минимум 6 символов', 'Parol kamida 6 ta belgidan iborat bo`lishi kerak'), _defineProperty(_langObj, 'пароли не совпадают', 'Parollar mos kelmadi'), _defineProperty(_langObj, 'произошла ошибка, повторите запрос позже', 'Hatolik ro`y berdi. Iltimos keyinroq yana urinib ko`ring'), _defineProperty(_langObj, 'продавцов не найдено', 'Sotuvchilar topilmadi'), _defineProperty(_langObj, 'данных категорий не найдено', 'Turkum maʼlumotlari topilmadi'), _defineProperty(_langObj, 'товаров не найдено', 'Mahsulotlar topilmadi'), _defineProperty(_langObj, 'кажется что-то пошло не так, попробуйте позже', 'Nimadir xato ketdi shekilli, keyinroq qayta urinib ko‘ring'), _defineProperty(_langObj, 'данные обрабатываются', 'Ma`lumotlar ishlanmoqda'), _defineProperty(_langObj, 'график продаж', 'Sotuvlar grafiki'), _defineProperty(_langObj, 'график цены', 'Narx grafiki'), _defineProperty(_langObj, 'график остатков', 'Qoldiqlar grafiki'), _langObj);
+  }, _defineProperty(_langObj, "\u0432\u044B\u0440\u0443\u0447\u0138\u0430, uzs", 'Daromad, UZS'), _defineProperty(_langObj, 'количество продавцов', 'Sotuvchilar soni'), _defineProperty(_langObj, 'количество товаров', 'Mahsulotlar soni'), _defineProperty(_langObj, 'цена', 'Narx'), _defineProperty(_langObj, 'ср. цена продаж', 'O`rtacha narx, UZS'), _defineProperty(_langObj, 'остаток (в наличии)', 'Qoldiq (mavjud), dona'), _defineProperty(_langObj, 'продавец', 'Sotuvchi'), _defineProperty(_langObj, 'сум', 'so`m'), _defineProperty(_langObj, 'шт.', 'dona'), _defineProperty(_langObj, 'пароль не должен содержать кириллицы', 'Parolda kirill yozuvi bo`lmasligi kerak'), _defineProperty(_langObj, 'пароль должен содержать минимум 6 символов', 'Parol kamida 6 ta belgidan iborat bo`lishi kerak'), _defineProperty(_langObj, 'пароли не совпадают', 'Parollar mos kelmadi'), _defineProperty(_langObj, 'произошла ошибка, повторите запрос позже', 'Hatolik ro`y berdi. Iltimos keyinroq yana urinib ko`ring'), _defineProperty(_langObj, 'продавцов не найдено', 'Sotuvchilar topilmadi'), _defineProperty(_langObj, 'данных категорий не найдено', 'Turkum maʼlumotlari topilmadi'), _defineProperty(_langObj, 'товаров не найдено', 'Mahsulotlar topilmadi'), _defineProperty(_langObj, 'кажется что-то пошло не так, попробуйте позже', 'Nimadir xato ketdi shekilli, keyinroq qayta urinib ko‘ring'), _defineProperty(_langObj, 'данные обрабатываются', 'Ma`lumotlar ishlanmoqda'), _defineProperty(_langObj, 'график продаж', 'Sotuvlar grafiki'), _defineProperty(_langObj, 'график цены', 'Narx grafiki'), _defineProperty(_langObj, 'график остатков', 'Qoldiqlar grafiki'), _defineProperty(_langObj, 'загрузить все данные', 'Barcha ma`lumotlarni yuklash'), _langObj);
   return _vars__WEBPACK_IMPORTED_MODULE_0__.typeOfLang === 'ru' ? word : langObj[word.toLowerCase()];
 }
 
@@ -1505,6 +1505,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helper */ "./src/js/components/helper.js");
 /* harmony import */ var _get_main_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./get-main-data */ "./src/js/components/get-main-data.js");
 /* harmony import */ var _vars__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./vars */ "./src/js/components/vars.js");
+/* harmony import */ var _change_lang__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./change-lang */ "./src/js/components/change-lang.js");
+
 
 
 
@@ -1655,21 +1657,40 @@ if (_vars__WEBPACK_IMPORTED_MODULE_8__.searchForm) {
         (0,_get_main_data__WEBPACK_IMPORTED_MODULE_7__.getMainData)(_vars__WEBPACK_IMPORTED_MODULE_8__.searchForm, _vars__WEBPACK_IMPORTED_MODULE_8__.pageType, categoryCardData, periodRange);
       }
     });
-  } // function renderUploadDataBtn() {
-  //   const btn = document.createElement('button');
-  //   btn.classList.add('main-button', 'btn-reset', 'upload-btn');
-  //   btn.textContent = 'Загрузить все данные';
-  //   btn.style.cssText = 'margin: -65px auto 0; max-width: 300px';
-  //   mainWrapper.appendChild(btn);
-  //   btn.addEventListener('click', () => {
-  //     btn.remove();
-  //     getMainData(searchForm, pageType, categoryCardData, periodRange);
-  //   }, { once: true });
-  // }
-  // if (inputHiddenForId.value) {
-  //   renderUploadDataBtn();
-  // }
+  }
 
+  function renderUploadDataBtn() {
+    var btn = document.createElement('button');
+    btn.classList.add('main-button', 'btn-reset', 'upload-btn');
+    btn.textContent = (0,_change_lang__WEBPACK_IMPORTED_MODULE_9__.changeLang)('Загрузить все данные');
+    btn.style.cssText = 'margin: -65px auto 0; max-width: 300px';
+    mainWrapper.appendChild(btn);
+    btn.addEventListener('click', function () {
+      if (_vars__WEBPACK_IMPORTED_MODULE_8__.pageType === 'category') {
+        var _JSON$parse = JSON.parse(localStorage.getItem('idMainData')),
+            category = _JSON$parse.category;
+
+        categoryCardData.categoryName = category.title;
+        categoryCardData.breadcrumbs = category.breadcrumbs;
+      }
+
+      if (_vars__WEBPACK_IMPORTED_MODULE_8__.pageType === 'product') {
+        var _JSON$parse2 = JSON.parse(localStorage.getItem('idMainData')),
+            product = _JSON$parse2.product;
+
+        inputHiddenForId.setAttribute('data-hidden-title', product.cardData.title);
+      }
+
+      btn.remove();
+      (0,_get_main_data__WEBPACK_IMPORTED_MODULE_7__.getMainData)(_vars__WEBPACK_IMPORTED_MODULE_8__.searchForm, _vars__WEBPACK_IMPORTED_MODULE_8__.pageType, categoryCardData, periodRange);
+    }, {
+      once: true
+    });
+  }
+
+  if (inputHiddenForId.value) {
+    renderUploadDataBtn();
+  }
 }
 
 /***/ }),
@@ -1747,6 +1768,8 @@ function getMainData(searchForm, pageType, categoryCardData, period) {
   var id = inputHiddenForId.value;
   var label = searchForm.querySelector('.auth-form__label');
   var button = searchForm.querySelector('button[type=submit]');
+  var uploadButton = document.querySelector('.upload-btn');
+  if (uploadButton) uploadButton.remove();
   if (requestStatus) return;
   requestStatus = true;
   button.disabled = true;
@@ -1758,7 +1781,7 @@ function getMainData(searchForm, pageType, categoryCardData, period) {
   });
   setTimeout(_helper__WEBPACK_IMPORTED_MODULE_12__.setHeight, 0);
   mainSectionWrapper.scrollIntoView({
-    block: 'center',
+    block: 'start',
     behavior: 'auto'
   });
 
@@ -1812,6 +1835,7 @@ function getMainData(searchForm, pageType, categoryCardData, period) {
         };
       }).then(function (transformData) {
         (0,_sortTable__WEBPACK_IMPORTED_MODULE_15__.setTableData)(transformData.table);
+        console.log(categoryCardData.categoryName);
         categoryName.textContent = categoryCardData.categoryName;
         (0,_render_table__WEBPACK_IMPORTED_MODULE_3__.renderBreadcrumbs)(categoryCardData.breadcrumbs, breadcrumbsEl);
         (0,_render_table__WEBPACK_IMPORTED_MODULE_3__.renderTable)(transformData.table, _vars__WEBPACK_IMPORTED_MODULE_0__.tableList);
@@ -3127,6 +3151,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function renderBreadcrumbs(data, element) {
   element.innerHTML = '';
+  if (!data) return;
   data.forEach(function (item) {
     element.innerHTML += "<li class=\"shop-report__breadcrumbs-item\">".concat(item, "</li>");
   });
@@ -3178,7 +3203,7 @@ function renderTable(tables, elements) {
         return "<th>".concat(el, "</th>");
       }
 
-      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец' || el.toLowerCase() === 'mahsulot id' || el.toLowerCase() === 'Sotuvchi') {
+      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец' || el.toLowerCase() === 'mahsulot id' || el.toLowerCase() === 'sotuvchi') {
         return "<th>".concat(el, "</th>");
       }
 

@@ -26,6 +26,9 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
   const id = inputHiddenForId.value;
   const label = searchForm.querySelector('.auth-form__label');
   const button = searchForm.querySelector('button[type=submit]');
+  const uploadButton = document.querySelector('.upload-btn');
+
+  if (uploadButton) uploadButton.remove();
 
   if (requestStatus) return;
 
@@ -37,7 +40,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
   setError(mainSectionInner, false);
   tableList.forEach(table => table.innerHTML = '');
   setTimeout(setHeight, 0);
-  mainSectionWrapper.scrollIntoView({ block: 'center', behavior: 'auto' });
+  mainSectionWrapper.scrollIntoView({ block: 'start', behavior: 'auto' });
 
   try {
     if (pageType === 'shop') {
@@ -107,6 +110,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         .then(transformData => {
           setTableData(transformData.table);
 
+          console.log(categoryCardData.categoryName);
 
           categoryName.textContent = categoryCardData.categoryName;
 

@@ -46,8 +46,8 @@
 .product-info {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  max-width: 657px;
+  grid-template-columns: repeat(11, 1fr);
+  max-width: 857px;
   width: 100%;
   column-gap: 28px;
 
@@ -68,7 +68,7 @@
     margin-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
-    grid-column: 1/9;
+    grid-column: 1/12;
     grid-row: 1/2;
 
     div {
@@ -130,7 +130,7 @@
 
   &__title {
     margin-bottom: 5px;
-    grid-column: 3/9;
+    grid-column: 3/12;
 
     font-weight: 600;
     font-size: 22px;
@@ -167,7 +167,7 @@
 
   &__price-avg {
     margin-bottom: 10px;
-    grid-column: 3/7;
+    grid-column: 3/8;
     align-self: flex-end;
     display: flex;
     align-items: baseline;
@@ -201,7 +201,7 @@
   }
 
   &__seller {
-    grid-column: 6/9;
+    grid-column: 7/12;
     align-self: flex-end;
 
     font-size: 18px;
@@ -233,7 +233,6 @@
   }
 
   &__seller-name {
-    white-space: nowrap;
     text-decoration: underline;
     color: rgba($color-blue-35, 0.8);
   }

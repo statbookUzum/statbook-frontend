@@ -7,6 +7,8 @@ export function renderBreadcrumbs(data, element) {
 
   element.innerHTML = '';
 
+  if (!data) return;
+
   data.forEach(item => {
     element.innerHTML += `<li class="shop-report__breadcrumbs-item">${item}</li>`;
   });
@@ -74,7 +76,7 @@ export function renderTable(tables, elements) {
         return `<th>${el}</th>`
       }
 
-      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец' || el.toLowerCase() === 'mahsulot id' || el.toLowerCase() === 'Sotuvchi') {
+      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец' || el.toLowerCase() === 'mahsulot id' || el.toLowerCase() === 'sotuvchi') {
         return `<th>${el}</th>`
       }
 
