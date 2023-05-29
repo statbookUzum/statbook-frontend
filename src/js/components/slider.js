@@ -18,7 +18,7 @@ export function createLastShopCards() {
       <article class="market-article last-view__article" data-market-id="${item.seller_id}">
         <div action="#" class="market-article__form">
           <div class="market-article__top">
-            <img class="market-article__image" src="${item.photo ? item.photo : './img/seller-card-default.svg'}" alt="${item.title}">
+            <img class="market-article__image" src="${item.photo ? item.photo : '/img/seller-card-default.svg'}" alt="${item.title}">
             <div class="market-article__info">
               <h2 class="market-article__title">
                 ${item.title}
@@ -49,7 +49,7 @@ export function createLastShopCards() {
       <article class="market-article last-view__article" data-market-id="${item.product_id}">
         <div action="#" class="market-article__form">
           <div class="market-article__top">
-            <img class="market-article__image" src="${item.photo ? item.photo : './img/seller-card-default.svg'}" alt="${item.title}">
+            <img class="market-article__image" src="${item.photo ? item.photo : '/img/seller-card-default.svg'}" alt="${item.title}">
             <div class="market-article__info">
               <h2 class="market-article__title market-article__title--product">
                 ${item.title}

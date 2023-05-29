@@ -87,6 +87,8 @@
   }
 
   &__buttons {
+    position: relative;
+    z-index: 100;
     flex-shrink: 0;
     max-width: 220px;
     width: 100%;
@@ -109,11 +111,5 @@
 
   &__hide {
     margin-bottom: 32px;
-  }
-
-  &--category {
-    .shop-report__buttons {
-      top: -57px;
-    }
   }
 }

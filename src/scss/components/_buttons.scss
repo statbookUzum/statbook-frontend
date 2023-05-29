@@ -270,3 +270,21 @@
     border-color: rgba($color-blue, 0.75);
   }
 }
+
+.upload-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+
+  &::before {
+    content: "";
+    height: 24px;
+    width: 24px;
+
+    background-image: url("../img/reload.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}

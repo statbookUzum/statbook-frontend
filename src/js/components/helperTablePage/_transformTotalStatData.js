@@ -1,6 +1,6 @@
 import { formatNumber } from "./_transformDataForTables";
 
-export function transformTotalStatData(arr, flag) {
+export function transformTotalStatData(arr, flag, numOfSellers) {
   let resultArray;
 
   if (flag === 'shop') {
@@ -15,7 +15,7 @@ export function transformTotalStatData(arr, flag) {
       },
       {
         title: 'Количество ĸатегорий',
-        value: arr[0].categories_count,
+        value: numOfSellers.num_of_categories,
       },
       {
         title: 'Средний чеĸ',
@@ -29,14 +29,13 @@ export function transformTotalStatData(arr, flag) {
       orders_amount_per_day: 0,
       revenue: 0,
       available_product: 0,
-      sellers_count: 0,
+      sellers_count: numOfSellers.num_of_sellers,
     };
 
     arr.forEach(item => {
       obj['orders_amount_per_day'] += +item.orders_amount_per_day;
       obj['revenue'] += +item.revenue;
-      obj['available_product'] += +item.available_product;
-      obj['sellers_count'] += +item.sellers_count;
+      obj['available_product'] += +item.available_sku;
     });
 
     resultArray = [
@@ -57,8 +56,8 @@ export function transformTotalStatData(arr, flag) {
         value: obj.sellers_count,
       },
       {
-        title: 'Количество товаров',
-        value: obj.available_product,
+        title: 'Количество позиций',
+        value: numOfSellers.num_of_distinct_sku,
       },
     ];
   }

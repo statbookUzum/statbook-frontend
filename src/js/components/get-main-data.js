@@ -52,7 +52,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           console.log(response.data);
           return {
             table: transformDataForTable(response.data, pageType),
-            totalStat: transformTotalStatData(response.data.analyze, 'shop'),
+            totalStat: transformTotalStatData(response.data.analyze, 'shop', response.data.numOfSellers[0]),
             cardInfo: response.data.card_info[0],
           }
         })
@@ -103,7 +103,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         .then(response => {
           console.log(response.data);
           return {
-            totalStat: transformTotalStatData(response.data.analyze, 'category'),
+            totalStat: transformTotalStatData(response.data.analyze, 'category', response.data.numOfSellers[0]),
             table: transformDataForTable(response.data, 'category'),
           }
         })

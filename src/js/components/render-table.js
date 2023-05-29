@@ -76,7 +76,7 @@ export function renderTable(tables, elements) {
         return `<th>${el}</th>`
       }
 
-      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец' || el.toLowerCase() === 'mahsulot id' || el.toLowerCase() === 'sotuvchi') {
+      if (el.toLowerCase() === 'id товара' || el.toLowerCase() === 'id категории' || el.toLowerCase() === 'sku' || el.toLowerCase() === 'продавец' || el.toLowerCase() === 'mahsulot id' || el.toLowerCase() === 'sotuvchi' || el.toLowerCase() === 'toifa id') {
         return `<th>${el}</th>`
       }
 
@@ -149,7 +149,7 @@ export function renderSellerCard(data, elements) {
   elements.forEach(element => {
     element.innerHTML = `
     <div class="seller-card__image">
-      <img src="img/seller-card-default.svg" alt="${title}">
+      <img src="/img/seller-card-default.svg" alt="${title}">
     </div>
     <div class="seller-card__info">
       <div class="seller-card__info-top">
