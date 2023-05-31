@@ -1,7 +1,10 @@
 .social-list {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 21px;
+  max-width: 150px;
+  width: 100%;
 
   &__link {
     height: 35px;

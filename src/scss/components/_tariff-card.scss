@@ -1,6 +1,6 @@
 .tariff-card {
   position: relative;
-  padding: 32px 20px 20px;
+  padding: 32px 30px 20px;
   border-radius: 25px;
   width: 365px;
 
@@ -64,6 +64,7 @@
       margin-right: 12px;
       width: 14px;
       height: 9px;
+      flex-shrink: 0;
 
       background-image: url("../img/check-blue.svg");
 

@@ -15,7 +15,7 @@
           <span class="header__lang-ru">ru</span>
           <span class="header__lang-uz">uz</span>
         </button>
-        <a href="'./profile.html" class="header-account header-account--small header__account">
+        <button class="header-account header-account--small header__account btn-reset">
           <img class="header-account__image" src="./img/account-image.svg" alt="фото профиля">
           <div class="header-account__info">
             <div class="header-account__mail">
@@ -25,7 +25,24 @@
               Баланс: <span class="account-balance">50 млн</span>. сум
             </div>
           </div>
-        </a>
+          <div class="header-account__list">
+            <div class="header-account__item">
+              <a href="#" class="header-account__link header-account__link--profile">
+                Профиль
+              </a>
+            </div>
+            <div class="header-account__item">
+              <a href="./profile.html#topup" class="header-account__link header-account__link--topup">
+                Пополнения
+              </a>
+            </div>
+            <div class="header-account__item">
+              <a href="#" class="header-account__link header-account__link--out">
+                Выйти из аккаунта
+              </a>
+            </div>
+          </div>
+        </button>
 
         <nav class="nav header__nav nav--profile">
           <ul class="nav__list">

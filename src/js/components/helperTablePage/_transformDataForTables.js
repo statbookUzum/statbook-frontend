@@ -17,7 +17,7 @@ export function transformDataForTable(data, pageType) {
     }
 
     if (el[0] === 'review' && pageType === 'category') {
-      deleteableProp = ['category_id', 'date_range', 'seller_id', 'categories_count', 'category_graph_ru', 'category_graph_uz'];
+      deleteableProp = ['category_id', 'date_range', 'seller_id', 'categories_count', 'category_graph_ru', 'category_graph_uz', 'n'];
 
       el[1][0].link = `https://uzum.uz/ru/product/${el[1][0].product_id}?skuid=${el[1][0].sku}`;
     }

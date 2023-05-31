@@ -16,6 +16,7 @@
 
   &__nav {
     margin-right: auto;
+    flex-shrink: 0;
 
     @include w($lg) {
       width: 100%;
@@ -247,12 +248,26 @@
 }
 
 .header-account {
+  position: relative;
+  padding: 15px 16px 9px;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+  border: 1px solid transparent;
+  border-bottom-width: 0;
+
+  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+
   display: flex;
   align-items: center;
 
   font-weight: 500;
   font-size: 20px;
   line-height: 1.2;
+
+  @include w($lg) {
+    pointer-events: none;
+    padding: 0;
+  }
 
   &__image {
     margin-right: 20px;
@@ -273,12 +288,138 @@
     }
   }
 
+  &__info {
+    text-align: left;
+  }
+
   &--small {
     font-size: 14px;
 
     .header-account__image {
       height: 46px;
       width: 46px;
+    }
+  }
+
+  &__list {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 100;
+    padding: 10px 7px;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border: 1px solid transparent;
+    border-top-width: 0;
+    width: 101%;
+
+    background-color: inherit;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 1px;
+
+      background: linear-gradient(
+        121deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 30%,
+        rgba(255, 255, 255, 0.2) 70%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+  }
+
+  &__item {
+    &:last-child {
+      position: relative;
+
+      padding-top: 10px;
+      margin-top: 20px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        height: 1px;
+
+        background: linear-gradient(
+          121deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.2) 30%,
+          rgba(255, 255, 255, 0.2) 70%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+    }
+  }
+
+  &__link {
+    padding: 7px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: $light-color;
+
+    &::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    &--profile {
+      &::before {
+        background-image: url("../img/profile-header-account.svg");
+      }
+    }
+
+    &--topup {
+      &::before {
+        background-image: url("../img/topup-header-account.svg");
+      }
+    }
+
+    &--out {
+      &::before {
+        background-image: url("../img/out-header-account.svg");
+      }
+    }
+
+    &:hover {
+      background-color: rgba($color-light-blue, 0.2);
+    }
+  }
+
+  &:hover,
+  &:focus {
+    border-color: rgba($light-color, 0.2);
+
+    background-color: $color-blue-24;
+    .header-account__list {
+      border-color: rgba($light-color, 0.2);
+
+      opacity: 1;
+      visibility: visible;
     }
   }
 }

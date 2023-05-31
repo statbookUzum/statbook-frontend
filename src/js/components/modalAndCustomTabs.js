@@ -10,7 +10,7 @@ const modal = new GraphModal();
 
 
 if (customTabsList.length) {
-  customTabsList.forEach(customTabs => {
+  customTabsList.forEach((customTabs, i) => {
     const tabsNav = customTabs.querySelector('.custom-tabs__nav');
     const tabsBtns = customTabs.querySelectorAll('.custom-tabs__nav-btn');
     const contents = customTabs.querySelectorAll('.custom-tabs__panel');
@@ -22,7 +22,7 @@ if (customTabsList.length) {
     // tab buttons listeners
     tabsBtns.forEach((btn, index) => {
       btn.addEventListener('click', () => {
-        switchTabs(index, btn);
+        switchTabs(index, btn, tabsNav, contents, customTabs);
       });
 
       btn.addEventListener('keydown', (e) => {
@@ -41,49 +41,55 @@ if (customTabsList.length) {
           if (dir === 'down') {
             contents[index].focus();
           } else if (tabsBtns[dir]) {
-            switchTabs(dir, tabsBtns[dir]);
+            switchTabs(dir, tabsBtns[dir], tabsNav, contents, customTabs);
           }
         }
       })
     })
 
     if (customTabs.matches('.profile-info__custom-tabs')) {
-      // const scroll = new SmoothScroll();
-
       // modal listeners
       topUpButton.addEventListener('click', () => {
-        switchTabs(1, tabsBtns[1]);
+        switchTabs(1, tabsBtns[1], tabsNav, contents, customTabs);
 
         modal.close('no-money-modal');
-        // tabsNav.scrollIntoView({ block: 'center', behavior: 'smooth' });
         scroll.animateScroll(tabsNav);
       });
     }
 
-    function switchTabs(num, currentBtn) {
-      const oldActiveBtn = tabsNav.querySelector('.custom-tabs__nav-btn--active');
-      const oldContent = customTabs.querySelector('.custom-tabs__panel--active');
+    if (i === 0) {
+      window.addEventListener('load', function () {
+        if (window.location.hash === '#topup') {
 
-      oldActiveBtn.classList.remove('custom-tabs__nav-btn--active');
-      oldActiveBtn.setAttribute('tabindex', '-1');
-
-      tabsNav.setAttribute('data-tab-active', num + 1);
-
-      currentBtn.focus();
-      currentBtn.removeAttribute('tabindex');
-      currentBtn.classList.add('custom-tabs__nav-btn--active');
-
-
-      oldContent.setAttribute('tabindex', '-1');
-      oldContent.classList.remove('custom-tabs__panel--active');
-      contents[num].classList.add('custom-tabs__panel--active');
-
-      setHeight();
+          switchTabs(1, tabsBtns[1], tabsNav, contents, customTabs);
+        }
+      });
     }
+  });
 
-    window.addEventListener('resize', () => {
-      setHeight();
-    })
+  function switchTabs(num, currentBtn, tabsNav, contents, customTabs) {
+    const oldActiveBtn = tabsNav.querySelector('.custom-tabs__nav-btn--active');
+    const oldContent = customTabs.querySelector('.custom-tabs__panel--active');
+
+    oldActiveBtn.classList.remove('custom-tabs__nav-btn--active');
+    oldActiveBtn.setAttribute('tabindex', '-1');
+
+    tabsNav.setAttribute('data-tab-active', num + 1);
+
+    currentBtn.focus();
+    currentBtn.removeAttribute('tabindex');
+    currentBtn.classList.add('custom-tabs__nav-btn--active');
+
+
+    oldContent.setAttribute('tabindex', '-1');
+    oldContent.classList.remove('custom-tabs__panel--active');
+    contents[num].classList.add('custom-tabs__panel--active');
+
+    setHeight();
+  }
+
+  window.addEventListener('resize', () => {
+    setHeight();
   });
 }
 

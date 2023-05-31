@@ -63,6 +63,7 @@ export function changeLang(word) {
     'график остатков': 'Qoldiqlar grafiki',
     'загрузить все данные': 'Barcha ma`lumotlarni yuklash',
     'количество позиций': 'Pozitsiyalar soni',
+    'ссылка на продукт': 'Mahsulot havolasi',
   };
 
   return typeOfLang === 'ru' ? word : langObj[word.toLowerCase()];
