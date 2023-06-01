@@ -169,15 +169,17 @@ if (searchForm) {
     mainWrapper.appendChild(btn);
 
     btn.addEventListener('click', () => {
+      const userId = document.body.getAttribute('data-user-id');
+
       if (pageType === 'category') {
-        const { category } = JSON.parse(localStorage.getItem('idMainData'));
+        const { category } = JSON.parse(localStorage.getItem('idMainData'))[userId];
 
         categoryCardData.categoryName = category.title;
         categoryCardData.breadcrumbs = category.breadcrumbs;
       }
 
       if (pageType === 'product') {
-        const { product } = JSON.parse(localStorage.getItem('idMainData'));
+        const { product } = JSON.parse(localStorage.getItem('idMainData'))[userId];
 
         inputHiddenForId.setAttribute('data-hidden-title', product.cardData.title);
       }

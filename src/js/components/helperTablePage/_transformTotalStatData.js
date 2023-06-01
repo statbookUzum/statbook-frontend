@@ -1,7 +1,10 @@
 import { formatNumber } from "./_transformDataForTables";
+import { changeLang } from "../change-lang";
 
 export function transformTotalStatData(arr, flag, numOfSellers) {
   let resultArray;
+
+  console.log(numOfSellers);
 
   if (flag === 'shop') {
     resultArray = [
@@ -29,7 +32,7 @@ export function transformTotalStatData(arr, flag, numOfSellers) {
       orders_amount_per_day: 0,
       revenue: 0,
       available_product: 0,
-      sellers_count: numOfSellers.num_of_sellers,
+      sellers_count: numOfSellers ? numOfSellers.num_of_sellers : changeLang('Данные обрабатываются'),
     };
 
     arr.forEach(item => {
@@ -57,7 +60,7 @@ export function transformTotalStatData(arr, flag, numOfSellers) {
       },
       {
         title: 'Количество позиций',
-        value: numOfSellers.num_of_distinct_sku,
+        value: numOfSellers ? numOfSellers.num_of_distinct_sku : changeLang('Данные обрабатываются'),
       },
     ];
   }

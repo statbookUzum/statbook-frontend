@@ -1,7 +1,10 @@
 import { searchForm, pageType } from "../vars";
 import { renderTotalStat, renderBreadcrumbs, renderSellerCard } from "../render-table";
 import { renderProductCard } from "../render-products";
-if (searchForm) {
+
+const userId = document.body.getAttribute('data-user-id');
+
+if (searchForm && userId) {
   initMainData(pageType);
 }
 
@@ -41,37 +44,62 @@ function initMainData(pageType) {
 }
 
 export function cashingIdMainData(pageType) {
-  if (localStorage.getItem('idMainData')) {
-    const obj = JSON.parse(localStorage.getItem('idMainData'));
+  if (!localStorage.getItem('idMainData')) {
+    let obj = {};
 
-    return obj[pageType];
-  } else {
-    let obj = {
+    obj[userId] = {
       shop: null,
       category: null,
       product: null,
-    }
+    };
 
     obj = JSON.stringify(obj);
 
     localStorage.setItem('idMainData', obj);
+
+    return obj;
+  }
+
+  let obj = JSON.parse(localStorage.getItem('idMainData'));
+  console.log(obj);
+  const objArray = Object.keys(obj);
+
+  if (objArray.includes(userId)) {
+    console.log(obj);
+    return obj[userId][pageType];
+  } else {
+    obj[userId] = {
+      shop: null,
+      category: null,
+      product: null,
+    };
+
+    obj = JSON.stringify(obj);
+
+    localStorage.setItem('idMainData', obj);
+
+    return obj[userId][pageType];
   }
 }
 
 export function updateCashingIdMainData(pageType, cardData, totalData, breadcrumbs) {
+  if (!userId) return;
+
   const obj = JSON.parse(localStorage.getItem('idMainData'));
 
+  console.log(obj);
+
   if (pageType === 'shop') {
-    obj[pageType] = { cardData, totalData };
+    obj[userId][pageType] = { cardData, totalData };
   }
 
   if (pageType === 'category') {
     const { title, category_id } = cardData;
-    obj[pageType] = { title, category_id, totalData, breadcrumbs };
+    obj[userId][pageType] = { title, category_id, totalData, breadcrumbs };
   }
 
   if (pageType === 'product') {
-    obj[pageType] = { cardData, totalData, breadcrumbs };
+    obj[userId][pageType] = { cardData, totalData, breadcrumbs };
   }
 
   JSON.stringify(localStorage.setItem('idMainData', JSON.stringify(obj)));
