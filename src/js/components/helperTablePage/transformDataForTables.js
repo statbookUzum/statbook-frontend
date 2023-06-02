@@ -48,8 +48,6 @@ export function transformDataForTable(data, pageType) {
     });
   });
 
-  console.log(obj);
-
   return obj;
 }
 

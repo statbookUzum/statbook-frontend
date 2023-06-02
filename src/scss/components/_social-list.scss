@@ -17,4 +17,9 @@
       object-fit: contain;
     }
   }
+
+  @include w($lg) {
+    margin: 0 auto;
+    justify-content: center;
+  }
 }

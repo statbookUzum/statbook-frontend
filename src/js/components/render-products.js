@@ -1,4 +1,4 @@
-import { formatNumber } from "./helperTablePage/_transformDataForTables";
+import { formatNumber } from "./helperTablePage/transformDataForTables";
 import { removeYearFromDate } from "./helper";
 import { changeLang } from "./change-lang";
 

@@ -1,10 +1,8 @@
-import { formatNumber } from "./_transformDataForTables";
+import { formatNumber } from "./transformDataForTables";
 import { changeLang } from "../change-lang";
 
 export function transformTotalStatData(arr, flag, numOfSellers) {
   let resultArray;
-
-  console.log(numOfSellers);
 
   if (flag === 'shop') {
     resultArray = [

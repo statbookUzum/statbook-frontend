@@ -15,6 +15,8 @@ import './components/get-data';
 import './components/toXlsx';
 import './components/sortTable';
 import './components/change-lang';
-import './components/helperTablePage/_scaleTableImg';
-import './components/helperTablePage/_addBorderDuringScroll';
-import './components/helperTablePage/_copyProductLink';
+import './components/disable-auth-btn';
+
+import './components/helperTablePage/scaleTableImg';
+import './components/helperTablePage/addBorderDuringScroll';
+import './components/helperTablePage/copyProductLink';

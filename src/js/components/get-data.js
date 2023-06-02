@@ -8,6 +8,7 @@ import { debounce } from "./helper";
 import { getMainData } from "./get-main-data";
 import { searchForm, pageType, helperWrapper, lastViewContainer } from "./vars";
 import { changeLang } from "./change-lang";
+import { userId } from "./vars";
 
 if (searchForm) {
   const searchInput = searchForm.querySelector('.custom-input__input');
@@ -169,8 +170,6 @@ if (searchForm) {
     mainWrapper.appendChild(btn);
 
     btn.addEventListener('click', () => {
-      const userId = document.body.getAttribute('data-user-id');
-
       if (pageType === 'category') {
         const { category } = JSON.parse(localStorage.getItem('idMainData'))[userId];
 

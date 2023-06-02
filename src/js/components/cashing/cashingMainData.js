@@ -1,8 +1,7 @@
 import { searchForm, pageType } from "../vars";
 import { renderTotalStat, renderBreadcrumbs, renderSellerCard } from "../render-table";
 import { renderProductCard } from "../render-products";
-
-const userId = document.body.getAttribute('data-user-id');
+import { userId } from "../vars";
 
 if (searchForm && userId) {
   initMainData(pageType);
@@ -61,11 +60,9 @@ export function cashingIdMainData(pageType) {
   }
 
   let obj = JSON.parse(localStorage.getItem('idMainData'));
-  console.log(obj);
   const objArray = Object.keys(obj);
 
   if (objArray.includes(userId)) {
-    console.log(obj);
     return obj[userId][pageType];
   } else {
     obj[userId] = {
@@ -86,8 +83,6 @@ export function updateCashingIdMainData(pageType, cardData, totalData, breadcrum
   if (!userId) return;
 
   const obj = JSON.parse(localStorage.getItem('idMainData'));
-
-  console.log(obj);
 
   if (pageType === 'shop') {
     obj[userId][pageType] = { cardData, totalData };

@@ -4,3 +4,4 @@ export const helperWrapper = document.querySelector('.search-form__helper-wrappe
 export const lastViewContainer = document.querySelector('.last-view__slider');
 export const tableList = document.querySelectorAll('.table');
 export const typeOfLang = document.querySelector('.page').getAttribute('lang');
+export const userId = document.body.getAttribute('data-user-id');

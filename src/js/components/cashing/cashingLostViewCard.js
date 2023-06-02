@@ -1,66 +1,65 @@
-export function getCashingLostViewCard(pageType) {
-  let cashingData;
+import { userId } from "../vars";
 
-  if (localStorage.getItem('lostViewCardShop') && pageType === 'shop') {
-    cashingData = localStorage.getItem('lostViewCardShop');
-  } else if (localStorage.getItem('lostViewCardProduct') && pageType === 'product') {
-    cashingData = localStorage.getItem('lostViewCardProduct');
-  } else {
-    return [];
+export function getCashingLostViewCard(pageType) {
+  let cashingData = null;
+
+  if (localStorage.getItem('lostViewCardShop')) {
+    localStorage.removeItem('lostViewCardShop');
   }
 
-  cashingData = JSON.parse(cashingData);
+  if (localStorage.getItem('lostViewCardProduct')) {
+    localStorage.removeItem('lostViewCardProduct');
+  }
+
+  if (pageType === 'shop' && localStorage.getItem('lostViewCardShopV2')) {
+    cashingData = JSON.parse(localStorage.getItem('lostViewCardShopV2'))[userId];
+  }
+
+  if (pageType === 'product' && localStorage.getItem('lostViewCardProductV2')) {
+    cashingData = JSON.parse(localStorage.getItem('lostViewCardProductV2'))[userId];
+  }
+
+  if (!cashingData) return [];
+
   return cashingData;
 }
 
 export function setCashingLostViewCard(data, typePage) {
-  if (typePage === 'shop') {
-    if (!localStorage.getItem('lostViewCardShop')) {
-      let cashingData = [];
+  let typeOfCash = typePage === 'shop' ? 'lostViewCardShopV2' : 'lostViewCardProductV2';
+  let lostCardObj = null;
+  let cashObj = {};
 
-      cashingData.unshift(data);
-      cashingData = JSON.stringify(cashingData);
-      localStorage.setItem('lostViewCardShop', cashingData);
+  if (localStorage.getItem(`${typeOfCash}`)) {
+    cashObj = JSON.parse(localStorage.getItem(`${typeOfCash}`));
+    lostCardObj = cashObj[userId];
+  }
 
-      return;
-    }
+  if (!lostCardObj) {
+    lostCardObj = [];
+    lostCardObj.unshift(data);
 
-    let cardItems = localStorage.getItem('lostViewCardShop');
-    cardItems = JSON.parse(cardItems);
+    cashObj[userId] = lostCardObj;
+    cashObj = JSON.stringify(cashObj);
+    localStorage.setItem(`${typeOfCash}`, cashObj);
 
-    for (let item of cardItems) {
+    return;
+  }
+
+  for (let item of lostCardObj) {
+    if (typePage === 'shop') {
       if (item.id === data.id) return;
     }
-    cardItems.unshift(data);
 
-    if (cardItems.length > 3) cardItems.pop();
-
-    cardItems = JSON.stringify(cardItems);
-    localStorage.setItem('lostViewCardShop', cardItems);
-  }
-
-  if (typePage === 'product') {
-    if (!localStorage.getItem('lostViewCardProduct')) {
-      let cashingData = [];
-
-      cashingData.unshift(data);
-      cashingData = JSON.stringify(cashingData);
-      localStorage.setItem('lostViewCardProduct', cashingData);
-
-      return;
-    }
-
-    let cardItems = localStorage.getItem('lostViewCardProduct');
-    cardItems = JSON.parse(cardItems);
-
-    for (let item of cardItems) {
+    if (typePage === 'product') {
       if (item.product_id === data.product_id) return;
     }
-    cardItems.unshift(data);
-
-    if (cardItems.length > 3) cardItems.pop();
-
-    cardItems = JSON.stringify(cardItems);
-    localStorage.setItem('lostViewCardProduct', cardItems);
   }
+  lostCardObj.unshift(data);
+
+  if (lostCardObj.length > 3) lostCardObj.pop();
+
+  cashObj[userId] = lostCardObj;
+
+  cashObj = JSON.stringify(cashObj);
+  localStorage.setItem(`${typeOfCash}`, cashObj);
 }

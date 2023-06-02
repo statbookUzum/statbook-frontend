@@ -1,6 +1,6 @@
 import { typeOfLang } from './vars';
 import { setHeight } from './helper';
-import { transformTableItem } from './helperTablePage/_transformDataForTables';
+import { transformTableItem } from './helperTablePage/transformDataForTables';
 import { changeLang } from "./change-lang";
 
 export function renderBreadcrumbs(data, element) {
