@@ -2,6 +2,12 @@ import { formatNumber } from "./helperTablePage/transformDataForTables";
 import { removeYearFromDate } from "./helper";
 import { changeLang } from "./change-lang";
 
+const fixedNum = (str) => {
+  if (str.includes('.')) {
+    return str.slice(0, str.indexOf('.') + 2);
+  }
+};
+
 export function renderProductCard(data, element, breadcrumbs) {
   const { title, avg_purchase_price, seller_title, photo, rating, reviews_amount, actual_purchase_price, remaining_product, } = data;
 
@@ -19,7 +25,7 @@ export function renderProductCard(data, element, breadcrumbs) {
     ${title}
   </div>
   <div class="product-info__reviews">
-        <span class="product-info__reviews-score">${rating}</span> (<span class="product-info__reviews-count">${reviews_amount} </span> ${changeLang('отзывов')})
+        <span class="product-info__reviews-score">${fixedNum(rating)}</span> (<span class="product-info__reviews-count">${fixedNum(reviews_amount)} </span> ${changeLang('отзывов')})
       </div>
   <div class="product-info__price">
     ${changeLang('Цена')}: <span class="product-info__price-amount">${formatNumber((+actual_purchase_price).toFixed(0))}</span> <span
