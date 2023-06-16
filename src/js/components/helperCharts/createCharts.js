@@ -166,7 +166,7 @@ export const priceCht = !priceChart ? null : new Chart(priceChart, {
           },
           color: 'rgba(4, 15, 35, 0.25)',
         }
-      },
+      }
     },
     maintainAspectRatio: false,
     barPercentage: 0.8,

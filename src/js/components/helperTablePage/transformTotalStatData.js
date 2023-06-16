@@ -16,7 +16,7 @@ export function transformTotalStatData(arr, flag, numOfSellers) {
       },
       {
         title: 'Количество ĸатегорий',
-        value: numOfSellers.num_of_categories,
+        value: numOfSellers?.num_of_categories || changeLang('Данные обрабатываются'),
       },
       {
         title: 'Средний чеĸ',
