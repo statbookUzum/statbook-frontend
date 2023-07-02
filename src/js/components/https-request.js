@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const getHelperData = (value, searchType) => {
   const urls = {
-    shop: 'https://statbook.uz/server/get_seller?title=',
-    category: 'https://statbook.uz/server/get_category?title=',
-    product: 'https://statbook.uz/server/get_product?title='
-  }
+    shop: "https://statbook.uz/server/get_seller?title=",
+    category: "https://statbook.uz/server/get_category?title=",
+    product: "https://statbook.uz/server/get_product?title=",
+  };
   const url = urls[searchType] + value;
 
   return axios.get(url);
@@ -13,12 +13,14 @@ export const getHelperData = (value, searchType) => {
 
 export const getDataWithId = (id, searchType, period) => {
   const urls = {
-    shop: 'https://statbook.uz/server/get_seller_view/',
-    category: 'https://statbook.uz/server/get_category_view/',
-    product: 'https://statbook.uz/server/get_product_analyze/'
-  }
+    shop: "https://statbook.uz/server/get_seller_view/",
+    category: "https://statbook.uz/server/get_category_view/",
+    product: "https://statbook.uz/server/get_product_analyze_by_sku/",
+  };
 
-  const url = urls[searchType] + id + `${period ? '?range=' + period : ''}`;
+  const url = urls[searchType] + id + `${period ? "?range=" + period : ""}`;
+
+  console.log(url);
 
   return axios.get(url);
-}
+};

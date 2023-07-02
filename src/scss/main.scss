@@ -38,6 +38,7 @@
 @import "./components/dashboards/category-analytics";
 @import "./components/dashboards/analytics-charts";
 @import "./components/dashboards/search-form";
+@import "./components/dashboards/filter-sku";
 
 // подключение компонентов профиля
 @import "./components/profile/profile-info";
@@ -46,6 +47,7 @@
 @import "./components/profile/change-pass";
 @import "./components/profile/tariff-modal";
 @import "./components/profile/change-tariff";
+@import "./components/profile/refer";
 
 // подключение компонентов главной страницы
 @import "./components/main-page/hero";

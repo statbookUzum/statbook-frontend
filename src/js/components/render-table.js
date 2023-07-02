@@ -46,12 +46,22 @@ export function renderTable(tables, elements) {
     const imageLinkRegex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
     let indexOfImg = -1;
     let indexOfTitle = -1;
+    let indexOfTitleAnalyze = -1;
     let titleWidth = 114;
     let indexLink = -1;
+    const stickyTableElem = typeOfLang === 'ru'
+      ? { ru: 'название категории(рус)', uz: 'toifa nomi (rus)' }
+      : { ru: 'название категории(узб)', uz: 'toifa nomi (uzb)' };
     const arrRowTableEl = [];
     const arrHeaderTableEl = data[0].map((el, i) => {
       if (el.toLowerCase() === 'изображение' || el.toLowerCase() === 'rasm') {
         indexOfImg = i;
+        return `<th class="sticky">${el}</th>`
+      }
+
+      if (el.toLowerCase() === stickyTableElem.ru || el.toLowerCase() === stickyTableElem.uz) {
+        indexOfTitleAnalyze = i;
+        titleWidth = 0;
         return `<th class="sticky">${el}</th>`
       }
 
@@ -102,6 +112,11 @@ export function renderTable(tables, elements) {
             if (index === indexOfTitle) {
               const title = String(el) !== 'null' ? el : changeLang('Данные обрабатываются');
               return `<td class="sticky sticky--border" style="left: ${titleWidth}px; text-align: left;"><span class="sticky__border">${title}</span></td>`
+            }
+
+            if (index === indexOfTitleAnalyze) {
+              const title = String(el) !== 'null' ? el : changeLang('Данные обрабатываются');
+              return `<td class="sticky sticky--border" style="left: ${titleWidth}px; text-align: center;"><span class="sticky__border">${title}</span></td>`
             }
 
             if (index === indexLink) {

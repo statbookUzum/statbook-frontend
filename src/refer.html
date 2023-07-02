@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@include('partials/head.html', {"title": "Реферальная программа"})
+
+<body class="page__body" lang="ru" data-user-id="112">
+  <header class="header header--dash">
+    <div class="header__desc">
+      <div class="container header__container">
+        <a class="logo header__logo" href="#">
+          <img src="./img/logo.svg" alt="логотип statbook">
+        </a>
+
+        <button class="header__lang btn-reset" type="button" data-set-lang="ru">
+          <span class="header__lang-ru">ru</span>
+          <span class="header__lang-uz">uz</span>
+        </button>
+        <button class="header-account header-account--small header__account btn-reset">
+          <img class="header-account__image" src="./img/account-image.svg" alt="фото профиля">
+          <div class="header-account__info">
+            <div class="header-account__mail">
+              trifonova03@gmail.com
+            </div>
+            <div class="header-account__balance">
+              Баланс: <span class="account-balance">50 млн</span>. сум
+            </div>
+          </div>
+          <div class="header-account__list">
+            <div class="header-account__item">
+              <a href="#" class="header-account__link header-account__link--profile">
+                Профиль
+              </a>
+            </div>
+            <div class="header-account__item">
+              <a href="./profile.html#topup" class="header-account__link header-account__link--topup">
+                Пополнения
+              </a>
+            </div>
+            <div class="header-account__item">
+              <a href="#" class="header-account__link header-account__link--out">
+                Выйти из аккаунта
+              </a>
+            </div>
+          </div>
+        </button>
+
+        <nav class="nav header__nav nav--profile">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#" class="nav__link link-effect active">
+                Анализ товара
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="./category-report.html" class="nav__link link-effect">
+                Анализ категорий
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="./shop-report.html" class="nav__link link-effect">
+                Анализ магазина
+              </a>
+            </li>
+            <li class="nav__item">
+              <a href="./profile.html" class="nav__link link-effect">
+                Мой профиль
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <button type="button" class="header__button main-button main-button--stroke-white btn-reset">
+          Выйти
+        </button>
+      </div>
+    </div>
+
+    <div class="header__mob">
+      <div class="container header__container">
+        <a class="logo header__logo" href="#">
+          <img src="./img/logo.svg" alt="логотип statbook">
+        </a>
+
+        <button type="button" class="header__menu-btn menu-btn btn-reset">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="top-section">
+      <div class="container">
+        <h1 class="top-section__title">
+          Реферальная программа
+        </h1>
+      </div>
+    </section>
+
+    <section class="main-section main-section--charts">
+      <div class="container main-section__container">
+        <div class="main-section__wrapper refer main-border">
+          <div class="refer__top">
+            <label class="refer__label">
+              <div class="refer__legend">
+                Получите вашу реферальную ссылку
+              </div>
+              <div class="refer__link">
+                <input class="refer__input" type="text">
+                <button class="refer__copy btn-reset" type="button">
+                  <img src="./img/copy.svg" alt="копировать ссылку">
+                </button>
+              </div>
+            </label>
+            <label class="refer__label">
+              <div class="refer__legend">
+                Получите вашу реферальный код
+              </div>
+              <div class="refer__link">
+                <input class="refer__input" type="text">
+                <button class="refer__copy btn-reset" type="button">
+                  <img src="./img/copy.svg" alt="копировать ссылку">
+                </button>
+              </div>
+            </label>
+            <div class="refer__top-info">
+              Для вывода средств вам необходимо обраться к нам на почту <a
+                href="mailto:statbook@gmail.com">statbook@gmail.com</a> Мы дадим вам все инструкции по выводу стредств
+            </div>
+          </div>
+          <div class="refer__stat-title">
+            Реферальная статистика за 30 дней:
+          </div>
+          <ul class="refer__list">
+            <li class="refer__item refer__item--all">
+              <button class="refer__item-info btn-reset"></button>
+              <div class="refer__item-title">
+                Всего рефералов
+              </div>
+              <div class="refer__item-amount">
+                <span class="refer-amount">
+                  134
+                </span>
+                штук
+              </div>
+            </li>
+            <li class="refer__item refer__item--balance">
+              <button class="refer__item-info btn-reset"></button>
+              <div class="refer__item-title">
+                Реферальный баланс
+              </div>
+              <div class="refer__item-amount">
+                <span class="refer-amount">
+                  50
+                </span> сум
+              </div>
+            </li>
+            <li class="refer__item refer__item--out">
+              <button class="refer__item-info btn-reset"></button>
+              <div class="refer__item-title">
+                Выведено средств
+              </div>
+              <div class="refer__item-amount">
+                <span class="refer-amount">
+                  3.4
+                </span>
+                штук
+              </div>
+            </li>
+          </ul>
+          <div class="refer-table">
+            <div class="refer-table__inner">
+              <div class="refer-table__title">
+                Статистика рефералов за 30 дней
+              </div>
+              <div class="refer-table__grid">
+                <div class="refer-table__row-header">
+                  <div class="refer-table__item-header">
+                    <button class="btn-reset refer-table__sort-button">
+                      Дата
+                    </button>
+                    <button class="btn-reset refet-table__filter-button"></button>
+                  </div>
+                  <div class="refer-table__item-header">
+                    <button class="btn-reset refer-table__sort-button">
+                      Событие
+                    </button>
+                    <button class="btn-reset refet-table__filter-button"></button>
+                  </div>
+                  <div class="refer-table__item-header">
+                    <button class="btn-reset refer-table__sort-button">
+                      Тип события
+                    </button>
+                    <button class="btn-reset refet-table__filter-button"></button>
+                  </div>
+                  <div class="refer-table__item-header">
+                    <button class="btn-reset refer-table__sort-button">
+                      Начисления
+                    </button>
+                    <button class="btn-reset refet-table__filter-button"></button>
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    50
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    50
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    50
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    50
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                  <div class="refer-table__item">
+                    50
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="refer-table refer-table--withdrawal">
+            <div class="refer-table__inner">
+              <div class="refer-table__title">
+                Статистика вывода реферальных средств за 30 дней
+              </div>
+              <div class="refer-table__grid">
+                <div class="refer-table__row-header">
+                  <div class="refer-table__item-header">
+                    <button class="btn-reset refer-table__sort-button">
+                      Дата
+                    </button>
+                    <button class="btn-reset refet-table__filter-button"></button>
+                  </div>
+                  <div class="refer-table__item-header">
+                    <button class="btn-reset refer-table__sort-button">
+                      Событие
+                    </button>
+                    <button class="btn-reset refet-table__filter-button"></button>
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                </div>
+                <div class="refer-table__row">
+                  <div class="refer-table__item">
+                    12.12.2020
+                  </div>
+                  <div class="refer-table__item">
+                    Покупка
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  @include('partials/footer.html')
+
+  @include('partials/profile/tariff-modal.html')
+</body>
+
+</html>

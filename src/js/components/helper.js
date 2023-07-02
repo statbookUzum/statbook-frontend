@@ -1,9 +1,11 @@
 export function setHeight() {
-  const contentsTabsWrapper = document.querySelectorAll('.custom-tabs__content');
+  const contentsTabsWrapper = document.querySelectorAll(
+    ".custom-tabs__content"
+  );
 
-  contentsTabsWrapper.forEach(wrapper => {
-    const activePanel = wrapper.querySelector('.custom-tabs__panel--active');
-    wrapper.style.height = activePanel.offsetHeight + 'px';
+  contentsTabsWrapper.forEach((wrapper) => {
+    const activePanel = wrapper.querySelector(".custom-tabs__panel--active");
+    wrapper.style.height = activePanel.offsetHeight + "px";
   });
 }
 
@@ -21,7 +23,6 @@ export function debounce(func, ms) {
     savedThis;
 
   function wrapper() {
-
     if (isThrottled) {
       savedArgs = arguments;
       savedThis = this;
@@ -48,15 +49,15 @@ export function subtractDaysFromToday(days) {
   const today = new Date();
   const subtractedDate = new Date(today.getTime() - days * 24 * 60 * 60 * 1000);
   const yyyy = subtractedDate.getFullYear();
-  const mm = String(subtractedDate.getMonth() + 1).padStart(2, '0');
-  const dd = String(subtractedDate.getDate()).padStart(2, '0');
+  const mm = String(subtractedDate.getMonth() + 1).padStart(2, "0");
+  const dd = String(subtractedDate.getDate()).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
 }
 
 export function removeYearFromDate(strDate) {
   const date = new Date(strDate);
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const dd = String(date.getDate()).padStart(2, '0');
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0");
 
   return `${dd}.${mm}`;
 }
@@ -64,11 +65,21 @@ export function removeYearFromDate(strDate) {
 export function changePeriods(period) {
   if (!period) return;
 
-  const periodElements = document.querySelectorAll('[data-days-report]');
+  const periodElements = document.querySelectorAll("[data-days-report]");
 
   if (periodElements.length) {
-    periodElements.forEach(item => {
+    periodElements.forEach((item) => {
       item.textContent = period;
-    })
+    });
   }
+}
+
+export function getProductSkuFromString(str) {
+  let productSku = null;
+
+  if (str.includes("skuid")) {
+    productSku = str.slice(str.indexOf("skuid") + 6);
+  }
+
+  return productSku;
 }
