@@ -66,7 +66,6 @@ if (filterSku) {
           chartsData[key] = chartsData[key].map((item) => +item);
         }
 
-        console.log(cardInfo, chartsData);
         const dataForXlsx = getXlsxData();
         dataForXlsx.firstSheet = [
           [`Название продукта, SKU ${skuNumber}`, cardInfo.title.trim()],

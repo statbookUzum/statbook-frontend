@@ -146,8 +146,6 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         .then((transformData) => {
           setTableData(transformData.table);
 
-          console.log(categoryCardData.categoryName);
-
           categoryName.textContent = categoryCardData.categoryName;
 
           renderTableBreadcrumbs(categoryCardData.breadcrumbs, breadcrumbsEl);
@@ -240,7 +238,6 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           };
         })
         .then((response) => {
-          console.log(response);
           document.querySelector(".analytics-charts").style.display = "block";
 
           return {

@@ -20,7 +20,5 @@ export const getDataWithId = (id, searchType, period) => {
 
   const url = urls[searchType] + id + `${period ? "?range=" + period : ""}`;
 
-  console.log(url);
-
   return axios.get(url);
 };

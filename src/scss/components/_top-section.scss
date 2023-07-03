@@ -35,4 +35,8 @@
   @include w($md) {
     padding-top: 170px;
   }
+
+  @include w($sm) {
+    padding-top: 130px;
+  }
 }

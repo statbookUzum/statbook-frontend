@@ -18,95 +18,21 @@ import { searchForm, pageType, helperWrapper, lastViewContainer } from "./vars";
 import { changeLang } from "./change-lang";
 import { userId } from "./vars";
 
+// data for category card-name
+const categoryCardData = {};
+const inputHiddenForId = searchForm?.querySelector(".custom-input__hidden-id");
+
 if (searchForm) {
   const searchInput = searchForm.querySelector(".custom-input__input");
-  const inputHiddenForId = searchForm.querySelector(".custom-input__hidden-id");
   const periodSelect = document.querySelector("[data-period-select]");
   const mainWrapper = document.querySelector(".main-section__wrapper");
   let periodRange = periodSelect.value;
-
-  // data for category card-name
-  const categoryCardData = {};
 
   let debounceRender = debounce(renderHelperList, 1500);
 
   searchInput.addEventListener("input", () => {
     debounceRender(searchInput.value);
   });
-
-  function renderHelperList(value) {
-    showHelperList(value);
-
-    if (value) {
-      setLoadingAnimation(helperWrapper, true);
-
-      if (pageType === "category") {
-        getHelperData(value, pageType)
-          .then((response) => transformCategoryData(response))
-          .then((responseObj) => {
-            renderBreadcrumbs(
-              responseObj.breadcrumbs[responseObj.helperList[0]?.category_id]
-            );
-            renderCategoryList(responseObj.helperList);
-
-            inputHiddenForId.value = responseObj.helperList[0]
-              ? responseObj.helperList[0].category_id
-              : "";
-
-            categoryCardData.categoryName = responseObj.helperList[0]?.title_ru;
-            categoryCardData.breadcrumbs = responseObj.breadcrumbs[
-              responseObj.helperList[0]?.category_id
-            ]?.map((item) => (item.title_ru ? item.title_ru : item.title_uz));
-
-            setLoadingAnimation(helperWrapper, false);
-          })
-          .catch((error) => {
-            renderCategoryList(null);
-            console.log(error);
-          });
-      }
-
-      if (pageType === "shop") {
-        getHelperData(value, pageType)
-          .then((response) => transformShopData(response))
-          .then((helperList) => {
-            renderShopList(helperList);
-
-            inputHiddenForId.value = helperList[0]
-              ? helperList[0].seller_id
-              : "";
-
-            setLoadingAnimation(helperWrapper, false);
-          })
-          .catch((error) => {
-            console.log(error);
-            renderShopList(null);
-          });
-      }
-
-      if (pageType === "product") {
-        getHelperData(value, pageType)
-          .then((response) => transformProductData(response))
-          .then((helperList) => {
-            renderProductList(helperList);
-
-            if (helperList[0]) {
-              inputHiddenForId.value = helperList[0].product_id;
-              inputHiddenForId.setAttribute(
-                "data-hidden-title",
-                helperList[0].title
-              );
-            }
-
-            setLoadingAnimation(helperWrapper, false);
-          })
-          .catch((error) => {
-            console.log(error);
-            renderProductList(null);
-          });
-      }
-    }
-  }
 
   helperWrapper.addEventListener("click", ({ target }) => {
     if (target.matches(".search-form-request")) {
@@ -226,5 +152,77 @@ if (searchForm) {
 
   if (inputHiddenForId.value) {
     renderUploadDataBtn();
+  }
+}
+
+export function renderHelperList(value) {
+  showHelperList(value);
+
+  if (value) {
+    setLoadingAnimation(helperWrapper, true);
+
+    if (pageType === "category") {
+      getHelperData(value, pageType)
+        .then((response) => transformCategoryData(response))
+        .then((responseObj) => {
+          renderBreadcrumbs(
+            responseObj.breadcrumbs[responseObj.helperList[0]?.category_id]
+          );
+          renderCategoryList(responseObj.helperList);
+
+          inputHiddenForId.value = responseObj.helperList[0]
+            ? responseObj.helperList[0].category_id
+            : "";
+
+          categoryCardData.categoryName = responseObj.helperList[0]?.title_ru;
+          categoryCardData.breadcrumbs = responseObj.breadcrumbs[
+            responseObj.helperList[0]?.category_id
+          ]?.map((item) => (item.title_ru ? item.title_ru : item.title_uz));
+
+          setLoadingAnimation(helperWrapper, false);
+        })
+        .catch((error) => {
+          renderCategoryList(null);
+          console.log(error);
+        });
+    }
+
+    if (pageType === "shop") {
+      getHelperData(value, pageType)
+        .then((response) => transformShopData(response))
+        .then((helperList) => {
+          renderShopList(helperList);
+
+          inputHiddenForId.value = helperList[0] ? helperList[0].seller_id : "";
+
+          setLoadingAnimation(helperWrapper, false);
+        })
+        .catch((error) => {
+          console.log(error);
+          renderShopList(null);
+        });
+    }
+
+    if (pageType === "product") {
+      getHelperData(value, pageType)
+        .then((response) => transformProductData(response))
+        .then((helperList) => {
+          renderProductList(helperList);
+
+          if (helperList[0]) {
+            inputHiddenForId.value = helperList[0].product_id;
+            inputHiddenForId.setAttribute(
+              "data-hidden-title",
+              helperList[0].title
+            );
+          }
+
+          setLoadingAnimation(helperWrapper, false);
+        })
+        .catch((error) => {
+          console.log(error);
+          renderProductList(null);
+        });
+    }
   }
 }
