@@ -388,6 +388,12 @@
       background-repeat: no-repeat;
     }
 
+    &--extension {
+      &::before {
+        background-image: url("../img/extension-icon.svg");
+      }
+    }
+
     &--profile {
       &::before {
         background-image: url("../img/profile-header-account.svg");

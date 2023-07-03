@@ -1,0 +1,46 @@
+.beta {
+  display: flex;
+  align-items: center;
+
+  &__text {
+    position: relative;
+    display: inline-block;
+    padding: 1px 8px;
+    margin-left: auto;
+    border-radius: 5px;
+
+    background: linear-gradient(
+      300deg,
+      #224dff 0%,
+      #1844fb 17.71%,
+      #244fff 83.33%,
+      #0132fc 100%,
+      #0032ff 100%
+    );
+
+    color: $light-color;
+    font-size: 12px;
+    font-weight: 500;
+
+    overflow: hidden;
+  }
+}
+
+.beta__text:before {
+  content: "";
+  position: absolute;
+  left: -60px;
+  top: 0;
+  width: 100px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(-45deg);
+  transition: top 0.7s ease-in-out, left 0.7s ease-in-out;
+}
+
+.beta:hover .beta__text {
+  &::before {
+    left: 60px;
+    top: 0;
+  }
+}
