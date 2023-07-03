@@ -1,32 +1,34 @@
-import { disableScroll } from '../functions/disable-scroll';
-import { enableScroll } from '../functions/enable-scroll';
-import { scroll } from './smoothScroll';
+import { scroll } from "./smoothScroll";
 
-const navButton = document.querySelector('.menu-btn');
+const navButton = document.querySelector(".menu-btn");
 
 if (navButton) {
-  const navWrapper = document.querySelector('.header__desc');
-  const navLink = document.querySelectorAll('.nav__link')
+  const navWrapper = document.querySelector(".header__desc");
+  const navLink = document.querySelectorAll(".nav__link");
   if (window.innerWidth < 992) {
     scroll.destroy();
 
-    navButton.addEventListener('click', () => {
-      navButton.classList.toggle('active');
-      navWrapper.classList.toggle('active');
+    navButton.addEventListener("click", () => {
+      navButton.classList.toggle("active");
+      navWrapper.classList.toggle("active");
 
-      if (navWrapper.matches('.active')) {
-        disableScroll();
-      } else {
-        enableScroll();
-      }
+      setTimeout(() => {
+        if (navWrapper.matches(".active")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "initial";
+        }
+      }, 500);
     });
 
-    navLink.forEach(link => {
-      link.addEventListener('click', (e) => {
-        enableScroll();
+    navLink.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        setTimeout(() => {
+          document.body.style.overflow = "initial";
+        }, 500);
 
-        navButton.classList.remove('active');
-        navWrapper.classList.remove('active');
+        navButton.classList.remove("active");
+        navWrapper.classList.remove("active");
       });
     });
   }

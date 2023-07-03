@@ -175,6 +175,16 @@
   width: 28px;
   height: 23px;
 
+  &__click-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 103;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%);
+  }
+
   span,
   &::before,
   &::after {
@@ -212,6 +222,9 @@
     animation-name: menu-span;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
+
+    // top: 50%;
+    // transform: translateY(-50%) rotate(-45deg);
   }
 
   &::before,
@@ -219,6 +232,9 @@
     animation-name: menu-before-after;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
+
+    // top: 50%;
+    // transform: translateY(-50%) rotate(45deg);
   }
 }
 
