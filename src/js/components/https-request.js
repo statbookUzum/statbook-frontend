@@ -1,4 +1,5 @@
 import axios from "axios";
+const API_KEY = "ndnRqsNnE4FZ214L5jzN";
 
 export const getHelperData = (value, searchType) => {
   const urls = {
@@ -8,7 +9,11 @@ export const getHelperData = (value, searchType) => {
   };
   const url = urls[searchType] + value;
 
-  return axios.get(url);
+  return axios.get(url, {
+    headers: {
+      "api-key": API_KEY,
+    },
+  });
 };
 
 export const getDataWithId = (id, searchType, period) => {
@@ -20,5 +25,9 @@ export const getDataWithId = (id, searchType, period) => {
 
   const url = urls[searchType] + id + `${period ? "?range=" + period : ""}`;
 
-  return axios.get(url);
+  return axios.get(url, {
+    headers: {
+      "api-key": API_KEY,
+    },
+  });
 };

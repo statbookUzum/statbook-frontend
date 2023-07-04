@@ -1,25 +1,27 @@
 import { changeLang } from "./change-lang";
 
 export function setError(parentElement, flag) {
-  const errorEl = parentElement.querySelector('.error-container');
+  const errorEl = parentElement.querySelector(".error-container");
 
   if (errorEl) {
     if (flag) {
-      errorEl.classList.add('active');
+      errorEl.classList.add("active");
     } else {
-      errorEl.classList.remove('active');
+      errorEl.classList.remove("active");
     }
   } else {
-    const errorElement = document.createElement('div');
-    errorElement.classList.add('error-container');
-    errorElement.innerHTML = changeLang('Кажется что-то пошло не так, попробуйте позже');
+    const errorElement = document.createElement("div");
+    errorElement.classList.add("error-container");
+    errorElement.innerHTML = changeLang(
+      "Кажется что-то пошло не так, попробуйте позже"
+    );
 
-    parentElement.insertAdjacentElement('beforeEnd', errorElement);
+    parentElement.insertAdjacentElement("beforeEnd", errorElement);
 
     if (flag) {
-      errorElement.classList.add('active');
+      errorElement.classList.add("active");
     } else {
-      errorElement.classList.remove('active');
+      errorElement.classList.remove("active");
     }
   }
 }

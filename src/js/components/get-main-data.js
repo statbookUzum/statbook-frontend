@@ -130,7 +130,6 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
       const totalStat = document.querySelector("[data-total]");
       const categoryName = document.querySelector("[data-title]");
       const breadcrumbsEl = document.querySelector("[data-breadcrumbs]");
-
       getDataWithId(id, pageType, period)
         .then((response) => {
           console.log(response.data);
@@ -177,6 +176,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         })
         .catch((error) => {
           setDataToXlsx(null);
+          setLoadingAnimation(mainSectionInner, false);
           setError(mainSectionInner, true);
           button.disabled = false;
           requestStatus = false;
