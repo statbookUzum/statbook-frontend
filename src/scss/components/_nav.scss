@@ -12,6 +12,22 @@
   }
 
   &__item {
+    &--extension {
+      display: none;
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        color: currentColor;
+      }
+
+      @include w($lg) {
+        display: block;
+      }
+    }
+
     &:not(:last-child) {
       margin-right: 30px;
 

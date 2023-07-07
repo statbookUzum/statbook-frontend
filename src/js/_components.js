@@ -17,6 +17,7 @@ import "./components/sortTable";
 import "./components/change-lang";
 import "./components/disable-auth-btn";
 import "./components/category-select";
+import "./components/extension-modal";
 
 import "./components/helperTablePage/scaleTableImg";
 import "./components/helperTablePage/addBorderDuringScroll";

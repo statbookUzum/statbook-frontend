@@ -37,7 +37,8 @@
           </div>
           <div class="header-account__list">
             <div class="header-account__item">
-              <a href="#" class="header-account__link header-account__link--extension beta">
+              <a href="#" class="header-account__link header-account__link--extension beta"
+                data-graph-path="extension-modal">
                 Расширение
                 <span class="beta__text">beta</span>
               </a>
@@ -81,6 +82,12 @@
               <a href="./profile.html" class="nav__link link-effect">
                 Мой профиль
               </a>
+            </li>
+            <li class="nav__item nav__item--extension" data-graph-path="extension-modal">
+              <button class="btn-reset">
+                Расширение
+                <span class="beta__text">beta</span>
+              </button>
             </li>
           </ul>
         </nav>
@@ -635,194 +642,54 @@
 </footer>
 
   <div class="graph-modal">
-  <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="change-tariff-modal">
+  <div class="graph-modal__container" role="dialog" aria-modal="true" data-graph-target="extension-modal">
     <button class="btn-reset graph-modal__close change-tariff-modal__close"
       aria-label="Закрыть модальное окно"></button>
-    <div class="graph-modal__content">
-      <div class="tariff-modal">
-        <div class="tariff-modal__title">
-          Продление вашего тарифа
-        </div>
-        <form action="#" class="tariff-modal__form">
-          <legend class="tariff-modal__form-title">
-            Выберите нужный тариф для продления:
-          </legend>
-          <div class="scrollbar-wrapper" data-simplebar>
-            <ul class="tariff-modal__list">
-              <li class="tariff-modal__item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="tariff" value="standard" class="custom-checkbox__field visually-hidden"
-                    required>
-                  <span class="custom-checkbox__content">
-                    <div class="tariff-radio">
-                      <span class="tariff-radio__circle"></span>
-                      <div class="tariff-radio__title">
-                        Тариф — Standart
-                      </div>
-                      <div class="tariff-radio__price">
-                        <span>15к</span>/мес
-                      </div>
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="tariff" value="medium" class="custom-checkbox__field visually-hidden"
-                    required>
-                  <span class="custom-checkbox__content">
-                    <div class="tariff-radio">
-                      <span class="tariff-radio__circle"></span>
-                      <div class="tariff-radio__title">
-                        Тариф — Medium
-                      </div>
-                      <div class="tariff-radio__price">
-                        <span>20к</span>/мес
-                      </div>
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="tariff" value="high" class="custom-checkbox__field visually-hidden"
-                    required>
-                  <span class="custom-checkbox__content">
-                    <div class="tariff-radio">
-                      <span class="tariff-radio__circle"></span>
-                      <div class="tariff-radio__title">
-                        Тариф — High
-                      </div>
-                      <div class="tariff-radio__price">
-                        <span>35к</span>/мес
-                      </div>
-                    </div>
-                  </span>
-                </label>
-              </li>
-            </ul>
-          </div>
-          <legend class="tariff-modal__form-title">
-            Выберите нужный срок продления:
-          </legend>
-          <div class="scrollbar-wrapper" data-simplebar>
-            <ul class="tariff-modal__term-list">
-              <li class="tariff-modal__term-item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="term" value="7day" class="custom-checkbox__field visually-hidden" required>
-                  <span class="custom-checkbox__content">
-                    <div class="term-radio">
-                      7 дней
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__term-item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="term" value="14day" class="custom-checkbox__field visually-hidden" required>
-                  <span class="custom-checkbox__content">
-                    <div class="term-radio">
-                      14 дней
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__term-item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="term" value="30day" class="custom-checkbox__field visually-hidden" required>
-                  <span class="custom-checkbox__content">
-                    <div class="term-radio">
-                      Месяц
-                    </div>
-                  </span>
-                </label>
-              </li>
-              <li class="tariff-modal__term-item">
-                <label class="custom-checkbox">
-                  <input type="radio" name="term" value="90day" class="custom-checkbox__field visually-hidden" required>
-                  <span class="custom-checkbox__content">
-                    <div class="term-radio">
-                      3 месяца
-                    </div>
-                  </span>
-                </label>
-              </li>
-            </ul>
-          </div>
 
-          <div class="tariff-modal__bottom">
-            <div class="tariff-modal__price">
-              Сумма: <span>70к</span>
-            </div>
-            <button type="submit" class="tariff-modal__submit btn-reset main-button">
-              Продлить тариф
-            </button>
-            <div class="tariff-modal__checkbox agreement-checkbox">
-              <label class="custom-checkbox">
-                <input type="checkbox" class="custom-checkbox__field visually-hidden" required>
-                <span class="custom-checkbox__content">
-                </span>
-              </label>
-              <div class="agreement-checkbox__text">
-                Я подтверждаю, что ознакомился с разделом <a href="./index.html">Вопросы и ответы</a>. Я
-                понимаю, что приобретаю и согласен с условиями <a href="./privat-policy">пользовательского
-                  соглашения</a>.
-              </div>
-            </div>
-          </div>
-        </form>
+    <div class="graph-modal__content extension-modal">
+      <div class="extension-modal__title">
+        Установите наше расширение в <a href="#" target="_blank">интернет-магазин chrome</a>
       </div>
-
-      <!-- здесь добавить класс active для всплывашки -->
-      <div class="tariff-success">
-        <img class="tariff-success__icon" src="./img/success.svg" alt="Ваш тариф успешно продлен!">
-        <div class="tariff-success__text">
-          Ваш тариф успешно продлен!
-        </div>
-        <a href="#" class="tariff-success__button main-button btn-reset">
-          Перейти к аналите
+      <div class="extension-modal__tutorial-title">
+        Инструкция по установке
+      </div>
+      <ul class="extension-modal__tutorial-list">
+        <li class="extension-modal__tutorial-item">
+          <div class="extension-modal__tutorial-item-number">1</div>
+          <div class="extension-modal__tutorial-item-text">
+            Перейдите на страницу нашего расширения и установите его — <a href="#" target="_blank">ссылка на
+              расширение</a>
+          </div>
+        </li>
+        <li class="extension-modal__tutorial-item">
+          <div class="extension-modal__tutorial-item-number">2</div>
+          <div class="extension-modal__tutorial-item-text">
+            Перейдите на сайт uzum.uz. В списке расширений найдите наше и нажмите на иконку. В открывшемся окне введите
+            ваш
+            api-ключ и нажмите
+            войти
+          </div>
+        </li>
+        <li class="extension-modal__tutorial-item">
+          <div class="extension-modal__tutorial-item-number">3</div>
+          <div class="extension-modal__tutorial-item-text">
+            После успешной авторизации вы можете начать работу с нашим расширением. Приятной работы!
+          </div>
+        </li>
+      </ul>
+      <div class="extension-modal__buttons">
+        <a href="#" class="btn-reset main-button extension-modal__button" target="_blank">
+          Установить расширение
         </a>
       </div>
-    </div>
-  </div>
-  <div class="graph-modal__container no-money-wrapper" role="dialog" aria-modal="true"
-    data-graph-target="no-money-modal">
-    <button class="btn-reset graph-modal__close change-tariff-modal__close"
-      aria-label="Закрыть модальное окно"></button>
-    <div class="graph-modal__content">
-      <div class="no-money">
-        <div class="no-money__title">
-          На вашем счету недостаточно средств
+      <div class="extension-modal__api-key">
+        <div class="extension-modal__api-key-title">
+          Ваш api-ключ
         </div>
-        <p class="no-money__text">
-          Анализируйте рынок эффективнее с помощью нашего инновационного метода сбора информаци и мы предоставляем весь
-          спектр данных
-        </p>
-
-        <div class="no-money__buttons">
-          <button class="btn-reset main-button no-money__button">
-            Пополнить
-          </button>
+        <div class="extension-modal__api-key-value">
+          1234567890
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="graph-modal__container tariff-confirm-wrapper" role="dialog" aria-modal="true"
-    data-graph-target="tariff-confirm-modal">
-    <button class="btn-reset graph-modal__close change-tariff-modal__close"
-      aria-label="Закрыть модальное окно"></button>
-    <div class="graph-modal__content">
-      <div class="tariff-confirm">
-        <div class="tariff-confirm__title">
-          Вы подтверждаете смену тарифа на <span class="tariff-confirm-name"></span>
-        </div>
-
-        <div class="tariff-confirm__buttons">
-          <button class="btn-reset main-button tariff-confirm__button" data-tariffid data-periodid>
-            Подтверждаю
-          </button>
-        </div>
+        <button class="extension-modal__api-key-copy main-button btn-reset">Скопировать api-ключ</button>
       </div>
     </div>
   </div>

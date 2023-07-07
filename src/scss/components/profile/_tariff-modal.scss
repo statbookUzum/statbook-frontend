@@ -88,6 +88,17 @@
   &__checkbox {
     width: 100%;
   }
+
+  &__promo {
+    display: block;
+    max-width: 500px;
+    width: 100%;
+    height: 50px;
+
+    &::before {
+      background-image: url("../img/top-up-sum-icon.svg");
+    }
+  }
 }
 
 .change-tariff-modal__close {

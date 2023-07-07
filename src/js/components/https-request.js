@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_KEY = "ndnRqsNnE4FZ214L5jzN";
+const API_KEY = "0ZYxQBopRkTaem15";
 
 export const getHelperData = (value, searchType) => {
   const urls = {

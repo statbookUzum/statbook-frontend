@@ -27,7 +27,8 @@
           </div>
           <div class="header-account__list">
             <div class="header-account__item">
-              <a href="#" class="header-account__link header-account__link--extension beta">
+              <a href="#" class="header-account__link header-account__link--extension beta"
+                data-graph-path="extension-modal">
                 Расширение
                 <span class="beta__text">beta</span>
               </a>
@@ -71,6 +72,12 @@
               <a href="./profile.html" class="nav__link link-effect">
                 Мой профиль
               </a>
+            </li>
+            <li class="nav__item nav__item--extension" data-graph-path="extension-modal">
+              <button class="btn-reset">
+                Расширение
+                <span class="beta__text">beta</span>
+              </button>
             </li>
           </ul>
         </nav>
@@ -318,7 +325,7 @@
 
   @include('partials/footer.html')
 
-  @include('partials/profile/tariff-modal.html')
+  @include('partials/extension-modal.html')
 </body>
 
 </html>
