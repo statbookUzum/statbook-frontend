@@ -261,7 +261,8 @@ function stringToNumberAndRemoveImg(arr, typeOfTable) {
           childItem.toLowerCase() === "название категории(узб)" ||
           childItem.toLowerCase() === "toifa nomi (uzb)" ||
           childItem.toLowerCase() === "mahsulot nomi" ||
-          childItem.toLowerCase() === "characteristics"
+          childItem.toLowerCase() === "характеристики" ||
+          childItem.toLowerCase() === "xarakteristikalar"
         ) {
           exceptIndex.push(j);
         }
