@@ -1,5 +1,5 @@
 import { renderHelperList } from "./get-data.js";
-import { getCategorySelectData } from "./https-request.js";
+// import { getCategorySelectData } from "./https-request.js";
 // import { data } from "./categoryData.js";
 
 const categorySelect = document.querySelector(".category-select");
