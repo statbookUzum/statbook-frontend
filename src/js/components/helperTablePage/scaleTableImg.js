@@ -1,29 +1,34 @@
-const table = document.querySelector('[data-table-review]');
+const table = document.querySelector("[data-table-review]");
 
 if (table) {
-  const tooltipEl = document.createElement('div');
-  tooltipEl.classList.add('table-tooltip');
+  const tooltipEl = document.createElement("div");
+  tooltipEl.classList.add("table-tooltip");
   document.body.appendChild(tooltipEl);
 
-  table.addEventListener('mouseover', ({ target }) => {
-    if (target.matches('.table-img')) {
+  table.addEventListener("mouseover", ({ target }) => {
+    if (target.matches(".table-img")) {
+      console.log("img");
       const x = target.getBoundingClientRect().right.toFixed();
       const y = target.getBoundingClientRect().bottom.toFixed();
-      const imgPath = target.getAttribute('src');
-      const altImg = target.getAttribute('alt');
+      const imgPath = target.getAttribute("src");
+      const altImg = target.getAttribute("alt");
 
-      tooltipEl.innerHTML = `<img src="${imgPath}" alt="${altImg}">`
+      tooltipEl.innerHTML = `<img src="${imgPath}" alt="${altImg}">`;
       tooltipEl.style.cssText = `left: ${x}px; top: ${y}px;`;
-      tooltipEl.classList.add('active');
+      tooltipEl.classList.add("active");
 
-      target.addEventListener('mouseleave', ({ target }) => {
-        if (target.matches('.table-img')) {
-          tooltipEl.classList.remove('active');
-          tooltipEl.style.cssText = 'left: 0; top: 0;'
+      target.addEventListener(
+        "mouseleave",
+        ({ target }) => {
+          if (target.matches(".table-img")) {
+            tooltipEl.classList.remove("active");
+            tooltipEl.style.cssText = "left: 0; top: 0;";
 
-          return;
-        }
-      }, { once: true });
+            return;
+          }
+        },
+        { once: true }
+      );
     }
   });
 }

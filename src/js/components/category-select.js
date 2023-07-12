@@ -1,4 +1,6 @@
 import { renderHelperList } from "./get-data.js";
+import { getCategorySelectData } from "./https-request.js";
+// import { data } from "./categoryData.js";
 
 const categorySelect = document.querySelector(".category-select");
 
@@ -24,6 +26,16 @@ if (categorySelect) {
       hiddenInput.value = item.dataset.value;
       renderHelperList(searchInput.value);
 
+      const oldActiveItem = categorySelect.querySelector(
+        ".category-select__item.checked"
+      );
+
+      if (oldActiveItem) {
+        oldActiveItem.classList.remove("checked");
+      }
+
+      item.classList.add("checked");
+
       if (item.closest(".disable")) return;
 
       item.classList.toggle("active");
@@ -34,3 +46,41 @@ if (categorySelect) {
     categorySelect.classList.remove("active");
   });
 }
+
+function renderCategoryItem(dataItem) {
+  console.log(dataItem);
+  return dataItem
+    .map((item) => {
+      if (item.branch.length === 0) {
+        return `
+        <div class="category-select__item disable" data-value="${item.category_id}">
+          <div class="category-select__item-title">${item.title_ru}</div>
+        </div>
+      `;
+      } else {
+        return `
+        <div class="category-select__item" data-value="${item.category_id}">
+          <div class="category-select__item-title">${item.title_ru}</div>
+          <div class="category-select__item-list">
+            ${renderCategoryItem(item.branch)}
+          </div>
+        </div>
+      `;
+      }
+    })
+    .join("");
+}
+
+function renderCategorySelectData() {
+  const categorySelectList = categorySelect.querySelector(
+    ".category-select__list"
+  );
+
+  categorySelectList.innerHTML = `
+    ${renderCategoryItem(data)}
+  `;
+}
+
+// getCategorySelectData().then(({ data }) => {
+//   renderCategorySelectData(data);
+// });

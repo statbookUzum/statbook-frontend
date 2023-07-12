@@ -40,6 +40,7 @@ import {
 } from "./helperCharts/getCurrentSkuProduct";
 import { renderSkuFilter } from "./helperCharts/filterSku";
 import { changeSkuData } from "./helperCharts/changeSku";
+import { tableHeaderTooltip } from "./helperTablePage/tableHeaderTooltip";
 
 const mainSectionInner = document.querySelector(".main-section__inner");
 const mainSectionWrapper = document.querySelector(".main-section__wrapper");
@@ -88,6 +89,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
         .then((transformData) => {
           setTableData(transformData.table);
           renderTable(transformData.table, tableList);
+          tableHeaderTooltip();
           renderTotalStat(transformData.totalStat, totalStat);
           renderSellerCard(transformData.cardInfo, sellerCard);
 
@@ -149,6 +151,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
           renderTableBreadcrumbs(categoryCardData.breadcrumbs, breadcrumbsEl);
           renderTable(transformData.table, tableList);
+          tableHeaderTooltip();
           renderTotalStat(transformData.totalStat, totalStat);
 
           const arrToXlsx = {

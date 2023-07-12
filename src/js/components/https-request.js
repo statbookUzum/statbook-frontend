@@ -1,5 +1,11 @@
 import axios from "axios";
 
+const API_KEY = "0ZYxQBopRkTaem15";
+
+// export const getCategorySelectData = () => {
+//   return axios.get("https://statbook.uz/public/uploads/menu.json");
+// };
+
 export const getHelperData = (value, searchType) => {
   const urls = {
     shop: "https://statbook.uz/server/get_seller?title=",
@@ -8,7 +14,11 @@ export const getHelperData = (value, searchType) => {
   };
   const url = urls[searchType] + value;
 
-  return axios.get(url);
+  return axios.get(url, {
+    headers: {
+      "api-key": API_KEY,
+    },
+  });
 };
 
 export const getDataWithId = (id, searchType, period) => {
@@ -20,5 +30,9 @@ export const getDataWithId = (id, searchType, period) => {
 
   const url = urls[searchType] + id + `${period ? "?range=" + period : ""}`;
 
-  return axios.get(url);
+  return axios.get(url, {
+    headers: {
+      "api-key": API_KEY,
+    },
+  });
 };

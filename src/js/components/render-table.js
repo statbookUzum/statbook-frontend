@@ -48,6 +48,7 @@ export function renderTable(tables, elements) {
     let indexOfTitleAnalyze = -1;
     let titleWidth = 114;
     let indexLink = -1;
+
     const stickyTableElem =
       typeOfLang === "ru"
         ? { ru: "название категории(рус)", uz: "toifa nomi (rus)" }

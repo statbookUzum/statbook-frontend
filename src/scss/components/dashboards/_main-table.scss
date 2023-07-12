@@ -138,6 +138,38 @@ th {
   }
 }
 
+.tooltip-container {
+  position: fixed;
+  z-index: 100;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  display: none;
+  max-width: 250px;
+
+  color: $light-color;
+  font-size: 14px;
+  color: $light-color;
+
+  transform: translateX(-50%);
+
+  background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));
+  pointer-events: none;
+
+  &::before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: -4px;
+    height: 8px;
+    width: 8px;
+
+    background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));
+    transform: translate(-50%) rotate(45deg);
+  }
+}
+
 tr {
   position: relative;
   text-align: left;
