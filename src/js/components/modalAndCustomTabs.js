@@ -1,5 +1,4 @@
 import GraphModal from "graph-modal";
-// import SmoothScroll from 'smooth-scroll';
 import { setHeight } from "./helper";
 import { scroll } from "./smoothScroll";
 

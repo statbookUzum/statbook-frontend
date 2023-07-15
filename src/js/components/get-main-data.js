@@ -207,6 +207,8 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
             (item) => item.sku === productSku
           );
 
+          console.log(changeLang("cтатистика по всем SKU"));
+
           isSku
             ? renderSkuTop(productSku, skuFilterContainer)
             : renderSkuTop(

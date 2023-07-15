@@ -74,6 +74,8 @@ export function changeLang(word) {
     "количество позиций": "Pozitsiyalar soni",
     "ссылка на продукт": "Mahsulot havolasi",
     "статистика по всем sku": "Barcha sku bo`yicha statistika",
+    "Характеристики отсутствуют": "Xarakteristikalar mavjud emas",
+    "cтатистика по всем sku": "Barcha SKU bo`yicha statistika",
   };
 
   return typeOfLang === "ru" ? word : langObj[word.toLowerCase()];

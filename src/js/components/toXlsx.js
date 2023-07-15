@@ -19,7 +19,7 @@ if (downloadBtn) {
       const workbook = utils.book_new();
       if (secondSheet) {
         if (!isProductPage) {
-          stringToNumberAndRemoveImg(secondSheet);
+          stringToNumber(secondSheet);
         }
         const rulesArr = !isProductPage
           ? setFormatDataArr(secondSheet[1])
@@ -40,13 +40,13 @@ if (downloadBtn) {
 
       if (firstSheet) {
         if (!isProductPage) {
-          stringToNumberAndRemoveImg(firstSheet, "analyze");
+          stringToNumber(firstSheet);
         }
         const rulesArr = !isProductPage
           ? setFormatDataArr(firstSheet[1])
           : null;
         const sheet = utils.aoa_to_sheet(firstSheet);
-        const wscols = setWidthCols(firstSheet);
+        const wscols = setWidthCols(firstSheet, "analyze");
         sheet["!cols"] = wscols;
         if (!isProductPage) {
           getStyleToTable(sheet, "analyze", rulesArr);
@@ -168,55 +168,45 @@ function getStyleToTable(sheet, typeOfTable, rulesArr = []) {
   for (let cell in sheet) {
     if (cell[0] === "!") continue;
 
-    if (cell === "A1" || cell === "B1") {
-      sheet[cell].s = {
-        font: {
-          sz: 14,
-          bold: false,
-          color: { rgb: "040f23" },
-        },
-        fill: { fgColor: { rgb: "F9CB9C" } },
-      };
-
-      continue;
-    }
-
-    if (cell.length === 2 && cell[1] == "2") {
-      sheet[cell].s = {
-        font: {
-          name: "Calibri",
-          sz: 12,
-          bold: true,
-          color: { rgb: "040f23" },
-        },
-        fill: { fgColor: { rgb: "b6cef7" } },
-      };
-
-      continue;
-    }
-
-    if (cell[0] === "A" && typeOfTable !== "analyze") {
-      sheet[cell].s = {
-        font: {
-          name: "Calibri",
-          sz: 12,
-          bold: false,
-          color: { rgb: "040f23" },
-        },
-      };
-
-      continue;
-    }
-
     sheet[cell].s = {
       font: {
         sz: 12,
         bold: false,
         color: { rgb: "040f23" },
       },
-      alignment: { horizontal: "center" },
-      numFmt: "0",
+      border: {
+        right: { style: "thin", color: { rgb: "000000" } },
+      },
     };
+
+    if (cell === "A1" || cell === "B1") {
+      sheet[cell].s.font.sz = 14;
+      sheet[cell].s.fill = { fgColor: { rgb: "F9CB9C" } };
+
+      continue;
+    }
+
+    if (cell.length === 2 && cell[1] == "2") {
+      sheet[cell].s.font.bold = true;
+      sheet[cell].s.fill = { fgColor: { rgb: "b6cef7" } };
+
+      continue;
+    }
+
+    if (
+      (cell[0] === "B" ||
+        cell[0] === "A" ||
+        cell[0] === "C" ||
+        cell[0] === "D") &&
+      typeOfTable !== "analyze"
+    ) {
+      sheet[cell].s.alignment = { horizontal: "left" };
+
+      continue;
+    }
+
+    sheet[cell].s.alignment = { horizontal: "center" };
+    sheet[cell].s.numFmt = "0";
 
     if (rulesArr.includes(cell[0])) {
       sheet[cell].s.numFmt = "#,##0.00";
@@ -224,11 +214,21 @@ function getStyleToTable(sheet, typeOfTable, rulesArr = []) {
   }
 }
 
-function setWidthCols(arr) {
+function setWidthCols(arr, typeOfTable) {
   const wscols = [];
+
+  if (typeOfTable === "analyze") {
+    arr.forEach(() => {
+      wscols.push({ wch: 24 });
+    });
+
+    return wscols;
+  }
 
   arr.forEach((item, i) => {
     if (i === 0) {
+      wscols.push({ wch: 14 });
+    } else if (i === 1) {
       wscols.push({ wch: 32 });
     } else {
       wscols.push({ wch: 18 });
@@ -238,12 +238,10 @@ function setWidthCols(arr) {
   return wscols;
 }
 
-function stringToNumberAndRemoveImg(arr, typeOfTable) {
+function stringToNumber(arr) {
   const exceptIndex = [];
 
   arr.forEach((item, i) => {
-    if (typeOfTable !== "analyze") item.shift();
-
     if (i === 1) {
       item.forEach((childItem, j) => {
         if (
@@ -262,7 +260,9 @@ function stringToNumberAndRemoveImg(arr, typeOfTable) {
           childItem.toLowerCase() === "toifa nomi (uzb)" ||
           childItem.toLowerCase() === "mahsulot nomi" ||
           childItem.toLowerCase() === "характеристики" ||
-          childItem.toLowerCase() === "xarakteristikalar"
+          childItem.toLowerCase() === "xarakteristikalar" ||
+          childItem.toLowerCase() === "изображение" ||
+          childItem.toLowerCase() === "rasm"
         ) {
           exceptIndex.push(j);
         }

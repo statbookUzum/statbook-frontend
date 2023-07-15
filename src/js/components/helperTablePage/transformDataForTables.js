@@ -84,16 +84,23 @@ export function transformDataForTable(data, pageType) {
 
 function transformObjProperty(obj) {
   for (let prop in obj) {
-    if (prop)
-      if (
-        prop === "avg_rating" ||
-        prop === "avg_product_rating" ||
-        prop === "rating"
-      ) {
-        obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(2) : +obj[prop];
+    if (!prop) continue;
 
-        continue;
-      }
+    if (prop === "characteristics" && obj[prop] === null) {
+      obj[prop] = changeLang("Характеристики отсутствуют");
+
+      continue;
+    }
+
+    if (
+      prop === "avg_rating" ||
+      prop === "avg_product_rating" ||
+      prop === "rating"
+    ) {
+      obj[prop] = +obj[prop] % 1 !== 0 ? (+obj[prop]).toFixed(2) : +obj[prop];
+
+      continue;
+    }
 
     if (prop === "missed_revenue_percent") {
       obj[prop] =
@@ -204,6 +211,7 @@ function renameTableHeader(arr, langType) {
     orders_amount_per_day: "Количество заказов, шт.",
     link: "Ссылка на товар",
     characteristics: "Характеристики",
+    sku_actual: "SKU",
   };
 
   const renameObjUz = {
@@ -248,6 +256,7 @@ function renameTableHeader(arr, langType) {
     rating: "O’rtacha reyting",
     num_of_active_category: "Faol toifalar soni",
     characteristics: "Xarakteristikalar",
+    sku_actual: "SKU",
   };
 
   return arr.map((item) => {

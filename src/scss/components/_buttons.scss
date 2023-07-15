@@ -222,9 +222,6 @@
     animation-name: menu-span;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
-
-    // top: 50%;
-    // transform: translateY(-50%) rotate(-45deg);
   }
 
   &::before,
@@ -232,9 +229,6 @@
     animation-name: menu-before-after;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
-
-    // top: 50%;
-    // transform: translateY(-50%) rotate(45deg);
   }
 }
 
