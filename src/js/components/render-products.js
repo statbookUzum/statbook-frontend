@@ -22,7 +22,7 @@ export function renderProductCard(data, element, breadcrumbs) {
 
   element.innerHTML = `
   <div class="product-info__image">
-  <img src="${photo ? photo : "./img/product-test-image.jpg"}"
+  <img src="${photo ? photo : "/img/seller-card-default.svg"}"
     alt="${title}">
   </div>
   <div class="product-info__breadcrumbs">
