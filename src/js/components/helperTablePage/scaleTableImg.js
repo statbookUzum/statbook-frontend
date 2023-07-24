@@ -7,7 +7,6 @@ if (table) {
 
   table.addEventListener("mouseover", ({ target }) => {
     if (target.matches(".table-img")) {
-      console.log("img");
       const x = target.getBoundingClientRect().right.toFixed();
       const y = target.getBoundingClientRect().bottom.toFixed();
       const imgPath = target.getAttribute("src");

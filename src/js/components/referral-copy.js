@@ -7,7 +7,6 @@ if (copyBtns.length) {
       const copyText = input.value;
 
       if (copyText) {
-        console.log(copyText);
         navigator.clipboard.writeText(copyText.trim());
 
         const messageEl = document.createElement("span");

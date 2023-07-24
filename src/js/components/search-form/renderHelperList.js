@@ -46,7 +46,6 @@ export function renderCategoryList(arr) {
 
 export function renderShopList(arr) {
   helperList.innerHTML = "";
-  console.log(arr);
 
   if (!arr) {
     helperList.innerHTML = changeLang(

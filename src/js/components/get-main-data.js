@@ -58,6 +58,10 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
 
   if (requestStatus) return;
 
+  if (inputHiddenForId.getAttribute("data-hidden-title")) {
+    searchInput.value = inputHiddenForId.getAttribute("data-hidden-title");
+  }
+
   requestStatus = true;
   button.disabled = true;
   blurElementAndChildren(label);

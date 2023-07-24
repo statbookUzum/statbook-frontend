@@ -151,4 +151,16 @@
     line-height: 141.5%;
     color: rgba($color-blue-35, 0.25);
   }
+
+  &__spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 51px;
+
+    svg {
+      width: 24px;
+      height: 100%;
+    }
+  }
 }

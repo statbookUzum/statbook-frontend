@@ -82,11 +82,6 @@ if (searchForm) {
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const titleForCash =
-      pageType === "category"
-        ? categoryCardData.categoryName
-        : inputHiddenForId.getAttribute("data-hidden-title");
-
     getMainData(searchForm, pageType, categoryCardData, periodRange);
   });
 
