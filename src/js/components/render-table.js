@@ -150,7 +150,9 @@ export function renderTable(tables, elements) {
 
               if (index === indexLink) {
                 return `
-              <td><span data-link="${el}" class="table__link">${changeLang(
+              <td><span data-link="${el}" data-link-tooltip="${changeLang(
+                  "Ссылка скопирована!"
+                )}" class="table__link">${changeLang(
                   "Ссылка на продукт"
                 )}</span></td>
               `;

@@ -76,6 +76,7 @@ export function changeLang(word) {
     "статистика по всем sku": "Barcha sku bo`yicha statistika",
     "Характеристики отсутствуют": "Xarakteristikalar mavjud emas",
     "cтатистика по всем sku": "Barcha SKU bo`yicha statistika",
+    "ссылка скопирована!": "Havola nusxalandi!",
   };
 
   return typeOfLang === "ru" ? word : langObj[word.toLowerCase()];

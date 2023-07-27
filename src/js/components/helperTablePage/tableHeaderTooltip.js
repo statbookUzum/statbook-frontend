@@ -3,7 +3,7 @@ const setTableTooltipText = () => {
   tableHeader.forEach((th) => {
     const thText = th.textContent.toLowerCase().trim();
 
-    if (thText === "средняя цена, uzs" || thText === "o’rtacha narx") {
+    if (thText === "средняя цена, uzs") {
       th.setAttribute(
         "data-text",
         "Среднее арифметическое цен продаж товаров за выбранный период"
@@ -11,10 +11,15 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (
-      thText === "ср. базовая цена,. uzs" ||
-      thText === "o’rtacha asosiy narx, uzs"
-    ) {
+    if (thText === "o’rtacha narx, uzs") {
+      th.setAttribute(
+        "data-text",
+        "Tanlangan uchun mahsulotlarni sotish narxlarining o'rtacha arifmetik qiymati"
+      );
+      return;
+    }
+
+    if (thText === "ср. базовая цена,. uzs") {
       th.setAttribute(
         "data-text",
         "Среднее арифметическое цен без учета скидок и акций"
@@ -22,7 +27,15 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (thText === "средний чеĸ" || thText === "o’rtacha chek") {
+    if (thText === "o’rtacha asosiy narx, uzs") {
+      th.setAttribute(
+        "data-text",
+        "Chegirmalar va aksiyalarni hisobga olmagan holda narxlarning arifmetik o'rtacha qiymati"
+      );
+      return;
+    }
+
+    if (thText === "средний чеĸ") {
       th.setAttribute(
         "data-text",
         "Средняя арифметическая стоимость 1 заказа за выбранный период"
@@ -30,7 +43,23 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (thText === "базовая выручка, uzs" || thText === "asosiy daromad, uzs") {
+    if (thText === "o’rtacha chek") {
+      th.setAttribute(
+        "data-text",
+        "Tanlangan davr uchun 1 ta buyurtmaning o'rtacha arifmetik qiymati"
+      );
+      return;
+    }
+
+    if (thText === "sotish soni, dona") {
+      th.setAttribute(
+        "data-text",
+        "Bu buyurtma berish mumkin bo'lgan mahsulotlar sonining kamayishi"
+      );
+      return;
+    }
+
+    if (thText === "базовая выручка, uzs") {
       th.setAttribute(
         "data-text",
         "Выручка, рассчитанная на основе цен без учета скидок и акций"
@@ -38,10 +67,15 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (
-      thText === "стоимость остатков, uzs" ||
-      thText === "qoldiqlar qiymati, uzs"
-    ) {
+    if (thText === "asosiy daromad, uzs") {
+      th.setAttribute(
+        "data-text",
+        "Chegirmalar va aksiyalarni inobatga olmagan holda narxlar asosida hisoblangan daromad"
+      );
+      return;
+    }
+
+    if (thText === "стоимость остатков, uzs") {
       th.setAttribute(
         "data-text",
         "Сумма остатков в наличии, рассчитанная по текущей цене реализации"
@@ -49,10 +83,15 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (
-      thText === "упущенная выручĸа, uzs" ||
-      thText === "yo`qotilgan daromad, uzs"
-    ) {
+    if (thText === "qoldiqlar qiymati, uzs") {
+      th.setAttribute(
+        "data-text",
+        "Joriy sotish narxida hisoblangan mavjud qoldiqlar summasi"
+      );
+      return;
+    }
+
+    if (thText === "упущенная выручĸа, uzs") {
       th.setAttribute(
         "data-text",
         "Выручка, потерянная продавцом из-за отсутствия товара на складе"
@@ -60,10 +99,15 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (
-      thText === "доля упущенной выручĸи, %" ||
-      thText === "yo`qotilgan daromadning ulushi, %"
-    ) {
+    if (thText === "yo`qotilgan daromad, uzs") {
+      th.setAttribute(
+        "data-text",
+        "Omborda mahsulotlar yo'qligi sababli sotuvchi tomonidan yo'qotilgan daromad"
+      );
+      return;
+    }
+
+    if (thText === "доля упущенной выручĸи, %") {
       th.setAttribute(
         "data-text",
         "% упущенной выручки в объеме прогнозируемой выручки."
@@ -71,10 +115,15 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (
-      thText === "кол-во акт. продавцов" ||
-      thText === "faol sotuvchilar soni"
-    ) {
+    if (thText === "yo`qotilgan daromadning ulushi, %") {
+      th.setAttribute(
+        "data-text",
+        "Tahmin qilingan daromad hajmidagi yo'qolgan daromadning %"
+      );
+      return;
+    }
+
+    if (thText === "кол-во акт. продавцов") {
       th.setAttribute(
         "data-text",
         "Количество активных продавцов за рассматриваемый период"
@@ -82,10 +131,12 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (
-      thText === "кол-во акт. товаров, шт." ||
-      thText === "faol mahsulotlar soni, dona"
-    ) {
+    if (thText === "faol sotuvchilar soni") {
+      th.setAttribute("data-text", "Ko'rib chiqilayotgan davr uchun");
+      return;
+    }
+
+    if (thText === "кол-во акт. товаров, шт.") {
       th.setAttribute(
         "data-text",
         "Количество активных товаров за рассматриваемый период"
@@ -93,10 +144,15 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (
-      thText === "ср. кол-во прод.товара, шт." ||
-      thText === "o’rtacha sotilgan mahsulotlar soni, dona"
-    ) {
+    if (thText === "faol mahsulotlar soni, dona") {
+      th.setAttribute(
+        "data-text",
+        "Ko'rib chiqilayotgan davr uchun faol mahsulotlar soni"
+      );
+      return;
+    }
+
+    if (thText === "ср. кол-во прод.товара, шт.") {
       th.setAttribute(
         "data-text",
         "Это количество проданных товаров, приходящихся на 1 продавца по категории"
@@ -104,10 +160,26 @@ const setTableTooltipText = () => {
       return;
     }
 
-    if (thText === "средний доход, uzs" || thText === "o’rtacha daromad, uzs") {
+    if (thText === "o’rtacha sotilgan mahsulotlar soni, dona") {
+      th.setAttribute(
+        "data-text",
+        "Toifaga xos bir sotuvchiga to'g'ri keladigan sotilgan mahsulotlar soni"
+      );
+      return;
+    }
+
+    if (thText === "средний доход, uzs") {
       th.setAttribute(
         "data-text",
         "Сумма выручки, приходящаяся на 1 продавца по категории"
+      );
+      return;
+    }
+
+    if (thText === "o’rtacha daromad, uzs") {
+      th.setAttribute(
+        "data-text",
+        "Toifaga xos bir sotuvchiga to'g'ri keladigan daromad miqdori"
       );
       return;
     }
