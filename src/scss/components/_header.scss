@@ -400,6 +400,12 @@
       }
     }
 
+    &--tg {
+      &::before {
+        background-image: url("../img/tg-bot.svg");
+      }
+    }
+
     &--profile {
       &::before {
         background-image: url("../img/profile-header-account.svg");

@@ -6,6 +6,7 @@ export function transformDataForTable(data, pageType) {
     review: data.review,
     analyze: data.analyze,
   });
+
   const obj = {};
   let deleteableProp;
 
@@ -59,6 +60,11 @@ export function transformDataForTable(data, pageType) {
       deleteableProp
     );
 
+    // add category_link
+    if (el[0] === "analyze" && pageType === "category") {
+      sortedHeader.push("category_link");
+    }
+
     obj[el[0]] = [renameTableHeader(sortedHeader, typeOfLang)];
 
     el[1].forEach((item) => {
@@ -66,6 +72,10 @@ export function transformDataForTable(data, pageType) {
 
       if (el[0] === "review" && pageType === "category") {
         transformItem.link = `https://uzum.uz/ru/product/${transformItem.product_id}?skuid=${transformItem.sku}`;
+      }
+
+      if (el[0] === "analyze" && pageType === "category") {
+        transformItem.category_link = `https://uzum.uz/ru/category/${transformItem.category_id}`;
       }
 
       obj[el[0]].push(
@@ -212,6 +222,7 @@ function renameTableHeader(arr, langType) {
     link: "Ссылка на товар",
     characteristics: "Характеристики",
     sku_actual: "SKU",
+    category_link: "Ссылка на категорию",
   };
 
   const renameObjUz = {
@@ -257,6 +268,7 @@ function renameTableHeader(arr, langType) {
     num_of_active_category: "Faol toifalar soni",
     characteristics: "Xarakteristikalar",
     sku_actual: "SKU",
+    category_link: "Havola",
   };
 
   return arr.map((item) => {

@@ -87,6 +87,7 @@ export function renderTable(tables, elements) {
 
       if (
         el.toLowerCase() === "ссылка на товар" ||
+        el.toLowerCase() === "ссылка на категорию" ||
         el.toLowerCase() === "havola"
       ) {
         indexLink = i;
@@ -152,9 +153,7 @@ export function renderTable(tables, elements) {
                 return `
               <td><span data-link="${el}" data-link-tooltip="${changeLang(
                   "Ссылка скопирована!"
-                )}" class="table__link">${changeLang(
-                  "Ссылка на продукт"
-                )}</span></td>
+                )}" class="table__link">${changeLang("Ссылка")}</span></td>
               `;
               }
 

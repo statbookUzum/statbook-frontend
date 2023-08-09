@@ -1,19 +1,21 @@
 import { pageType } from "../vars";
 
-const table = document.querySelector("[data-table-review]");
+const tables = document.querySelectorAll(".table");
 
 if (pageType === "category") {
-  table.addEventListener("click", ({ target }) => {
-    if (target.matches(".table__link")) {
-      const link = target.getAttribute("data-link");
+  tables.forEach((table) => {
+    table.addEventListener("click", ({ target }) => {
+      if (target.matches(".table__link")) {
+        const link = target.getAttribute("data-link");
 
-      navigator.clipboard.writeText(link);
+        navigator.clipboard.writeText(link);
 
-      target.classList.add("copy");
+        target.classList.add("copy");
 
-      setTimeout(() => {
-        target.classList.remove("copy");
-      }, 1500);
-    }
+        setTimeout(() => {
+          target.classList.remove("copy");
+        }, 1500);
+      }
+    });
   });
 }

@@ -253,6 +253,7 @@ function stringToNumber(arr) {
           childItem.toLowerCase() === "продавец" ||
           childItem.toLowerCase() === "sotuvchi" ||
           childItem.toLowerCase() === "ссылка на товар" ||
+          childItem.toLowerCase() === "ссылка на категорию" ||
           childItem.toLowerCase() === "havola" ||
           childItem.toLowerCase() === "название категории(рус)" ||
           childItem.toLowerCase() === "toifa nomi (rus)" ||
