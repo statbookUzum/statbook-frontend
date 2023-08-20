@@ -1,22 +1,24 @@
 import GraphModal from "graph-modal";
 
-const copyBtn = document.querySelector(".extension-modal__api-key-copy");
+const copyBtnList = document.querySelectorAll(".extension-modal__api-key-copy");
 
-if (copyBtn) {
-  copyBtn.addEventListener("click", () => {
-    const apiKey = document.querySelector(
-      ".extension-modal__api-key-value"
-    ).textContent;
+if (copyBtnList.length) {
+  copyBtnList.forEach((copyBtn) => {
+    copyBtn.addEventListener("click", () => {
+      const apiKey = document.querySelector(
+        ".extension-modal__api-key-value"
+      ).textContent;
 
-    navigator.clipboard.writeText(apiKey.trim());
+      navigator.clipboard.writeText(apiKey.trim());
 
-    copyBtn.textContent = "Api-ключ скопирован";
-    copyBtn.disabled = true;
+      copyBtn.textContent = "Api-ключ скопирован";
+      copyBtn.disabled = true;
 
-    setTimeout(() => {
-      copyBtn.textContent = "Скопировать api-ключ";
-      copyBtn.disabled = false;
-    }, 3000);
+      setTimeout(() => {
+        copyBtn.textContent = "Скопировать api-ключ";
+        copyBtn.disabled = false;
+      }, 3000);
+    });
   });
 }
 
