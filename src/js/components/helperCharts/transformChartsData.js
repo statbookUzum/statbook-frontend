@@ -1,14 +1,18 @@
 import { removeYearFromDate } from "../helper";
 
 export function transformChartsData(arr) {
+  const sortArr = arr.sort((a, b) => {
+    return new Date(a.date) - new Date(b.date);
+  });
+
   const resultObj = {
     dateArr: [],
     saleArr: [],
     priceArr: [],
     lostArr: [],
-  }
+  };
 
-  arr.forEach(obj => {
+  sortArr.forEach((obj) => {
     resultObj.dateArr.push(removeYearFromDate(obj.date));
 
     resultObj.saleArr.push(obj.selled_amount);
