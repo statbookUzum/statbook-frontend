@@ -26,7 +26,7 @@ import {
   getProductSkuFromString,
 } from "./helper";
 import { updateCashingIdMainData } from "./cashing/cashingMainData";
-import { setDataToXlsx } from "./toXlsx";
+import { setDataToXlsx, setXlsxProductArr } from "./toXlsx";
 import { setTableData } from "./sortTable";
 import { setError } from "./setError";
 import { changeLang } from "./change-lang";
@@ -97,16 +97,20 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           renderTotalStat(transformData.totalStat, totalStat);
           renderSellerCard(transformData.cardInfo, sellerCard);
 
-          const arrToXlsx = {
-            firstSheet: [
-              [`Анализ магазинов за ${period} дней`],
-              ...transformData.table.analyze,
-            ],
-            secondSheet: [
-              ["", `Обзор магазинов за ${period} дней`],
-              ...transformData.table.review,
-            ],
-          };
+          const arrToXlsx = [
+            {
+              review: [
+                ["", `Обзор магазинов за ${period} дней`],
+                ...transformData.table.review,
+              ],
+            },
+            {
+              analyze: [
+                [`Анализ магазинов за ${period} дней`],
+                ...transformData.table.analyze,
+              ],
+            },
+          ];
 
           setDataToXlsx(arrToXlsx, transformData.cardInfo.title);
           updateCashingIdMainData(
@@ -158,16 +162,20 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           tableHeaderTooltip();
           renderTotalStat(transformData.totalStat, totalStat);
 
-          const arrToXlsx = {
-            firstSheet: [
-              [`Категории за ${period} дней`],
-              ...transformData.table.analyze,
-            ],
-            secondSheet: [
-              ["", `Обзор категорий за ${period} дней`],
-              ...transformData.table.review,
-            ],
-          };
+          const arrToXlsx = [
+            {
+              analyze: [
+                [`Категории за ${period} дней`],
+                ...transformData.table.analyze,
+              ],
+            },
+            {
+              review: [
+                ["", `Обзор категорий за ${period} дней`],
+                ...transformData.table.review,
+              ],
+            },
+          ];
 
           setDataToXlsx(arrToXlsx, categoryCardData.categoryName);
           updateCashingIdMainData(
@@ -198,6 +206,35 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
       const productInfo = document.querySelector(".product-info");
       const skuFilterContainer = document.querySelector(".filter-sku");
 
+      function segregateProductData(data) {
+        const sheetsDataObj = {};
+
+        data.analyze.forEach((item) => {
+          sheetsDataObj[item.sku] = {
+            analyze: {
+              ...item,
+              title: inputHiddenForId.getAttribute("data-hidden-title"),
+            },
+          };
+
+          const chartData = getSkuChartsData(data.chartsInfo, item.sku);
+
+          sheetsDataObj[item.sku].chartsInfo = transformChartsData(chartData);
+        });
+
+        const totalChartData = totalChartsData(data.chartsInfo);
+
+        sheetsDataObj["totalData"] = {
+          analyze: {
+            ...totalProductCardInfo(data.analyze),
+            title: inputHiddenForId.getAttribute("data-hidden-title"),
+          },
+          chartsInfo: transformChartsData(totalChartData),
+        };
+
+        return sheetsDataObj;
+      }
+
       setLoadingAnimation(mainSectionInner, true);
       setLoadingAnimation(productInfo, true);
       skuFilterContainer.style.display = "none";
@@ -210,8 +247,6 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           const isSku = response.data.analyze.find(
             (item) => item.sku === productSku
           );
-
-          console.log(changeLang("cтатистика по всем SKU"));
 
           isSku
             ? renderSkuTop(productSku, skuFilterContainer)
@@ -236,26 +271,18 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
             skuContainer.prepend(skuTop);
           }
 
-          return {
-            analyze: !isSku
-              ? totalProductCardInfo(response.data.analyze)
-              : getProductCardDataSku(response.data.analyze, productSku),
-            chartsInfo: !isSku
-              ? totalChartsData(response.data.chartsInfo)
-              : getSkuChartsData(response.data.chartsInfo, productSku),
-            positions: response.data.positions,
-          };
-        })
-        .then((response) => {
+          const segregateData = segregateProductData(response.data);
           document.querySelector(".analytics-charts").style.display = "block";
 
           return {
-            chartsData: transformChartsData(response.chartsInfo),
-            cardInfo: {
-              ...response.analyze,
-              title: inputHiddenForId.getAttribute("data-hidden-title"),
-            },
-            positions: response.positions,
+            cardInfo: !isSku
+              ? segregateData.totalData.analyze
+              : segregateData[productSku].analyze,
+            chartsData: !isSku
+              ? segregateData.totalData.chartsInfo
+              : segregateData[productSku].chartsInfo,
+            positions: response.data.positions,
+            sheetsData: segregateData,
           };
         })
         .then((transformData) => {
@@ -281,39 +308,7 @@ export function getMainData(searchForm, pageType, categoryCardData, period) {
           changePeriods(period);
           renderCategory(transformData.positions, analyticsList);
 
-          const arrToXlsx = {
-            secondSheet: [
-              ["Название продукта", transformData.cardInfo.title.trim()],
-              [
-                "Цена продукта",
-                transformData.cardInfo.remaining_products_value,
-              ],
-              [
-                "Средняя цена продаж",
-                transformData.cardInfo.avg_purchase_price,
-              ],
-              ["Продавец", transformData.cardInfo.seller_title],
-              [
-                "Остаток (в наличии)",
-                transformData.cardInfo.remaining_products,
-              ],
-              ["Продажи", transformData.cardInfo.selled_amount],
-              ["Выручка", transformData.cardInfo.revenue],
-              ["Рейтинг", transformData.cardInfo.rating],
-              [""],
-              [`Продажи за последние ${period} дней`],
-              transformData.chartsData.dateArr,
-              transformData.chartsData.saleArr,
-              [""],
-              [`Изменение цены за последние ${period} дней`],
-              transformData.chartsData.dateArr,
-              transformData.chartsData.priceArr,
-              [""],
-              [`Кол-во остатков за последние ${period} дней`],
-              transformData.chartsData.dateArr,
-              transformData.chartsData.lostArr,
-            ],
-          };
+          const arrToXlsx = setXlsxProductArr(transformData.sheetsData, period);
 
           setDataToXlsx(
             arrToXlsx,

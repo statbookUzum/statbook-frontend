@@ -15,9 +15,9 @@ export function transformChartsData(arr) {
   sortArr.forEach((obj) => {
     resultObj.dateArr.push(removeYearFromDate(obj.date));
 
-    resultObj.saleArr.push(obj.selled_amount);
-    resultObj.priceArr.push(obj.purchase_price);
-    resultObj.lostArr.push(obj.available_amount);
+    resultObj.saleArr.push(+obj.selled_amount);
+    resultObj.priceArr.push(+obj.purchase_price);
+    resultObj.lostArr.push(+obj.available_amount);
   });
 
   return resultObj;

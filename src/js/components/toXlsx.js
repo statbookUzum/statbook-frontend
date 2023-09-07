@@ -5,56 +5,53 @@ const downloadBtn = document.querySelector(".report-btn");
 let dataForXlsx = null;
 let nameOfXlsx = "Данные";
 let isProductPage = false;
+let productSku = null;
 
 if (downloadBtn) {
   downloadBtn.addEventListener("click", () => {
     if (!dataForXlsx) return;
 
     try {
-      const { firstSheet, secondSheet } = dataForXlsx;
-
       nameOfXlsx = nameOfXlsx.replace(/\s/g, "_");
       nameOfXlsx = nameOfXlsx.slice(0, 10);
 
       const workbook = utils.book_new();
-      if (secondSheet) {
-        if (!isProductPage) {
-          stringToNumber(secondSheet);
-        }
-        const rulesArr = !isProductPage
-          ? setFormatDataArr(secondSheet[1])
-          : null;
-        const sheet = utils.aoa_to_sheet(secondSheet);
-        const wscols = setWidthCols(secondSheet);
-        sheet["!cols"] = wscols;
-        if (!isProductPage) {
-          getStyleToTable(sheet, "", rulesArr);
-        } else {
-          getStyleToProductTable(sheet);
-        }
+      const sortedData = isProductPage
+        ? sortSkuXlsx(dataForXlsx, productSku)
+        : dataForXlsx;
 
-        const nameOfPage = isProductPage ? "Total_" : "Review_";
+      sortedData.forEach((chartObj) => {
+        for (let key in chartObj) {
+          const chartItem = chartObj[key];
 
-        utils.book_append_sheet(workbook, sheet, nameOfPage + nameOfXlsx);
-      }
+          if (!isProductPage) {
+            stringToNumber(chartItem);
+          }
 
-      if (firstSheet) {
-        if (!isProductPage) {
-          stringToNumber(firstSheet);
+          const rulesArr = !isProductPage
+            ? setFormatDataArr(chartItem[1])
+            : null;
+
+          const sheet = utils.aoa_to_sheet(chartItem);
+          const wscols = setWidthCols(chartItem);
+          sheet["!cols"] = wscols;
+          if (!isProductPage) {
+            getStyleToTable(sheet, "", rulesArr);
+          } else {
+            getStyleToProductTable(sheet);
+          }
+
+          let nameOfPage = nameOfXlsx + "_";
+
+          if (isProductPage) {
+            nameOfPage += key === "totalData" ? "totalData" : "sku_" + key;
+          } else {
+            nameOfPage += key === "review" ? "review" : "analyze";
+          }
+
+          utils.book_append_sheet(workbook, sheet, nameOfPage);
         }
-        const rulesArr = !isProductPage
-          ? setFormatDataArr(firstSheet[1])
-          : null;
-        const sheet = utils.aoa_to_sheet(firstSheet);
-        const wscols = setWidthCols(firstSheet, "analyze");
-        sheet["!cols"] = wscols;
-        if (!isProductPage) {
-          getStyleToTable(sheet, "analyze", rulesArr);
-        } else {
-          getStyleToProductTable(sheet);
-        }
-        utils.book_append_sheet(workbook, sheet, "Analyze_" + nameOfXlsx);
-      }
+      });
 
       writeFile(workbook, `${nameOfXlsx}_statbook_report.xlsx`);
     } catch (error) {
@@ -62,6 +59,27 @@ if (downloadBtn) {
       alert("Что-то пошло не так, попробуйте выгрузить отчет позже");
     }
   });
+}
+
+function sortSkuXlsx(arr, sku) {
+  if (!sku) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].hasOwnProperty("totalData")) {
+        const [totalDataObj] = arr.splice(i, 1);
+        arr.unshift(totalDataObj);
+        break;
+      }
+    }
+  } else {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].hasOwnProperty(sku)) {
+        const [skuObj] = arr.splice(i, 1);
+        arr.unshift(skuObj);
+        break;
+      }
+    }
+  }
+  return arr;
 }
 
 function setFormatDataArr(arr) {
@@ -280,10 +298,50 @@ function stringToNumber(arr) {
   });
 }
 
-export function setDataToXlsx(data, title, pageType) {
+export function setXlsxProductArr(dataObj, period) {
+  const arrXlsx = [];
+  for (let key in dataObj) {
+    const currentObj = {
+      [`${key}`]: [
+        ["Название продукта", dataObj[key].analyze.title.trim()],
+        ["Цена продукта", dataObj[key].analyze.remaining_products_value],
+        ["Средняя цена продаж", dataObj[key].analyze.avg_purchase_price],
+        ["Продавец", dataObj[key].analyze.seller_title],
+        ["Остаток (в наличии)", dataObj[key].analyze.remaining_products],
+        ["Продажи", dataObj[key].analyze.selled_amount],
+        ["Выручка", dataObj[key].analyze.revenue],
+        ["Рейтинг", dataObj[key].analyze.rating],
+        [""],
+        [`Продажи за последние ${period} дней`, ""],
+        dataObj[key].chartsInfo.dateArr,
+        dataObj[key].chartsInfo.saleArr,
+        [""],
+        [`Изменения цены за последние ${period} дней`, ""],
+        dataObj[key].chartsInfo.dateArr,
+        dataObj[key].chartsInfo.priceArr,
+        [""],
+        [`Кол-во остатков за последние ${period} дней`, ""],
+        dataObj[key].chartsInfo.dateArr,
+        dataObj[key].chartsInfo.lostArr,
+      ],
+    };
+
+    arrXlsx.push(currentObj);
+  }
+
+  return arrXlsx;
+}
+
+export function setDataToXlsx(
+  data = dataForXlsx,
+  title = nameOfXlsx,
+  pageType,
+  sku
+) {
   dataForXlsx = data;
   nameOfXlsx = title;
-  isProductPage = pageType === "product" ? true : false;
+  isProductPage = pageType === "product";
+  productSku = sku;
 }
 
 export function getXlsxData() {

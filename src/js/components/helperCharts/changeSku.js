@@ -5,7 +5,7 @@ import {
 import { transformChartsData } from "./transformChartsData";
 import { renderProductCard, renderTotalStat } from "../render-products";
 import { saleCht, priceCht, lostCht } from "./createCharts";
-import { getXlsxData } from "../toXlsx";
+import { setDataToXlsx } from "../toXlsx";
 
 let dataForSku;
 let skuStrList = [];
@@ -66,29 +66,7 @@ if (filterSku) {
           chartsData[key] = chartsData[key].map((item) => +item);
         }
 
-        const dataForXlsx = getXlsxData();
-        dataForXlsx.firstSheet = [
-          [`Название продукта, SKU ${skuNumber}`, cardInfo.title.trim()],
-          ["Цена продукта", cardInfo.remaining_products_value],
-          ["Средняя цена продаж", cardInfo.avg_purchase_price],
-          ["Продавец", cardInfo.seller_title],
-          ["Остаток (в наличии)", cardInfo.remaining_products],
-          ["Продажи", cardInfo.selled_amount],
-          ["Выручка", cardInfo.revenue],
-          ["Рейтинг", cardInfo.rating],
-          [""],
-          [`Продажи за последние ${period} дней`],
-          chartsData.dateArr,
-          chartsData.saleArr,
-          [""],
-          [`Изменение цены за последние ${period} дней`],
-          chartsData.dateArr,
-          chartsData.priceArr,
-          [""],
-          [`Кол-во остатков за последние ${period} дней`],
-          chartsData.dateArr,
-          chartsData.lostArr,
-        ];
+        setDataToXlsx(undefined, undefined, "product", skuNumber);
 
         renderProductCard(cardInfo, productCard, dataForSku.positions);
         renderTotalStat(cardInfo, statList);
