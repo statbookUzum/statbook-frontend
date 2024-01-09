@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// export const getCategorySelectData = () => {
-//   return axios.get("https://statbook.uz/public/uploads/menu.json");
-// };
+export const getCategorySelectData = () => {
+  return axios.get("https://statbook.uz/public/uploads/menu.json");
+};
 
 export const getHelperData = (value, searchType) => {
   const urls = {

@@ -2,7 +2,10 @@
   position: relative;
   padding: 32px 30px 20px;
   border-radius: 25px;
+  display: flex;
+  flex-direction: column;
   width: 365px;
+  height: 100%;
 
   @include w($xsm) {
     width: 300px;
@@ -45,7 +48,8 @@
   }
 
   &__list {
-    margin: 0 auto 55px;
+    margin: 0 auto auto;
+    text-align: left;
   }
 
   &__line {
@@ -88,7 +92,9 @@
     left: 50%;
     padding: 10px 23px;
     border-radius: 20px;
-    display: block;
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
 
     font-weight: 600;
     font-size: 20px;
@@ -164,4 +170,21 @@
       animation-iteration-count: infinite;
     }
   }
+
+  &__submit {
+    margin-top: 55px;
+  }
+}
+
+.tariff-card--top .tariff-card__discount::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+
+  background-image: url("../../img/tariff-fire.svg");
+
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }

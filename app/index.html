@@ -82,6 +82,25 @@
             <span>Анализируйте рынок эффективнее</span> с помощью нашего инновационного метода сбора информации. Мы
             предоставляем
             весь спектр данных о ваших конкурентах, что <span>поможет увеличить прибыль</span>
+
+            <ul class="hero__list">
+              <li>Более <span style="font-weight: bold; text-decoration: underline;">2500+</span> клиентов</li>
+              <li><span style="font-weight: bold; text-decoration: underline;">Бесплатный</span> доступ на <span style="text-decoration: underline; font-weight: bold;">24 часа</span></li>
+              <li>Оперативная поддержка</li>
+              <li><span style="font-weight: bold; text-decoration: underline;"><a href="https://www.youtube.com/watch?v=GPdXnBnBoLw&amp;list=PLEyEonALD_2s8nvT2QLJ6Yvm3317TVzuz" target="_blank">Видеоинструкции на YouTube</a></span></li>
+          </ul>
+
+          <style>
+              .hero__list {
+                margin-top: 10px;
+                  list-style-type: disc; /* Тип маркера (bullet point) - можно изменить на другие значения, например: circle, square и т.д. */
+                  padding-left: 20px; /* Отступ слева для маркеров */
+              }
+              .hero__list li {
+                  margin-bottom: 10px; /* Отступ между элементами списка */
+                  line-height: 1.5; /* Высота строки для улучшения читаемости */
+              }
+          </style>
           </div>
           <a href="./registration.html" class="hero__button main-button">
             Попробовать бесплатно
@@ -216,7 +235,7 @@
             <div class="custom-tabs__panel" tabindex="0">
               <ul class="change-tariff__list">
                 <li class="change-tariff__item">
-                  <article class="tariff-card">
+                  <article class="tariff-card tariff-card--primary">
                     <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
                     <h3 class="tariff-card__title">
                       Базовый
@@ -291,7 +310,7 @@
             <div class="custom-tabs__panel custom-tabs__panel--active" tabindex="0">
               <ul class="change-tariff__list">
                 <li class="change-tariff__item">
-                  <article class="tariff-card">
+                  <article class="tariff-card tariff-card--primary">
                     <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
 
                     <h3 class="tariff-card__title">
@@ -304,16 +323,16 @@
                     </div>
                     <ul class="tariff-card__list">
                       <li class="tariff-card__line">
-                        Доступ к расширению
+                        Доступ к веб-приложению Statbook на 30 календарных дней
                       </li>
                       <li class="tariff-card__line">
-                        Позиции товара
+                        до 5 отчетов по разным магазинам (до 3 в сутки по одному магазину) в день
                       </li>
                       <li class="tariff-card__line tariff-card__line--disable">
-                        60 дней периода аналитика
+                        до 10 отчетов по разным категориям (до 3 в сутки по одной категории) в день
                       </li>
                       <li class="tariff-card__line tariff-card__line--disable">
-                        5 отчетов по магазинам в сутки
+                        до 10 разных товаров (до 3 в сутки по одному и тому же товару) в день
                       </li>
                     </ul>
                     <!-- input hidden -->
@@ -321,13 +340,13 @@
                     <!-- тут оставил инпут хиден, что бы если ты вруг через сабмит будешь это делать отправлялись данные, если этого не нужно, то просто удали -->
                     <input type="hidden" name="tariff-type" value="base-tariff">
                     <input type="hidden" name="period-type" value="base-tariff">
-                    <button type="button" class="tariff-card__submit btn-reset main-button main-button--stroke-blue">
+                    <button type="button" class="tariff-card__submit btn-reset main-button">
                       Попробовать
                     </button>
                   </article>
                 </li>
                 <li class="change-tariff__item">
-                  <article class="tariff-card tariff-card--primary">
+                  <article class="tariff-card tariff-card--top tariff-card--primary">
                     <button class="btn-reset tariff-card__no-money" data-graph-path="no-money-modal"></button>
 
                     <div class="tariff-card__discount">
@@ -346,16 +365,16 @@
                     </div>
                     <ul class="tariff-card__list">
                       <li class="tariff-card__line">
-                        Доступ к расширению
+                        Все, что включает тариф стандарт
                       </li>
                       <li class="tariff-card__line">
-                        Позиции товара
+                        Выгрузка данных за 60/90 дней
                       </li>
                       <li class="tariff-card__line">
-                        60 дней периода аналитика
+                        Анализ конкурентов
                       </li>
                       <li class="tariff-card__line">
-                        5 отчетов по магазинам в сутки
+                        Анализ продавцов (ИП и ООО конкурентов)
                       </li>
                     </ul>
                     <!-- input hidden -->

@@ -2,7 +2,7 @@
   padding: 90px 0 200px;
 
   @include w($sm) {
-    padding: 39px 0 0;
+    padding: 39px 0 70px;
   }
 
   &__container {
@@ -45,34 +45,47 @@
 
   &__list {
     &::-webkit-scrollbar {
-      height: 0;
+      height: 7px;
       background-color: transparent;
     }
 
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: $color-blue;
+    }
+
+    padding: 0 50px;
     padding-bottom: 32px;
     margin: 0 auto;
     box-shadow: 0px 15px 70px rgba(0, 0, 0, 0.15);
     border-radius: 20px;
-    display: flex;
-    align-items: center;
+    display: inline-flex;
+    align-items: stretch;
     justify-content: center;
     gap: 35px;
-    max-width: 960px;
-    width: 100%;
 
     background-color: $color-gray;
 
-    @include w($md) {
-      padding: 15px 10px 32px;
+    @include w(1300px) {
+      padding: 0 15px 32px;
+      gap: 15px;
+    }
+
+    @include w($xl) {
+      width: 100%;
+      padding: 25px 10px 32px;
       box-shadow: none;
-      justify-content: flex-start;
       background-color: transparent;
 
       overflow-x: auto;
     }
 
+    @include w($md) {
+      justify-content: flex-start;
+    }
+
     @include w($sm) {
-      padding: 45px 10px 70px;
+      padding: 45px 10px 10px;
       border-radius: 0;
       gap: 14px;
     }
@@ -87,12 +100,16 @@
       }
     }
 
-    @include w($md) {
+    @include w($xl) {
       margin-top: 0;
     }
   }
 
   &.hidden {
     display: none;
+  }
+
+  .custom-tabs__panel {
+    text-align: center;
   }
 }

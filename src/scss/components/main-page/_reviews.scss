@@ -19,9 +19,6 @@
 
   &__slider-wrapper {
     position: relative;
-    left: -100px;
-
-    width: calc(100% + 100px);
 
     @include w($sm) {
       left: 0;
